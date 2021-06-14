@@ -41,6 +41,14 @@ ql repo https://ghproxy.com/https://github.com/Ariszy/Private-Script.git "JD"
 ```
 ql repo https://ghproxy.com/https://github.com/ZCY01/daily_scripts.git "jd_"
 ```
+- `monk-dust/dust`
+```
+ql repo https://ghproxy.com/https://github.com/Oreomeow/dust.git "i-chenzhe|normal|member|car" "backup"
+```
+- `star261`
+```
+ql repo https://ghproxy.com/https://github.com/star261/jd.git "scripts" "code" 
+```
 
 ## 单脚本
 > 翻翻乐提现单文件
