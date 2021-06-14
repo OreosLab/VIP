@@ -19,7 +19,7 @@ ql repo https://ghproxy.com/https://github.com/passerby-b/JDDJ.git "jddj_" "scf_
 ```
 - `温某某`
 ```
-ql repo https://ghproxy.com/https://github.com/Wenmoux/scripts.git "jd"
+ql repo https://ghproxy.com/https://github.com/Wenmoux/scripts.git  "jd" "" "" "wen"
 ```
 - `柠檬（胖虎）`
 ```
@@ -36,6 +36,10 @@ ql repo https://ghproxy.com/https://github.com/hyzaw/scripts.git "ddo_"
 - `Ariszy (Zhiyi-N)`
 ```
 ql repo https://ghproxy.com/https://github.com/Ariszy/Private-Script.git "JD"
+```
+- `ZCY01`
+```
+ql repo https://ghproxy.com/https://github.com/ZCY01/daily_scripts.git "jd_"
 ```
 
 ## 单脚本
