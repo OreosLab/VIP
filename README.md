@@ -23,9 +23,6 @@
 ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER"
 ```
 ```
-ql repo https://github.com/Oreomeow/dust.git "i-chenzhe|normal|member|car" "backup"
-```
-```
 ql repo https://github.com/longzhuzhu/nianyu.git "qx"
 ```
 ```
@@ -35,10 +32,10 @@ ql repo https://github.com/Wenmoux/scripts.git  "jd" "" "" "wen"
 ql repo https://github.com/panghu999/panghu.git "jd_"
 ```
 ```
-ql repo https://github.com/zooPanda/zoo.git "zoo"
-```
-```
 ql repo https://github.com/ZCY01/daily_scripts.git "jd_"
+```
+```
+ql repo https://github.com/star261/jd.git "scripts" "code" 
 ```
 
 
