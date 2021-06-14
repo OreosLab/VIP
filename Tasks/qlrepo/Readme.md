@@ -19,7 +19,7 @@ ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event" "jddj_co
 ```
 - `温某某`
 ```
-ql repo https://github.com/Wenmoux/scripts.git "jd"
+ql repo https://github.com/Wenmoux/scripts.git "jd" "" "" "wen"
 ```
 - `柠檬（胖虎）`
 ```
