@@ -37,6 +37,10 @@ ql repo https://github.com/hyzaw/scripts.git "ddo_"
 ```
 ql repo https://github.com/Ariszy/Private-Script.git "JD"
 ```
+- `ZCY01`
+```
+ql repo https://github.com/ZCY01/daily_scripts.git "jd_"
+```
 
 ## 单脚本
 > 翻翻乐提现单文件
