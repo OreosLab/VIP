@@ -1,0 +1,32 @@
+[
+    {
+        "name":"elecV2/elecV2P-dei",
+        "url":"https://github.com/elecV2/elecV2P-dei"
+    },
+    {
+        "name":"chinnkarahoi/jd_scripts",
+        "url":"https://github.com/chinnkarahoi/jd_scripts"
+    },
+    {
+        "name":"wisz2021/jd_docker",
+        "url":"https://github.com/wisz2021/jd_docker"
+    },
+    {
+        "name":"whyour/qinglong",
+        "url":"https://github.com/whyour/qinglong"
+    },
+    {
+        "name":"monk-coder/dust",
+        "url":"https://github.com/monk-coder/dust"
+    },
+    {
+        "name":"sngxpro/QuanX",
+        "url":"https://github.com/sngxpro/QuanX"
+    }
+]
+
+
+    "repo":"[\n    {\n        \"name\":\"elecV2/elecV2P-dei\",\n        \"url\":\"https://github.com/elecV2/elecV2P-dei\"\n    },\n    {\n        \"name\":\"chinnkarahoi/jd_scripts\",\n        \"url\":\"https://github.com/chinnkarahoi/jd_scripts\"\n    },\n    {\n        \"name\":\"wisz2021/jd_docker\",\n        \"url\":\"https://github.com/wisz2021/jd_docker\"\n    },\n    {\n        \"name\":\"whyour/qinglong\",\n        \"url\":\"https://github.com/whyour/qinglong\"\n    },\n    {\n        \"name\":\"monk-coder/dust\",\n        \"url\":\"https://github.com/monk-coder/dust\"\n    },\n    {\n        \"name\":\"sngxpro/QuanX\",\n        \"url\":\"https://github.com/sngxpro/QuanX\"\n    }\n]",
+
+
+

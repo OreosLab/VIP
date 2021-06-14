@@ -1,0 +1,58 @@
+{
+    "name":"News",
+    "author":"Leon",
+    "desc":"Monitor messages",
+    "date":"2021-05-26 23:50:00",
+    "list":[
+        {
+            "name":"GitHub监控",
+            "type":"cron",
+            "time":"30 9,21 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/github.js"
+            },
+            "running":true
+        },
+        {
+            "name":"公众号监控",
+            "type":"cron",
+            "time":"0,15,30,45 0-23 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/js/News/wechatsubs.js"
+            },
+            "running":true
+        },
+        {
+            "name":"NASA每日一图",
+            "type":"cron",
+            "time":"0 8 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/nasa/nasapic.js"
+            },
+            "running":true
+        },
+        {
+            "name":"iDaily",
+            "type":"cron",
+            "time":"30 8 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/idaily/idaily.js"
+            },
+            "running":true
+        },
+        {
+            "name":"豆瓣电影日历每日通知",
+            "type":"cron",
+            "time":"0 12 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/zZPiglet/Task/master/MovieCalendar/MovieCalendar.js"
+            },
+            "running":true
+        }
+    ]
+}

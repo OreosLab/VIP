@@ -1,0 +1,236 @@
+
+# 从日志提取互助码，编号和配置文件中Cookie编号完全对应，如果为空就是所有日志中都没有。
+
+# 即使某个MyXxx变量未赋值，也可以将其变量名填在ForOtherXxx中，jtask脚本会自动过滤空值。
+
+# 你选择的互助码模板为：所有账号助力码全部一致。
+
+## 东东农场：
+MyFruit1="
+MyFruit2="
+MyFruit3="
+MyFruit4="
+MyFruit5="
+MyFruit6="
+MyFruit7="
+
+ForOtherFruit1="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}@${MyFruit7}"
+ForOtherFruit2="${ForOtherFruit1}"
+ForOtherFruit3="${ForOtherFruit1}"
+ForOtherFruit4="${ForOtherFruit1}"
+ForOtherFruit5="${ForOtherFruit1}"
+ForOtherFruit6="${ForOtherFruit1}"
+ForOtherFruit7="${ForOtherFruit1}"
+
+## 东东萌宠：
+MyPet1="
+MyPet2="
+MyPet3="
+MyPet4="
+MyPet5="
+MyPet6="
+MyPet7="
+
+ForOtherPet1="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}"
+ForOtherPet2="${ForOtherPet1}"
+ForOtherPet3="${ForOtherPet1}"
+ForOtherPet4="${ForOtherPet1}"
+ForOtherPet5="${ForOtherPet1}"
+ForOtherPet6="${ForOtherPet1}"
+ForOtherPet7="${ForOtherPet1}"
+
+## 种豆得豆：
+MyBean1="
+MyBean2="
+MyBean3="
+MyBean4="
+MyBean5="
+MyBean6="
+MyBean7="
+
+ForOtherBean1="${MyBean1}@${MyBean2}@${MyBean3}@${MyBean4}@${MyBean5}@${MyBean6}@${MyBean7}"
+ForOtherBean2="${ForOtherBean1}"
+ForOtherBean3="${ForOtherBean1}"
+ForOtherBean4="${ForOtherBean1}"
+ForOtherBean5="${ForOtherBean1}"
+ForOtherBean6="${ForOtherBean1}"
+ForOtherBean7="${ForOtherBean1}"
+
+## 京喜工厂：
+MyDreamFactory1="
+MyDreamFactory2="
+MyDreamFactory3="
+MyDreamFactory4="
+MyDreamFactory5="
+MyDreamFactory6="
+MyDreamFactory7="
+
+ForOtherDreamFactory1="${MyDreamFactory1}@${MyDreamFactory2}@${MyDreamFactory3}@${MyDreamFactory4}@${MyDreamFactory5}@${MyDreamFactory6}@${MyDreamFactory7}"
+ForOtherDreamFactory2="${ForOtherDreamFactory1}"
+ForOtherDreamFactory3="${ForOtherDreamFactory1}"
+ForOtherDreamFactory4="${ForOtherDreamFactory1}"
+ForOtherDreamFactory5="${ForOtherDreamFactory1}"
+ForOtherDreamFactory6="${ForOtherDreamFactory1}"
+ForOtherDreamFactory7="${ForOtherDreamFactory1}"
+
+## 东东工厂：
+MyJdFactory1="
+MyJdFactory2="
+MyJdFactory3="
+MyJdFactory4="
+MyJdFactory5="
+MyJdFactory6="
+MyJdFactory7="
+
+ForOtherJdFactory1="${MyJdFactory1}@${MyJdFactory2}@${MyJdFactory3}@${MyJdFactory4}@${MyJdFactory5}@${MyJdFactory6}@${MyJdFactory7}"
+ForOtherJdFactory2="${ForOtherJdFactory1}"
+ForOtherJdFactory3="${ForOtherJdFactory1}"
+ForOtherJdFactory4="${ForOtherJdFactory1}"
+ForOtherJdFactory5="${ForOtherJdFactory1}"
+ForOtherJdFactory6="${ForOtherJdFactory1}"
+ForOtherJdFactory7="${ForOtherJdFactory1}"
+
+## 京东赚赚：
+MyJdzz1="
+MyJdzz2="
+MyJdzz3="
+MyJdzz4="
+MyJdzz5="
+MyJdzz6="
+MyJdzz7="
+
+ForOtherJdzz1="${MyJdzz1}@${MyJdzz2}@${MyJdzz3}@${MyJdzz4}@${MyJdzz5}@${MyJdzz6}@${MyJdzz7}"
+ForOtherJdzz2="${ForOtherJdzz1}"
+ForOtherJdzz3="${ForOtherJdzz1}"
+ForOtherJdzz4="${ForOtherJdzz1}"
+ForOtherJdzz5="${ForOtherJdzz1}"
+ForOtherJdzz6="${ForOtherJdzz1}"
+ForOtherJdzz7="${ForOtherJdzz1}"
+
+## 疯狂的JOY：
+MyJoy1="
+MyJoy2="
+MyJoy3="
+MyJoy4="
+MyJoy5="
+MyJoy6="
+MyJoy7="
+
+ForOtherJoy1="${MyJoy1}@${MyJoy2}@${MyJoy3}@${MyJoy4}@${MyJoy5}@${MyJoy6}@${MyJoy7}"
+ForOtherJoy2="${ForOtherJoy1}"
+ForOtherJoy3="${ForOtherJoy1}"
+ForOtherJoy4="${ForOtherJoy1}"
+ForOtherJoy5="${ForOtherJoy1}"
+ForOtherJoy6="${ForOtherJoy1}"
+ForOtherJoy7="${ForOtherJoy1}"
+
+## 京喜农场：
+MyJxnc1="
+MyJxnc2="
+MyJxnc3="
+MyJxnc4="
+MyJxnc5="
+MyJxnc6="
+MyJxnc7="
+
+ForOtherJxnc1="${MyJxnc1}@${MyJxnc2}@${MyJxnc3}@${MyJxnc4}@${MyJxnc5}@${MyJxnc6}@${MyJxnc7}"
+ForOtherJxnc2="${ForOtherJxnc1}"
+ForOtherJxnc3="${ForOtherJxnc1}"
+ForOtherJxnc4="${ForOtherJxnc1}"
+ForOtherJxnc5="${ForOtherJxnc1}"
+ForOtherJxnc6="${ForOtherJxnc1}"
+ForOtherJxnc7="${ForOtherJxnc1}"
+
+## 口袋书店：
+## 从日志中未找到任何互助码
+
+## 签到领现金：
+## 从日志中未找到任何互助码
+
+## 闪购盲盒：
+MySgmh1="
+MySgmh2="
+MySgmh3="
+MySgmh4="
+MySgmh5="
+MySgmh6="
+MySgmh7="
+
+ForOtherSgmh1="${MySgmh1}@${MySgmh2}@${MySgmh3}@${MySgmh4}@${MySgmh5}@${MySgmh6}@${MySgmh7}"
+ForOtherSgmh2="${ForOtherSgmh1}"
+ForOtherSgmh3="${ForOtherSgmh1}"
+ForOtherSgmh4="${ForOtherSgmh1}"
+ForOtherSgmh5="${ForOtherSgmh1}"
+ForOtherSgmh6="${ForOtherSgmh1}"
+ForOtherSgmh7="${ForOtherSgmh1}"
+
+## 京喜财富岛：
+MyCfd1="
+MyCfd2="
+MyCfd3="
+MyCfd4="
+MyCfd5="
+MyCfd6="
+MyCfd7="
+
+ForOtherCfd1="${MyCfd1}@${MyCfd2}@${MyCfd3}@${MyCfd4}@${MyCfd5}@${MyCfd6}@${MyCfd7}"
+ForOtherCfd2="${ForOtherCfd1}"
+ForOtherCfd3="${ForOtherCfd1}"
+ForOtherCfd4="${ForOtherCfd1}"
+ForOtherCfd5="${ForOtherCfd1}"
+ForOtherCfd6="${ForOtherCfd1}"
+ForOtherCfd7="${ForOtherCfd1}"
+
+## 东东健康社区：
+MyHealth1="
+MyHealth2="
+MyHealth3="
+MyHealth4="
+MyHealth5="
+MyHealth6="
+MyHealth7="
+
+ForOtherHealth1="${MyHealth1}@${MyHealth2}@${MyHealth3}@${MyHealth4}@${MyHealth5}@${MyHealth6}@${MyHealth7}"
+ForOtherHealth2="${ForOtherHealth1}"
+ForOtherHealth3="${ForOtherHealth1}"
+ForOtherHealth4="${ForOtherHealth1}"
+ForOtherHealth5="${ForOtherHealth1}"
+ForOtherHealth6="${ForOtherHealth1}"
+ForOtherHealth7="${ForOtherHealth1}"
+
+## 京东手机狂欢城：
+MyCarnivalcity1="
+MyCarnivalcity2="
+MyCarnivalcity3="
+MyCarnivalcity4="
+MyCarnivalcity5="
+MyCarnivalcity6="
+MyCarnivalcity7="
+
+ForOtherCarnivalcity1="${MyCarnivalcity1}@${MyCarnivalcity2}@${MyCarnivalcity3}@${MyCarnivalcity4}@${MyCarnivalcity5}@${MyCarnivalcity6}@${MyCarnivalcity7}"
+ForOtherCarnivalcity2="${ForOtherCarnivalcity1}"
+ForOtherCarnivalcity3="${ForOtherCarnivalcity1}"
+ForOtherCarnivalcity4="${ForOtherCarnivalcity1}"
+ForOtherCarnivalcity5="${ForOtherCarnivalcity1}"
+ForOtherCarnivalcity6="${ForOtherCarnivalcity1}"
+ForOtherCarnivalcity7="${ForOtherCarnivalcity1}"
+
+## 城城领现金：
+MyCity1="
+MyCity2="
+MyCity3="
+MyCity4="
+MyCity5="
+MyCity6="
+MyCity7="
+
+ForOtherCity1="${MyCity1}@${MyCity2}@${MyCity3}@${MyCity4}@${MyCity5}@${MyCity6}@${MyCity7}"
+ForOtherCity2="${ForOtherCity1}"
+ForOtherCity3="${ForOtherCity1}"
+ForOtherCity4="${ForOtherCity1}"
+ForOtherCity5="${ForOtherCity1}"
+ForOtherCity6="${ForOtherCity1}"
+ForOtherCity7="${ForOtherCity1}"
+
+## 618动物联萌：
+## 从日志中未找到任何互助码

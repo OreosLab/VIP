@@ -1,0 +1,108 @@
+{
+    "name":"JDOther",
+    "author":"Leon",
+    "desc":"旺仔 制作Json模板2.0.xlsx文件，Leon 修订并拆分转换成.json的任务订阅。该订阅适用于 elecV2P，与其他软件并不兼容。相关说明参考：https://github.com/elecV2/elecV2P-dei/tree/master/docs/06-task.md",
+    "date":"2021-05-25 3:50:00",
+    "list":[
+        {
+            "name":"（白条）京东金融养猪猪",
+            "type":"cron",
+            "time":"12 * * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://jdsharedresourcescdn.azureedge.net/jdresource/jd_pigPet.js"
+            },
+            "running":true
+        },
+        {
+            "name":"（白条）京东摇钱树",
+            "type":"cron",
+            "time":"35 0-23/2 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://jdsharedresourcescdn.azureedge.net/jdresource/jd_moneyTree.js"
+            },
+            "running":true
+        },
+        {
+            "name":"（白条）天天提鹅",
+            "type":"cron",
+            "time":"15 0,7-23 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://jdsharedresourcescdn.azureedge.net/jdresource/jd_daily_egg.js"
+            },
+            "running":true
+        },
+        {
+            "name":"（黑号）京东家庭号",
+            "type":"cron",
+            "time":"1 12,23 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://jdsharedresourcescdn.azureedge.net/jdresource/jd_family.js"
+            },
+            "running":false
+        },
+        {
+            "name":"（建议手动）领现金兑换红包",
+            "type":"cron",
+            "time":"0,1,2 0 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/ddgksf2013/Cuttlefish/master/Jd/jd_cash_exchange.js"
+            },
+            "running":true
+        },
+        {
+            "name":"（异常）京东排行榜",
+            "type":"cron",
+            "time":"6 0 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_rankingList.js"
+            },
+            "running":true
+        },
+        {
+            "name":"京喜财富岛提现并发修改版zxtop",
+            "type":"cron",
+            "time":"0 0 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/ztxtop/x/main/jx_cfdtx.js"
+            },
+            "running":false
+        },
+        {
+            "name":"注销会员卡链接",
+            "type":"schedule",
+            "time":"0",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/GoodStudying/local_file/main/task/v2p_task/jd_unbind.js"
+            },
+            "running":false
+        },
+        {
+            "name":"一次性入会",
+            "type":"schedule",
+            "time":"0",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/sngxpro/QuanX/master/scripts/member_0X.js"
+            },
+            "running":false
+        },
+        {
+            "name":"（金融）京东金融领豆（抓包）",
+            "type":"cron",
+            "time":"5 7 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/dompling/Script/master/jd/jd_jr_sign.js"
+            },
+            "running":false
+        }
+    ]
+}

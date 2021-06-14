@@ -1,0 +1,128 @@
+{
+    "name":"羊毛3.0",
+    "author":"旺仔，Leon",
+    "desc":"旺仔 制作.xlsx文件，Leon 修订并转换成.json的任务订阅。该订阅适用于 elecV2P，与其他软件并不兼容。相关说明参考：https://github.com/elecV2/elecV2P-dei/tree/master/docs/06-task.md",
+    "date":"2021-05-12 16:00:00",
+    "list":[
+        {
+            "name":"开心大丰收",
+            "type":"cron",
+            "time":"*/10 * * * *",
+            "job":{
+                "type":"runjs",
+                "target":"http://nm66.top/kxdfs.js"
+            },
+            "running":false
+        },
+        {
+            "name":"开心花园",
+            "type":"cron",
+            "time":"*/30 * * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/kxhy.js"
+            },
+            "running":false
+        },
+        {
+            "name":"考状元娶老婆",
+            "type":"cron",
+            "time":"10 0-23 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/age174/-/main/qlp.js"
+            },
+            "running":false
+        },
+        {
+            "name":"柠檬富豪小镇",
+            "type":"cron",
+            "time":"*/10 * * * *",
+            "job":{
+                "type":"runjs",
+                "target":"http://nm66.top/fhxz.js"
+            },
+            "running":false
+        },
+        {
+            "name":"如意花园",
+            "type":"cron",
+            "time":"*/15 * * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/Ariszy/Private-Script/master/Scripts/ryhy.js"
+            },
+            "running":false
+        },
+        {
+            "name":"幸福养鸡场",
+            "type":"cron",
+            "time":"10,20,30 0-23 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/age174/-/main/xfyjc.js"
+            },
+            "running":false
+        },
+        {
+            "name":"中青看点看看赚&浏览赚(需配合专用重写获取cookie)",
+            "type":"cron",
+            "time":"30 6 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/ztxtop/x/main/youth_banner.js"
+            },
+            "running":false
+        },
+        {
+            "name":"中青看点签到&开转盘宝箱&阅读时长",
+            "type":"cron",
+            "time":"10 */1 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/GoodHolidays/Scripts/master/Task/youth.js"
+            },
+            "running":false
+        },
+        {
+            "name":"番茄看看",
+            "type":"cron",
+            "time":"25 5 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/age174/-/main/fqkk.js"
+            },
+            "running":false
+        },
+        {
+            "name":"吾爱破解",
+            "type":"cron",
+            "time":"18 7 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/NobyDa/Script/master/52pojie-DailyBonus/52pojie.js"
+            },
+            "running":false
+        },
+        {
+            "name":"陌嗨短视频",
+            "type":"cron",
+            "time":"19 7 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/age174/-/main/mhdsp.js"
+            },
+            "running":false
+        },
+        {
+            "name":"笑谱阅读",
+            "type":"cron",
+            "time":"25 3-22/3 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/Ariszy/Private-Script/master/Scripts/xpread.js"
+            },
+            "running":false
+        }
+    ]
+}
