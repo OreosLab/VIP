@@ -29,7 +29,7 @@ ql repo https://github.com/Oreomeow/dust.git "i-chenzhe|normal|member|car" "back
 ql repo https://github.com/longzhuzhu/nianyu.git "qx"
 ```
 ```
-ql repo https://github.com/Wenmoux/scripts.git "jd"
+ql repo https://github.com/Wenmoux/scripts.git  "jd" "" "" "wen"
 ```
 ```
 ql repo https://github.com/panghu999/panghu.git "jd_"
