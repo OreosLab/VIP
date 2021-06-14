@@ -37,6 +37,9 @@ ql repo https://github.com/panghu999/panghu.git "jd_"
 ```
 ql repo https://github.com/zooPanda/zoo.git "zoo"
 ```
+```
+ql repo https://github.com/ZCY01/daily_scripts.git "jd_"
+```
 
 
 ## [★](./INS) Instructions
