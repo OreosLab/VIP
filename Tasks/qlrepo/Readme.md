@@ -27,7 +27,7 @@ ql repo https://github.com/panghu999/panghu.git "jd_"
 ```
 - `zoopanda（动物园）`
 ```
-ql repo https://github.com/Oreomeow/zoo.git "zoo"
+ql repo https://github.com/zooPanda/zoo.git "zoo"
 ```
 - `hyzaw`
 ```
