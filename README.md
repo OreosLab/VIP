@@ -42,7 +42,7 @@ ql repo https://github.com/star261/jd.git "scripts" "code"
 ## [★](./INS) Instructions
 ### JD
 > [General](https://www.kdocs.cn/l/cvv59F3SXS4B)  
-> [lxk0301](./INS/JD/lxk0301#readme)  
+> [Unknown](./INS/JD/Unknown#readme)  
 > [nevinee](./INS/JD/nevinee#readme)  
 
 
