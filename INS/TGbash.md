@@ -42,7 +42,7 @@
     make
     ```
     如果编译安装出现如下错误：
-    [telegram-cil-error.png][telegram-cil-error.png]
+    ![telegram-cil-error.png][telegram-cil-error.png]
 
     解决方法：
     ``` sh
@@ -53,10 +53,10 @@
 
 ### 申请Telegram APP Key并且登陆telegram-cli
 - 首先到telegram-apps里申请一个telegram App key（登陆时电话号码记得加国际区号）。
-  [telegram-app-login.png][telegram-app-login.png]
+  ![telegram-app-login.png][telegram-app-login.png]
 
 - 复制Public keys:
-  [app-key.png][app-key.png]
+  ![app-key.png][app-key.png]
 
 - 创建一个文件保存Public keys:
   ``` sh
@@ -71,7 +71,7 @@
   ###输入账号绑定的手机号码，记得加区号
   ###输入telegram App收到的验证码
   ```
-  [telegram-cil-login.png][telegram-cil-login.png]
+  ![telegram-cil-login.png][telegram-cil-login.png]
 
 IOS锁屏就会提示offline,打开手机telegram app就会提示online。
 
@@ -166,7 +166,7 @@ crontab -e
 > 作品采用： 《 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 》许可协议授权
 
 
-[telegram-cil-error.png]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/telegram-cil-error.png
-[telegram-app-login.png]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/telegram-app-error.png
-[app-key.png]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/app-key.png
-[telegram-cil-login.png]https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/telegram-cil-login.png
+[telegram-cil-error.png]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/telegram-cil-error.png  
+[telegram-app-login.png]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/telegram-app-error.png  
+[app-key.png]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/app-key.png  
+[telegram-cil-login.png]https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/telegram-cil-login.png  
