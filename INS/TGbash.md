@@ -77,10 +77,12 @@ IOS锁屏就会提示offline,打开手机telegram app就会提示online。
 - 测试一下命令：
   telegram-cil频道名称如果有空格用下划线代替。
   发送命令格式`/root/work/telegram/tg/bin/telegram-cli -W -e "msg 频道名称 命令"`
+  
   ```
   ### 发送一条统计当前互助码池命令
   /root/work/telegram/tg/bin/telegram-cli -W -e "msg Turing_Lab_Bot /count_activity_codes"
   ```
+  
   回显信息比较乱，自己看手机或PC telegram APP Turing_Lab_Bot机器人 消息就好了。
 
 ## 编写脚本
@@ -158,6 +160,6 @@ crontab -e
 
 这下一劳永逸，省的忘记错过一个亿。最近京东活动也比较多，没有助力活动任务很难完成，助力才是京东活动的灵魂。
 
-> 版权属于： orzlee
-> 本文链接： https://www.orzlee.com/toss/2021/02/24/lxk0301-jingdong-signin-scriptautomatic-submission-of-mutual-aid-codes.html
+> 版权属于： orzlee  
+> 本文链接： https://www.orzlee.com/toss/2021/02/24/lxk0301-jingdong-signin-scriptautomatic-submission-of-mutual-aid-codes.html  
 > 作品采用： 《 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 》许可协议授权
