@@ -169,4 +169,4 @@ crontab -e
 [telegram-cil-error.png]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/telegram-cil-error.png  
 [telegram-app-login.png]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/telegram-app-login.png  
 [app-key.png]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/app-key.png  
-[telegram-cil-login.png]https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/telegram-cil-login.png  
+[telegram-cil-login.png]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGbash/telegram-cil-login.png
