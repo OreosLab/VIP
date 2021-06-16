@@ -7,7 +7,7 @@
 > [nevinee](./JD/nevinee#readme)   
 > [qinglong](./JD/qinglong#readme)  
 > [lan-tianxiang](https://github.com/lan-tianxiang/JS_TOOL/wiki)  
-> [Local](./Scripts/js/Node.js-613.rar)   
+> [Local](./raw/main/Scripts/js/Node.js-613.rar)   
 > [JDMemberCloseAccount](https://github.com/yqchilde/JDMemberCloseAccount#jdmembercloseaccount)
 
 ## VPS
