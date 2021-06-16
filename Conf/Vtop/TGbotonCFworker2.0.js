@@ -1,7 +1,7 @@
 /**
  * 功能: 部署在 cloudflare worker 的 TGbot 后台代码，用于通过 telegram 查看/控制 elecV2P
  * 地址: https://github.com/elecV2/elecV2P-dei/blob/master/examples/TGbotonCFworker2.0.js
- * 更新: 2021-05-26
+ * 更新: 2021-06-10
  * 说明: 功能实现主要基于 elecV2P 的 webhook（https://github.com/elecV2/elecV2P-dei/tree/master/docs/09-webhook.md）
  * 
  * 使用方式: 
@@ -64,17 +64,14 @@
  * 
  * bot commands 2.0
 runjs - 运行 JS
-task - 开始暂停任务
+task - 任务管理模式
 status - 内存使用状态
-shell - 执行简单 shell 指令
+shell - shell 命令执行模式
 store - store/cookie 管理
-end - 退出当前执行环境
 tasksave - 保存任务列表
-taskdel - 删除任务
-deljs - 删除 JS
-dellog - 删除日志
-log - 获取日志
-context - 查看当前执行模式
+log - 查看日志文件
+context - 查看当前执行环境
+end - 退出当前执行环境
 info - 查看服务器信息
 command - 列出所有指令
 
@@ -476,14 +473,17 @@ async function handlePostRequest(request) {
         return new Response("OK")
       } else if (bodytext === '/command') {
         payload.text = `/runjs - 运行 JS
-/task - 开始暂停任务
+/task - 任务管理模式
 /status - 内存使用状态
-/shell - 执行简单 shell 指令
+/shell - shell 指令执行模式
 /store - store/cookie 管理
-/end - end context
 /tasksave - 保存任务列表
+/taskdel + tid - 删除任务
+/deljs + JS 文件名 - 删除 JS
 /log - 获取日志
-/context - 查看当前执行模式
+/dellog + 日志名 - 删除日志
+/context - 查看当前执行环境
+/end - 退出当前执行环境
 /info - 查看服务器信息
 /command - 列出所有指令`
 
@@ -553,13 +553,17 @@ async function handlePostRequest(request) {
             await context.put('u' + payload['chat_id'], 'task')
             let tasklists = await getTaskinfo('all')
             let tlist = JSON.parse(tasklists)
-            let tlstr = ''
+            let tlstr = []
             for (let tid in tlist.info) {
-              tlstr += `${tlist.info[tid].running ? '🐢' : '🐰'} ${tlist.info[tid].name} /${tid}  |  /stop${tid}\n`
+              tlstr.push(`${tlist.info[tid].running ? '🐢' : '🐰'} ${tlist.info[tid].name} /${tid}  |  /stop${tid}`)
+              if (tlstr.length > 80) {
+                payload.text = tlstr.join('\n')
+                await tgPush(payload)
+                tlstr = []
+              }
             }
-            tlstr += `共 ${tlist.total} 个定时任务，运行中(🐢)的任务 ${tlist.running} 个`
 
-            payload.text = `当前 elecV2P 任务列表如下:\n${tlstr}\n点击任务名后面的 /+tid 开始任务，/+stoptid 停止任务\n也可以手动输入对应的 tid 开始任务, stop tid 停止任务\ntaskinfo tid 查看任务信息`
+            payload.text = `\n${tlstr.join('\n')}\n当前 elecV2P 定时任务共 ${tlist.total} 个，运行中(🐢)的任务 ${tlist.running} 个\n点击任务名后面的 /+tid 开始任务，/+stoptid 停止任务\n也可以手动输入对应的 tid 开始任务, stop tid 停止任务\ntaskinfo tid 查看任务信息`
             await tgPush(payload)
 
             payload.text = `按照下面格式多行输入可直接添加新的任务（每行表示一个任务参数）\n
