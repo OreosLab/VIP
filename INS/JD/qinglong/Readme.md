@@ -82,7 +82,7 @@ docker exec -it qinglong cat /ql/config/auth.json
 
 ## 四、拉取脚本
 
-最新拉取代码点击这里 [🗝](https://github.com/Orangemuse/VIP#-tasks)  
+最新拉取代码点击这里 [🗝](https://github.com/Oreomeow/VIP#-tasks)  
 国内vps等加`https://ghproxy.com/`  
 > 示例
 ```
@@ -177,3 +177,7 @@ docker exec -it qinglong task test.js conc
 ##
 - 公众号少年歌行pro
 > 教程 https://t.me/shao66
+
+##
+- 青龙教程合集 （基于Cent OS 7.6）
+> https://www.notion.so/Cent-OS-7-6-1c598629675145988b43a37998a1604a
