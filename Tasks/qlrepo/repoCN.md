@@ -19,7 +19,7 @@ ql repo https://ghproxy.com/https://github.com/passerby-b/JDDJ.git "jddj_" "scf_
 ```
 - `温某某`
 ```
-ql repo https://ghproxy.com/https://github.com/Wenmoux/scripts.git  "jd" "" "" "wen"
+ql repo  https://ghproxy.com/https://github.com/Wenmoux/scripts.git  "other|jd" "" "" "wen"
 ```
 - `柠檬（胖虎）`
 ```

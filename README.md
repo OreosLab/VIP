@@ -26,7 +26,7 @@ ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "ac
 ql repo https://github.com/longzhuzhu/nianyu.git "qx"
 ```
 ```
-ql repo https://github.com/Wenmoux/scripts.git  "jd" "" "" "wen"
+ql repo https://github.com/Wenmoux/scripts.git  "other|jd" "" "" "wen"
 ```
 ```
 ql repo https://github.com/panghu999/panghu.git "jd_"
