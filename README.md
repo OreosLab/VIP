@@ -1,4 +1,4 @@
-# 📌 Invalid links have been replaced. All remaining 618-tasks use QL. So no more V2p-updates for a while.
+# 📌 Suspension of updates
 
 # Statement
   
