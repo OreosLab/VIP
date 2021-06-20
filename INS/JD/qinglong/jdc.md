@@ -27,9 +27,9 @@
 
 ### 三、通过ssh连接群晖，推荐工具finalshell（不知道方法的自行百度）
 
-windows版下载地址
+[windows版下载地址](http://www.hostbuf.com/downloads/finalshell_install.exe)
 
-macos版下载地址
+[macos版下载地址](http://www.hostbuf.com/downloads/finalshell_install.pkg)
 
 
 ### 四、依次通过以下命令进行安装
