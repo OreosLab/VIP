@@ -68,6 +68,16 @@ wget https://github.com/huayu8/JDC/releases/download/2.0.2/linux_amd64.zip && un
 wget https://github.com/huayu8/JDC/releases/download/2.0.2/linux_arm.zip && unzip linux_arm.zip
 ```
 
+##### 失效请看
+``` sh
+//如果你是amd64架构（服务器，PC等）
+wget https://github.com/Oreomeow/JDC/releases/download/2.0.2/linux_amd64.zip && unzip linux_amd64.zip
+```
+``` sh
+//如果你是arm架构（N1，路由器，树莓派等）
+wget https://github.com/Oreomeow/JDC/releases/download/2.0.2/linux_arm.zip && unzip linux_arm.zip
+```
+
 其他架构或系统请自行编译
 
 ``` sh
