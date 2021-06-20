@@ -11,4 +11,4 @@
 > [Syntax](https://www.runoob.com/regexp/regexp-syntax.html)
 
 ## ✦ Crontab
-> [crontab tool](https://tool.lu/crontab/)
+> [Crontab tool](https://tool.lu/crontab/)
