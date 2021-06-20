@@ -2,9 +2,9 @@
 
 背景：因大佬陆续删库，目前青龙面板可能是最好的搭建平台了。关于扫码面板和互助的使用呼声较高，积极响应大家号召，赶出来一篇稿子，希望对大家有帮助。
 
-<center>PS：文章有点长，搞了目录树，见右边，方便大家查看。</center>
+<p align="center">PS：文章有点长，搞了目录树，见右边，方便大家查看。</p>
 
-## <center>花语面板搭建教程（2.0.2版本拉到最后）</center>
+## 花语面板搭建教程（2.0.2版本拉到最后）
 
 
 ### 一、下载编译过的花语面板JDC压缩包（傻瓜式安装），解压后选择合适自己架构的JDC文件。
@@ -100,7 +100,7 @@ set GOOS=linux
 go build -o JDC
 ```
 
-## <center>互助使用教程</center>
+## 互助使用教程
 
 ### 一、添加下面的自定义仓库，并手动运行一次进行添加脚本。
 
@@ -138,7 +138,7 @@ chinnkarahoi_jd_scripts_jd_health
 ### 四、这样就设置成功了，再去运行相关脚本看看是否已经自动互助了。
 
 
-## <center>更新花语面板搭建教程（2.0.3版本）</center>
+## 更新花语面板搭建教程（2.0.3版本）
 
 今天发现大佬有开放库了，赶紧把最新版本的文件下了，顺便更新了面板。如果想体验新版本的同学，可以折腾一下。
 
@@ -230,3 +230,14 @@ nohup ./JDC &
 
 ## 原文链接
 > https://www.kejiwanjia.com/zheteng/1483.html#i-4
+
+
+[我的目录]:https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/JDC/%E6%88%91%E7%9A%84%E7%9B%AE%E5%BD%95.png
+[conf]:https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/JDC/conf.png
+[控制面板]:https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/JDC/%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF.png
+[main.go]:https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/JDC/main.go.png
+[public]:https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/JDC/public.png
+[help]:https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/JDC/help.png
+[qlcode]:https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/JDC/qlcode.png
+[reinstall]:https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/JDC/reinstall.png
+[conf.toml]:https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/JDC/conf.toml.png
