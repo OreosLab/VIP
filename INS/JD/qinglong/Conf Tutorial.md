@@ -92,6 +92,6 @@ apk add python3 zlib-dev gcc jpeg-dev python3-dev musl-dev freetype-dev
 ![添加脚本库][添加脚本库]
 
 --------------------
-[运行效果]: https://github.com/Orangemuse/VIP/blob/main/Icons/qinglong/%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C.png
-[jbot]:https://github.com/Orangemuse/VIP/blob/main/Icons/qinglong/jbot.png
-[添加脚本库]:https://github.com/Orangemuse/VIP/blob/main/Icons/qinglong/%E6%B7%BB%E5%8A%A0%E8%84%9A%E6%9C%AC%E5%BA%93.png
+[运行效果]: https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C.png
+[jbot]:https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/jbot.png
+[添加脚本库]:https://github.com/Oreomeow/VIP/blob/main/Icons/qinglong/%E6%B7%BB%E5%8A%A0%E8%84%9A%E6%9C%AC%E5%BA%93.png
