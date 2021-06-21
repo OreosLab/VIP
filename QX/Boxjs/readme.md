@@ -1,4 +1,10 @@
-### 全网各大佬boxjs地址查询对照 2021.5.17 & 5.25 by Leon
+### 全网各大佬boxjs地址查询对照 2021.5.17 & 6.22 by Leon
+
+`JDHelloWorld`
+
+https://raw.githubusercontent.com/JDHelloWorld/jd_scripts/main/boxjs.json
+
+----------
 
 `yangtingxiao`
 
