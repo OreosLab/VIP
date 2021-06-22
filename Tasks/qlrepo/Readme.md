@@ -2,18 +2,25 @@
 
 ## 整库
 - `Unknown 备份托管等`
+
   - `chinnkarahoi`
+  
   ```
   ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER"
   ```
+  
   - `panghu999`
+  
   ```
   ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER"
   ```
+  
   - `JDHelloWorld`
+  
   ```
   ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER"
   ```
+  
 - `龙珠`
 ```
 ql repo https://github.com/longzhuzhu/nianyu.git "qx"
