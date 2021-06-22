@@ -2,6 +2,7 @@
 > 用于国内 VPS 等
 ## 整库
 - `Unknown 备份托管等`
+
   - `chinnkarahoi`
   ```
   ql repo https://ghproxy.com/https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER"
@@ -14,6 +15,7 @@
   ```
   ql repo https://ghproxy.com/https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER"
   ```
+  
 - `龙珠`
 ```
 ql repo https://ghproxy.com/https://github.com/longzhuzhu/nianyu.git "qx"
