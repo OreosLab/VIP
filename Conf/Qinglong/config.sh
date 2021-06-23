@@ -20,7 +20,7 @@ GithubProxyUrl="https://ghproxy.com/"
 CommandTimeoutTime="1h"
 
 ## 设置批量执行任务时的并发数，默认同时执行5个任务
-MaxConcurrentNum="5"
+MaxConcurrentNum="10"
 
 ## 在运行 task 命令时，随机延迟启动任务的最大延迟时间
 ## 默认给javascript任务加随机延迟，如 RandomDelay="300" ，表示任务将在 1-300 秒内随机延迟一个秒数，然后再运行，取消延迟赋值为空
@@ -164,21 +164,21 @@ var_name=(
 ## 所有有互助码的活动，把脚本名称列在 name_js 中，对应 config.sh 中互助码后缀列在 name_config 中，中文名称列在 name_chinese 中。
 ## name_js、name_config 和 name_chinese 中的三个名称必须一一对应。
 name_js=(
-  chinnkarahoi_jd_scripts_jd_fruit
-  chinnkarahoi_jd_scripts_jd_pet
-  chinnkarahoi_jd_scripts_jd_plantBean
-  chinnkarahoi_jd_scripts_jd_dreamFactory
-  chinnkarahoi_jd_scripts_jd_jdfactory
-  chinnkarahoi_jd_scripts_jd_jdzz
-  chinnkarahoi_jd_scripts_jd_crazy_joy
-  chinnkarahoi_jd_scripts_jd_jxnc
-  chinnkarahoi_jd_scripts_jd_bookshop
-  chinnkarahoi_jd_scripts_jd_cash
-  chinnkarahoi_jd_scripts_jd_sgmh
-  chinnkarahoi_jd_scripts_jd_cfd
-  chinnkarahoi_jd_scripts_jd_health
-  chinnkarahoi_jd_scripts_jd_carnivalcity
-  chinnkarahoi_jd_scripts_jd_zoo
+  JDHelloWorld_jd_scripts_jd_fruit
+  JDHelloWorld_jd_scripts_jd_pet
+  JDHelloWorld_jd_scripts_jd_plantBean
+  JDHelloWorld_jd_scripts_jd_dreamFactory
+  JDHelloWorld_jd_scripts_jd_jdfactory
+  JDHelloWorld_jd_scripts_jd_jdzz
+  JDHelloWorld_jd_scripts_jd_crazy_joy
+  JDHelloWorld_jd_scripts_jd_jxnc
+  JDHelloWorld_jd_scripts_jd_bookshop
+  JDHelloWorld_jd_scripts_jd_cash
+  JDHelloWorld_jd_scripts_jd_sgmh
+  JDHelloWorld_jd_scripts_jd_cfd
+  JDHelloWorld_jd_scripts_jd_health
+  JDHelloWorld_jd_scripts_jd_carnivalcity
+  JDHelloWorld_jd_scripts_jd_zoo
 )
 name_config=(
   Fruit
@@ -216,13 +216,9 @@ name_chinese=(
 )
 
 ## 其他需要的变量，脚本中需要的变量使用 export 变量名= 声明即可
-export JOY_RUN_HELP_MYSELF="true"
+## 4、京东农场关闭推送。填写false为不关闭推送，true为关闭推送
 export FRUIT_NOTIFY_CONTROL="false"
+## 6、宠汪汪赛跑自己账号内部互助。输入true为开启内部互助
+export JOY_RUN_HELP_MYSELF="true"
+## 14、京喜农场控制是否运行脚本后通知。0=只通知成熟;1=本次获得水滴>0;2=任务执行;3=任务执行+未种植种子
 export JXNC_NOTIFY_LEVEL="0"
-export TUAN_ACTIVEID=""
-export JOY_RUN_TOKEN=""
-## 省钱大赢家本期活动ID
-export redEnvelopeId=""
-## 省钱大赢家邀请码
-export inviter=""
-export ZOO_OPENCARD="true"
