@@ -5,66 +5,6 @@
     "date":"2021-06-23 17:25:00",
     "list":[
         {
-            "name":"开心大丰收",
-            "type":"cron",
-            "time":"*/10 * * * *",
-            "job":{
-                "type":"runjs",
-                "target":"http://nm66.top/kxdfs.js"
-            },
-            "running":false
-        },
-        {
-            "name":"开心花园",
-            "type":"cron",
-            "time":"*/30 * * * *",
-            "job":{
-                "type":"runjs",
-                "target":"https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/kxhy.js"
-            },
-            "running":false
-        },
-        {
-            "name":"考状元娶老婆",
-            "type":"cron",
-            "time":"10 0-23 * * *",
-            "job":{
-                "type":"runjs",
-                "target":"https://raw.githubusercontent.com/age174/-/main/qlp.js"
-            },
-            "running":false
-        },
-        {
-            "name":"柠檬富豪小镇",
-            "type":"cron",
-            "time":"*/10 * * * *",
-            "job":{
-                "type":"runjs",
-                "target":"http://nm66.top/fhxz.js"
-            },
-            "running":false
-        },
-        {
-            "name":"如意花园",
-            "type":"cron",
-            "time":"*/15 * * * *",
-            "job":{
-                "type":"runjs",
-                "target":"https://raw.githubusercontent.com/Ariszy/Private-Script/master/Scripts/ryhy.js"
-            },
-            "running":false
-        },
-        {
-            "name":"幸福养鸡场",
-            "type":"cron",
-            "time":"10,20,30 0-23 * * *",
-            "job":{
-                "type":"runjs",
-                "target":"https://raw.githubusercontent.com/age174/-/main/xfyjc.js"
-            },
-            "running":false
-        },
-        {
             "name":"中青看点看看赚&浏览赚(需配合专用重写获取cookie)",
             "type":"cron",
             "time":"30 6 * * *",
@@ -72,7 +12,7 @@
                 "type":"runjs",
                 "target":"https://raw.githubusercontent.com/ztxtop/x/main/youth_banner.js"
             },
-            "running":false
+            "running":true
         },
         {
             "name":"中青看点签到&开转盘宝箱&阅读时长",
@@ -82,7 +22,7 @@
                 "type":"runjs",
                 "target":"https://raw.githubusercontent.com/GoodHolidays/Scripts/master/Task/youth.js"
             },
-            "running":false
+            "running":true
         },
         {
             "name":"中青自动阅读V2P",
@@ -92,7 +32,17 @@
                 "type":"runjs",
                 "target":"https://raw.githubusercontent.com/KodoShinichi/elecV2P/main/Taks-elecV2P/youthread_elecV2.js"
             },
-            "running":false
+            "running":true
+        },
+        {
+            "name":"京喜财富岛单独提现（延迟）",
+            "type":"cron",
+            "time":"0-3 0 0 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/GoodStudying/local_file/main/task/JX_CFD_TX.js"
+            },
+            "running":true
         }
     ]
 }
