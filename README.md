@@ -1,4 +1,4 @@
-# 📌 Suspension of updates
+# 📌 As I no longer use V2P to run JD, any subsequent V2P updates will be left to chance.
 
 # Statement
   
