@@ -3,7 +3,7 @@
 ## 整库
 - `Unknown 备份托管等`
 
-  - `chinnkarahoi`
+  - `chinnkarahoi`（无维护）
   ```
   ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER"
   ```
