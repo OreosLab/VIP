@@ -74,8 +74,6 @@ ql repo https://github.com/star261/jd.git "scripts" "code"
 - [whyour/qinglong](https://github.com/whyour/qinglong)
 > Scheduled task control panel for python and javaScript
 
-### Shared files  
-- [xlsx to json.xlsx](https://www.kdocs.cn/p/114897140398) 
 
 ## [★](./Conf) Configurations  
 
