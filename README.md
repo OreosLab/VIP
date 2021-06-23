@@ -20,7 +20,7 @@
 ## [★](./Tasks) Tasks
 ### [<img src="/Icons/qinglong/QL.png" title="QL" width="30" height="30" />][QL] ← More ｜ CN → [<img src="/Icons/qinglong/QLCN.png" title="QL" width="30" height="30" />][QLCN]
 ```
-ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER"
+ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER"
 ```
 ```
 ql repo https://github.com/longzhuzhu/nianyu.git "qx"
