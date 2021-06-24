@@ -220,5 +220,19 @@ name_chinese=(
 export FRUIT_NOTIFY_CONTROL="false"
 ## 6、宠汪汪赛跑自己账号内部互助。输入true为开启内部互助
 export JOY_RUN_HELP_MYSELF="true"
+## 7、宠汪汪积分兑换多少京豆。目前可填值为20或者500,脚本默认0,0表示不兑换京豆
+export JD_JOY_REWARD_NAME="500"
+## 8、东东超市兑换京豆数量。目前可输入值为20或者1000，或者其他商品的名称,例如碧浪洗衣凝珠
+export MARKET_COIN_TO_BEANS="20"
+## 12、是否取关商品。环境变量内容的意思依次是是否取关全部商品(0表示一个都不),是否取关全部店铺数(0表示一个都不),遇到此商品不再进行取关,遇到此店铺不再进行取关
+export UN_SUBSCRIBES="300,300,,"
 ## 14、京喜农场控制是否运行脚本后通知。0=只通知成熟;1=本次获得水滴>0;2=任务执行;3=任务执行+未种植种子
 export JXNC_NOTIFY_LEVEL="0"
+## 16、摇钱树是否卖出金果。true卖出，false不卖出，默认false
+export MONEY_TREE_SELL_FRUIT="true"
+## 省钱大赢家
+export redEnvelopeId=""
+export inviter=""
+## 签到领现金添加变量方式
+自行添加变量设置邀请码 格式如下 默认10个
+export cashinviteCode=""
