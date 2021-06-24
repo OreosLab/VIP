@@ -4,10 +4,8 @@
 
 下面开始
 
-> nevinee/jd的脚本发布页是：https://hub.docker.com/r/nevinee/jd 这个脚本的原作者是lxk0301大佬，因为某些人为了自己的利益导致这位大佬的仓库被迫转为私有仓库。而nevinee是少数经lxk0301大佬授权可以发布在自己仓库的大佬之一。本教程主要还是以lxk0301大佬的脚本为例，来介绍jd签到脚本的安装步骤，以及安装控制面板，因为lxk0301大佬自己的脚本是不带控制面板的。我安装时候也是网上找了好久也没找到教程，最后是群里一位大佬帮忙解决的。
-
+- nevinee/jd的脚本发布页是：https://hub.docker.com/r/nevinee/jd 这个脚本的原作者是lxk0301大佬，因为某些人为了自己的利益导致这位大佬的仓库被迫转为私有仓库。而nevinee是少数经lxk0301大佬授权可以发布在自己仓库的大佬之一。本教程主要还是以lxk0301大佬的脚本为例，来介绍jd签到脚本的安装步骤，以及安装控制面板，因为lxk0301大佬自己的脚本是不带控制面板的。我安装时候也是网上找了好久也没找到教程，最后是群里一位大佬帮忙解决的。
 - 这里演示用openwrt系统内的docker为例，其他系统应该都差不多。
-
 - 如果你的openwrt没有安装的话，自行百度安装
 
 ## 1. 确认你系统的docker已经打开了
@@ -144,4 +142,29 @@ docker restart jd
 ![config.sh][config.sh]  
 ![replace][replace]
 
+## 原文链接
+> https://www.yuque.com/duya233/lx4vqg/fpegc5
 
+
+[Docker CE]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/Docker CE.png
+[ssh]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/ssh.png
+[pull]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/pull.png
+[ps]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/ps.png
+[WinSCP]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/WinSCP.png
+[jd]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/jd.png
+[root]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/root.png
+[cp]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/cp.png
+[it]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/it.png
+[ls]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/ls.png
+[done]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/done.png
+[mb]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/mb.png
+[cofig]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/config.png
+[cookie]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/cookie.png
+[pushplus]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/pushplus.png
+[token]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/token.png
+[export]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/export.png
+[jtask]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/jtask.png
+[log]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/log.png
+[push]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/push.png
+[config.sh]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/cnfig.sh.png
+[replace]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/replace.png
