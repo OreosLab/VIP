@@ -1,12 +1,14 @@
 # pushplus
+```
 {
 "token": `xxxxxxxxxxxxxxxxxxxx`,
 "title": `$title$`,
 "content": `$body$\n$url$`,
 "Content-Type": `application/json`
 }
-
+```
 # telegram
+```
 Post
 https://api.telegram.org/botxxxxxxxxxx/
 {
@@ -14,7 +16,9 @@ https://api.telegram.org/botxxxxxxxxxx/
   "chat_id": xxxxxxxxxx,
   "text": `$title$\n$body$\n$url$`
 }
+```
 # COOKIESJD
+```
 [
   {
     "userName": "",
@@ -25,16 +29,21 @@ https://api.telegram.org/botxxxxxxxxxx/
     "cookie": "pt_key=;pt_pin=;"
   }
 ]
-
+```
 # notify.js
+```
 if (typeof $title$ !== "undefined") {
     botNotify($title$, $body$, $url$)
 }
+```
+or
+```
 //if (typeof $title$ !== "undefined") {
     botNotify1($title$, $body$, $url$)
     botNotify2($title$, $body$, $url$)
 }
-
+```
+```
 function botNotify(title, body, url) {
 if (body=== "undefined"){body=""}
 if (url==="undefined"){url=""}
@@ -56,3 +65,4 @@ if (url==="undefined"){url=""}
     console.error('mynotify1 Í¨ÖªÊ§°Ü', e.message)
   })
 }
+```
