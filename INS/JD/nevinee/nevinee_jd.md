@@ -146,7 +146,7 @@ docker restart jd
 > https://www.yuque.com/duya233/lx4vqg/fpegc5
 
 
-[Docker CE]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/Docker CE.png
+[Docker CE]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/Docker%20CE.png
 [ssh]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/ssh.png
 [pull]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/pull.png
 [ps]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/ps.png
