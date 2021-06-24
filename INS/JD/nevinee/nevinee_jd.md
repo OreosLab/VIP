@@ -166,5 +166,5 @@ docker restart jd
 [jtask]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/jtask.png
 [log]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/log.png
 [push]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/push.png
-[config.sh]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/cnfig.sh.png
+[config.sh]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/config.sh.png
 [replace]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/replace.png
