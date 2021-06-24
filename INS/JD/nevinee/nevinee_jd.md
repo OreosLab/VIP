@@ -58,7 +58,7 @@ nevinee/jd:v4-bot
 
 ![root][root]
 
-6.然后我们执行以下命令
+6. 然后我们执行以下命令
 
 ``` sh
 docker cp /root/install-panel.sh jd:/jd
