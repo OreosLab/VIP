@@ -158,7 +158,7 @@ docker restart jd
 [ls]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/ls.png
 [done]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/done.png
 [mb]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/mb.png
-[cofig]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/config.png
+[config]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/config.png
 [cookie]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/cookie.png
 [pushplus]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/pushplus.png
 [token]:https://github.com/Oreomeow/VIP/blob/main/Icons/nevinee/token.png
