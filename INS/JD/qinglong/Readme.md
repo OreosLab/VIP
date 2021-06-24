@@ -178,6 +178,9 @@ docker exec -it qinglong task test.js conc
 - 公众号少年歌行pro
 > 教程 https://t.me/shao66
 
-##
+## 其他教程集合
 - 青龙教程合集 （基于Cent OS 7.6）
 > https://www.notion.so/Cent-OS-7-6-1c598629675145988b43a37998a1604a
+
+- 2.8使用指南等
+> https://www.kejiwanjia.com/notes/2255.html
