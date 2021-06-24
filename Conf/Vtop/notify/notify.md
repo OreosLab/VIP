@@ -39,7 +39,7 @@ if (typeof $title$ !== "undefined") {
 ```
 or
 ```
-//if (typeof $title$ !== "undefined") {
+if (typeof $title$ !== "undefined") {
     botNotify1($title$, $body$, $url$)
     botNotify2($title$, $body$, $url$)
 }
