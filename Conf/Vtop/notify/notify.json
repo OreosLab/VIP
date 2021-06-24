@@ -51,8 +51,8 @@ if (url==="undefined"){url=""}
       }
     }
   $axios(req).then(res=>{
-    console.log('mynotify1 通知结果', res.data)
+    console.log('mynotify1 脥篓脰陋陆谩鹿没', res.data)
   }).catch(e=>{
-    console.error('mynotify1 通知失败', e.message)
+    console.error('mynotify1 脥篓脰陋脢搂掳脺', e.message)
   })
 }
