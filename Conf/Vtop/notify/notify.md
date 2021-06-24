@@ -8,9 +8,10 @@
 }
 ```
 # telegram
-```
 Post
-https://api.telegram.org/botxxxxxxxxxx/
+
+`https://api.telegram.org/botxxxxxxxxxx/`
+```
 {
   "method": "sendMessage",
   "chat_id": xxxxxxxxxx,
@@ -43,6 +44,8 @@ or
     botNotify2($title$, $body$, $url$)
 }
 ```
+
+and
 ```
 function botNotify(title, body, url) {
 if (body=== "undefined"){body=""}
