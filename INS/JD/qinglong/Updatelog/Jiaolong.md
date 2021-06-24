@@ -5,7 +5,7 @@
 助力说明:
 
 1. 助力相关不会内置了，不用再提issue
-2. 可以自己添加附件的 code.sh 的定时任务，新建 task code.sh 即可，然后修改 task_before.sh (https://t.me/jiaolongwang/120) 中的内容见上条通知
+2. 可以自己添加附件的 [code.sh](https://github.com/Oreomeow/VIP/blob/main/Conf/Qinglong/code.sh) 的定时任务，新建 task code.sh 即可，然后修改 [task_before.sh](https://github.com/Oreomeow/VIP/blob/main/Conf/Qinglong/task_before.sh) (https://t.me/jiaolongwang/120) 中的内容见上条通知
 3. 频道发图文真难受
 
 ## 2021.06.21
