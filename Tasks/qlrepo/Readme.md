@@ -66,3 +66,7 @@ ql repo https://github.com/star261/jd.git "scripts" "code"
 ```
 ql raw https://raw.githubusercontent.com/jiulan/platypus/main/scripts/jd_ffl.js
 ```
+> 赚京豆 *By curtinlv*
+```
+ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_zjd.py
+```
