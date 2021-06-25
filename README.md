@@ -1,4 +1,4 @@
-# 📌 As I no longer use V2P to run JD, any subsequent V2P updates will be left to chance.
+# 📌 As I no longer use V2P to run JD, any subsequent V2P updates will be left to chance. [News](./Log/News.md#news)
 # 📌[Jiaolong Updates](./INS/JD/qinglong/Updatelog/Jiaolong.md#jiaolong)
 
 # Statement
