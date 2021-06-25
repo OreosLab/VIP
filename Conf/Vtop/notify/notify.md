@@ -63,9 +63,9 @@ if (url==="undefined"){url=""}
       }
     }
   $axios(req).then(res=>{
-    console.log('mynotify1 Í¨Öª½á¹û', res.data)
+    console.log('mynotify1 通知结果', res.data)
   }).catch(e=>{
-    console.error('mynotify1 Í¨ÖªÊ§°Ü', e.message)
+    console.error('mynotify1 通知失败', e.message)
   })
 }
 ```
