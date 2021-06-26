@@ -21,7 +21,7 @@ _For backup only_
 > Blog: [Orzlee](https://www.orzlee.com/)
 - [chinnkarahoi/jd_scripts](https://github.com/chinnkarahoi/jd_scripts) ♟♟♟
 > lxk's QL repository
-- [wangg9722/jd_v4](https://github.com/wangg9722/jd_v4#readme) ♟♟
+- [jiulan/jd_v4](https://github.com/jiulan/jd_v4#readme) ♟♟♟
 > V4 panel
 - [lan-tianxiang/JS_TOOL](https://github.com/lan-tianxiang/JS_TOOL/wiki) ♟♟♟
 > A1
@@ -35,6 +35,8 @@ _For backup only_
 > Maintain lxk's scripts.
 - [SuMaiKaDe/bot](https://github.com/SuMaiKaDe/bot#readme) ♟♟♟♟
 > Bot for QL/V4
+- [jxmc11/jd_node_pc](https://github.com/jxmc11/jd_node_pc#readme) ♟♟
+> Deployed on PC
 </details>
 
 # Ongoing Updates...
