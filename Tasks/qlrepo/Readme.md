@@ -79,19 +79,18 @@ ql repo https://github.com/curtinlv/JD-Script
 ql raw https://raw.githubusercontent.com/jiulan/platypus/main/scripts/jd_ffl.js
 ```
 > `curtinlv/JD-Script`（上面拉过仓库的可以不用拉了）
-- cron
-  ```
-  15 8 * * *
-  ```
+```
+15 8 * * *
+```
 >> 赚京豆
-   ```
-   ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_zjd.py
-   ```
+```
+ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_zjd.py
+```
 >> 入会
-   ```
-   ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/OpenCard/jd_OpenCard.py
-   ```
+```
+ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/OpenCard/jd_OpenCard.py
+```
 >> 关注
-   ```
-   ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/jd_getFollowGift.py
-   ```
+```
+ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/jd_getFollowGift.py
+```
