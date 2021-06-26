@@ -238,3 +238,8 @@ export inviter=""
 ## 签到领现金添加变量方式
 自行添加变量设置邀请码 格式如下 默认10个
 export cashinviteCode=""
+# 哪些 cookie 需要入会和关注店铺，数字代表青龙 【Session管理】中的序号
+export OpenCardUserList=(1 2 3 4 5 6 7 8 9 10)
+# 这里也可以添加 OpenCard 的相应配置语法如下
+# 关闭记忆功能
+export memory=False
