@@ -11,7 +11,7 @@
   ```
   50 * * * *
   ```
-  2. `JDHelloWorld` (辅助）
+  2. `JDHelloWorld`（辅助）
   ```
   ql repo https://github.com/JDHelloWorld/jd_scripts "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
   ```
