@@ -2,7 +2,7 @@
     "name":"羊毛",
     "author":"旺仔，Leon",
     "desc":"旺仔 制作.xlsx文件，Leon 修订并转换成.json的任务订阅。该订阅适用于 elecV2P，与其他软件并不兼容。相关说明参考：https://github.com/elecV2/elecV2P-dei/tree/master/docs/06-task.md",
-    "date":"2021-06-23 17:25:00",
+    "date":"2021-06-27 00:55:00",
     "list":[
         {
             "name":"中青看点看看赚&浏览赚(需配合专用重写获取cookie)",
@@ -35,14 +35,23 @@
             "running":true
         },
         {
-            "name":"京喜财富岛单独提现（延迟）",
+            "name":"京喜财富岛提现并发修改版ztxtop",
             "type":"cron",
             "time":"0-3 0 0 * * *",
             "job":{
                 "type":"runjs",
-                "target":"https://raw.githubusercontent.com/GoodStudying/local_file/main/task/JX_CFD_TX.js"
+                "target":"https://raw.githubusercontent.com/ztxtop/x/aa4ddeca813fbf5c231dd4adaec68a7632cb292c/jx_cfdtx.js"
             },
             "running":true
+        },
+        {
+            "name":"京东东东超市兑换奖品",
+            "type":"cron",
+            "time":"0 0 0 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/JDHelloWorld/jd_scripts/main/jd_blueCoin.js"
+            }
         }
     ]
 }
