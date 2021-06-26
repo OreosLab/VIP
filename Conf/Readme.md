@@ -336,11 +336,21 @@ export cashinviteCode3=""
 export zlzh=[1,2,10]
 ```
 ```
-# 哪些 cookie 需要入会和关注店铺，数字代表青龙 【Session管理】中的序号
-export OpenCardUserList=(1 2 3 4 5 6 7 8 9 10)
-# 这里也可以添加 OpenCard 的相应配置语法如下
-# 关闭记忆功能
-export memory=False
+## 入会开卡
+### int，入会送豆满足此值，否则不入会
+export openCardBean=30
+### 布尔值，是否记录符合条件的shopid(默认True)
+export record=true
+### 布尔值， True:仅记录，不入会(默认False)
+export onlyrecord=false
+### 布尔值，开启记忆功能，接力上一次异常中断位置继续。(默认yes)
+export memory=true
+### 布尔值，True：只打印部分日志 False:打印所有日志
+export printlog=true
+### Float，限制速度，单位秒，如果请求过快报错适当调整0.5秒以上
+export sleepNum=0.5
+### 布尔值，True:使用作者远程仓库更新的id，False：使用本地shopid.txt的id
+export isRemoteSid=true
 ```
 
 ## 青龙部分环境变量
