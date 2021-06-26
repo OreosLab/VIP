@@ -283,7 +283,7 @@ export ADOLF_MARTIN=""
 ```
 
 
-## zoopanda部分环境变量
+## zoopanda 部分环境变量
 
 ```
 ## zoopanda 与粽不同入会
@@ -324,6 +324,16 @@ export inviter=""
 export cashinviteCode=""
 export cashinviteCode2=""
 export cashinviteCode3=""
+```
+
+## curtinlv 环境变量
+```
+## 赚京豆
+更新下支持助力多个账号
+如给账号1 2 10助力，
+脚本内填 zlzh = [1,2,10] 
+支持ENV设置
+export zlzh=[1,2,10]
 ```
 
 ## 青龙部分环境变量
