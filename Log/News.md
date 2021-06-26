@@ -32,7 +32,7 @@ ql repo https://github.com/JDHelloWorld/jd_scripts "jd_|jx_|getJDCookie" "activi
 55 * * * *
 ```
 - 宠汪汪同样使用`JDHelloWorld`的仓库，禁用其他的只跑`宠汪汪二代目`即可，cron 改为`15 0-23/2 * * *`
-- 宠汪汪兑换使用`JDHelloWorld`的仓库，禁用其他的只跑`宠汪汪兑换二代目`即可，cron 改为`0 0-16/8 * * *`或`0-3 0 0-16/8 * * *`
+- 宠汪汪兑换使用`JDHelloWorld`的仓库，禁用其他的只跑`宠汪汪兑换二代目`即可，cron 改为`0 0-16/8 * * *`或 ? `57-59/1 59 7-23/8 * * *`（自行测试） 
 - `JDHelloWorld`宠汪汪验证解决命令
 ``` sh
 docker exec -it qinglong pnpm i png-js -S
