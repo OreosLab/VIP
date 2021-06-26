@@ -68,13 +68,30 @@ ql repo https://github.com/Oreomeow/dust.git "i-chenzhe|normal|member|car" "back
 ```
 ql repo https://github.com/star261/jd.git "scripts" "code" 
 ```
+- `curtinlv`
+```
+ql repo https://github.com/curtinlv/JD-Script
+```
 
 ## 单脚本
 > 翻翻乐提现单文件
 ```
 ql raw https://raw.githubusercontent.com/jiulan/platypus/main/scripts/jd_ffl.js
 ```
-> 赚京豆 *By curtinlv*
-```
-ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_zjd.py
-```
+> `curtinlv/JD-Script`（上面拉过仓库的可以不用拉了）
+  > cron
+  ```
+  15 8 * * *
+  ```
+  1. 赚京豆
+  ```
+  ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_zjd.py
+  ```
+  2. 入会
+  ```
+  ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/OpenCard/jd_OpenCard.py
+  ```
+  3. 关注
+  ```
+  ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/jd_getFollowGift.py
+  ```
