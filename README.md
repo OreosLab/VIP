@@ -19,7 +19,7 @@
 
 
 ## [★](./Tasks) Tasks
-### [<img src="/Icons/qinglong/QL.png" title="QL" width="30" height="30" />][QL] ← More ｜ CN → [<img src="/Icons/qinglong/QLCN.png" title="QL" width="30" height="30" />][QLCN]
+### [<img src="/Icons/qinglong/QL.png" title="QL" width="30" height="30" />][QL] ← More
 ```
 ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon|format_" "^jd[^_]|USER"
 ```
@@ -80,4 +80,3 @@ ql repo https://github.com/star261/jd.git "scripts" "code"
 
 
 [QL]:./Tasks/qlrepo#readme
-[QLCN]:./Tasks/qlrepo/repoCN.md#cn
