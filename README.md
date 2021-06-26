@@ -38,9 +38,8 @@ ql repo https://github.com/curtinlv/JD-Script
 
 
 ## [★](./INS) Instructions
-### JD
-> [General](https://www.kdocs.cn/l/cvv59F3SXS4B)  
-> [Unknown](./INS/JD/Unknown#readme)  
+### JD 
+> [qinglong](./INS/JD/qinglong#readme)   
 > [nevinee](./INS/JD/nevinee#readme)  
 
 
@@ -65,9 +64,6 @@ ql repo https://github.com/curtinlv/JD-Script
 
 ## [★](./Scripts) Scripts 
 ### Repositories [☛](./Scripts#repositories)
-- [koalaylj/xlsx2json](https://github.com/koalaylj/xlsx2json#readme)
-> Let excel express complex JSON format and export excel to json. Can be used on mac/linux/windows platform.
----
 - [whyour/qinglong](https://github.com/whyour/qinglong)
 > Scheduled task control panel for python and javaScript
 
