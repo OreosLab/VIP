@@ -97,4 +97,4 @@ async function handleRequest(request) {
 ![workers]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGNginx/workers.png  
 ![create]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGNginx/create.png  
 ![script]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGNginx/script.png  
-![push]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGNginx/push.png
+![push]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGNginx/push.png  
