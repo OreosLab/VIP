@@ -8,6 +8,7 @@
 }
 ```
 # telegram
+## [TG 反代国内机免翻墙](https://github.com/Oreomeow/VIP/blob/main/Conf/Vtop/notify/TGNginx.md#elecv2p-%E4%BD%BF%E7%94%A8-tg-%E9%80%9A%E7%9F%A5tg-%E5%8F%8D%E4%BB%A3%E5%9B%BD%E5%86%85%E6%9C%BA%E5%85%8D%E7%BF%BB%E5%A2%99)
 Post
 
 `https://api.telegram.org/botxxxxxxxxxx/`
