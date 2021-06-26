@@ -335,6 +335,13 @@ export cashinviteCode3=""
 支持ENV设置
 export zlzh=[1,2,10]
 ```
+```
+# 哪些 cookie 需要入会和关注店铺，数字代表青龙 【Session管理】中的序号
+export OpenCardUserList=(1 2 3 4 5 6 7 8 9 10)
+# 这里也可以添加 OpenCard 的相应配置语法如下
+# 关闭记忆功能
+export memory=False
+```
 
 ## 青龙部分环境变量
 
