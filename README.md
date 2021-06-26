@@ -1,5 +1,5 @@
 # 📌 As I no longer use V2P to run JD, any subsequent V2P updates will be left to chance. [News](./Log/News.md#news)
-# 📌[Jiaolong Updates](./Log/Updatelog/Jiaolong.md#jiaolong)
+# 📌 [Jiaolong Updates](./Log/Updatelog/Jiaolong.md#jiaolong)
 
 # Statement
   
