@@ -3,13 +3,11 @@
 
 # Statement
 
-<p align="center">
 ***This repository is for personal study and research purposes only.***    
 **Please DO NOT USE IT FOR COMMERCIAL PURPOSES.**  
 ***Violators are responsible for their own.***  
 **☣REFUSE to SPREAD☣**   
 ***Thank you for your cooperation.***
-</p>
 
 ## [★](./Dict) Dictionaries
 ### Learning-Markdown
