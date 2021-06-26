@@ -10,7 +10,7 @@ _For backup only_
 
 - [wudongdefeng/jd-base](https://github.com/wudongdefeng/jd-base) ♟♟♟
 > V3
-- [zero205/JD_tencent_scf](https://github.com/zero205/JD_tencent_scf) ♟♟♟
+- [zero205/JD_tencent_scf](https://github.com/zero205/JD_tencent_scf) ♟
 > The scripts in this repository are ported from lxk and other script authors and can be deployed to TencentSCF. 
 - [ddgksf2013/Cuttlefish](https://github.com/ddgksf2013/Cuttlefish) ♟♟
 > Facilitate manual cancellation of shop membership  
@@ -19,16 +19,22 @@ _For backup only_
 - [jianminLee/jd_scripts](https://github.com/jianminLee/jd_scripts) ♟
 > Openwrt: Automatically create and launch jd-scripts docker containers via telegram bot  
 > Blog: [Orzlee](https://www.orzlee.com/)
-- [chinnkarahoi/jd_scripts](https://github.com/chinnkarahoi/jd_scripts) ♟♟♟♟♟
+- [chinnkarahoi/jd_scripts](https://github.com/chinnkarahoi/jd_scripts) ♟♟♟
 > lxk's QL repository
 - [wangg9722/jd_v4](https://github.com/wangg9722/jd_v4#readme) ♟♟
 > V4 panel
-- [lan-tianxiang/JS_TOOL](https://github.com/lan-tianxiang/JS_TOOL/wiki) ♟♟♟♟
+- [lan-tianxiang/JS_TOOL](https://github.com/lan-tianxiang/JS_TOOL/wiki) ♟♟♟
 > A1
 - [yqchilde/JDMemberCloseAccount](https://github.com/yqchilde/JDMemberCloseAccount#readme) ♟♟♟♟
 > Automatic / Semi-automatic Opt-out of all JD shop members
-- [curtinlv/JD-Script](https://github.com/curtinlv/JD-Script#readme) ♟♟♟
+- [curtinlv/JD-Script](https://github.com/curtinlv/JD-Script#readme) ♟♟♟♟
 > Opencard
+- [panghu999/jd_scripts](https://github.com/panghu999/jd_scripts) ♟♟♟♟
+> Maintain lxk's scripts
+- [JDHelloWorld/jd_scripts](https://github.com/JDHelloWorld/jd_scripts) ♟♟♟♟
+> Maintain lxk's scripts.
+- [SuMaiKaDe/bot](https://github.com/SuMaiKaDe/bot#readme) ♟♟♟♟
+> Bot for QL/V4
 </details>
 
 # Ongoing Updates...
