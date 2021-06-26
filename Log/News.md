@@ -1,6 +1,6 @@
 # News
 ## 06.26 13:20
-- 拉取仓库命令`JDHelloWorld`如下，cron 设为`55 * * * *`（晚于`panghu999`的`50 * * * *`)
+- `JDHelloWorld`拉取仓库命令如下，cron 设为`55 * * * *`（晚于`panghu999`的`50 * * * *`)
 ``` sh
 ql repo https://github.com/JDHelloWorld/jd_scripts "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
 ```
