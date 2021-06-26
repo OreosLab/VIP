@@ -28,6 +28,18 @@ Post
  } 
 }
 ```
+# server 酱
+Post
+ 
+`https://sc.ftqq.com/[SCKEY(登入后可见)].send`
+or
+`https://sctapi.ftqq.com/SENDKEY.send`
+```
+{
+  "text": `$title$`,
+  "desp": `$body$可以随便加点自定义文字[链接]($url$)`
+}
+```
 # notify.js
 ```
 if (typeof $title$ !== "undefined") {
@@ -66,3 +78,6 @@ if (url==="undefined"){url=""}
   })
 }
 ```
+> 参考：https://github.com/elecV2/elecV2P/blob/master/script/JSFile/notify.js
+# elecV2P-dei 官方文档
+> https://github.com/elecV2/elecV2P-dei/blob/master/docs/07-feed%26notify.md#%E9%80%9A%E7%9F%A5%E6%96%B9%E5%BC%8F
