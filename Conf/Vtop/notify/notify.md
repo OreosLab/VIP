@@ -18,18 +18,15 @@ Post
   "text": `$title$\n$body$\n$url$`
 }
 ```
-# COOKIESJD
+# dingtalk
 ```
-[
-  {
-    "userName": "",
-    "cookie": "pt_key=;pt_pin=;"
-  },
-  {
-    "userName": "",
-    "cookie": "pt_key=;pt_pin=;"
-  }
-]
+{ 
+ "msgtype": "markdown", 
+ "markdown": { 
+ "title": `$title$`, 
+ "text": `$title$ \n> $body$\n$url$`  
+ } 
+}
 ```
 # notify.js
 ```
