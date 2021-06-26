@@ -84,15 +84,15 @@ ql raw https://raw.githubusercontent.com/jiulan/platypus/main/scripts/jd_ffl.js
   ```
   15 8 * * *
   ```
->> 1. 赚京豆
+>>赚京豆
   ```
   ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_zjd.py
   ```
->> 2. 入会
+>>入会
   ```
   ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/OpenCard/jd_OpenCard.py
   ```
->> 3. 关注
+>>关注
   ```
   ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/jd_getFollowGift.py
   ```
