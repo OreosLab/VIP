@@ -3,23 +3,23 @@
 ## 整库
 - `Unknown 备份托管等`
 
-  - `panghu999`（主用）
+  1. `panghu999`（主用）
   ```
   ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon|format_" "^jd[^_]|USER"
   ```
-  cron
+  - cron
   ```
   50 * * * *
   ```
-  - `JDHelloWorld`(辅助）
+  2. `JDHelloWorld` (辅助）
   ```
   ql repo https://github.com/JDHelloWorld/jd_scripts "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
   ```
-  cron
+  - cron
   ```
   55 * * * *
   ```
-  - `chinnkarahoi`
+  3. `chinnkarahoi`
   ```
   ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
   ```
