@@ -1,5 +1,5 @@
 # elecV2P 使用 TG 通知（TG 反代国内机免翻墙）
-none·April 15, 2021
+none · April 15, 2021
 ## 一、准备好 TG BOT token 和发送对象的 ID，（如何申请 tg bot 网上搜一下）
 
 1. 原来 @BotFather 创建 BOT 时的 token（格式为 xxxxx:xxxxx-xxxx-xxxx)
@@ -13,13 +13,16 @@ none·April 15, 2021
 右上角可切换为简体中文
 
 注册后点击 workers（如不知道此界面在哪，再次点击上面的这个链接）
+
 ![workers][workers]
 
 创建 workers
+
 ![create][create]
 
 进入以下界面
-[script][script]
+
+![script][script]
 
 1 处可以自定义三级域名，随你喜欢更改
 
@@ -68,6 +71,7 @@ async function handleRequest(request) {
 至此 CF workers 工作完成
 
 ## 三、在 v2p 通知中进行 TG 通知设定：（路径：Setting - 自定义通知）
+
 ![push][push]
 
 地址格式为：https://cfworkers网址/bot此处替换为你的TgToken/
@@ -87,3 +91,10 @@ async function handleRequest(request) {
 都弄好后点下面的保存，再点上面的“通知相关设置”右边的三角形测试发送。
 
 发送成功即可。
+
+
+
+![workers]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGNginx/workers.png
+![create]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGNginx/create.png
+![script]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGNginx/script.png
+![push]:https://github.com/Oreomeow/VIP/blob/main/Icons/TGNginx/push.png
