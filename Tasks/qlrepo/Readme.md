@@ -32,7 +32,7 @@ ql repo https://github.com/longzhuzhu/nianyu.git "qx"
 ```
 ql repo https://github.com/whyour/hundun.git "quanx" "tokens|caiyun|didi|donate|fold|Env"
 ```
-- `passerby-b`（需要修改专用ck文件jddj_cookie.js）
+- `passerby-b`
 ```
 ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event" "jddj_cookie"
 ```
