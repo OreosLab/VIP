@@ -164,21 +164,21 @@ var_name=(
 ## 所有有互助码的活动，把脚本名称列在 name_js 中，对应 config.sh 中互助码后缀列在 name_config 中，中文名称列在 name_chinese 中。
 ## name_js、name_config 和 name_chinese 中的三个名称必须一一对应。
 name_js=(
-  JDHelloWorld_jd_scripts_jd_fruit
-  JDHelloWorld_jd_scripts_jd_pet
-  JDHelloWorld_jd_scripts_jd_plantBean
-  JDHelloWorld_jd_scripts_jd_dreamFactory
-  JDHelloWorld_jd_scripts_jd_jdfactory
-  JDHelloWorld_jd_scripts_jd_jdzz
-  JDHelloWorld_jd_scripts_jd_crazy_joy
-  JDHelloWorld_jd_scripts_jd_jxnc
-  JDHelloWorld_jd_scripts_jd_bookshop
-  JDHelloWorld_jd_scripts_jd_cash
-  JDHelloWorld_jd_scripts_jd_sgmh
-  JDHelloWorld_jd_scripts_jd_cfd
-  JDHelloWorld_jd_scripts_jd_health
-  JDHelloWorld_jd_scripts_jd_carnivalcity
-  JDHelloWorld_jd_scripts_jd_zoo
+  panghu999_jd_scripts_jd_fruit
+  panghu999_jd_scripts_jd_pet
+  panghu999_jd_scripts_jd_plantBean
+  panghu999_jd_scripts_jd_dreamFactory
+  panghu999_jd_scripts_jd_jdfactory
+  panghu999_jd_scripts_jd_jdzz
+  panghu999_jd_scripts_jd_crazy_joy
+  panghu999_jd_scripts_jd_jxnc
+  panghu999_jd_scripts_jd_bookshop
+  panghu999_jd_scripts_jd_cash
+  panghu999_jd_scripts_jd_sgmh
+  panghu999_jd_scripts_jd_cfd
+  panghu999_jd_scripts_jd_health
+  panghu999_jd_scripts_jd_carnivalcity
+  panghu999_jd_scripts_jd_zoo
 )
 name_config=(
   Fruit
@@ -216,6 +216,8 @@ name_chinese=(
 )
 
 ## 其他需要的变量，脚本中需要的变量使用 export 变量名= 声明即可
+## 2、宠汪汪喂食数量。可以填的数字0,10,20,40,80,其他数字不可
+export JOY_FEED_COUNT="80"
 ## 4、京东农场关闭推送。填写false为不关闭推送，true为关闭推送
 export FRUIT_NOTIFY_CONTROL="false"
 ## 6、宠汪汪赛跑自己账号内部互助。输入true为开启内部互助
