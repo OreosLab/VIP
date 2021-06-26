@@ -78,7 +78,7 @@ ql repo https://github.com/curtinlv/JD-Script
 ```
 ql raw https://raw.githubusercontent.com/jiulan/platypus/main/scripts/jd_ffl.js
 ```
-> `curtinlv/JD-Script`（上面拉过仓库的可以不用拉了）
+> `curtinlv/JD-Script`（上面拉过仓库的可以不用拉了）  
   > cron
   ```
   15 8 * * *
