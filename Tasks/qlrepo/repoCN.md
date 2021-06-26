@@ -1,4 +1,9 @@
-# CN
+# 不再更新，配置文件自行添加如下
+```
+## 由于github仓库拉取较慢，所以会默认添加代理前缀，如不需要请移除
+GithubProxyUrl="https://ghproxy.com/"
+```
+## CN 说明
 > 用于国内 VPS 等
 ## 整库
 - `Unknown 备份托管等`
