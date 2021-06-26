@@ -24,11 +24,11 @@
   ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
   ```
   
-- `龙珠`
+- `longzhuzhu`
 ```
 ql repo https://github.com/longzhuzhu/nianyu.git "qx"
 ```
-- `混沌`
+- `whyour/hundun`
 ```
 ql repo https://github.com/whyour/hundun.git "quanx" "tokens|caiyun|didi|donate|fold|Env"
 ```
@@ -36,15 +36,15 @@ ql repo https://github.com/whyour/hundun.git "quanx" "tokens|caiyun|didi|donate|
 ```
 ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event" "jddj_cookie"
 ```
-- `温某某`
+- `Wenmoux`
 ```
 ql repo https://github.com/Wenmoux/scripts.git  "other|jd" "" "" "wen"
 ```
-- `柠檬（胖虎）`
+- `panghu999/panghu`
 ```
 ql repo https://github.com/panghu999/panghu.git "jd_"
 ```
-- `zoopanda（动物园）`
+- `zoopanda`
 ```
 ql repo https://github.com/zooPanda/zoo.git "zoo"
 ```
@@ -78,7 +78,7 @@ ql repo https://github.com/curtinlv/JD-Script
 ```
 ql raw https://raw.githubusercontent.com/jiulan/platypus/main/scripts/jd_ffl.js
 ```
-> `curtinlv/JD-Script`（上面拉过仓库的可以不用拉了）
+> `curtinlv`（上面拉过仓库的可以不用拉了）
 ```
 15 8 * * *
 ```
