@@ -37,7 +37,7 @@
         {
             "name":"京喜财富岛提现并发修改版ztxtop",
             "type":"cron",
-            "time":"0-3 0 0 * * *",
+            "time":"0 0 0 * * *",
             "job":{
                 "type":"runjs",
                 "target":"https://raw.githubusercontent.com/ztxtop/x/aa4ddeca813fbf5c231dd4adaec68a7632cb292c/jx_cfdtx.js"
