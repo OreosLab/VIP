@@ -1,4 +1,14 @@
 # 青龙拉取常用京东脚本库
+## 说明
+- 更新单个脚本文件
+```
+ql repo <repourl> <path> <blacklist> <dependence> <branch>
+```
+- 更新单个仓库脚本
+```
+ql raw <fileurl>
+```
+下面是示例
 
 ## 整库
 - `Unknown 备份托管等`
@@ -13,7 +23,7 @@
   ```
   2. `JDHelloWorld`（辅助）
   ```
-  ql repo https://github.com/JDHelloWorld/jd_scripts "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
+  ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
   ```
   - cron
   ```
@@ -70,7 +80,11 @@ ql repo https://github.com/star261/jd.git "scripts" "code"
 ```
 - `curtinlv`
 ```
-ql repo https://github.com/curtinlv/JD-Script
+ql repo https://github.com/curtinlv/JD-Script.git
+```
+- `moposmall`
+```
+ql repo https://github.com/moposmall/Script.git "Me"
 ```
 
 ## 单脚本

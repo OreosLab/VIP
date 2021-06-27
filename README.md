@@ -32,7 +32,7 @@ ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
 ql repo https://github.com/panghu999/panghu.git "jd_"
 ```
 ```
-ql repo https://github.com/curtinlv/JD-Script
+ql repo https://github.com/curtinlv/JD-Script.git
 ```
 
 
