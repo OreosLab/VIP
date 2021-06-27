@@ -45,13 +45,13 @@ or
 }
 ```
 # notify.js
-```
+``` js
 if (typeof $title$ !== "undefined") {
     botNotify($title$, $body$, $url$)
 }
 ```
 or
-```
+``` js
 if (typeof $title$ !== "undefined") {
     botNotify1($title$, $body$, $url$)
     botNotify2($title$, $body$, $url$)
@@ -59,7 +59,7 @@ if (typeof $title$ !== "undefined") {
 ```
 
 and
-```
+``` js
 function botNotify(title, body, url) {
 if (body=== "undefined"){body=""}
 if (url==="undefined"){url=""}
