@@ -38,7 +38,7 @@ ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event" "jddj_co
 ```
 - `Wenmoux`
 ```
-ql repo https://github.com/Wenmoux/scripts.git  "other|jd" "" "" "wen"
+ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
 ```
 - `panghu999/panghu`
 ```
