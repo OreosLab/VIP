@@ -1,6 +1,6 @@
 # News
 ## 06.27 19:44
-- qinglong 2.8 一键添加内部互助功能
+- qinglong 2.8 一键添加内部互助功能  
 容器内执行 或 docker 宿主机执行
 ``` sh
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/liuqitoday/qinglong-auto-sharecodes/master/one-key.sh)"
