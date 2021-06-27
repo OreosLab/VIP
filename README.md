@@ -57,7 +57,7 @@ ql repo https://github.com/curtinlv/JD-Script
   ```
 
 ### Summary
-> [BoxJs: Sub-Links](./QX/Boxjs#readme)  
+> [BoxJs: Sub-Links](./QX/BoxJs#readme)  
 > [Tasks: Sngx TaskSub-Links](https://github.com/sngxpro/QuanX/tree/master/task#readme)
 
 
