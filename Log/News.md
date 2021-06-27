@@ -23,7 +23,8 @@ docker exec -it qinglong bash -c "$(curl -fsSL https://raw.githubusercontent.com
 
 ## 06.26 14:50
 - 京东查黑号最新办法  
-> https://vip.m.jd.com/scoreDetail/current    
+> https://vip.m.jd.com/scoreDetail/current
+  
 电脑或者手机浏览器复制打开网址，从里面查找`creditLevel`，最高 11 级，低于 8 的抢啥都很难，低于 5 的就不要抢购了。需要登陆过京东账户。
 
 ## 06.26 14:00
