@@ -1,7 +1,7 @@
 /**
  * 功能: 部署在 cloudflare worker 的 TGbot 后台代码，用于通过 telegram 查看/控制 elecV2P
  * 地址: https://github.com/elecV2/elecV2P-dei/blob/master/examples/TGbotonCFworker2.0.js
- * 更新: 2021-06-10
+ * 更新: 2021-06-16
  * 说明: 功能实现主要基于 elecV2P 的 webhook（https://github.com/elecV2/elecV2P-dei/tree/master/docs/09-webhook.md）
  * 
  * 使用方式: 
@@ -299,6 +299,9 @@ function jsRun(fn, rename) {
     fn = rfn[0]
     rename = rfn[1]
   }
+  if (!(/^https?:\/\/\S{4}/.test(fn) || /\.js$/.test(fn))) {
+    fn += '.js'
+  }
 
   return Promise.race([new Promise((resolve,reject)=>{
     fetch(CONFIG_EV2P.url + 'webhook?token=' + CONFIG_EV2P.wbrtoken + '&type=runjs&fn=' + fn + (rename ? '&rename=' + rename : '')).then(res=>res.text()).then(r=>{
@@ -510,7 +513,7 @@ async function handlePostRequest(request) {
         payload.text = `退出上文执行环境${(userenv && userenv.context) || ''}，回到普通模式`
       } else if (/^\/?context$/.test(bodytext)) {
         if (userenv && userenv.context) {
-          payload.text = '当前执行环境为: ' + userenv.context + '\n输入 end 回到普通模式'
+          payload.text = '当前执行环境为: ' + userenv.context + '\n输入 /end 回到普通模式'
         } else {
           payload.text = '当前执行环境为: 普通模式'
         }
