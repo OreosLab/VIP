@@ -1,4 +1,4 @@
-# 📌 As I no longer use V2P to run JD, any subsequent V2P updates will be left to chance. [News](./Log/News.md#news)
+# 📌 Some exchange tasks will be run with V2P because V2P is stable. [News](./Log/News.md#news)
 # 📌 [Jiaolong Updates](./Log/Updatelog/Jiaolong.md#jiaolong)
 
 # Statement
@@ -57,7 +57,7 @@ ql repo https://github.com/curtinlv/JD-Script
   ```
 
 ### Summary
-> [Boxjs: Sub-Links](./QX/Boxjs#readme)  
+> [BoxJs: Sub-Links](./QX/Boxjs#readme)  
 > [Tasks: Sngx TaskSub-Links](https://github.com/sngxpro/QuanX/tree/master/task#readme)
 
 
