@@ -1,4 +1,9 @@
 # News
+## 06.28 01:30
+- 青龙面板无法打开解决命令
+``` sh
+docker exec -it qinglong nginx -c /etc/nginx/nginx.conf
+```
 ## 06.27 19:44
 - qinglong 2.8 一键添加内部互助功能  
     - 容器内执行 或 docker 宿主机执行
