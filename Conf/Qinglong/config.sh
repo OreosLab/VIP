@@ -253,3 +253,6 @@ export printlog=true
 export sleepNum=0.5
 ### 布尔值，True:使用作者远程仓库更新的id，False：使用本地shopid.txt的id
 export isRemoteSid=true
+## 赚京豆
+### 助力账号，填写pt_pin或用户名的值，如 zlzh = ['aaaa','xxxx','yyyy'] ，支持ENV
+export zlzh=['CurtinLV','xxxx','yyyy']

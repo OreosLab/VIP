@@ -329,10 +329,8 @@ export cashinviteCode3=""
 ## curtinlv 环境变量
 ```
 ## 赚京豆
-更新支持助力多个账号 如 zlzh=['Curtinlv', '用户n', '用户y']
-支持ENV设置 export zlzh=['Curtinlv', '用户n', '用户y']
-[2021-6-25]已适配青龙、v4环境ck。
-[2021-6-27]更改助力账号填写格式，改为填写用户名。以防ck失效，错位ck！
+### 助力账号，填写pt_pin或用户名的值，如 zlzh = ['aaaa','xxxx','yyyy'] ，支持ENV
+export zlzh=['CurtinLV','xxxx','yyyy']
 ```
 ```
 ## 入会开卡
