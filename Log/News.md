@@ -1,7 +1,18 @@
 # News
+## 06.27 19:44
+- qinglong 2.8 一键添加内部互助功能
+容器内执行 或 docker 宿主机执行
+``` sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/liuqitoday/qinglong-auto-sharecodes/master/one-key.sh)"
+```
+``` sh
+docker exec -it qinglong bash -c "$(curl -fsSL https://raw.githubusercontent.com/liuqitoday/qinglong-auto-sharecodes/master/one-key.sh)"
+```
+
 ## 06.26 21:30
 - 口袋书店入口  
 京东APP：`首页`-（中间第二页）`京东图书`-（右上角）`签`-（页面中间）每日参加活动
+
 ## 06.26 14:50
 - 京东查黑号最新办法  
 https://vip.m.jd.com/scoreDetail/current  
