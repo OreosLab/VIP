@@ -1,6 +1,6 @@
-由于昨天弄到太晚，误将尝鲜版上传到锁定版，现在已恢复，请全部重新部署该环境，目前尝鲜版有bug，还在解决中。
+更新内容 ：新增JDC启动的环境变量 ENABLE_WEB_JDC 以解决可能会出现的BUG（需要JDC自启动的请添加）
 
-仅限服务器、pc等设备使用
+仅限服务器、pc及部分arm等设备使用
 
 版本介绍：
 
@@ -8,7 +8,7 @@
 
 2.2-jdc-bot 为锁定版，以更改为本人源码（源码更改自limoe大佬），有bot，jdc随容器启动
 
-jdc有BUG弃用,请使用2.2-jdc或2.2-jdc-bot
+jdc为2.2锁定纯净版，无JDC,无BOT（注意要将ENABLE_WEB_JDC 环境变量设置为false）
 
 ``` sh
 docker run -dit
@@ -19,10 +19,11 @@ docker run -dit
 -p 5701:5701
 -e ENABLE_HANGUP=false
 -e ENABLE_WEB_PANEL=true
+-e ENABLE_WEB_JDC=true
 --name qinglong
 --hostname qinglong
 --restart always
-drewnb/qinglong:2.2-jdc
+drewnb/qinglong:2.2-jdc-bot
 ```
 
 青龙bot
