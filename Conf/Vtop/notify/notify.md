@@ -1,4 +1,7 @@
 # pushplus
+Post
+
+http://www.pushplus.plus/send
 ```
 {
 "token": `xxxxxxxxxxxxxxxxxxxx`,
