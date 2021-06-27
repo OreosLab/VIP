@@ -1,10 +1,10 @@
 # 青龙拉取常用京东脚本库
 ## 说明
-- 更新单个脚本文件
+- 更新一个整库脚本
 ```
 ql repo <repourl> <path> <blacklist> <dependence> <branch>
 ```
-- 更新单个仓库脚本
+- 更新单个脚本文件
 ```
 ql raw <fileurl>
 ```
