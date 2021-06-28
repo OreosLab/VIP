@@ -1,11 +1,11 @@
 # News
 ## 06.28 17:25
-- 青龙面板小工具 适用于2.2面板
+- 青龙面板小工具 适用于2.2面板  
 https://github.com/Zy143L/jdc
     - 修复远程扫码问题 支持AMD64和ARM64架构
-    - 配套前端地址
+    - 配套前端地址  
     https://github.com/Zy143L/JDC_WEB
-    - 配套青龙2.2-066 不升级版本
+    - 配套青龙2.2-066 不升级版本  
     https://hub.docker.com/r/limoe/qinglong
 ## 06.28 01:30
 - 青龙面板无法打开解决命令
