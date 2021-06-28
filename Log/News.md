@@ -1,4 +1,12 @@
 # News
+## 06.28 20:30
+- 神秘大佬备份
+``` sh
+docker run -d --name jd_cookie -p 6789:6789 -e QYWX_KEY={QYWX_KEY} -e QYWX_AM={QYWX_AM} -e UPDATE_API={UPDATE_API} tonglin138/jd_cookie sls deploy
+```
+- 导出的镜像文件
+> https://wwr.lanzoui.com/iBCLpqsbate
+
 ## 06.28 18:05
 - JDC fix remote scan 安装方法
 
@@ -79,7 +87,7 @@ JDC 修复编译来自网络资源
 docker pull lxk0301/jd_cookie
 ```
 ``` sh
-docker run -d –name jd_cookie -p 6789:6789 -e QYWX_KEY={QYWX_KEY} -e QYWX_AM={QYWX_AM} -e UPDATE_API={UPDATE_API} echowxsy/jd_cookie
+docker run -d --name jd_cookie -p 6789:6789 -e QYWX_KEY={QYWX_KEY} -e QYWX_AM={QYWX_AM} -e UPDATE_API={UPDATE_API} echowxsy/jd_cookie sls deploy
 ```
 ## 06.28 17:25
 - 青龙面板小工具 适用于 2.2 面板
