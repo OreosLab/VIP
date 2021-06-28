@@ -1,6 +1,7 @@
 # News
 ## 06.28 18:05
 - JDC fix remote scan 安装方法
+
 终端输入
 ``` sh
 yum install wget unzip -y
@@ -10,6 +11,7 @@ cd /root
 ```
 ``` sh
 ls -l 
+```
 
 AMD64 终端输入
 ``` sh
