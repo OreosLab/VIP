@@ -1,8 +1,88 @@
 # News
+## 06.28 18:05
+- JDC fix remote scan 安装方法
+终端输入
+``` sh
+yum install wget unzip -y
+```
+``` sh
+cd /root 
+```
+``` sh
+ls -l 
+
+AMD64 终端输入
+``` sh
+wget https://github.com/Zy143L/jdc/releases/download/2.0/JDC
+```
+
+arm64 终端输入
+``` sh
+wget https://github.com/Zy143L/jdc/releases/download/2.0/JDC_arm64
+```
+
+终端输入
+``` sh
+chmod 777 JDC 
+
+./JDC 
+```
+
+修改 `config.toml` 中的 `path` 项为 `ql`
+
+AMD64 终端输入
+``` sh
+nohup ./JDC 1>/dev/null 2>&1 & #AMD64
+```
+
+arm64 终端输入 
+``` sh
+nohup ./JDC_arm64 1>/dev/null 2>&1 & #ARM64
+```
+
+打开 `http://ip:5701/info` 看到 “JDC is Already！” 即说明安装成功！
+
+前端安装 终端输入
+``` sh
+cd public 
+```
+```
+wget http://nm66.top/dist.zip && unzip dist.zip
+```
+
+然后直接访问 IP + 5701 即可看到面板。
+
+如果要重新安装 先终端输入
+``` sh
+netstat -lnp|grep 5701
+```
+比如输出了 tcp 0 0 0.0.0.0:5701 0.0.0.0:* LISTEN 28937/java
+
+然后执行 kill 关闭该应用程序 数字就是后面的 28937
+
+终端输入
+
+``` sh
+kill -9 28937
+```
+
+JDC修复编译来着网络资源
+
+宝塔需要在安全组打开 5701 端口
+
+具体需要自测
+
+- 神秘大佬
+``` sh
+docker pull lxk0301/jd_cookie
+```
+``` sh
+docker run -d –name jd_cookie -p 6789:6789 -e QYWX_KEY={QYWX_KEY} -e QYWX_AM={QYWX_AM} -e UPDATE_API={UPDATE_API} echowxsy/jd_cookie
+```
 ## 06.28 17:25
-- 青龙面板小工具 适用于 2.2 面板  
-https://github.com/Zy143L/jdc
-    - 修复远程扫码问题 支持 AMD64 和 ARM64 架构
+- 青龙面板小工具 适用于 2.2 面板
+    - 修复远程扫码问题 支持 AMD64 和 ARM64 架构 *by Zy143L*  
+    https://github.com/Zy143L/jdc
     - 配套前端地址  
     https://github.com/Zy143L/JDC_WEB
     - 配套青龙 2.2-066 不升级版本  
