@@ -240,19 +240,19 @@ export inviter=""
 export cashinviteCode=""
 ## 入会开卡
 ### int，入会送豆满足此值，否则不入会
-export openCardBean=30
+export openCardBean="30"
 ### 布尔值，是否记录符合条件的shopid(默认True)
-export record=true
+export record="true"
 ### 布尔值， True:仅记录，不入会(默认False)
-export onlyrecord=false
+export onlyrecord="false"
 ### 布尔值，开启记忆功能，接力上一次异常中断位置继续。(默认yes)
-export memory=true
+export memory="false"
 ### 布尔值，True：只打印部分日志 False:打印所有日志
-export printlog=true
+export printlog="true"
 ### Float，限制速度，单位秒，如果请求过快报错适当调整0.5秒以上
-export sleepNum=0.5
+export sleepNum="0.5"
 ### 布尔值，True:使用作者远程仓库更新的id，False：使用本地shopid.txt的id
-export isRemoteSid=true
+export isRemoteSid="true"
 ## 赚京豆
 ### 助力账号，填写pt_pin或用户名的值，如 zlzh = ['aaaa','xxxx','yyyy'] ，支持ENV
 export zlzh=['CurtinLV','xxxx','yyyy']
