@@ -328,8 +328,7 @@ export cashinviteCode3=""
 
 ```
 ## 大老板农场 新增自定义变量通知开关
-export dlbtz="true" //通知打开
-export dlbtz="false" //通知关闭
+export dlbtz="true" //通知打开，false为关闭
 ```
 
 ## curtinlv 环境变量
