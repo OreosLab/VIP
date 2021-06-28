@@ -13,12 +13,12 @@ cd /root
 ls -l 
 ```
 
-AMD64 终端输入
+**AMD64 终端输入**
 ``` sh
 wget https://github.com/Zy143L/jdc/releases/download/2.0/JDC
 ```
 
-arm64 终端输入
+**arm64 终端输入**
 ``` sh
 wget https://github.com/Zy143L/jdc/releases/download/2.0/JDC_arm64
 ```
@@ -32,12 +32,12 @@ chmod 777 JDC
 
 修改 `config.toml` 中的 `path` 项为 `ql`
 
-AMD64 终端输入
+**AMD64 终端输入**
 ``` sh
 nohup ./JDC 1>/dev/null 2>&1 & #AMD64
 ```
 
-arm64 终端输入 
+**arm64 终端输入**
 ``` sh
 nohup ./JDC_arm64 1>/dev/null 2>&1 & #ARM64
 ```
