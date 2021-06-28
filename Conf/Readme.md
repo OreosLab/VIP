@@ -350,6 +350,12 @@ export sleepNum=0.5
 export isRemoteSid=true
 ```
 
+## Wenmoux 部分环境变量
+``` 
+## QQ星系牧场自动兑换20豆
+export Cowexchange="true"
+```
+
 ## 青龙部分环境变量
 
 ```

@@ -256,3 +256,5 @@ export isRemoteSid=true
 ## 赚京豆
 ### 助力账号，填写pt_pin或用户名的值，如 zlzh = ['aaaa','xxxx','yyyy'] ，支持ENV
 export zlzh=['CurtinLV','xxxx','yyyy']
+## QQ星系牧场自动兑换20豆
+export Cowexchange="true"
