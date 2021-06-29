@@ -258,3 +258,5 @@ export isRemoteSid="true"
 export zlzh=['CurtinLV','xxxx','yyyy']
 ## QQ星系牧场自动兑换20豆
 export Cowexchange="true"
+## 欧洲狂欢杯兑换兑换豆子
+export Cupexid="39"
