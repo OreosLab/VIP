@@ -342,9 +342,9 @@ export InviterPin="" //你的邀请码
 ### 使用教程：
 ### 第一步，运行脚本一次日志查看商品ID
 ### 获取你要砍价的ID后变量填写
-export skuId="这里填获取的商品ID"
+export skuId="" //这里填获取的商品ID
 ### 第二步，再运行一次日志查看商品activityId变量填写
-export activity="这里填获取的商品activityId" 
+export activity="" //这里填获取的商品activityId
 ```
 
 ```
