@@ -247,6 +247,13 @@ export ZOO_ADD2CART="true"
 ## 柠檬（胖虎部分环境变量）
 
 ```
+## 京喜工厂抢茅台
+### 自定义商品变量
+export shopid="1598" //你要商品ID 冰箱
+export shopid1="1607"  //你要商品ID 茅台
+```
+
+```
 ## 推一推
 ### 入口：极速版-赚金币 
 ### 分享到QQ查看邀请码，packetId就是
@@ -255,17 +262,14 @@ export tytpacketId=""
 ```
 
 ```
-## 是兄弟就来砍我脚本要参加砍价的商品ID
-export actId="" 
+## 是兄弟就砍我
+### 自定义邀请码环境变量
+export actId="" //你要参加砍价的商品ID
+export packetId="" //你要参加砍价的邀请码
 ```
 
 ```
-## 是兄弟就来砍我脚本要要参加砍价的邀请码
-export packetId="" 
-```
-
-```
-## 柠檬是兄弟就砍我2
+## 是兄弟就砍我2
 ### 惊喜欢乐砍 自定义变量 入口：京喜APP-我的-惊喜欢乐砍
 export launchid="" //你的邀请码
 export first="false" //第一次参加变量设置为true查看商品ID，填写商品ID后自动获取邀请码邀请；如果只助力，变量设置为false
@@ -273,20 +277,33 @@ export active="" //商品ID
 ```
 
 ```
-## 柠檬赚金币
+## 赚金币
 ### 入口：极速版-百元生活费-赚金币-邀请好友
 ### 第一次运行可不填写邀请码，运行一次查看自己的邀请码
 export InviterPin="" //你的邀请码
 ```
 
 ```
-## 柠檬0元砍价，入口：京东-我的-0元砍价
+## 0元砍价，入口：京东-我的-0元砍价
 ### 使用教程：
 ### 第一步，运行脚本一次日志查看商品ID
 ### 获取你要砍价的ID后变量填写
 export skuId="" //这里填获取的商品ID
 ### 第二步，再运行一次日志查看商品activityId变量填写
 export activity="" //这里填获取的商品activityId
+```
+
+```
+## 邀请有礼  
+### 自定义邀请码环境变量
+export yqm="" //你的邀请码
+```
+
+```
+## 全民挖现金
+### 入口：京东-我的-全民挖现金
+### 运行一次查看邀请码 变量你的邀请码 
+export shareCode=""
 ```
 
 ```
@@ -317,7 +334,7 @@ export zlzh=['CurtinLV','xxxx','yyyy']
 export openCardBean="30"
 ### 布尔值，是否记录符合条件的shopid(默认True)
 export record="true"
-### 布尔值， True:仅记录，不入会(默认False)
+### 布尔值，True:仅记录，不入会(默认False)
 export onlyrecord="false"
 ### 布尔值，开启记忆功能，接力上一次异常中断位置继续。(默认yes)
 export memory="false"
