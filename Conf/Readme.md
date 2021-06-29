@@ -217,7 +217,6 @@ export PURCHASE_SHOPS=""
 export TUAN_ACTIVEID=""
 ```
 
-
 ## 阿道夫部分环境变量
 
 ```
@@ -241,6 +240,29 @@ export ZOO_OPENCAD="true"
 ```
 ## zoopanda 与粽不同加购
 export ZOO_ADD2CART="true"
+```
+
+
+## 龙猪猪环境变量
+
+```
+## 京豆雨通知
+export RAIN_NOTIFY_CONTROL="false" //true为开启通知
+## 整点京豆雨RRA
+export SUPER_RAIN_RRA="" //不解释，先放着
+## 半点京豆雨RRA
+export HALF_RAIN_RRA="" //不解释，先放着
+```
+
+
+## JDHelloWorld 部分环境变量
+
+```
+## 宠汪汪二代目
+### 默认80，10、20、40、80可选
+export feedNum = 80
+### 默认双人跑
+export JD_JOY_teamLevel = 2
 ```
 
 
@@ -364,18 +386,6 @@ export Cupexid="39"
 export Readck="" //自己CK
 export Read10UA="" //自己设备UA
 export jrpush="" //填true推送消息，默认不推送
-```
-
-
-## 龙猪猪环境变量
-
-```
-## 京豆雨通知
-export RAIN_NOTIFY_CONTROL="false" //true为开启通知
-## 整点京豆雨RRA
-export SUPER_RAIN_RRA="" //不解释，先放着
-## 半点京豆雨RRA
-export HALF_RAIN_RRA="" //不解释，先放着
 ```
 
 
