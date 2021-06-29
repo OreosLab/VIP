@@ -178,9 +178,9 @@ export JOY_HELP_FEED=""
 
 ```
 ## 5、宠汪汪参加什么级别的赛跑。可选数字为2,10,50，
-其中2代表参加双人PK赛，10代表参加10人突围赛，
-50代表参加50人挑战赛(注：此项功能在JOY_RUN_FLAG为true的时候才生效)，
-如若想设置不同账号参加不同类别的比赛则用&区分即可(如下三个账号：2&10&50)
+### 其中2代表参加双人PK赛，10代表参加10人突围赛，
+### 50代表参加50人挑战赛(注：此项功能在JOY_RUN_FLAG为true的时候才生效)，
+### 如若想设置不同账号参加不同类别的比赛则用&区分即可(如下三个账号：2&10&50)
 export JOY_TEAM_LEVEL=""
 ```
 
@@ -305,6 +305,14 @@ export ZOO_ADD2CART="true"
 ## 柠檬（胖虎部分环境变量）
 
 ```
+## 推一推
+### 入口：极速版-赚金币 
+### 分享到QQ查看邀请码，packetId就是
+### 自定义变量
+export tytpacketId=""
+```
+
+```
 ## 是兄弟就来砍我脚本要参加砍价的商品ID
 export actId="" 
 ```
@@ -315,13 +323,28 @@ export packetId=""
 ```
 
 ```
-## 省钱大赢家本期活动ID
-export redEnvelopeId="" 
+## 柠檬是兄弟就砍我2
+### 惊喜欢乐砍 自定义变量 入口：京喜APP-我的-惊喜欢乐砍
+export launchid="" //你的邀请码
+export first="false" //第一次参加变量设置为true查看商品ID，填写商品ID后自动获取邀请码邀请；如果只助力，变量设置为false
+export active="" //商品ID
 ```
 
 ```
-## 省钱大赢家邀请码
-export inviter=""
+## 柠檬赚金币
+### 入口：极速版-百元生活费-赚金币-邀请好友
+### 第一次运行可不填写邀请码，运行一次查看自己的邀请码
+export InviterPin="" //你的邀请码
+```
+
+```
+## 柠檬0元砍价，入口：京东-我的-0元砍价
+### 使用教程：
+### 第一步，运行脚本一次日志查看商品ID
+### 获取你要砍价的ID后变量填写
+export skuId="这里填获取的商品ID"
+### 第二步，再运行一次日志查看商品activityId变量填写
+export activity="这里填获取的商品activityId" 
 ```
 
 ```
@@ -364,9 +387,22 @@ export isRemoteSid="true"
 ```
 
 ## Wenmoux 部分环境变量
+
 ``` 
 ## QQ星系牧场自动兑换20豆
 export Cowexchange="true"
+```
+
+```
+## 欧洲狂欢杯兑换兑换豆子，填38豆子，填39e卡
+export Cupexid="39"
+```
+
+```
+## 10秒阅读
+export Readck="" //自己CK
+export Read10UA="" //自己设备UA
+export jrpush="" //填true推送消息，默认不推送
 ```
 
 ## 青龙部分环境变量
