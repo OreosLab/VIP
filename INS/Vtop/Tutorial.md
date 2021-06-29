@@ -7,13 +7,15 @@
 #### 小于等于 2 个账号
 选择`JSMANAGE`
 
-1. 账号1  
+1. 账号1
+  
 key 填`CookieJD`  
 下面空白处即 value 值按下面的格式填写，或者抓到了直接复制粘贴
 ```
 pt_key=xxx;pt_pin=jd_abcxxx123;
 ```
-2. 账号2：选择`JSMANAGE`  
+2. 账号2
+  
 key 填`CookieJD2`  
 下面空白处即 value 值按下面的格式填写，或者抓到了直接复制粘贴
 ```
@@ -25,6 +27,7 @@ pt_key=xxx;pt_pin=jd_999xxx00z;
 选择`JSMANAGE`  
 key 填`CookiesJD`  
 下面空白处即 value 值按下面的 Json 格式填写，多账号以此类推，自行删减
+
 - 方式一：完整版
 ```
 [
