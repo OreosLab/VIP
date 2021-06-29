@@ -108,7 +108,7 @@ export PUSH_PLUS_TOKEN=""
 ## 1. 需订阅者扫描二维码 2、如果您是创建群组所属人，也需点击“查看二维码”扫描绑定，否则不能接受群组消息推送
 export PUSH_PLUS_USER=""
 
-## 8. go-cqhttp
+## 9. go-cqhttp
 ## gobot_url 推送到个人QQ: http://127.0.0.1/send_private_msg  群：http://127.0.0.1/send_group_msg 
 ## gobot_token 填写在go-cqhttp文件设置的访问密钥
 ## gobot_qq 如果GOBOT_URL设置 /send_private_msg 则需要填入 user_id=个人QQ 相反如果是 /send_group_msg 则需要填入 group_id=QQ群 
@@ -243,7 +243,7 @@ export cashinviteCode=""
 export openCardBean="30"
 ### 布尔值，是否记录符合条件的shopid(默认True)
 export record="true"
-### 布尔值， True:仅记录，不入会(默认False)
+### 布尔值，True:仅记录，不入会(默认False)
 export onlyrecord="false"
 ### 布尔值，开启记忆功能，接力上一次异常中断位置继续。(默认yes)
 export memory="false"

@@ -115,7 +115,7 @@ export JOY_HELP_FEED=""
 
 ```
 ## 4、宠汪汪是否赛跑(默认参加双人赛跑)。false为不跑,true为跑
-export JOY_HELP_FEED=""
+export JOY_RUN_FLAG=""
 ```
 
 ```
@@ -364,6 +364,18 @@ export Cupexid="39"
 export Readck="" //自己CK
 export Read10UA="" //自己设备UA
 export jrpush="" //填true推送消息，默认不推送
+```
+
+
+## 龙猪猪环境变量
+
+```
+## 京豆雨通知
+export RAIN_NOTIFY_CONTROL="false" //true为开启通知
+## 整点京豆雨RRA
+export SUPER_RAIN_RRA="" //不解释，先放着
+## 半点京豆雨RRA
+export HALF_RAIN_RRA="" //不解释，先放着
 ```
 
 
