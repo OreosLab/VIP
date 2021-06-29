@@ -29,18 +29,18 @@ key 填`CookiesJD`
 - 方式一：完整版
 ```
 [
-  {
-    "userName": "BossofJD",
-    "cookie": "pt_key=xxx;pt_pin=jd_abcxxx123;"
-  },
-  {
-    "userName": "jd_999xxx00z",
-    "cookie": "pt_key=xxx;pt_pin=jd_999xxx00z;"
-  },
-  {
-    "userName": "jd_629xxxt01",
-    "cookie": "pt_key=xxx;pt_pin=jd_629xxxt01;"
-  }
+    {
+        "userName":"BossofJD",
+        "cookie":"pt_key=xxx;pt_pin=jd_abcxxx123;"
+    },
+    {
+        "userName":"jd_999xxx00z",
+        "cookie":"pt_key=xxx;pt_pin=jd_999xxx00z;"
+    },
+    {
+        "userName":"jd_629xxxt01",
+        "cookie":"pt_key=xxx;pt_pin=jd_629xxxt01;"
+    }
 ]
 ```
 
