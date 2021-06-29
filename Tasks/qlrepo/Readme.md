@@ -90,7 +90,7 @@ ql repo https://github.com/curtinlv/JD-Script.git
 ```
 ql repo https://github.com/moposmall/Script.git "Me"
 ```
-- `photonmang`(宠汪汪及兑换、点点券修复）
+- `photonmang`（宠汪汪及兑换、点点券修复）
 ```
 ql repo https://github.com/photonmang/quantumultX.git "JDscripts"
 ```
