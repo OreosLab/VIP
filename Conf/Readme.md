@@ -129,32 +129,27 @@ export JDZZ_NOTIFY_CONTROL=""
 ```
 
 ```
-## 9、京东京东赚赚小程序关闭推送。填写false为不关闭推送，true为关闭推送
-export JDZZ_NOTIFY_CONTROL=""
+## 9、宠汪汪兑换京豆关闭推送。填写false为不关闭推送，true为关闭推送
+export JD_JOY_REWARD_NOTIFY=""
 ```
 
 ```
-## 10、宠汪汪兑换京豆关闭推送。填写false为不关闭推送，true为关闭推送
-export JDZZ_NOTIFY_CONTROL=""
-```
-
-```
-## 11、宠汪汪赛跑获胜后是否推送通知。填false为不推送通知消息,true为推送通知消息
+## 10、宠汪汪赛跑获胜后是否推送通知。填false为不推送通知消息,true为推送通知消息
 export JOY_RUN_NOTIFY=""
 ```
 
 ```
-## 12、东东超市兑换奖品是否关闭推送通知。填false为不关闭推送,true为关闭推送
-export JOY_RUN_NOTIFY=""
+## 11、东东超市兑换奖品是否关闭推送通知。填false为不关闭推送,true为关闭推送
+export MARKET_REWARD_NOTIFY="true"
 ```
 
 ```
-## 13、京喜财富岛控制是否运行脚本后通知。输入true为通知,不填则为不通知
+## 12、京喜财富岛控制是否运行脚本后通知。输入true为通知,不填则为不通知
 export CFD_NOTIFY_CONTROL=""
 ```
 
 ```
-## 14、京喜农场岛控制是否运行脚本后通知。0=只通知成熟;1=本次获得水滴>0;2=任务执行;3=任务执行+未种植种子
+## 13、京喜农场岛控制是否运行脚本后通知。0=只通知成熟;1=本次获得水滴>0;2=任务执行;3=任务执行+未种植种子
 export JXNC_NOTIFY_LEVEL=""
 ```
 
@@ -221,9 +216,20 @@ export FRUIT_BEAN_CARD=""
 
 ```
 ## 12、是否取关商品。环境变量内容的意思依次是是否取关全部商品(0表示一个都不),是否取关全部店铺数(0表示一个都不),遇到此商品不再进行取关,遇到此店铺不再进行取关
-export UN_SUBSCRIBES=""
+export UN_SUBSCRIBES="300,300,,"
 ```
-
+```
+## 12、jd_unsubscribe这个任务是用来取关每天做任务关注的商品和店铺，默认在每次运行时取关20个商品和20个店铺
+### 如果取关数量不够，可以根据情况增加，还可以设置 jdUnsubscribeStopGoods 和 jdUnsubscribeStopShop 
+### 商品取关数量
+export goodPageSize="30"
+### 店铺取关数量
+export shopPageSize="60"
+### 遇到此商品不再取关此商品以及它后面的商品，需去商品详情页长按拷贝商品信息
+export jdUnsubscribeStopGoods=""
+### 遇到此店铺不再取关此店铺以及它后面的店铺，请从头开始输入店铺名称
+export jdUnsubscribeStopShop=""
+```
 ```
 ## 13、疯狂的JOY循环助力开关。true表示循环助力,false表示不循环助力，默认不开启循环助力
 export JDJOY_HELPSELF=""
