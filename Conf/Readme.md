@@ -10,64 +10,6 @@ export JD_DEBUG=""
 ```
 
 
-## 通知类环境变量
-
-```
-## 1. ServerChan
-export PUSH_KEY=""
-```
-
-```
-## 2. BARK
-export BARK_PUSH=""
-export BARK_SOUND=""
-```
-
-```
-## 3. Telegram
-export TG_BOT_TOKEN=""
-export TG_USER_ID=""
-```
-
-```
-## 4. 钉钉
-export DD_BOT_TOKEN=""
-export DD_BOT_SECRET=""
-```
-
-```
-## 5. iGot聚合推送。
-export IGOT_PUSH_KEY=""
-```
-
-```
-## 6. Push Plus
-export PUSH_PLUS_TOKEN=""
-export PUSH_PLUS_USER=""
-```
-
-```
-## 7. 企业微信机器人消息推送 webhook 后面的 key
-export QYWX_KEY=""
-```
-
-```
-## 8. 企业微信应用消息推送的值
-export QYWX_AM=""
-```
-
-```
-## 9. go-cqhttp
-## gobot_url 推送到个人QQ: http://127.0.0.1/send_private_msg  群：http://127.0.0.1/send_group_msg
-## gobot_token 填写在go-cqhttp文件设置的访问密钥
-## gobot_qq 如果GOBOT_URL设置 /send_private_msg 则需要填入 user_id=个人QQ 相反如果是 /send_group_msg 则需要填入 group_id=QQ群 
-## go-cqhttp相关API https://docs.go-cqhttp.org/api
-export GOBOT_URL=""
-export GOBOT_TOKEN=""
-export GOBOT_QQ=""
-```
-
-
 ## 定义每日签到的通知形式
 
 ```
@@ -360,6 +302,7 @@ export cashinviteCode3=""
 export dlbtz="true" //通知打开，false为关闭
 ```
 
+
 ## curtinlv 环境变量
 
 ```
@@ -386,6 +329,7 @@ export sleepNum="0.5"
 export isRemoteSid="true"
 ```
 
+
 ## Wenmoux 部分环境变量
 
 ``` 
@@ -404,6 +348,65 @@ export Readck="" //自己CK
 export Read10UA="" //自己设备UA
 export jrpush="" //填true推送消息，默认不推送
 ```
+
+
+## 通知类环境变量
+
+```
+## 1. ServerChan
+export PUSH_KEY=""
+```
+
+```
+## 2. BARK
+export BARK_PUSH=""
+export BARK_SOUND=""
+```
+
+```
+## 3. Telegram
+export TG_BOT_TOKEN=""
+export TG_USER_ID=""
+```
+
+```
+## 4. 钉钉
+export DD_BOT_TOKEN=""
+export DD_BOT_SECRET=""
+```
+
+```
+## 5. iGot聚合推送。
+export IGOT_PUSH_KEY=""
+```
+
+```
+## 6. Push Plus
+export PUSH_PLUS_TOKEN=""
+export PUSH_PLUS_USER=""
+```
+
+```
+## 7. 企业微信机器人消息推送 webhook 后面的 key
+export QYWX_KEY=""
+```
+
+```
+## 8. 企业微信应用消息推送的值
+export QYWX_AM=""
+```
+
+```
+## 9. go-cqhttp
+## gobot_url 推送到个人QQ: http://127.0.0.1/send_private_msg  群：http://127.0.0.1/send_group_msg
+## gobot_token 填写在go-cqhttp文件设置的访问密钥
+## gobot_qq 如果GOBOT_URL设置 /send_private_msg 则需要填入 user_id=个人QQ 相反如果是 /send_group_msg 则需要填入 group_id=QQ群 
+## go-cqhttp相关API https://docs.go-cqhttp.org/api
+export GOBOT_URL=""
+export GOBOT_TOKEN=""
+export GOBOT_QQ=""
+```
+
 
 ## 青龙部分环境变量
 
