@@ -341,16 +341,6 @@ export cashinviteCode3=""
 export dlbtz="true" ##通知打开，false为关闭
 ```
 
-```
-## 柠檬京东零食街
-### 入口：京东-频道-美食馆
-### 自行添加变量设置邀请码 格式如下 默认10个
-### 后续添加自动兑换功能 如入会失败 自行去入会
-export inviterNick=""
-export inviterNick2=""
-export inviterNick3=""
-```
-
 
 ## curtinlv 环境变量
 
