@@ -96,10 +96,6 @@ ql repo https://github.com/photonmang/quantumultX.git "JDscripts"
 ```
 
 ## 单脚本
-> 翻翻乐提现单文件
-```
-ql raw https://raw.githubusercontent.com/jiulan/platypus/main/scripts/jd_ffl.js
-```
 > `curtinlv`（上面拉过仓库的可以不用拉了）
 ```
 15 8 * * *
