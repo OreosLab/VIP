@@ -17,7 +17,7 @@ ql raw <fileurl>
   ```
   ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon|format_" "^jd[^_]|USER"
   ```
-  ⏲ cron 推荐
+  - ⏲ Recommended Cron
   ```
   50 * * * *
   ```
@@ -25,7 +25,7 @@ ql raw <fileurl>
   ```
   ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
   ```
-  ⏲ cron 推荐
+  - ⏲ Recommended Cron
   ```
   55 * * * *
   ```
@@ -97,7 +97,8 @@ ql repo https://github.com/photonmang/quantumultX.git "JDscripts"
 
 ## 单脚本
 ### 名称之后标注`﹢`的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
-> `curtinlv`﹢  
+> `curtinlv`﹢
+
 ⏲ 三处 cron 推荐
 ```
 15 8 * * *
