@@ -1,4 +1,12 @@
 # News
+## 07.01 18:40
+- 解决青龙拉取更新错误问题
+> https://github.com/JDHelloWorld/jd_scripts/issues/57
+
+```
+docker exec -it qinglong bash -c 'cd repo/JDHelloWorld_jd_scripts && git fetch --all && git reset --hard origin/main && git pull && ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"'
+```
+
 ## 06.30 16:20
 - V4/🌸 等面板隐患
 
