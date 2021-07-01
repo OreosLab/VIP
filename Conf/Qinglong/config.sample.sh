@@ -419,7 +419,7 @@ export startMaxNum="30"
 export dd_thread="30"
 ### 开始抢兑时间
 export starttime="23:59:59.00000000"
-#结束时间
+### 结束时间
 export endtime="00:00:30.00000000"
 
 # Wenmoux 部分环境变量 
