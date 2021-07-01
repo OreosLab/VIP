@@ -1,6 +1,6 @@
 # News
 ## 07.01 18:40
-- 解决青龙拉取更新错误问题
+- 解决青龙拉取库更新错误问题
 > https://github.com/JDHelloWorld/jd_scripts/issues/57
 
 ```
