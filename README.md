@@ -26,7 +26,7 @@ ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activ
 ql repo https://github.com/longzhuzhu/nianyu.git "qx"
 ```
 ```
-ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
+ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event" "jddj_cookie"
 ```
 ```
 ql repo https://github.com/panghu999/panghu.git "jd_"
@@ -45,20 +45,20 @@ ql repo https://github.com/curtinlv/JD-Script.git
 ## ☆ QuantumultX
 - **Lazy Configurations** *By sngxpro*
   ```  
-  https://raw.githubusercontent.com/sngxpro/QuanX/master/sngx2021.conf
+  https://raw.githubusercontent.com/Youthsongs/QuanX/master/sngx2021.conf
   ```
  
 - **Allinone TaskSub-Links** *By sngxpro*
   ```
-  https://raw.githubusercontent.com/sngxpro/QuanX/master/task/AllinOne.json
+  https://raw.githubusercontent.com/Youthsongs/QuanX/master/task/AllinOne.json
   ```
   ```
-  https://ghproxy.com/https://raw.githubusercontent.com/sngxpro/QuanX/master/task/AllinOne.json
+  https://ghproxy.com/https://raw.githubusercontent.com/Youthsongs/QuanX/master/task/AllinOne.json
   ```
 
 ### Summary
 > [BoxJs: Sub-Links](./QX/BoxJs#readme)  
-> [Tasks: Sngx TaskSub-Links](https://github.com/sngxpro/QuanX/tree/master/task#readme)
+> [Tasks: Sngx TaskSub-Links](https://github.com/Youthsongs/QuanX/tree/master/task#readme)
 
 
 ## [★](./Scripts) Scripts 
