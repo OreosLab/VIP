@@ -13,7 +13,7 @@ ql raw <fileurl>
 ## 整库
 - `Unknown 备份托管等`
 
-  1. `panghu999`（主用）
+  1. `panghu999`
   ```
   ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon|format_" "^jd[^_]|USER"
   ```
@@ -21,7 +21,7 @@ ql raw <fileurl>
   ```
   50 * * * *
   ```
-  2. `JDHelloWorld`（辅助）
+  2. `JDHelloWorld`
   ```
   ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
   ```
@@ -50,21 +50,9 @@ ql repo https://github.com/whyour/hundun.git "quanx" "tokens|caiyun|didi|donate|
 ```
 ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event" "jddj_cookie"
 ```
-- `Wenmoux`
-```
-ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
-```
 - `panghu999/panghu`
 ```
 ql repo https://github.com/panghu999/panghu.git "jd_"
-```
-- `zoopanda`
-```
-ql repo https://github.com/zooPanda/zoo.git "zoo"
-```
-- `hyzaw`
-```
-ql repo https://github.com/hyzaw/scripts.git "ddo_"
 ```
 - `Ariszy (Zhiyi-N)`
 ```
@@ -73,14 +61,6 @@ ql repo https://github.com/Ariszy/Private-Script.git "JD"
 - `ZCY01`
 ```
 ql repo https://github.com/ZCY01/daily_scripts.git "jd_"
-```
-- `monk-dust/dust`
-```
-ql repo https://github.com/Oreomeow/dust.git "i-chenzhe|normal|member|car" "backup"
-```
-- `star261`
-```
-ql repo https://github.com/star261/jd.git "scripts" "code" 
 ```
 - `curtinlv`
 ```
@@ -114,4 +94,26 @@ ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/OpenCard/jd_Ope
 >> 关注
 ```
 ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/jd_getFollowGift.py
+```
+
+## 已删库存档
+- `Wenmoux`
+```
+ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
+```
+- `zooPanda`
+```
+ql repo https://github.com/zooPanda/zoo.git "zoo"
+```
+- `hyzaw`
+```
+ql repo https://github.com/hyzaw/scripts.git "ddo_"
+```
+- `monk-dust`
+```
+ql repo https://github.com/monk-dust/dust.git "i-chenzhe|normal|member|car" "backup"
+```
+- `star261`
+```
+ql repo https://github.com/star261/jd.git "scripts" "code" 
 ```
