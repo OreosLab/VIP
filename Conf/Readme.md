@@ -341,6 +341,15 @@ export cashinviteCode3=""
 export dlbtz="true" ##通知打开，false为关闭
 ```
 
+```
+## 零食街自动兑换变量
+###自行取消注释和注释
+##export ljsdh="jdAward1" ##兑换5豆
+##export ljsdh="jdAward2" ##兑换10豆
+export ljsdh="jdAward3" ##兑换100豆
+##export ljsdh="jdAward4" ##兑换牛奶
+```
+
 
 ## curtinlv 环境变量
 
