@@ -20,19 +20,7 @@
 ## [★](./Tasks) Tasks
 ### [<img src="/Icons/qinglong/QL.png" title="QL" width="30" height="30" />][QL] ← More
 ```
-ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon|format_" "^jd[^_]|USER"
-```
-```
-ql repo https://github.com/longzhuzhu/nianyu.git "qx"
-```
-```
-ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event" "jddj_cookie"
-```
-```
-ql repo https://github.com/panghu999/panghu.git "jd_"
-```
-```
-ql repo https://github.com/curtinlv/JD-Script.git
+ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen" "^jd[^_]|USER"
 ```
 
 
