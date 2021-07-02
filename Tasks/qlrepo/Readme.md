@@ -35,10 +35,6 @@ ql repo https://github.com/whyour/hundun.git "quanx" "tokens|caiyun|didi|donate|
 ```
 ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event" "jddj_cookie"
 ```
-- `panghu999/panghu`
-```
-ql repo https://github.com/panghu999/panghu.git "jd_"
-```
 - `Ariszy (Zhiyi-N)`
 ```
 ql repo https://github.com/Ariszy/Private-Script.git "JD"
@@ -109,4 +105,8 @@ ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activ
 - `longzhuzhu`
 ```
 ql repo https://github.com/longzhuzhu/nianyu.git "qx"
+```
+- `panghu999/panghu`
+```
+ql repo https://github.com/panghu999/panghu.git "jd_"
 ```
