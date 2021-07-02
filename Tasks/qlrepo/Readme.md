@@ -12,36 +12,21 @@ ql raw <fileurl>
 
 ## 整库
 - `Unknown 备份托管等`
-
-  1. `panghu999`
+  
+  1. `JDHelloWorld`
   ```
-  ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon|format_" "^jd[^_]|USER"
+  ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen" "^jd[^_]|USER"
   ```
-  - ⏲ Recommended Cron
+  2. `chinnkarahoi`
   ```
-  50 * * * *
+  ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER"
   ```
-  2. `JDHelloWorld`
-  ```
-  ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
-  ```
-  - ⏲ Recommended Cron
-  ```
-  55 * * * *
-  ```
-  3. `chinnkarahoi`
-  ```
-  ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
-  ```
-  4. `he1pu`（自动提交助力码-京喜工厂、种豆得豆、东东工厂、东东农场、健康社区、京喜财富岛、东东萌宠、闪购盲盒，随机从数据库中选取助力码互助）
+  3. `he1pu`（自动提交助力码-京喜工厂、种豆得豆、东东工厂、东东农场、健康社区、京喜财富岛、东东萌宠、闪购盲盒，随机从数据库中选取助力码互助）
   ```
   ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
   ```
   
-- `longzhuzhu`
-```
-ql repo https://github.com/longzhuzhu/nianyu.git "qx"
-```
+
 - `whyour/hundun`
 ```
 ql repo https://github.com/whyour/hundun.git "quanx" "tokens|caiyun|didi|donate|fold|Env"
@@ -79,7 +64,7 @@ ql repo https://github.com/photonmang/quantumultX.git "JDscripts"
 ### 名称之后标注`﹢`的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
 > `curtinlv`﹢
 
-⏲ 三处 cron 推荐
+⏱ 三处 cron 推荐
 ```
 15 8 * * *
 ```
@@ -97,6 +82,14 @@ ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/
 ```
 
 ## 已删库存档
+- `monk-dust`
+```
+ql repo https://github.com/monk-dust/dust.git "i-chenzhe|normal|member|car" "backup"
+```
+- `hyzaw`
+```
+ql repo https://github.com/hyzaw/scripts.git "ddo_"
+```
 - `Wenmoux`
 ```
 ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
@@ -105,15 +98,15 @@ ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
 ```
 ql repo https://github.com/zooPanda/zoo.git "zoo"
 ```
-- `hyzaw`
-```
-ql repo https://github.com/hyzaw/scripts.git "ddo_"
-```
-- `monk-dust`
-```
-ql repo https://github.com/monk-dust/dust.git "i-chenzhe|normal|member|car" "backup"
-```
 - `star261`
 ```
 ql repo https://github.com/star261/jd.git "scripts" "code" 
+```
+- `panghu999`
+```
+ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|format_" "^jd[^_]|USER"
+```
+- `longzhuzhu`
+```
+ql repo https://github.com/longzhuzhu/nianyu.git "qx"
 ```
