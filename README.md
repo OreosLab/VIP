@@ -31,8 +31,8 @@ ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "ac
 
 ## [★](./INS) Instructions
 ### JD 
-> [qinglong](./INS/JD/qinglong#readme)   
-> [nevinee](./INS/JD/nevinee#readme)  
+- [qinglong](./INS/JD/qinglong#readme)   
+- [nevinee](./INS/JD/nevinee#readme)  
 
 
 ## ☆ QuantumultX
@@ -50,7 +50,7 @@ ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "ac
   ```
 
 ### Summary
-> [BoxJs: Sub-Links](./QX/BoxJs#readme)  
+- [BoxJs: Sub-Links](./QX/BoxJs#readme)  
 
 
 ## [★](./Scripts) Scripts 
