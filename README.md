@@ -18,8 +18,8 @@
 
 
 ## [★](./Conf) Configurations  
-- [Env](https://github.com/Oreomeow/VIP/tree/bak/Conf#readme)
-- [config.sample.sh](https://raw.githubusercontent.com/Oreomeow/VIP/bak/Conf/Qinglong/config.sample.sh)
+- [Env](./Conf#readme)
+- [config.sample.sh](./Conf/Qinglong/config.sample.sh)
 
 
 ## [★](./Tasks) Tasks
