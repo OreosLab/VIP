@@ -78,7 +78,7 @@ ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/
 ```
 
 ## 已删库存档
-- `monk-dust`
+- `monk-coder`
 ```
 ql repo https://github.com/monk-dust/dust.git "i-chenzhe|normal|member|car" "backup"
 ```
