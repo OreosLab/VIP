@@ -12,9 +12,14 @@
 ## [★](./Dict) Dictionaries
 ### Learning-Markdown
 > [README](https://github.com/Oreomeow/README#readme)  
-> [learn-md](https://xianbai.me/learn-md/index.html)
+> [GFM](https://592592.xyz/2020/Github_Flavored_Markdown/#%E7%9B%AE%E5%BD%95)
 ### Docker
 > [Docker Tutorials | Rookie Tutorials](https://www.runoob.com/docker/docker-tutorial.html)  
+
+
+## [★](./Conf) Configurations  
+- [Env](https://github.com/Oreomeow/VIP/tree/bak/Conf#readme)
+- [config.sample.sh](https://raw.githubusercontent.com/Oreomeow/VIP/bak/Conf/Qinglong/config.sample.sh)
 
 
 ## [★](./Tasks) Tasks
@@ -46,16 +51,12 @@ ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "ac
 
 ### Summary
 > [BoxJs: Sub-Links](./QX/BoxJs#readme)  
-> [Tasks: Sngx TaskSub-Links](https://github.com/Youthsongs/QuanX/tree/master/task#readme)
 
 
 ## [★](./Scripts) Scripts 
 ### Repositories [☛](./Scripts#repositories)
 - [whyour/qinglong](https://github.com/whyour/qinglong)
 > Scheduled task control panel for python and javaScript
-
-
-## [★](./Conf) Configurations  
 
 
 

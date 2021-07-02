@@ -2,7 +2,7 @@
     "name":"羊毛",
     "author":"旺仔，Leon",
     "desc":"旺仔 制作.xlsx文件，Leon 修订并转换成.json的任务订阅。该订阅适用于 elecV2P，与其他软件并不兼容。相关说明参考：https://github.com/elecV2/elecV2P-dei/tree/master/docs/06-task.md",
-    "date":"2021-06-27 00:55:00",
+    "date":"2021-07-03 03:13:00",
     "list":[
         {
             "name":"中青看点看看赚&浏览赚(需配合专用重写获取cookie)",
@@ -50,8 +50,29 @@
             "time":"0 0 0 * * *",
             "job":{
                 "type":"runjs",
-                "target":"https://raw.githubusercontent.com/JDHelloWorld/jd_scripts/main/jd_blueCoin.js"
-            }
+                "target":"jd_blueCoin.js"
+            },
+            "running":true
+        },
+        {
+            "name":"整点红包雨",
+            "type":"cron",
+            "time":"0 0 0-23/1 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"long_super_redrain.js"
+            },
+            "running":true
+        },
+        {
+            "name":"半点红包雨",
+            "type":"cron",
+            "time":"0 30 16-23/1 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"long_half_redrain.js"
+            },
+            "running":true
         }
     ]
 }

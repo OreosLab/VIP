@@ -1,27 +1,22 @@
 # V2p Subscription Links
-## [<img src="/Icons/China.png" title="CN-links" width="28" height="28" />](./CN.md#cn) Click here for CN-links (Lazy to update)
+## [<img src="/Icons/China.png" title="CN-links" width="28" height="28" />](./CN.md#cn) Click here for CN-links (No Use)
 
 - **elecV2P**
   ```
   https://raw.githubusercontent.com/elecV2/elecV2P/master/efss/tasksub.json
   ```
   
-- **JD**
+- **Daily**
   ```
-  https://raw.githubusercontent.com/Oreomeow/VIP/main/Tasks/JD.json
+  https://raw.githubusercontent.com/Oreomeow/VIP/main/Tasks/Daily.json
   ```
   
-- **JDoth**
-  ``` 
-  https://raw.githubusercontent.com/Oreomeow/VIP/main/Tasks/JDoth.json
+- **News**
   ```
-   
-- **JDhelp**
-  ```
-  https://raw.githubusercontent.com/Oreomeow/VIP/main/Tasks/JDhelp.json
+  https://raw.githubusercontent.com/Oreomeow/VIP/main/Tasks/News.json
   ```
   
 - **V2pTaskSub** *By sngxpro*
   ```
-  https://raw.githubusercontent.com/sngxpro/QuanX/master/V2pTaskSub/sngxprov2p.json
+  https://raw.githubusercontent.com/Youthsongs/QuanX/master/V2pTaskSub/sngxprov2p.json
   ```
