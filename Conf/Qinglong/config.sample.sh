@@ -429,7 +429,7 @@ export starttime="23:59:59.00000000"
 export endtime="00:00:30.00000000"
 ## 抢京豆
 ### ck 优先读取【JDCookies.txt】 文件内的ck  再到 ENV的 变量 JD_COOKIE='ck1&ck2' 最后才到脚本内 cookies=ck
-qjd_zlzh = ['Your JD_User', '买买买', '东哥']
+export qjd_zlzh = ['Your JD_User', '买买买', '东哥']
 
 # Wenmoux 部分环境变量 
 ## QQ星系牧场自动兑换20豆
