@@ -1,0 +1,85 @@
+使用方法：
+
+〇、code.sh 是基于青龙 2.2.0 的 code.sh 修改而来。只支持青龙 2.8.0 及以上。支持互助模板修改，支持活动中文名称显示等。
+主要原理：
+a) code.sh运行分两个阶段：
+1、第一阶段：从各个活动脚本日志中搜索互助码，跟 COOKIES 校对后整理输出。根据你选择的互助规则模板，生成对应的互助规则。最新整理的互助码和互助规则输出到 code.sh 的日志，路径在/ql/log/code/；
+
+2、第二阶段：读取 code.sh 的日志和 task_before.sh 。校对每一条互助码和互助规则内容，如果内容不一致，则自动改写更新 task_before.sh 的互助码或互助规则。当 code.sh 日志中互助码是空值或者 undefined ，互助规则是空值的情况时，跳过改写 task_before.sh 对应的互助码和互助规则。
+
+b) 有些活动脚本输出的互助码不全，比如你有10个账号，目前跑了一半，日志只输出了5个，那么 code.sh 整理的也就只有5个有互助码，5个空值。
+由于 code.sh 里面不会将日志中互助码和互助规则的空值和 undefined 改写到task_before.sh。所以 code.sh 跑得次数越多，task_before.sh 里面的互助码和互助规则越完整。
+
+一、添加面板互助码自动更新监控任务。可自动读取最新的格式化导出互助码日志，自动更新 task_before.sh 中的互助码。
+1、将 code.sh 脚本拷贝到容器内路径/ql/config/；
+注：如果此前没有配置过 task_before.sh 脚本，可以使用附件提供的初始化模板文件，拷贝路径也是 /ql/config/。如果此前自行配置过 task_before.sh ，请自行同模板比对文本最后一段代码，作用是提交互助码和互助规则给活动脚本，如果内容缺失，可能导致互助异常。
+
+2、格式化更新互助码的定时任务规则：
+名称：格式化更新互助码
+命令：bash /ql/config/code.sh
+定时规则：*/60 * * * *
+
+3、需要读取活动脚本日志才能格式化整理各个活动的互助码及互助规则；目前兼容以下三个仓库的脚本日志。按读取优先级顺序为：
+a)柠檬（胖虎）代维护 lxk0301 仓库：
+名称：柠檬（胖虎）代维护 lxk0301 仓库
+命令：ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|jd_try|format_" "^jd[^_]|USER"
+定时规则：34 8,12,16,20,0 * * *
+
+b)JDHelloWorld 代维护 lxk0301 仓库：
+名称：JDHelloWorld 代维护 lxk0301 仓库
+命令：ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen" "^jd[^_]|USER"
+定时规则：32 8,12,16,20,0 * * *
+
+c)lxk0301 仓库：
+名称：lxk0301 仓库
+命令：ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER"
+定时规则：20 8,12,16,20,0 * * *
+
+4、导出京喜农场 Token 的方法：
+a) 前提：必须搭配最新的 task_before.sh 模板，否则京喜财富岛提现无法读取到 token。
+b) 步骤：运行一次 code.sh，再根据日志提示的优先仓库，运行一次京喜财富岛活动脚本。再运行一次 code.sh 。
+c）问题：
+1) task_before.sh 的 Token 是空值？
+答：必须完整运行一次优先仓库的京喜财富岛活动脚本后，再运行 code.sh 。否则 Token 可能会无法写入或写入不完整。
+2) task_before.sh  Token 写入正常，但是京喜财富岛提现还是读取不到 Token ？
+答：①确保 task_before.sh 是最新版，具体可以比对你的文件和置顶模板的第三行 Build 号。
+         ②京喜财富岛的任务不能设置 conc JD_COOKIE 并发多线程，否则会导致 Token 读取异常。
+
+二、其他自定义的参数配置：
+1、自定义互助规则模板定义
+code.sh 默认互助规则为：“均等机会助力模板”，自己根据注释部分修改模板；
+## 定义 jcode 脚本导出的互助码模板样式（选填）
+## 不填 使用“按编号顺序助力模板”，Cookie编号在前的优先助力
+## 填 0 使用“全部一致助力模板”，所有账户要助力的码全部一致
+## 填 1 使用“均等机会助力模板”，所有账户获得助力次数一致
+## 填 2 使用“随机顺序助力模板”，本套脚本内账号间随机顺序助力，每次生成的顺序都不一致。
+HelpType="1"
+
+2、自定义是否修改配置文件
+## 定义是否自动更新配置文件中的互助码和互助规则，默认为1，表示更新；留空或其他数值表示不更新。
+UpdateType="1"
+
+3、仓库作者自定义
+脚本作者定义如下：
+repo1='panghu999'
+repo2='JDHelloWorld'
+repo3='chinnkarahoi'
+如果需要自由组合脚本的，就搜索 name_js 把数组内脚本作者前缀"repo"替换成你想指定的"repo1" 或"repo2"或"repo3"；
+注：由于其他大佬的脚本输出日志的互助码文本规则并不统一，又或者不输出互助码。所以暂不支持其他大佬的自由定义。如果你发现有新支持仓库，请及时与我联系。
+
+4、自动 备份 task_before.sh 配置文件开关，默认是1，表示开启；设置为0，表示关闭。备份路径 /ql/config/bak/
+BAKUP="1";
+
+5、自定义屏蔽指定账户被助力，但不影响这些帐号助力其他帐号。具体详见 code.sh 内容；
+
+6、如果反复提醒检测到 code.sh正在运行，说明code.sh的运行线程过多，如果强行运行，可能会导致互助码和规则写入异常。常规做法是等一会再试。如果非要强行运行，方法如下：
+
+强制运行方法：
+①修改config.sh
+DEBUG="1"
+如果日志输出线程数是9
+
+②再在code.sh搜索
+$(ps | grep code.sh | grep -v grep | wc -l)" -gt 8
+
+把8改成9，然后code.sh可以运行，但不建议这么做，因为这是一个防呆设计。

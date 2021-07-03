@@ -1,0 +1,42 @@
+[ 文件 : code.sh ]
+2021.7.3.004
+1、修复导致京喜财富岛活动脚本跑不动的问题。
+2、自动修改所有的jd_cfd.js。是指输出京喜token。
+
+2021.7.3.003
+1、引入 pt_pin 校验京喜token。
+
+2021.7.2.002 - 2021.7.3.001
+1、增加了京喜农场 Token 的格式化导出。可用于京喜财富岛提现。必须搭配最新的 task_before.sh 模板一并使用。
+感谢 EmmieDempsey 大佬提供的思路。
+
+使用方法：搭配最新的 task_before.sh 模板运行一次 code.sh，再根据日志提示的优先仓库，运行一次京喜财富岛活动脚本。再运行一次 code.sh 。
+
+问题：
+1) task_before.sh 的 Token 是空值？
+答：必须完整运行一次优先仓库的京喜财富岛活动脚本后，再运行 code.sh 。否则 Token 可能会无法写入或写入不完整。
+2) task_before.sh  Token 写入正常，但是京喜财富岛提现还是读取不到 Token ？
+答：①确保 task_before.sh 是最新版，具体可以比对你的文件和置顶模板的第三行 Build 号。
+         ②京喜财富岛的任务不能设置 conc JD_COOKIE 并发多线程，否则会导致 Token 读取异常。
+
+2、增加京喜农场 Token 输出为空的原因提示。
+
+2021.7.2.001
+1、改进屏蔽模式。详见脚本正文。
+
+[ 文件 : task_before.sh ]
+2021.7.3
+1、搭配最新 config.sh 模板的临时屏蔽某个 COOKIES 参加某个活动实现相应功能。
+
+2021.7.2
+1、添加了京喜农场 Token 原始模板。可用于京喜财富岛提现。
+
+[ 文件 : config_sample.sh ]
+config.sh模板，适用于青龙 2.8.0。整合了Oreo大佬的最新环境变量。
+
+其中屏蔽某COOKIES不参加某活动的格式必须参照本模板填写。
+
+自行比较模板和自己config.sh，把需要用的变量加入到自己的config.sh
+
+频道：https://t.me/update_help
+交流群：https://t.me/update_help_group

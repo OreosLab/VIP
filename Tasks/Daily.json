@@ -40,7 +40,7 @@
             "time":"0 0 0 * * *",
             "job":{
                 "type":"runjs",
-                "target":"https://raw.githubusercontent.com/ztxtop/x/aa4ddeca813fbf5c231dd4adaec68a7632cb292c/jx_cfdtx.js"
+                "target":"jx_cfdtx.js"
             },
             "running":true
         },

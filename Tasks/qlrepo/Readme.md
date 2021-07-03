@@ -60,13 +60,9 @@ ql repo https://github.com/photonmang/quantumultX.git "JDscripts"
 ### 名称之后标注`﹢`的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
 > `curtinlv`﹢
 
-⏱ 三处 cron 推荐
+>> 抢京豆
 ```
-15 8 * * *
-```
->> 赚京豆
-```
-ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_zjd.py
+ql raw https://raw.githubusercontent.com/Oreomeow/JD-Script/main/jd_qjd.py
 ```
 >> 入会
 ```
