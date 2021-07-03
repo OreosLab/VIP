@@ -4,10 +4,10 @@ Post
 `http://www.pushplus.plus/send`
 ```
 {
-"token": `xxxxxxxxxxxxxxxxxxxx`,
-"title": `$title$`,
-"content": `$body$\n$url$`,
-"Content-Type": `application/json`
+  "token": `xxxxxxxxxxxxxxxxxxxx`,
+  "title": `$title$`,
+  "content": `$body$\n$url$`,
+  "Content-Type": `application/json`
 }
 ```
 # telegram
