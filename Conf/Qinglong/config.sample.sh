@@ -389,7 +389,7 @@ export cashinviteCode3=""
 ## 大老板农场 新增自定义变量通知开关
 export dlbtz="true" ##通知打开，false为关闭
 ## 零食街自动兑换变量
-###自行取消注释和注释
+### 自行取消注释和注释
 ##export ljsdh="jdAward1" ##兑换5豆
 ##export ljsdh="jdAward2" ##兑换10豆
 export ljsdh="jdAward3" ##兑换100豆
@@ -430,6 +430,10 @@ export endtime="00:00:30.00000000"
 ## 抢京豆
 ### ck 优先读取【JDCookies.txt】 文件内的ck  再到 ENV的 变量 JD_COOKIE='ck1&ck2' 最后才到脚本内 cookies=ck
 export qjd_zlzh = ['Your JD_User', '买买买', '东哥']
+## 签到领现金助力
+### 入口：App搜索领现金
+### 设置被助力的账号可填用户名 或 pin的值;
+export cash_zlzh = ['Your JD_User', '买买买']
 
 # Wenmoux 部分环境变量 
 ## QQ星系牧场自动兑换20豆
