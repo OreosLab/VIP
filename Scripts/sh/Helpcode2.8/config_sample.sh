@@ -125,6 +125,17 @@ export GOBOT_QQ=""
 ##     TempBlockCookie="3 6"    # 账号3、账号6不玩京东赚赚和宠汪汪
 ##     ;;
 ##  esac
+case $1 in
+   jd_fruit)
+     TempBlockCookie=""
+     ;;
+   *jd_dreamFactory* | *jd_jdfactory*)
+     TempBlockCookie=""
+     ;;
+   *jd_jdzz* | *jd_joy*)
+     TempBlockCookie=""
+     ;;
+esac
 
 ## 其他需要的变量，脚本中需要的变量使用 export 变量名= 声明即可
 
@@ -157,7 +168,7 @@ export DDQ_NOTIFY_CONTROL="false"
 ## 8、京东京东赚赚小程序关闭推送。填写false为不关闭推送，true为关闭推送
 export JDZZ_NOTIFY_CONTROL="false"
 ## 9、宠汪汪兑换京豆关闭推送。填写false为不关闭推送，true为关闭推送
-export JD_JOY_REWARD_NOTIFY="true"
+export JD_JOY_REWARD_NOTIFY="false"
 ## 10、宠汪汪赛跑获胜后是否推送通知。填false为不推送通知消息,true为推送通知消息
 export JOY_RUN_NOTIFY="true"
 ## 11、东东超市兑换奖品是否关闭推送通知。填false为不关闭推送,true为关闭推送
@@ -314,8 +325,12 @@ export dlbtz="true"
 # curtinlv 环境变量
 ## 1、赚京豆
 ### 助力账号，填写pt_pin或用户名的值，如 zlzh = ['aaaa','xxxx','yyyy'] ，支持ENV
-export zlzh=['CurtinLV','xxxx','yyyy']
-## 2、入会开卡
+export zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/, /g; s/^/[/; s/$/]/;")
+## 2、全民抢京豆
+export qjd_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;")
+## 3、签到领现金助力
+export cash_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;")
+## 4、入会开卡
 ### int，入会送豆满足此值，否则不入会
 export openCardBean="30"
 ### 布尔值，是否记录符合条件的shopid(默认True)
@@ -343,4 +358,3 @@ export Readck=""
 export Read10UA=""
 ## 填true推送消息，默认不推送
 export jrpush=""
-
