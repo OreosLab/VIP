@@ -330,7 +330,7 @@ export shareCode=""
 
 ```
 ## 签到领现金添加变量方式
-自行添加变量设置邀请码 格式如下 默认10个
+### 自行添加变量设置邀请码 格式如下 默认10个
 export cashinviteCode=""
 export cashinviteCode2=""
 export cashinviteCode3=""
