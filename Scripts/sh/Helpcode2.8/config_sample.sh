@@ -1,5 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
+## Mod: Build20210707-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -237,6 +238,8 @@ export DREAMFACTORY_FORBID_ACCOUNT=""
 export PURCHASE_SHOPS="true"
 ## 21、京喜工厂拼团瓜分电力活动的activeId（当前需抓包替换或去群里求别人分享）
 export TUAN_ACTIVEID=""
+## 22、京东UA。点点券脚本运行环境变量
+export JD_USER_AGENT="jdltapp;iPhone;3.1.0;14.4;3b6e79334551fc6f31952d338b996789d157c4e8"
 
 # 阿道夫部分环境变量
 ## 1、阿道夫脚本加购开关，填true加购
@@ -327,8 +330,10 @@ export dlbtz="true"
 ### 助力账号，填写pt_pin或用户名的值，如 zlzh = ['aaaa','xxxx','yyyy'] ，支持ENV
 export zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/, /g; s/^/[/; s/$/]/;")
 ## 2、全民抢京豆
+### export qjd_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')  ## 支持中文用户名
 export qjd_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;")
 ## 3、签到领现金助力
+### export cash_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')  ## 支持中文用户名
 export cash_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;")
 ## 4、入会开卡
 ### int，入会送豆满足此值，否则不入会
@@ -358,3 +363,8 @@ export Readck=""
 export Read10UA=""
 ## 填true推送消息，默认不推送
 export jrpush=""
+
+## 其他命令：
+## 1、一键改写京东兑蓝币脚本的cookies；需手动运行
+## sed -i "s/cookies=''/cookies='$(. /ql/shell/share.sh && . /ql/config/config.sh && echo $JD_COOKIE)'/g" /ql/scripts/*_jd_blueCoin.py
+

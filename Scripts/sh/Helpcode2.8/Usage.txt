@@ -11,29 +11,37 @@ b) 有些活动脚本输出的互助码不全，比如你有10个账号，目前跑了一半，日志只输出了5个
 由于 code.sh 里面不会将日志中互助码和互助规则的空值和 undefined 改写到task_before.sh。所以 code.sh 跑得次数越多，task_before.sh 里面的互助码和互助规则越完整。
 
 一、添加面板互助码自动更新监控任务。可自动读取最新的格式化导出互助码日志，自动更新 task_before.sh 中的互助码。
-1、将 code.sh 脚本拷贝到容器内路径/ql/config/；
-注：如果此前没有配置过 task_before.sh 脚本，可以使用附件提供的初始化模板文件，拷贝路径也是 /ql/config/。如果此前自行配置过 task_before.sh ，请自行同模板比对文本最后一段代码，作用是提交互助码和互助规则给活动脚本，如果内容缺失，可能导致互助异常。
+1、将 code.sh 和配套的 task_before.sh 脚本拷贝到容器内路径/ql/config/。如果此前已将改路径映射至主机，则拷贝到主机对应路径即可；
+注： code.sh 必须配套 提供的 task_before.sh 模板使用。如自行使用其他文件以致出现互助码输出不正常，提交活动失败等问题，请自我检讨。
 
 2、格式化更新互助码的定时任务规则：
 名称：格式化更新互助码
 命令：bash /ql/config/code.sh
-定时规则：*/60 * * * *
+定时规则：10 * * * *
+注：命令千万不要用 task /ql/config/code.sh。否则会出现报错，且可能导致互助码和互助规则写入不完整。
+
+3、需要读取活动脚本日志才能格式化整理各个活动的互助码及互助规则；目前兼容以下三个仓库的脚本日志。按读取优先级顺序为：
+2、格式化更新互助码的定时任务规则：
+名称：格式化更新互助码
+命令：bash /ql/config/code.sh
+定时规则：10 * * * *
+注：命令千万不要用 task /ql/config/code.sh。否则会出现报错，且可能导致互助码和互助规则写入不完整。
 
 3、需要读取活动脚本日志才能格式化整理各个活动的互助码及互助规则；目前兼容以下三个仓库的脚本日志。按读取优先级顺序为：
 a)柠檬（胖虎）代维护 lxk0301 仓库：
 名称：柠檬（胖虎）代维护 lxk0301 仓库
 命令：ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|jd_try|format_" "^jd[^_]|USER"
-定时规则：34 8,12,16,20,0 * * *
+定时规则：1 1-23/4 * * *
 
 b)JDHelloWorld 代维护 lxk0301 仓库：
 名称：JDHelloWorld 代维护 lxk0301 仓库
 命令：ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen" "^jd[^_]|USER"
-定时规则：32 8,12,16,20,0 * * *
+定时规则：2 1-23/4 * * *
 
-c)lxk0301 仓库：
+c)lxk0301 仓库(已停止维护，不建议使用)：
 名称：lxk0301 仓库
 命令：ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER"
-定时规则：20 8,12,16,20,0 * * *
+定时规则：3 1-23/4 * * *
 
 4、导出京喜农场 Token 的方法：
 a) 前提：必须搭配最新的 task_before.sh 模板，否则京喜财富岛提现无法读取到 token。
@@ -80,6 +88,6 @@ DEBUG="1"
 如果日志输出线程数是9
 
 ②再在code.sh搜索
-$(ps | grep code.sh | grep -v grep | wc -l)" -gt 8
+$(ps | grep code.sh | grep -v grep | wc -l)" -gt 7
 
-把8改成9，然后code.sh可以运行，但不建议这么做，因为这是一个防呆设计。
+把7改成9，然后code.sh可以运行，但不建议这么做，因为这是一个防呆设计。
