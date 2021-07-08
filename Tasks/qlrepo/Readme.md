@@ -15,17 +15,24 @@ ql raw <fileurl>
   
   1. `JDHelloWorld`
   ```
-  ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen" "^jd[^_]|USER"
+  ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen|update" "^jd[^_]|USER"
   ```
-  2. `chinnkarahoi`
+  2. `he1pu`（自动提交助力码-京喜工厂、种豆得豆、东东工厂、东东农场、健康社区、京喜财富岛、东东萌宠、闪购盲盒，随机从数据库中选取助力码互助）
+  ```
+  ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "Coupon|update" "^jd[^_]|USER"
+  ```
+  3. `shufflewzc`
+  ```
+  ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER"
+  ```
+  4. `panghu999`
+  ```
+  ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|jd_try|format_" "^jd[^_]|USER"
+  ```
+  5. `chinnkarahoi`
   ```
   ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER"
   ```
-  3. `he1pu`（自动提交助力码-京喜工厂、种豆得豆、东东工厂、东东农场、健康社区、京喜财富岛、东东萌宠、闪购盲盒，随机从数据库中选取助力码互助）
-  ```
-  ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER"
-  ```
-  
 
 - `whyour/hundun`
 ```
@@ -61,7 +68,11 @@ ql repo https://github.com/cdle/jd_study.git "jd_"
 ```
 - `smiek2221`
 ```
-ql repo https://github.com/smiek2221/scripts.git "jd_" "" "JDJRValidator_Pure.js|sign_graphics_validate.js|MovementFaker.js"
+ql repo https://github.com/smiek2221/scripts.git "jd_" "" "^MovementFaker|^JDJRValidator|^sign"
+```
+- `jiulan`
+```
+ql repo https://github.com/jiulan/platypus.git
 ```
 
 ## 单脚本
@@ -79,6 +90,13 @@ ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/OpenCard/jd_Ope
 >> 关注
 ```
 ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/jd_getFollowGift.py
+```
+
+> `chiupam`
+
+>> 京喜工厂瓜分电力开团 ID 
+```
+ql repo https://github.com/chiupam/JD_Diy.git "activeId"
 ```
 
 ## 已删库存档
@@ -101,10 +119,6 @@ ql repo https://github.com/zooPanda/zoo.git "zoo"
 - `star261`
 ```
 ql repo https://github.com/star261/jd.git "scripts" "code" 
-```
-- `panghu999`
-```
-ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|format_" "^jd[^_]|USER"
 ```
 - `longzhuzhu`
 ```

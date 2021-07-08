@@ -25,7 +25,7 @@
 ## [★](./Tasks) Tasks
 ### [<img src="/Icons/qinglong/QL.png" title="QL" width="30" height="30" />][QL] ← More
 ```
-ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen" "^jd[^_]|USER"
+ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen|update" "^jd[^_]|USER"
 ```
 
 
