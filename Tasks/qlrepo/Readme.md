@@ -55,6 +55,14 @@ ql repo https://github.com/moposmall/Script.git "Me"
 ```
 ql repo https://github.com/photonmang/quantumultX.git "JDscripts"
 ```
+- `cdle`
+```
+ql repo https://github.com/cdle/jd_study.git "jd_"
+```
+- `smiek2221`
+```
+ql repo https://github.com/smiek2221/scripts.git "jd_"
+```
 
 ## 单脚本
 ### 名称之后标注`﹢`的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
