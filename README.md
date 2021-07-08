@@ -1,4 +1,4 @@
-# 📌 Some exchange tasks will be run with V2P because V2P is stable. [News](./Log/News.md#news)
+# 📌 [News](./Log/News.md#news)
 # 📌 [Jiaolong Updates](./Log/Updatelog/Jiaolong.md#jiaolong)
 
 # Statement

@@ -61,7 +61,7 @@ ql repo https://github.com/cdle/jd_study.git "jd_"
 ```
 - `smiek2221`
 ```
-ql repo https://github.com/smiek2221/scripts.git "jd_"
+ql repo https://github.com/smiek2221/scripts.git "jd_" "" "JDJRValidator_Pure.js|sign_graphics_validate.js|MovementFaker.js"
 ```
 
 ## 单脚本
