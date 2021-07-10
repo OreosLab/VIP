@@ -68,7 +68,7 @@ ql repo https://github.com/star261/jd.git "jd_|star" "" "^MovementFaker"
 ql repo https://github.com/chiupam/JD_Diy.git "activeId"
 
 # 依赖
-## 适用于柠檬胖虎代维护lxk0301仓库，宠汪汪二代目和宠汪汪兑换，只支持国内机。
+## 适用于柠檬胖虎代维护 lxk0301 仓库，宠汪汪二代目和宠汪汪兑换，只支持国内机。
 ## apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && cd scripts && npm install canvas --build-from-source
-## 适用于JDHelloWorld和he1pu的宠汪汪二代目和宠汪汪兑奖品二代目
+## 适用于 JDHelloWorld 和 he1pu 的宠汪汪二代目和宠汪汪兑奖品二代目
 cd scripts && npm i -S png-js
