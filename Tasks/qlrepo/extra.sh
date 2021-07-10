@@ -7,11 +7,11 @@
 # 整库
 # 1. Unknown 备份托管等
 ## (1) JDHelloWorld
-ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen|update" "^jd[^_]|USER"
+## ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen" "^jd[^_]|USER"
 ## (2) he1pu（自动提交助力码-京喜工厂、种豆得豆、东东工厂、东东农场、健康社区、京喜财富岛、东东萌宠、闪购盲盒，随机从数据库中选取助力码互助）
-## ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "Coupon|update" "^jd[^_]|USER"
+ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER|MovementFaker|JDJRValidator_Pure|sign_graphics_validate|ZooFaker_Necklace"
 ## (3) shufflewzc
-## ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER"
+## ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER"
 ## (4) panghu999
 ## ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|jd_try|format_" "^jd[^_]|USER"
 ## (5) chinnkarahoi
@@ -60,3 +60,9 @@ ql repo https://github.com/jiulan/platypus.git
 # 2. chiupam
 ## 京喜工厂瓜分电力开团 ID
 ql repo https://github.com/chiupam/JD_Diy.git "activeId"
+
+# 依赖
+## 适用于柠檬胖虎代维护lxk0301仓库，宠汪汪二代目和宠汪汪兑换，只支持国内机。
+## apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && cd scripts && npm install canvas --build-from-source
+## 适用于JDHelloWorld和he1pu的宠汪汪二代目和宠汪汪兑奖品二代目
+cd scripts && npm i -S png-js
