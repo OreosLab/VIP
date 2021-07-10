@@ -34,7 +34,6 @@ ql raw <fileurl>
   ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER"
   ```
 
-
 - `passerby-b`
 ```
 ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event" "jddj_cookie"
@@ -84,7 +83,6 @@ ql repo https://github.com/panghu999/panghu.git "jd_"
 ql repo https://github.com/star261/jd.git "jd_|star" "" "^MovementFaker"
 ```
 
-```
 ## 单脚本
 ### 名称之后标注`﹢`的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
 > `curtinlv`﹢
