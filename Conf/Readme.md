@@ -442,6 +442,10 @@ export summer_movement_ShHelpFlag="1" ##0 不开启也不助力 1 开启并助�
 ```
 ## 燃动夏季-新增只做邀请助力功能
 export summer_movement_HelpHelpHelpFlag="false" ##是否只执行邀请助力 true 是 false 不是 默认 false
+### 可以设置13点执行一下脚本
+if [ $(date "+%H") -eq 13 ]; then
+    export summer_movement_HelpHelpHelpFlag="true"
+fi
 ```
 
 
