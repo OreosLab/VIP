@@ -427,6 +427,24 @@ export jrpush="" ##填true推送消息，默认不推送
 ```
 
 
+## smiek2221 环境变量
+
+```
+## 燃动夏季—入会
+export summer_movement_joinjoinjoinhui="false" ##是否入会 true 入会，false 不入会
+```
+
+```
+## 燃动夏季—百元守卫战SH
+export summer_movement_ShHelpFlag="1" ##0 不开启也不助力 1 开启并助力 2 开启但不助力 默认开启并助力
+```
+
+```
+## 燃动夏季-新增只做邀请助力功能
+export summer_movement_HelpHelpHelpFlag="false" ##是否只执行邀请助力 true 是 false 不是 默认 false
+```
+
+
 ## 通知类环境变量
 
 ```
