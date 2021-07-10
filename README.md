@@ -27,6 +27,7 @@
 ```
 ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen|update" "^jd[^_]|USER"
 ```
+- [extra.sh](./Tasks/qlrepo/extra.sh)
 
 
 ## [★](./INS) Instructions
