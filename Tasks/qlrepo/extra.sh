@@ -7,11 +7,11 @@
 # 整库
 # 1. Unknown 备份托管等
 ## (1) JDHelloWorld
-## ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen" "^jd[^_]|USER"
+## ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen|update" "^jd[^_]|USER"
 ## (2) he1pu（自动提交助力码-京喜工厂、种豆得豆、东东工厂、东东农场、健康社区、京喜财富岛、东东萌宠、闪购盲盒，随机从数据库中选取助力码互助）
-ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER|MovementFaker|JDJRValidator_Pure|sign_graphics_validate|ZooFaker_Necklace"
+ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER|MovementFaker|JDJRValidator_Pure|sign_graphics_validate|ZooFaker_Necklace"
 ## (3) shufflewzc
-## ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER"
+## ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER"
 ## (4) panghu999
 ## ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|jd_try|format_" "^jd[^_]|USER"
 ## (5) chinnkarahoi
@@ -46,6 +46,12 @@ ql repo https://github.com/photonmang/quantumultX.git "JDscripts"
 
 # 11. jiulan
 ql repo https://github.com/jiulan/platypus.git
+
+# 12. panghu999/panghu
+ql repo https://github.com/panghu999/panghu.git "jd_"
+
+# 13. star261
+ql repo https://github.com/star261/jd.git "jd_|star" "" "^MovementFaker"
 
 # 单脚本
 ## 名称之后标注﹢的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
