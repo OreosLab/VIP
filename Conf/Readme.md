@@ -449,6 +449,29 @@ fi
 ```
 
 
+## cdle 环境变量
+
+```
+## 签到领现金兑换
+### 需要填写exchangeAccounts参数，兑换多少取决于app内显示，默认为所有账号兑换10红包，部分账号会出现参数错误的提示。
+### 填写 pt_pin@金额，pt_pin为用户名，可以在 COOKIES 中提取；金额为 2 或 10，例如 LiLei@2 或 HanMeimei@10。多值用 & 连接，例如 LiLei@2&HanMeimei@10
+export exchangeAccounts="pt_pin1@2"  ##抢2元红包
+##export exchangeAccounts="pt_pin2@10"  ##抢10元红包，比较难兑
+```
+
+```
+## 全民运动会守卫红包
+### 助力码，需手动抓包
+export olympicgames_inviteId=""
+```
+
+```
+## 愤怒的锦鲤
+### 高速并发请求，专治偷助力。在kois环境变量中填入需要助力的pt_pin，有多个请用@符号连接
+export kois="pt_pin1@pt_pin2"
+```
+
+
 ## 通知类环境变量
 
 ```
