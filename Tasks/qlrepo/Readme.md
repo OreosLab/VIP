@@ -23,7 +23,7 @@ ql raw <fileurl>
   ```
   3. `shufflewzc`
   ```
-  ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER"
+  ql repo https://ghproxy.com/https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER|ZooFaker_Necklace|JDJRValidator_Pure"
   ```
   4. `panghu999`
   ```
