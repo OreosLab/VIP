@@ -1,0 +1,13 @@
+qinglong:
+  image: whyour/qinglong:latest
+  container_name: qinglong
+  hostname: qinglong
+  restart: always
+  ports:
+    - "5700:5700"
+  volumes:
+    - ./config:/ql/config
+    - ./log:/ql/log
+    - ./db:/ql/db
+    - ./repo:/ql/repo
+    - ./scripts:/ql/scripts
