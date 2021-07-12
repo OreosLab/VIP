@@ -53,6 +53,9 @@ ql repo https://github.com/panghu999/panghu.git "jd_"
 # 13. star261
 ql repo https://github.com/star261/jd.git "jd_|star" "" "^MovementFaker"
 
+# 14. Wenmoux
+ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
+
 # 单脚本
 ## 名称之后标注﹢的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
 # 1. curtinlv﹢
@@ -72,15 +75,3 @@ ql repo https://github.com/chiupam/JD_Diy.git "activeId"
 ## apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && cd scripts && npm install canvas --build-from-source
 ## 适用于 JDHelloWorld 和 he1pu 的宠汪汪二代目和宠汪汪兑奖品二代目
 cd scripts && npm i -S png-js
-## 安装 ts 脚本依赖库，拉取 JDHelloWorld，京喜财富岛新版 ts 脚本并挂机
-jxcfd_ts(){
-cd /ql/scripts/
-## ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen" "^jd[^_]|USER"
-cp /ql/repo/JDHelloWorld_jd_scripts/package.json .
-npm i
-npm i -g ts-node typescript @types/node date-fns axios
-tsc JDHelloWorld_jd_scripts_jd_cfd.ts
-task JDHelloWorld_jd_scripts_jd_cfd.js now
-}
-
-jxcfd_ts &

@@ -82,6 +82,10 @@ ql repo https://github.com/panghu999/panghu.git "jd_"
 ```
 ql repo https://github.com/star261/jd.git "jd_|star" "" "^MovementFaker"
 ```
+- `Wenmoux`
+```
+ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
+```
 
 ## 单脚本
 ### 名称之后标注`﹢`的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
@@ -115,10 +119,6 @@ ql repo https://github.com/monk-dust/dust.git "i-chenzhe|normal|member|car" "bac
 - `hyzaw`
 ```
 ql repo https://github.com/hyzaw/scripts.git "ddo_"
-```
-- `Wenmoux`
-```
-ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
 ```
 - `zooPanda`
 ```
