@@ -37,17 +37,14 @@ ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity
 
 
 ## ☆ QuantumultX
-- **Lazy Configurations** *By sngxpro*
+- **Lazy Configurations** *Created by sngxpro & Maintained by me*
   ```  
-  https://raw.githubusercontent.com/Youthsongs/QuanX/master/sngx2021.conf
+  https://raw.githubusercontent.com/Oreomeow/QuanX/master/sngx2021.conf
   ```
  
-- **Allinone TaskSub-Links** *By sngxpro*
+- **Allinone TaskSub-Links** *Created by sngxpro & Maintained by me*
   ```
-  https://raw.githubusercontent.com/Youthsongs/QuanX/master/task/AllinOne.json
-  ```
-  ```
-  https://ghproxy.com/https://raw.githubusercontent.com/Youthsongs/QuanX/master/task/AllinOne.json
+  https://ghproxy.com/https://raw.githubusercontent.com/Oreomeow/QuanX/master/task/AllinOne.json
   ```
 
 ### Summary
