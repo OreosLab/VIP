@@ -77,17 +77,3 @@ apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && cd scripts &
 cd scripts && npm i -S png-js
 ## 财富岛依赖安装命令
 npm install axios date-fns
-
-# code.sh 脚本预备
-task shufflewzc_faker2_jd_fruit.js now
-task shufflewzc_faker2_jd_pet.js now
-task shufflewzc_faker2_jd_plantBean.js now
-task shufflewzc_faker2_jd_dreamFactory.js now
-task shufflewzc_faker2_jd_jdfactory.js now
-task shufflewzc_faker2_jd_crazy_joy.js now
-task shufflewzc_faker2_jd_jdzz.js now
-task shufflewzc_faker2_jd_jxnc.js now
-task shufflewzc_faker2_jd_bookshop.js now
-task shufflewzc_faker2_jd_cash.js now
-task shufflewzc_faker2_jd_sgmh.js now
-task shufflewzc_faker2_jd_cfd.js now
