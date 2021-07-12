@@ -1,7 +1,8 @@
-## Version: v2.2.0-066 expired
-## Date: 2021-06-17
-## Update Content: \n1. 修复版本号样式\n2. 修复查看日志或者编辑任务后列表异常
-## Tip：v2.2.0-066 版本专用，自行比较该模板和自己的 config.sh，把需要的变量加入到自己的 config.sh。7.12 17:00 起不再维护。
+## Version: v2.8.0
+## Date: 2021-06-20
+## Mod: Build20210711-005
+## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
+
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
 
 ## 在运行 ql repo 命令时，是否自动删除失效的脚本与定时任务
@@ -11,36 +12,26 @@ AutoDelCron="true"
 AutoAddCron="true"
 
 ## ql repo命令拉取脚本时需要拉取的文件后缀，直接写文件后缀名即可
-RepoFileExtensions="js py"
+RepoFileExtensions="js py ts"
 
 ## 由于github仓库拉取较慢，所以会默认添加代理前缀，如不需要请移除
-GithubProxyUrl="https://ghproxy.com/"
+GithubProxyUrl=""
 
 ## 设置定时任务执行的超时时间，默认1h，后缀"s"代表秒(默认值), "m"代表分, "h"代表小时, "d"代表天
 CommandTimeoutTime="1h"
 
 ## 设置批量执行任务时的并发数，默认同时执行5个任务
-MaxConcurrentNum="10"
+MaxConcurrentNum="20"
 
 ## 在运行 task 命令时，随机延迟启动任务的最大延迟时间
 ## 默认给javascript任务加随机延迟，如 RandomDelay="300" ，表示任务将在 1-300 秒内随机延迟一个秒数，然后再运行，取消延迟赋值为空
-RandomDelay="300"
+RandomDelay=""
 
 ## 如果你自己会写shell脚本，并且希望在每次运行 ql update 命令时，额外运行你的 shell 脚本，请赋值为 "true"，默认为true
 EnableExtraShell="true"
 
-## 自动按顺序进行账号间互助（选填） 设置为 true 时，将直接导入code最新日志来进行互助
-AutoHelpOther="true"
-
-## 定义 jcode 脚本导出的互助码模板样式（选填）
-## 不填 使用“按编号顺序助力模板”，Cookie编号在前的优先助力
-## 填 0 使用“全部一致助力模板”，所有账户要助力的码全部一致
-## 填 1 使用“均等机会助力模板”，所有账户获得助力次数一致
-## 填 2 使用“随机顺序助力模板”，本套脚本内账号间随机顺序助力，每次生成的顺序都不一致。
-HelpType="0"
-
 ## 是否自动启动bot，默认不启动，设置为true时自动启动，目前需要自行克隆bot仓库所需代码，存到ql/repo目录下，文件夹命名为dockerbot
-AutoStartBot=""
+AutoStartBot="true"
 
 ## 安装bot依赖时指定pip源，默认使用清华源，如不需要源，设置此参数为空
 PipMirror="https://pypi.tuna.tsinghua.edu.cn/simple"
@@ -108,7 +99,7 @@ export PUSH_PLUS_TOKEN=""
 ## 1. 需订阅者扫描二维码 2、如果您是创建群组所属人，也需点击“查看二维码”扫描绑定，否则不能接受群组消息推送
 export PUSH_PLUS_USER=""
 
-## 8. go-cqhttp
+## 9. go-cqhttp
 ## gobot_url 推送到个人QQ: http://127.0.0.1/send_private_msg  群：http://127.0.0.1/send_group_msg 
 ## gobot_token 填写在go-cqhttp文件设置的访问密钥
 ## gobot_qq 如果GOBOT_URL设置 /send_private_msg 则需要填入 user_id=个人QQ 相反如果是 /send_group_msg 则需要填入 group_id=QQ群 
@@ -117,109 +108,37 @@ export GOBOT_URL=""
 export GOBOT_TOKEN=""
 export GOBOT_QQ=""
 
-## 如果只是想要屏蔽某个ck不执行某个脚本，可以参考下面 case 这个命令的例子来控制，脚本名称包含后缀
+## 10. 临时屏蔽某个Cookie
+## 如果某些Cookie已经失效了，但暂时还没法更新，可以使用此功能在不删除该Cookie和重新修改Cookie编号的前提下，临时屏蔽掉某些编号的Cookie
+## 多个Cookie编号以半角的空格分隔，两侧一对半角双引号，使用此功能后，在运行js脚本时账户编号将发生变化
+## 举例1：TempBlockCookie="2"    临时屏蔽掉Cookie2
+## 举例2：TempBlockCookie="2 4"  临时屏蔽掉Cookie2和Cookie4
+
+## 如果只是想要屏蔽某个账号不参加某些活动，可以参考下面 case 这个命令的例子来控制
 ## case $1 in
-##   test.js)
-##     TempBlockCookie="5"
+##   *jd_fruit*)
+##     TempBlockCookie="5"      # 账号5不玩东东农场
 ##     ;;
-## esac
-
-## 需组合的环境变量列表，env_name需要和var_name一一对应，如何有新活动按照格式添加(不懂勿动)
-env_name=(
-  JD_COOKIE
-  FRUITSHARECODES
-  PETSHARECODES
-  PLANT_BEAN_SHARECODES
-  DREAM_FACTORY_SHARE_CODES
-  DDFACTORY_SHARECODES
-  JDZZ_SHARECODES
-  JDJOY_SHARECODES
-  JXNC_SHARECODES
-  BOOKSHOP_SHARECODES
-  JD_CASH_SHARECODES
-  JDSGMH_SHARECODES
-  JDCFD_SHARECODES
-  JDHEALTH_SHARECODES
-  JD818_SHARECODES
-)
-var_name=(
-  Cookie
-  ForOtherFruit
-  ForOtherPet
-  ForOtherBean
-  ForOtherDreamFactory
-  ForOtherJdFactory
-  ForOtherJdzz
-  ForOtherJoy
-  ForOtherJxnc
-  ForOtherBookShop
-  ForOtherCash
-  ForOtherSgmh
-  ForOtherCfd
-  ForOtherHealth
-  ForOtherCarni
-)
-
-## name_js为脚本文件名，如果使用ql repo命令拉取，文件名含有作者名
-## 所有有互助码的活动，把脚本名称列在 name_js 中，对应 config.sh 中互助码后缀列在 name_config 中，中文名称列在 name_chinese 中。
-## name_js、name_config 和 name_chinese 中的三个名称必须一一对应。
-name_js=(
-  JDHelloWorld_jd_scripts_jd_fruit
-  JDHelloWorld_jd_scripts_jd_pet
-  JDHelloWorld_jd_scripts_jd_plantBean
-  JDHelloWorld_jd_scripts_jd_dreamFactory
-  JDHelloWorld_jd_scripts_jd_jdfactory
-  JDHelloWorld_jd_scripts_jd_jdzz
-  JDHelloWorld_jd_scripts_jd_crazy_joy
-  JDHelloWorld_jd_scripts_jd_jxnc
-  JDHelloWorld_jd_scripts_jd_bookshop
-  JDHelloWorld_jd_scripts_jd_cash
-  JDHelloWorld_jd_scripts_jd_sgmh
-  JDHelloWorld_jd_scripts_jd_cfd
-  JDHelloWorld_jd_scripts_jd_health
-  JDHelloWorld_jd_scripts_jd_carnivalcity
-  JDHelloWorld_jd_scripts_jd_zoo
-)
-name_config=(
-  Fruit
-  Pet
-  Bean
-  DreamFactory
-  JdFactory
-  Jdzz
-  Joy
-  Jxnc
-  BookShop
-  Cash
-  Sgmh
-  Cfd
-  Health
-  Carni
-  Zoo
-)
-name_chinese=(
-  东东农场
-  东东萌宠
-  京东种豆得豆
-  京喜工厂
-  东东工厂
-  京东赚赚
-  crazyJoy任务
-  京喜农场
-  口袋书店
-  签到领现金
-  闪购盲盒
-  京喜财富岛
-  东东健康社区
-  京东手机狂欢城
-  618动物联萌
-)
+##   *jd_dreamFactory* | *jd_jdfactory*)
+##     TempBlockCookie="2"      # 账号2不玩京喜工厂和东东工厂
+##     ;;
+##   *jd_jdzz* | *jd_joy*)
+##     TempBlockCookie="3 6"    # 账号3、账号6不玩京东赚赚和宠汪汪
+##     ;;
+##  esac
+case $1 in
+   *jd_fruit*)
+     TempBlockCookie=""
+     ;;
+   *jd_dreamFactory* | *jd_jdfactory*)
+     TempBlockCookie=""
+     ;;
+   *jd_jdzz* | *jd_joy*)
+     TempBlockCookie=""
+     ;;
+esac
 
 ## 其他需要的变量，脚本中需要的变量使用 export 变量名= 声明即可
-# 个人隐私类变量
-## 1、运行脚本时，是否显示log,默认显示，但会输出个人信息。
-## 默认值为true，引号中填写false则不显示，注重隐私的人可以自行设置为false
-export JD_DEBUG=""
 
 # 定义每日签到的通知形式
 ## js脚本每日签到提供3种通知方式，分别为：
@@ -236,56 +155,57 @@ export JD_BEAN_STOP=""
 ## 1、京东多合一签到脚本关闭运行结果推送，默认推送，填true表示不推送
 export JD_BEAN_SIGN_STOP_NOTIFY=""
 ## 2、京东多合一签到脚本推送简单结果，默认推送完整版结果，填true表示启用简单推送
-export JD_BEAN_SIGN_NOTIFY_SIMPLE=""
+export JD_BEAN_SIGN_NOTIFY_SIMPLE="true"
 ## 3、东东萌宠关闭推送。填写false为不关闭推送，true为关闭推送
-export PET_NOTIFY_CONTROL=""
+export PET_NOTIFY_CONTROL="false"
 ## 4、京东农场关闭推送。填写false为不关闭推送，true为关闭推送
-export FRUIT_NOTIFY_CONTROL=""
+export FRUIT_NOTIFY_CONTROL="false"
 ## 5、京东领现金关闭推送。填写false为不关闭推送，true为关闭推送
-export CASH_NOTIFY_CONTROL=""
+export CASH_NOTIFY_CONTROL="false"
 ## 6、京东摇钱树关闭推送。填写false为不关闭推送，true为关闭推送
-export MONEYTREE_NOTIFY_CONTROL=""
+export MONEYTREE_NOTIFY_CONTROL="true"
 ## 7、京东点点券关闭推送。填写false为不关闭推送，true为关闭推送
-export DDQ_NOTIFY_CONTROL=""
+export DDQ_NOTIFY_CONTROL="false"
 ## 8、京东京东赚赚小程序关闭推送。填写false为不关闭推送，true为关闭推送
-export JDZZ_NOTIFY_CONTROL=""
+export JDZZ_NOTIFY_CONTROL="false"
 ## 9、宠汪汪兑换京豆关闭推送。填写false为不关闭推送，true为关闭推送
-export JD_JOY_REWARD_NOTIFY=""
+export JD_JOY_REWARD_NOTIFY="false"
 ## 10、宠汪汪赛跑获胜后是否推送通知。填false为不推送通知消息,true为推送通知消息
-export JOY_RUN_NOTIFY=""
+export JOY_RUN_NOTIFY="true"
 ## 11、东东超市兑换奖品是否关闭推送通知。填false为不关闭推送,true为关闭推送
-export MARKET_REWARD_NOTIFY="true"
+export MARKET_REWARD_NOTIFY="false"
 ## 12、京喜财富岛控制是否运行脚本后通知。输入true为通知,不填则为不通知
 export CFD_NOTIFY_CONTROL=""
 ## 13、京喜农场岛控制是否运行脚本后通知。0=只通知成熟;1=本次获得水滴>0;2=任务执行;3=任务执行+未种植种子
-export JXNC_NOTIFY_LEVEL=""
+export JXNC_NOTIFY_LEVEL="3"
 
 # 功能配置类环境变量
 ## 1、京东领现金红包兑换京豆开关。false为不换,true为换(花费2元红包兑换200京豆，一周可换四次)，默认为false
-export CASH_EXCHANGE=""
+export CASH_EXCHANGE="false"
 ## 2、宠汪汪喂食数量。可以填的数字0,10,20,40,80,其他数字不可
-export JOY_FEED_COUNT=""
-## 3、宠汪汪帮好友喂食。false为不帮,true为帮
-export JOY_HELP_FEED=""
+export JOY_FEED_COUNT="80"
+## 3、宠汪汪帮好友喂食。默认 "false" 不会自动给好友的汪汪喂食，如想自动喂食，请修改为 "true"
+export JOY_HELP_FEED="true"
 ## 4、宠汪汪是否赛跑(默认参加双人赛跑)。false为不跑,true为跑
-export JOY_RUN_FLAG=""
+export JOY_RUN_FLAG="true"
 ## 5、宠汪汪参加什么级别的赛跑。可选数字为2,10,50，
-### 其中2代表参加双人PK赛，10代表参加10人突围赛，
-### 50代表参加50人挑战赛(注：此项功能在JOY_RUN_FLAG为true的时候才生效)，
-### 如若想设置不同账号参加不同类别的比赛则用&区分即可(如下三个账号：2&10&50)
-export JOY_TEAM_LEVEL=""
+## 当JOY_RUN_FLAG不设置或设置为 "true" 时生效
+## 可选值：2,10,50，其他值不可以。其中2代表参加双人PK赛，10代表参加10人突围赛，50代表参加50人挑战赛，不填时默认为2
+## 各个账号间请使用 & 分隔，比如：JOY_TEAM_LEVEL="2&2&50&10"
+## 如果您有5个账号但只写了四个数字，那么第5个账号将默认参加2人赛，账号如果更多，与此类似
+export JOY_TEAM_LEVEL="2&2&50&10"
 ## 6、宠汪汪赛跑自己账号内部互助。输入true为开启内部互助
-export JOY_RUN_HELP_MYSELF=""
+export JOY_RUN_HELP_MYSELF="true"
 ## 7、宠汪汪积分兑换多少京豆。目前可填值为20或者500,脚本默认0,0表示不兑换京豆
-export JD_JOY_REWARD_NAME=""
+export JD_JOY_REWARD_NAME="500"
 ## 8、东东超市兑换京豆数量。目前可输入值为20或者1000，或者其他商品的名称,例如碧浪洗衣凝珠
-export MARKET_COIN_TO_BEANS=""
+export MARKET_COIN_TO_BEANS="超值京豆包"
 ## 9、东东超市是否参加pk。true表示参加,false表示不参加
-export JOIN_PK_TEAM=""
+export JOIN_PK_TEAM="true"
 ## 10、东东超市是否用金币抽奖。true表示抽奖,false表示不抽奖
-export SUPERMARKET_LOTTERY=""
+export SUPERMARKET_LOTTERY="true"
 ## 11、东东农场是否使用水滴换豆卡。true表示换,false表示不换
-export FRUIT_BEAN_CARD=""
+export FRUIT_BEAN_CARD="true"
 ## 12、是否取关商品。环境变量内容的意思依次是是否取关全部商品(0表示一个都不),是否取关全部店铺数(0表示一个都不),遇到此商品不再进行取关,遇到此店铺不再进行取关
 export UN_SUBSCRIBES="300,300,,"
 ## 12、jd_unsubscribe这个任务是用来取关每天做任务关注的商品和店铺，默认在每次运行时取关20个商品和20个店铺
@@ -299,43 +219,45 @@ export jdUnsubscribeStopGoods=""
 ### 遇到此店铺不再取关此店铺以及它后面的店铺，请从头开始输入店铺名称
 export jdUnsubscribeStopShop=""
 ## 13、疯狂的JOY循环助力开关。true表示循环助力,false表示不循环助力，默认不开启循环助力
-export JDJOY_HELPSELF=""
+export JDJOY_HELPSELF="true"
 ## 14、疯狂的JOY京豆兑换。0表示不换,其他按可兑换数填写。目前最小2000
-export JDJOY_APPLYJDBEAN=""
-## 15、疯狂的JOY购买joy等级。
+export JDJOY_APPLYJDBEAN="2000"
+## 15、疯狂的JOY购买joy等级。如需要使用请自行解除注释，可购买等级为 "1~30"
 export BUY_JOY_LEVEL=""
 ## 16、摇钱树是否卖出金果。true卖出，false不卖出，默认false
-export MONEY_TREE_SELL_FRUIT=""
+export MONEY_TREE_SELL_FRUIT="true"
 ## 17、东东工厂心仪商品。
 export FACTORAY_WANTPRODUCT_NAME=""
 ## 18、东东工厂控制哪个京东账号不运行此脚本。多个使用&连接
 export JDFACTORY_FORBID_ACCOUNT=""
 ## 19、京喜工厂控制哪个京东账号不运行此脚本。多个使用&连接
 export DREAMFACTORY_FORBID_ACCOUNT=""
-## 20、0301脚本是否加购。如加设置true
-export PURCHASE_SHOPS=""
+## 20、lxk0301脚本是否加购。如加设置true
+export PURCHASE_SHOPS="true"
 ## 21、京喜工厂拼团瓜分电力活动的activeId（当前需抓包替换或去群里求别人分享）
 export TUAN_ACTIVEID=""
+## 22、京东UA。点点券脚本运行环境变量
+export JD_USER_AGENT="jdltapp;iPhone;3.1.0;14.4;3b6e79334551fc6f31952d338b996789d157c4e8"
 
 # 阿道夫部分环境变量
-## 阿道夫脚本加购开关，填true加购
-export ADOLF_ADDSKU=""
-## 阿道夫脚本入会开关，填true入会
-export ADOLF_MARTIN=""
+## 1、阿道夫脚本加购开关，填true加购
+export ADOLF_ADDSKU="true"
+## 2、阿道夫脚本入会开关，填true入会
+export ADOLF_MARTIN="true"
 
 # zoopanda 部分环境变量
-## zoopanda 与粽不同入会
+## 1、zoopanda 与粽不同入会
 export ZOO_OPENCAD="true"
-## zoopanda 与粽不同加购
+## 2、zoopanda 与粽不同加购
 export ZOO_ADD2CART="true"
 
 # 龙猪猪环境变量
-## 京豆雨通知
-export RAIN_NOTIFY_CONTROL="false" ##true为开启通知
+## 京豆雨通知，填写true为不关闭推送，false为关闭推送
+export RAIN_NOTIFY_CONTROL="false"
 ## 整点京豆雨RRA
-export SUPER_RAIN_RRA="" ##不解释，先放着
+export SUPER_RAIN_RRA=""
 ## 半点京豆雨RRA
-export HALF_RAIN_RRA="" ##不解释，先放着
+export HALF_RAIN_RRA=""
 
 # JDHelloWorld 部分环境变量
 ## 宠汪汪二代目
@@ -345,50 +267,62 @@ export feedNum="80"
 export JD_JOY_teamLevel="2"
 
 # 柠檬（胖虎部分环境变量）
-## 京喜工厂抢茅台
+## 1、京喜工厂抢茅台
 ### 自定义商品变量
-export shopid="1598" ##你要商品ID 冰箱
+export shopid="1598"   ##你要商品ID 冰箱
 export shopid1="1607"  ##你要商品ID 茅台
-## 推一推
+## 2、推一推
 ### 入口：极速版-赚金币 
 ### 分享到QQ查看邀请码，packetId就是
 ### 自定义变量
 export tytpacketId=""
-## 是兄弟就砍我
-### 自定义邀请码环境变量
-export actId="" ##你要参加砍价的商品ID
-export packetId="" ##你要参加砍价的邀请码
-## 是兄弟就砍我2
+## 3、拆红包
+export chbpacketId=""
+## 4、是兄弟就砍我
+### 是兄弟就来砍我脚本要参加砍价的商品ID
+export actId=""
+export actId1=""
+export actId2=""
+export actId3=""
+export actId4=""
+### 是兄弟就来砍我脚本要要参加砍价的邀请码
+export packetId="" 
+## 5、是兄弟就砍我2
 ### 惊喜欢乐砍 自定义变量 入口：京喜APP-我的-惊喜欢乐砍
 export launchid="" ##你的邀请码
-export first="false" ##第一次参加变量设置为true查看商品ID，填写商品ID后自动获取邀请码邀请；如果只助力，变量设置为false
+### 第一次参加变量设置为true查看商品ID，填写商品ID后自动获取邀请码邀请；如果只助力，变量设置为false
+export first="false"
 export active="" ##商品ID
-## 赚金币
+## 6、赚金币
 ### 入口：极速版-百元生活费-赚金币-邀请好友
 ### 第一次运行可不填写邀请码，运行一次查看自己的邀请码
 export InviterPin="" ##你的邀请码
-## 0元砍价，入口：京东-我的-0元砍价
+## 7、0元砍价，入口：京东-我的-0元砍价
 ### 使用教程：
 ### 第一步，运行脚本一次日志查看商品ID
-### 获取你要砍价的ID后变量填写
+### 获取你要砍价的商品ID后变量填写
 export skuId="" ##这里填获取的商品ID
 ### 第二步，再运行一次日志查看商品activityId变量填写
 export activity="" ##这里填获取的商品activityId
-## 邀请有礼  
+## 8、邀请有礼  
 ### 自定义邀请码环境变量
 export yqm="" ##你的邀请码
-## 全民挖现金
+## 9、全民挖现金
 ### 入口：京东-我的-全民挖现金
 ### 运行一次查看邀请码 变量你的邀请码 
 export shareCode=""
-## 签到领现金添加变量方式
-### 自行添加变量设置邀请码 格式如下 默认10个
+## 10、省钱大赢家本期活动ID
+export redEnvelopeId="" 
+## 11、省钱大赢家邀请码
+export inviter=""
+## 12、签到领现金添加变量方式
+## 自行添加变量设置邀请码 格式如下 默认10个
 export cashinviteCode=""
 export cashinviteCode2=""
 export cashinviteCode3=""
-## 大老板农场 新增自定义变量通知开关
-export dlbtz="true" ##通知打开，false为关闭
-## 零食街自动兑换变量
+## 13、大老板农场 新增自定义变量通知开关。true通知打开，false为关闭
+export dlbtz="true"
+## 14、零食街自动兑换变量
 ### 自行取消注释和注释
 ##export ljsdh="jdAward1" ##兑换5豆
 ##export ljsdh="jdAward2" ##兑换10豆
@@ -396,15 +330,21 @@ export ljsdh="jdAward3" ##兑换100豆
 ##export ljsdh="jdAward4" ##兑换牛奶
 
 # curtinlv 环境变量
-## 赚京豆
+## 1、赚京豆
 ### 助力账号，填写pt_pin或用户名的值，如 zlzh = ['aaaa','xxxx','yyyy'] ，支持ENV
-export zlzh=['CurtinLV','xxxx','yyyy']
-## 入会开卡
+export zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/, /g; s/^/[/; s/$/]/;")
+## 2、全民抢京豆
+### export qjd_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')  ## 支持中文用户名
+export qjd_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;")
+## 3、签到领现金助力
+### export cash_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')  ## 支持中文用户名
+export cash_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;")
+## 4、入会开卡
 ### int，入会送豆满足此值，否则不入会
 export openCardBean="30"
 ### 布尔值，是否记录符合条件的shopid(默认True)
 export record="true"
-### 布尔值，True:仅记录，不入会(默认False)
+### 布尔值， True:仅记录，不入会(默认False)
 export onlyrecord="false"
 ### 布尔值，开启记忆功能，接力上一次异常中断位置继续。(默认yes)
 export memory="false"
@@ -414,9 +354,9 @@ export printlog="true"
 export sleepNum="0.5"
 ### 布尔值，True:使用作者远程仓库更新的id，False：使用本地shopid.txt的id
 export isRemoteSid="true"
-## 东东超市商品兑换
-### 您的ck格式：pt_key=xxx;pt_pin=xxx; (多账号&分隔)
-export cookies=""
+## 5、东东超市商品兑换
+### 您的ck格式：pt_key=xxx;pt_pin=xxx; (多账号&分隔)。无效变量，已集成改写代码至最新 code.sh
+### export cookies=''
 ### 【填写您要兑换的商品】
 export coinToBeans="京豆包"
 ### 轮次
@@ -427,45 +367,45 @@ export dd_thread="30"
 export starttime="23:59:59.00000000"
 ### 结束时间
 export endtime="00:00:30.00000000"
-## 抢京豆
-### ck 优先读取【JDCookies.txt】 文件内的ck  再到 ENV的 变量 JD_COOKIE='ck1&ck2' 最后才到脚本内 cookies=ck
-export qjd_zlzh = ['Your JD_User', '买买买', '东哥']
-## 签到领现金助力
-### 入口：App搜索领现金
-### 设置被助力的账号可填用户名 或 pin的值;
-export cash_zlzh = ['Your JD_User', '买买买']
 
 # Wenmoux 部分环境变量 
-## QQ星系牧场自动兑换20豆
+## 1、QQ星系牧场自动兑换20豆
 export Cowexchange="true"
 ## 欧洲狂欢杯兑换兑换豆子，填38豆子，填39e卡
 export Cupexid="39"
 ## 10秒阅读
-export Readck="" ##自己CK
-export Read10UA="" ##自己设备UA
-export jrpush="" ##填true推送消息，默认不推送
+## 填写自己CK
+export Readck=""
+## 填写自己设备UA
+export Read10UA=""
+## 填true推送消息，默认不推送
+export jrpush=""
 
 # smiek2221 环境变量
-## 燃动夏季—入会
+## 1、燃动夏季—入会
 export summer_movement_joinjoinjoinhui="false" ##是否入会 true 入会，false 不入会
-## 燃动夏季—百元守卫战SH
+## 2、燃动夏季—百元守卫战SH
 export summer_movement_ShHelpFlag="1" ##0 不开启也不助力 1 开启并助力 2 开启但不助力 默认开启并助力
-## 燃动夏季-新增只做邀请助力功能
-export summer_movement_HelpHelpHelpFlag="false" ##是否只执行邀请助力 true 是 false 不是 默认 false
+## 3、燃动夏季-新增只做邀请助力功能
+export summer_movement_HelpHelpHelpFlag="true" ##是否只执行邀请助力 true 是 false 不是 默认 false
 ### 可以设置13点执行一下脚本
 if [ $(date "+%H") -eq 13 ]; then
     export summer_movement_HelpHelpHelpFlag="true"
 fi
 
 # cdle 环境变量
-## 签到领现金兑换
-### 需要填写exchangeAccounts参数，兑换多少取决于app内显示，默认为所有账号兑换10红包，部分账号会出现参数错误的提示。
-### 填写 pt_pin@金额，pt_pin为用户名，可以在 COOKIES 中提取；金额为 2 或 10，例如 LiLei@2 或 HanMeimei@10。多值用 & 连接，例如 LiLei@2&HanMeimei@10
-export exchangeAccounts="pt_pin1@2"  ##抢2元红包
-##export exchangeAccounts="pt_pin2@10"  ##抢10元红包，比较难兑
-## 全民运动会守卫红包
+## 1、愤怒的锦鲤
+### 助力账号，填写pt_pin或用户名的值。多个 pt_pin 值用 @ 连接
+### export kois="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
+export kois="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;")"
+## 2、全民运动会守卫红包
 ### 助力码，需手动抓包
 export olympicgames_inviteId=""
-## 愤怒的锦鲤
-### 高速并发请求，专治偷助力。在kois环境变量中填入需要助力的pt_pin，有多个请用@符号连接
-export kois="pt_pin1@pt_pin2"
+## 3、签到领现金兑换
+### 填写 pt_pin@金额，pt_pin为用户名，可以在 COOKIES 中提取；金额为 2 或 10，例如 LiLei@2 或 HanMeimei@10。多值用 & 连接，例如 LiLei@2&HanMeimei@10
+### export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1@10/g; s/\n/\&/g;")"  ##兑10元现金，比较难兑
+export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1@2/g; s/\n/\&/g;")"       ##兑2元现金
+
+## 其他命令：
+## 1、一键改写京东兑蓝币脚本的cookies；需手动运行 (已集成至最新的 code.sh)
+## sed -i "s/cookies=''/cookies='$(. /ql/shell/share.sh && . /ql/config/env.sh && echo $JD_COOKIE)'/g" /ql/scripts/*_jd_blueCoin.py
