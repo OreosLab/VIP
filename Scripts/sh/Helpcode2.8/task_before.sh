@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#Build 20210703-001
+#Build 20210711-001
 
 ## 东东农场：
 MyFruit1=''
@@ -145,6 +145,11 @@ combine_sub() {
     local array=($(echo $envs | sed 's/&/ /g'))
     local user_sum=${#array[*]}
     for ((i = 1; i <= $user_sum; i++)); do
+        for num in ${TempBlockCookie}; do
+            if [[ $i -eq $num ]]; then
+             continue 2
+            fi
+        done
         local tmp1=$what_combine$i
         local tmp2=${!tmp1}
         combined_all="$combined_all&$tmp2"
@@ -162,15 +167,8 @@ combine_all() {
     done
 }
 
-#if [[ $(ls $dir_code) ]]; then
-#    latest_log=$(ls -r $dir_code | head -1)
-#    . $dir_code/$latest_log
-    combine_all
-#fi
-
 ## 临时屏蔽某账号运行活动脚本
 TempBlock_JD_COOKIE(){
-    . /$file_env
     local envs=$(eval echo "\$JD_COOKIE")
     local array=($(echo $envs | sed 's/&/ /g'))
     for i in $TempBlockCookie; do
@@ -181,3 +179,9 @@ TempBlock_JD_COOKIE(){
 }
 
 TempBlock_JD_COOKIE
+
+#if [[ $(ls $dir_code) ]]; then
+#    latest_log=$(ls -r $dir_code | head -1)
+#    . $dir_code/$latest_log
+    combine_all
+#fi

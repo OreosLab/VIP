@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210707-001
+## Mod: Build20210711-005
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -127,7 +127,7 @@ export GOBOT_QQ=""
 ##     ;;
 ##  esac
 case $1 in
-   jd_fruit)
+   *jd_fruit*)
      TempBlockCookie=""
      ;;
    *jd_dreamFactory* | *jd_jdfactory*)
@@ -324,6 +324,12 @@ export cashinviteCode2=""
 export cashinviteCode3=""
 ## 13、大老板农场 新增自定义变量通知开关。true通知打开，false为关闭
 export dlbtz="true"
+## 14、零食街自动兑换变量
+### 自行取消注释和注释
+##export ljsdh="jdAward1" ##兑换5豆
+##export ljsdh="jdAward2" ##兑换10豆
+export ljsdh="jdAward3" ##兑换100豆
+##export ljsdh="jdAward4" ##兑换牛奶
 
 # curtinlv 环境变量
 ## 1、赚京豆
@@ -350,6 +356,19 @@ export printlog="true"
 export sleepNum="0.5"
 ### 布尔值，True:使用作者远程仓库更新的id，False：使用本地shopid.txt的id
 export isRemoteSid="true"
+## 5、东东超市商品兑换
+### 您的ck格式：pt_key=xxx;pt_pin=xxx; (多账号&分隔)。无效变量，已集成改写代码至最新 code.sh
+### export cookies=''
+### 【填写您要兑换的商品】
+export coinToBeans="京豆包"
+### 轮次
+export startMaxNum="30"
+### 多线程并发，相当于每秒点击兑换次数...适当调整，手机会发烫
+export dd_thread="30"
+### 开始抢兑时间
+export starttime="23:59:59.00000000"
+### 结束时间
+export endtime="00:00:30.00000000"
 
 # Wenmoux 部分环境变量 
 ## 1、QQ星系牧场自动兑换20豆
@@ -364,7 +383,31 @@ export Read10UA=""
 ## 填true推送消息，默认不推送
 export jrpush=""
 
-## 其他命令：
-## 1、一键改写京东兑蓝币脚本的cookies；需手动运行
-## sed -i "s/cookies=''/cookies='$(. /ql/shell/share.sh && . /ql/config/config.sh && echo $JD_COOKIE)'/g" /ql/scripts/*_jd_blueCoin.py
+# smiek2221 环境变量
+## 1、燃动夏季—入会
+export summer_movement_joinjoinjoinhui="false" ##是否入会 true 入会，false 不入会
+## 2、燃动夏季—百元守卫战SH
+export summer_movement_ShHelpFlag="1" ##0 不开启也不助力 1 开启并助力 2 开启但不助力 默认开启并助力
+## 3、燃动夏季-新增只做邀请助力功能
+export summer_movement_HelpHelpHelpFlag="true" ##是否只执行邀请助力 true 是 false 不是 默认 false
+### 可以设置13点执行一下脚本
+if [ $(date "+%H") -eq 13 ]; then
+    export summer_movement_HelpHelpHelpFlag="true"
+fi
 
+# cdle 环境变量
+## 1、愤怒的锦鲤
+### 助力账号，填写pt_pin或用户名的值。多个 pt_pin 值用 @ 连接
+### export kois="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
+export kois="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;")"
+## 2、全民运动会守卫红包
+### 助力码，需手动抓包
+export olympicgames_inviteId=""
+## 3、签到领现金兑换
+### 填写 pt_pin@金额，pt_pin为用户名，可以在 COOKIES 中提取；金额为 2 或 10，例如 LiLei@2 或 HanMeimei@10。多值用 & 连接，例如 LiLei@2&HanMeimei@10
+### export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1@10/g; s/\n/\&/g;")"  ##兑10元现金，比较难兑
+export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1@2/g; s/\n/\&/g;")"       ##兑2元现金
+
+## 其他命令：
+## 1、一键改写京东兑蓝币脚本的cookies；需手动运行 (已集成至最新的 code.sh)
+## sed -i "s/cookies=''/cookies='$(. /ql/shell/share.sh && . /ql/config/env.sh && echo $JD_COOKIE)'/g" /ql/scripts/*_jd_blueCoin.py
