@@ -86,6 +86,9 @@ ql repo https://github.com/star261/jd.git "jd_|star" "" "^MovementFaker"
 ```
 ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
 ```
+- `Aaron-lv`
+ql repo https://github.com/Aaron-lv/sync.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER" "jd_scripts"
+```
 
 ## 单脚本
 ### 名称之后标注`﹢`的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
@@ -108,7 +111,14 @@ ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/
 
 >> 京喜工厂瓜分电力开团 ID 
 ```
-ql repo https://github.com/chiupam/JD_Diy.git "activeId"
+ql raw https://raw.githubusercontent.com/chiupam/JD_Diy/master/pys/activeId.py
+```
+
+> 不知名大佬
+
+>> 财富岛
+```
+ql raw https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
 ```
 
 ## 已删库存档

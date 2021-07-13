@@ -11,7 +11,7 @@
 ## (2) he1pu（自动提交助力码-京喜工厂、种豆得豆、东东工厂、东东农场、健康社区、京喜财富岛、东东萌宠、闪购盲盒，随机从数据库中选取助力码互助）
 ## ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER|MovementFaker|JDJRValidator_Pure|sign_graphics_validate|ZooFaker_Necklace"
 ## (3) shufflewzc
-ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER|ZooFaker_Necklace|JDJRValidator_Pure"
+ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER|ZooFaker_Necklace|JDJRValidator_Pure"
 ## (4) panghu999
 ## ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|jd_try|format_" "^jd[^_]|USER"
 ## (5) chinnkarahoi
@@ -56,6 +56,9 @@ ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity
 # 14. Wenmoux
 ## ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
 
+# 15. Aaron-lv
+## ql repo https://github.com/Aaron-lv/sync.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER" "jd_scripts"
+
 # 单脚本
 ## 名称之后标注﹢的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
 # 1. curtinlv﹢
@@ -68,7 +71,11 @@ ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity
 
 # 2. chiupam
 ## 京喜工厂瓜分电力开团 ID
-## ql repo https://github.com/chiupam/JD_Diy.git "activeId"
+## ql raw https://raw.githubusercontent.com/chiupam/JD_Diy/master/pys/activeId.py
+
+# 3. 不知名大佬
+## 财富岛
+## ql raw https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
 
 # 依赖
 # 适用于柠檬胖虎代维护 lxk0301 仓库，宠汪汪二代目和宠汪汪兑换，只支持国内机。
