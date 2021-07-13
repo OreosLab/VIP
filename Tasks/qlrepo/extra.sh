@@ -24,7 +24,7 @@ ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity
 ## ql repo https://github.com/curtinlv/JD-Script.git
 
 # 4. smiek2221
-## ql repo https://github.com/smiek2221/scripts.git "jd_" "" "^MovementFaker|^JDJRValidator|^sign"
+## ql repo https://github.com/smiek2221/scripts.git "jd_|gua_" "" "ZooFaker_Necklace.js|JDJRValidator_Pure.js|sign_graphics_validate.js"
 
 # 5. cdle
 ## ql repo https://github.com/cdle/jd_study.git "jd_"

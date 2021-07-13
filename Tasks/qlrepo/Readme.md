@@ -44,7 +44,7 @@ ql repo https://github.com/curtinlv/JD-Script.git
 ```
 - `smiek2221`
 ```
-ql repo https://github.com/smiek2221/scripts.git "jd_" "" "^MovementFaker|^JDJRValidator|^sign"
+ql repo https://github.com/smiek2221/scripts.git "jd_|gua_" "" "ZooFaker_Necklace.js|JDJRValidator_Pure.js|sign_graphics_validate.js"
 ```
 - `cdle`
 ```
