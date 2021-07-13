@@ -76,9 +76,9 @@ apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && cd scripts &
 # 适用于 JDHelloWorld 和 he1pu 的宠汪汪二代目和宠汪汪兑奖品二代目
 cd scripts && npm i -S png-js
 # 财富岛依赖安装命令
-## 安装 date-fns库
+## 安装 date-fns
 npm install date-fns
-## 安装axios
+## 安装 axios
 npm install axios -S
-## 安装crypto-js
+## 安装 crypto-js
 npm install crypto-js
