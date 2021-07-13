@@ -73,7 +73,7 @@ ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity
 ## 京喜工厂瓜分电力开团 ID
 ## ql raw https://raw.githubusercontent.com/chiupam/JD_Diy/master/pys/activeId.py
 
-# 3. 不知名大佬
+# 3. Aaron-lv
 ## 财富岛
 ## ql raw https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
 
