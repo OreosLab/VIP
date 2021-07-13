@@ -13,7 +13,7 @@ task_before_shell_path=$dir_shell/task_before.sh
 if [ ! -a "$config_shell_path" ]; then
     touch $config_shell_path
 fi
-curl -s --connect-timeout 5 https://git.io/config.sh > $config_shell_path
+curl -s --connect-timeout 3 https://raw.githubusercontent.com/Oreomeow/VIP/main/Conf/Qinglong/config.sample.sh > $config_shell_path
 cp $config_shell_path $dir_shell/config.sh
 
 # 判断是否下载成功
@@ -66,6 +66,13 @@ fi
 
 # 授权
 chmod 755 $code_shell_path
+
+# code.sh 预设的仓库及默认调用仓库设置
+echo -e "## 将\"repo=\$repo1\"改成\"repo=\$repo2\"或其他，以默认调用其他仓库脚本日志\nrepo1='panghu999_jd_scripts' #预设的 panghu999 仓库\nrepo2='JDHelloWorld_jd_scripts' #预设的 JDHelloWorld 仓库\nrepo3='he1pu_JDHelp' #预设的 he1pu 仓库\nrepo4='shufflewzc_faker2' #预设的 shufflewzc 仓库\nrepo=\$repo1 #默认调用 panghu999 仓库脚本日志"
+echo -n "输入你的想调用的仓库编号(默认为 4):"
+read -r repoNum
+repoNum=${repoNum:-'4'}
+sed -i "s/\$repo1/\$repo$repoNum/g" $code_shell_path
 
 # 将 code.sh 添加到定时任务
 if [ "$(grep -c code.sh /ql/config/crontab.list)" = 0 ]; then
