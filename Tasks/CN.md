@@ -4,9 +4,9 @@
   https://ghproxy.com/https://raw.githubusercontent.com/Oreomeow/VIP/main/Tasks/tasksubCN.json
   ```
   
-- **V2pTaskSub** *By sngxpro*
+- **V2PTaskSub** *By sngxpro*
   ```
-  https://ghproxy.com/https://raw.githubusercontent.com/Youthsongs/QuanX/master/V2pTaskSub/sngxprov2p.json
+  https://ghproxy.com/https://raw.githubusercontent.com/Youthsongs/QuanX/master/V2PTaskSub/sngxprov2p.json
   ```
     
 - **jd_task** *By zero205*

@@ -1,4 +1,4 @@
-# V2p安装教程
+# V2P安装教程
 
 ## 一、安装docker
 
@@ -41,7 +41,7 @@ docker-compose up -d
 
 在v2p的task页面中订阅我的脚本地址（加订阅和从订阅中加脚本方式都和圈x里一样，点击就行）
 
-`https://raw.githubusercontent.com/sngxpro/QuanX/master/V2pTaskSub/sngxprov2p.json`
+`https://raw.githubusercontent.com/sngxpro/QuanX/master/V2PTaskSub/sngxprov2p.json`
 
 ## 六、用姐姐的手机cookie自动同步v2p脚本，将手机的cookie同步到v2p
 
