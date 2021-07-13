@@ -87,6 +87,7 @@ ql repo https://github.com/star261/jd.git "jd_|star" "" "^MovementFaker"
 ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
 ```
 - `Aaron-lv`
+```
 ql repo https://github.com/Aaron-lv/sync.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER" "jd_scripts"
 ```
 
