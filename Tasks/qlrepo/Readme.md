@@ -115,7 +115,7 @@ ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/
 ql raw https://raw.githubusercontent.com/chiupam/JD_Diy/master/pys/activeId.py
 ```
 
-> 不知名大佬
+> `不知名大佬`+
 
 >> 财富岛
 ```
