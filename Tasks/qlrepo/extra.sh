@@ -78,11 +78,12 @@ ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity
 ## ql raw https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
 
 # 依赖
+## Python 3 安装 requests
+pip3 install requests
 # 适用于柠檬胖虎代维护 lxk0301 仓库，宠汪汪二代目和宠汪汪兑换，只支持国内机。
 apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && cd scripts && npm install canvas --build-from-source
 # 适用于 JDHelloWorld 和 he1pu 的宠汪汪二代目和宠汪汪兑奖品二代目
 npm install png-js -S
-# 财富岛依赖安装命令
 ## 安装 date-fns
 npm install date-fns -S
 ## 安装 axios
@@ -95,5 +96,3 @@ npm install ts-md5 -S
 npm install tslib -S
 ## 安装 @types/node
 npm install @types/node -S
-## Python 3 安装 requests
-pip3 install requests
