@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#Build 20210711-003
+#Build 20210712-003
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -9,11 +9,12 @@ dir_shell=/ql/shell
 ## 预设的仓库及默认调用仓库设置
 ## 将"repo=$repo1"改成repo=$repo2"或其他，以默认调用其他仓库脚本日志
 ## 也可自行搜索本脚本内的"name_js=("和"name_js_only",将"repo"改成"repo2"或其他，用以自由组合调用仓库的脚本日志
-repo1='panghu999_jd_scripts'      #预设的 panghu999 仓库
-repo2='JDHelloWorld_jd_scripts'   #预设的 JDHelloWorld 仓库
-repo3='he1pu_JDHelp'              #预设的 he1pu 仓库
-repo4='shufflewzc_faker2'         #预设的 shufflewzc 仓库
-repo=$repo1                       #默认调用 panghu999 仓库脚本日志
+repo1='panghu999_jd_scripts'                       #预设的 panghu999 仓库
+repo2='JDHelloWorld_jd_scripts'                    #预设的 JDHelloWorld 仓库
+repo3='he1pu_JDHelp'                               #预设的 he1pu 仓库
+repo4='shufflewzc_faker2'                          #预设的 shufflewzc 仓库
+repo5='Wenmoux_scripts_wen_chinnkarahoi'           #预设的 Wenmoux 仓库，用于读取口袋书店互助码。需提前拉取温某人的仓库或口袋书店脚本并完整运行。
+repo=$repo1                                        #默认调用 panghu999 仓库脚本日志
 
 ## 调试模式开关，默认是0，表示关闭；设置为1，表示开启
 DEBUG="1"
@@ -118,7 +119,7 @@ name_js=(
   "$repo"_jd_crazy_joy
   "$repo"_jd_jdzz
   "$repo"_jd_jxnc
-  "$repo"_jd_bookshop
+  "$repo5"_jd_bookshop
   "$repo"_jd_cash
   "$repo"_jd_sgmh
   "$repo"_jd_cfd
@@ -422,13 +423,18 @@ for ((i=1; i<=100; i++)); do
         if [ -z "$(grep "^$config_name_my$i" $file_task_before)" ]; then
             sed -i "/^$config_name_my$[$i-1]='.*'/ s/$/\n$config_name_my$i=\'\'/" $file_task_before
         fi
-        if [[ "$new_code" != "" ]] && [[ "$new_code" != "undefined" ]] && [[ "$new_code" != "{}" ]]; then
-            if [ "$new_code" != "$old_code" ]; then
-                sed -i "s/^$config_name_my$i='$old_code'$/$config_name_my$i='$new_code'/" $file_task_before
-            fi
+        if [ "$new_code" != "$old_code" ]; then
+#            if [ $1 = "BookShop" ]; then
+#                if [[ "$new_code" != "undefined" ]] && [[ "$new_code" != "{}" ]] && [[ "$new_code" != "" ]]; then
+#                    sed -i "s/^$config_name_my$i='$old_code'$/$config_name_my$i='$new_code'/" $file_task_before
+#                fi
+#            else
+                if [[ "$new_code" != "undefined" ]] && [[ "$new_code" != "{}" ]] || [[ "$new_code" = "" ]]; then
+                    sed -i "s/^$config_name_my$i='$old_code'$/$config_name_my$i='$new_code'/" $file_task_before
+                fi
+#            fi
         fi
-    fi
-    if [[ $i -gt $user_sum ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name_my$i")" ]]; then
+    elif [[ $i -gt $user_sum ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name_my$i")" ]]; then
         sed -i "/^$config_name_my$i/d" $file_task_before
     fi
 done
@@ -444,13 +450,10 @@ for ((j=1; j<=100; j++)); do
         if [ -z "$(grep "^$config_name_for_other$j" $file_task_before)" ]; then
             sed -i "/^$config_name_for_other$[$j-1]=".*"/ s/$/\n$config_name_for_other$j=\"\"/" $file_task_before
         fi
-        if [ "$new_rule" != "" ]; then
-            if [ "$new_rule" != "$old_rule" ]; then
-                sed -i "s/^$config_name_for_other$j=\"$old_rule\"$/$config_name_for_other$j=\"$new_rule\"/" $file_task_before
-            fi
+        if [ "$new_rule" != "$old_rule" ]; then
+            sed -i "s/^$config_name_for_other$j=\"$old_rule\"$/$config_name_for_other$j=\"$new_rule\"/" $file_task_before
         fi
-    fi
-    if [[ $j -gt $user_sum ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name_for_other$j")" ]]; then
+    elif [[ $j -gt $user_sum ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name_for_other$j")" ]]; then
         sed -i "/^$config_name_for_other$j/d" $file_task_before
     fi
 done
@@ -476,13 +479,12 @@ for ((k=1; k<=100; k++)); do
         if [ -z "$(grep "^$config_name$k" $file_task_before)" ]; then
             sed -i "/^$config_name$[$k-1]='.*'/ s/$/\n$config_name$k=\'\'/" $file_task_before
         fi
-        if [[ "$new_code" != "" ]] && [[ "$new_code" != "undefined" ]] && [[ "$new_code" != "{}" ]]; then
-            if [ "$new_code" != "$old_code" ]; then
+        if [ "$new_code" != "$old_code" ]; then
+            if [[ "$new_code" != "undefined" ]] && [[ "$new_code" != "{}" ]] || [[ "$new_code" = "" ]]; then
                 sed -i "s/^$config_name$k='$old_code'$/$config_name$k='$new_code'/" $file_task_before
             fi
         fi
-    fi
-    if [[ $k -gt $user_sum ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name$k")" ]]; then
+    elif [[ $k -gt $user_sum ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name$k")" ]]; then
         sed -i "/^$config_name$k/d" $file_task_before
     fi
 done
@@ -589,4 +591,7 @@ sleep 5
 update_help
 
 ## 修改curtinlv京东超市兑换脚本的参数
-sed -i "s/cookies=''/cookies='$JD_COOKIE'/g" /ql/scripts/*_jd_blueCoin.py
+sed -i "21c cookies='$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*\(pt_key=\S\+;\)\S*\(pt_pin=\S\+;\)\S*/\1\2/g;" | perl -pe "s| |&|g")'" /ql/scripts/curtinlv_JD-Script_jd_blueCoin.py
+
+## 修改curtinlv入会领豆配置文件的参数
+sed -i "4c JD_COOKIE = '$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*\(pt_key=\S\+;\)\S*\(pt_pin=\S\+;\)\S*/\1\2/g;" | perl -pe "s| |&|g")'" /ql/repo/curtinlv_JD-Script/OpenCard/OpenCardConfig.ini
