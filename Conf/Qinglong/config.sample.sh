@@ -15,7 +15,7 @@ AutoAddCron="true"
 RepoFileExtensions="js py ts"
 
 ## 由于github仓库拉取较慢，所以会默认添加代理前缀，如不需要请移除
-GithubProxyUrl="https://ghproxy.com/"
+GithubProxyUrl=""
 
 ## 设置定时任务执行的超时时间，默认1h，后缀"s"代表秒(默认值), "m"代表分, "h"代表小时, "d"代表天
 CommandTimeoutTime="3h"
