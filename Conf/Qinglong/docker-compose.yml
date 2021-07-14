@@ -10,4 +10,6 @@ qinglong:
     - ./log:/ql/log
     - ./db:/ql/db
     - ./repo:/ql/repo
+    - ./raw:/ql/raw
     - ./scripts:/ql/scripts
+    - ./jbot:/ql/jbot
