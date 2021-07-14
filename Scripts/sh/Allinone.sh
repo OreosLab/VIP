@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## 本脚本搬运并模仿 jdshell 仓库
+## 本脚本搬运并模仿 liuqitoday
 dir_shell=/ql/config
 dir_script=/ql/config
 config_shell_path=$dir_shell/config.sh
