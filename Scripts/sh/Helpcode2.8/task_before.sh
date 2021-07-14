@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#Build 20210712-001
+# Build 20210714-001
 
 ## 东东农场：
 MyFruit1=''
@@ -169,6 +169,7 @@ combine_all() {
 
 ## 临时屏蔽某账号运行活动脚本
 TempBlock_JD_COOKIE(){
+    . $file_env
     local envs=$(eval echo "\$JD_COOKIE")
     local array=($(echo $envs | sed 's/&/ /g'))
     for i in $TempBlockCookie; do

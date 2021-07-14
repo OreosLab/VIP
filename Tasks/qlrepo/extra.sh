@@ -4,6 +4,7 @@
 ## 使用方法：定时任务→添加定时→命令【ql extra】→定时规则【15 0-23/4 * * *】-运行
 ## 推荐配置：如下。自行在需要的命令前注释和取消注释 ##，该文件最前的 # 勿动
 
+
 ## 预设仓库和参数（u=url，p=path，b=blacklist，d=dependence），如果懂得定义可以自行修改
 ## （1）预设的 panghu999 仓库
 u1="https://github.com/panghu999/jd_scripts.git"
@@ -32,6 +33,7 @@ default3="$u3 $p3 $b3 $d3"
 default4="$u4 $p4 $b4 $d4"
 ## 默认拉取仓库编号设置
 default=$default4 ##此处修改，只改数字，默认 shufflewzc 仓库
+
 
 # 整库
 # 1. Unknown 备份托管等（如上）
@@ -79,6 +81,7 @@ ql repo $default ##此处勿动
 # 15. Aaron-lv
 ## ql repo https://github.com/Aaron-lv/sync.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER" "jd_scripts"
 
+
 # 单脚本
 ## 名称之后标注﹢的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
 # 1. curtinlv﹢
@@ -96,6 +99,11 @@ ql repo $default ##此处勿动
 # 3. Aaron-lv
 ## 财富岛
 ## ql raw https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
+
+# 4. Wenmoux
+## 口袋书店
+## ql raw https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/chinnkarahoi_jd_bookshop.js
+
 
 # 依赖
 ## Python 3 安装 requests

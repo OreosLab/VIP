@@ -122,6 +122,13 @@ ql raw https://raw.githubusercontent.com/chiupam/JD_Diy/master/pys/activeId.py
 ql raw https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
 ```
 
+> `Wenmoux`
+
+>> 口袋书店
+```
+ql raw https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/chinnkarahoi_jd_bookshop.js
+```
+
 ## 已删库存档
 - `monk-coder`
 ```
