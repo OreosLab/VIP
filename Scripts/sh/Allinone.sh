@@ -2,10 +2,10 @@
 
 ## 本脚本搬运并模仿 liuqitoday
 dir_shell=/ql/config
-dir_script=/ql/config
+dir_script=/ql/scripts
 config_shell_path=$dir_shell/config.sh
-extra_shell_path=$dir_script/extra.sh
-code_shell_path=$dir_script/code.sh
+extra_shell_path=$dir_shell/extra.sh
+code_shell_path=$dir_shell/code.sh
 task_before_shell_path=$dir_shell/task_before.sh
 
 
