@@ -332,13 +332,11 @@ export ljsdh="jdAward3" ##兑换100豆
 # curtinlv 环境变量
 ## 1、赚京豆
 ### 助力账号，填写pt_pin或用户名的值，如 zlzh = ['aaaa','xxxx','yyyy'] ，支持ENV
-export zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/, /g; s/^/[/; s/$/]/;")
+export zlzh=$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')  ## 支持中文用户名
 ## 2、全民抢京豆
-### export qjd_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')  ## 支持中文用户名
-export qjd_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;")
+export qjd_zlzh=$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')  ## 支持中文用户名
 ## 3、签到领现金助力
-### export cash_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')  ## 支持中文用户名
-export cash_zlzh=$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\'\1\'/g; s/\n/,/g; s/^/[/; s/$/]/;")
+export cash_zlzh=$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')  ## 支持中文用户名
 ## 4、入会开卡
 ### int，入会送豆满足此值，否则不入会
 export openCardBean="30"
@@ -397,14 +395,14 @@ fi
 ## 1、愤怒的锦鲤
 ### 助力账号，填写pt_pin或用户名的值。多个 pt_pin 值用 @ 连接
 ### export kois="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
-export kois="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;")"
+export kois="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\1/g; s/ /@/g;")"
 ## 2、全民运动会守卫红包
 ### 助力码，需手动抓包
 export olympicgames_inviteId=""
 ## 3、签到领现金兑换
 ### 填写 pt_pin@金额，pt_pin为用户名，可以在 COOKIES 中提取；金额为 2 或 10，例如 LiLei@2 或 HanMeimei@10。多值用 & 连接，例如 LiLei@2&HanMeimei@10
 ### export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1@10/g; s/\n/\&/g;")"  ##兑10元现金，比较难兑
-export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1@2/g; s/\n/\&/g;")"       ##兑2元现金
+export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\1@2/g; s/ /&/g;")"       ##兑2元现金
 
 ## 其他命令：
 ## 1、一键改写京东兑蓝币脚本的cookies；需手动运行 (已集成至最新的 code.sh)
