@@ -1,21 +1,41 @@
 #!/usr/bin/env bash
 
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
-## 定时任务-添加定时-命令：ql extra-定时规则自定-运行
-## 推荐配置如下，自行注释和取消注释、修改 cron 使用
+## 使用方法：定时任务→添加定时→命令【ql extra】→定时规则【15 0-23/4 * * *】-运行
+## 推荐配置：如下。自行在需要的命令前注释和取消注释 ##，该文件最前的 # 勿动
+
+## 预设仓库和参数（u=url，p=path，b=blacklist，d=dependence），如果懂得定义可以自行修改
+## （1）预设的 panghu999 仓库
+u1="https://github.com/panghu999/jd_scripts.git"
+p1="jd_|jx_|getJDCookie" 
+b1="activity|backUp|Coupon|jd_try|format_" 
+d1="^jd[^_]|USER" 
+## （2）预设的 JDHelloWorld 仓库
+u2="https://github.com/JDHelloWorld/jd_scripts.git"
+p2="jd_|jx_|getJDCookie"
+b2="activity|backUp|Coupon|enen|update"
+d2="^jd[^_]|USER"
+## （3）预设的 he1pu 仓库
+u3="https://github.com/he1pu/JDHelp.git"
+p3="jd_|jx_|getJDCookie" 
+b3="activity|backUp|Coupon|update" 
+d3="^jd[^_]|USER|MovementFaker|JDJRValidator_Pure|sign_graphics_validate|ZooFaker_Necklace"
+## （4）预设的 shufflewzc 仓库
+u4="https://github.com/shufflewzc/faker2.git"
+p4="jd_|jx_|getJDCookie"
+b4="activity|backUp|Coupon"
+d4="^jd[^_]|USER|ZooFaker_Necklace|JDJRValidator_Pure"
+## 默认拉取仓库参数集合
+default1="$u1 $p1 $b1 $d1"
+default2="$u2 $p2 $b2 $d2"
+default3="$u3 $p3 $b3 $d3"
+default4="$u4 $p4 $b4 $d4"
+## 默认拉取仓库编号设置
+default=$default4 ##此处修改，只改数字，默认 shufflewzc 仓库
 
 # 整库
-# 1. Unknown 备份托管等
-## (1) JDHelloWorld
-## ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen|update" "^jd[^_]|USER"
-## (2) he1pu（自动提交助力码-京喜工厂、种豆得豆、东东工厂、东东农场、健康社区、京喜财富岛、东东萌宠、闪购盲盒，随机从数据库中选取助力码互助）
-## ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER|MovementFaker|JDJRValidator_Pure|sign_graphics_validate|ZooFaker_Necklace"
-## (3) shufflewzc
-ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER|ZooFaker_Necklace|JDJRValidator_Pure"
-## (4) panghu999
-## ql repo https://github.com/panghu999/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|jd_try|format_" "^jd[^_]|USER"
-## (5) chinnkarahoi
-## ql repo https://github.com/chinnkarahoi/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER"
+# 1. Unknown 备份托管等（如上）
+ql repo $default ##此处勿动
 
 # 2. passerby-b
 ## ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event" "jddj_cookie"
