@@ -116,26 +116,26 @@ export GOBOT_QQ=""
 
 ## 如果只是想要屏蔽某个账号不参加某些活动，可以参考下面 case 这个命令的例子来控制
 ## case $1 in
-##   *jd_fruit*)
-##     TempBlockCookie="5"      # 账号5不玩东东农场
-##     ;;
-##   *jd_dreamFactory* | *jd_jdfactory*)
-##     TempBlockCookie="2"      # 账号2不玩京喜工厂和东东工厂
-##     ;;
-##   *jd_jdzz* | *jd_joy*)
-##     TempBlockCookie="3 6"    # 账号3、账号6不玩京东赚赚和宠汪汪
-##     ;;
-##  esac
+##     *jd_fruit*)                            # 东东农场活动脚本关键词
+##         TempBlockCookie="5"                # 账号5不玩东东农场
+##         ;;
+##     *jd_dreamFactory* | *jd_jdfactory*)    # 京喜工厂和东东工厂的活动脚本关键词
+##         TempBlockCookie="2"                # 账号2不玩京喜工厂和东东工厂
+##         ;;
+##     *jd_jdzz* | *jd_joy*)                  # 京喜赚赚和宠汪汪的活动脚本关键词
+##         TempBlockCookie="3 6"              # 账号3、账号6不玩京东赚赚和宠汪汪
+##         ;;
+## esac
 case $1 in
-   *jd_fruit*)
-     TempBlockCookie=""
-     ;;
-   *jd_dreamFactory* | *jd_jdfactory*)
-     TempBlockCookie=""
-     ;;
-   *jd_jdzz* | *jd_joy*)
-     TempBlockCookie=""
-     ;;
+    *jd_fruit*)
+        TempBlockCookie=""
+        ;;
+    *jd_dreamFactory* | *jd_jdfactory*)
+        TempBlockCookie=""
+        ;;
+    *jd_jdzz* | *jd_joy*)
+        TempBlockCookie=""
+        ;;
 esac
 
 ## 其他需要的变量，脚本中需要的变量使用 export 变量名= 声明即可

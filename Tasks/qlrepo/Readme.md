@@ -121,12 +121,20 @@ ql raw https://raw.githubusercontent.com/chiupam/JD_Diy/master/pys/activeId.py
 ```
 ql raw https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
 ```
+or
+```
+ql repo https://github.com/Aaron-lv/sync.git "jd_cfd" "" "" "jd_scripts"
+```
 
-> `Wenmoux`
+> `Wenmoux`+
 
 >> 口袋书店
 ```
 ql raw https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/chinnkarahoi_jd_bookshop.js
+```
+or
+```
+ql repo https://github.com/Wenmoux/scripts.git "chinnkarahoi_jd_bookshop" "" "" "wen"
 ```
 
 ## 已删库存档
