@@ -99,10 +99,12 @@ ql repo $default ##此处勿动
 # 3. Aaron-lv
 ## 财富岛
 ## ql raw https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
+ql repo https://github.com/Aaron-lv/sync.git "jd_cfd" "" "" "jd_scripts"
 
 # 4. Wenmoux
 ## 口袋书店
 ## ql raw https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/chinnkarahoi_jd_bookshop.js
+ql repo https://github.com/Wenmoux/scripts.git "chinnkarahoi_jd_bookshop" "" "" "wen"
 
 
 # 依赖
