@@ -49,7 +49,7 @@ defualtNum=${defaultNum:-'4'}
 sed -i "s/\$default4/\$default$defaultNum/g" $extra_shell_path
 
 # 将 extra.sh 添加到定时任务
-if [ "$(grep -c ql extra /ql/config/crontab.list)" = 0 ]; then
+if [ "$(grep -c extra /ql/config/crontab.list)" = 0 ]; then
     echo "开始添加 task ql extra"
     # 获取token
     token=$(cat /ql/config/auth.json | jq --raw-output .token)
