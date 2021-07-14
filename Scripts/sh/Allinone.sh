@@ -49,8 +49,8 @@ defualtNum=${defaultNum:-'4'}
 sed -i "s/\$default4/\$default$defaultNum/g" $extra_shell_path
 
 # 将 extra.sh 添加到定时任务
-if [ "$(grep -c extra.sh /ql/config/crontab.list)" = 0 ]; then
-    echo "开始添加 task extra.sh"
+if [ "$(grep -c ql extra /ql/config/crontab.list)" = 0 ]; then
+    echo "开始添加 task ql extra"
     # 获取token
     token=$(cat /ql/config/auth.json | jq --raw-output .token)
     curl -s -H 'Accept: application/json' -H "Authorization: Bearer $token" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{"name":"初始化任务","command":"ql extra","schedule":"15 0-23/4 * * *"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1624782068473'
@@ -86,7 +86,7 @@ if [ "$(grep -c code.sh /ql/config/crontab.list)" = 0 ]; then
     echo "开始添加 task code.sh"
     # 获取token
     token=$(cat /ql/config/auth.json | jq --raw-output .token)
-    curl -s -H 'Accept: application/json' -H "Authorization: Bearer $token" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{"name":"格式化更新助力码","command":"bash /ql/config/code.sh &","schedule":"*/10 * * * *"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1624782068473'
+    curl -s -H 'Accept: application/json' -H "Authorization: Bearer $token" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{"name":"格式化更新助力码","command":"bash /ql/config/code.sh &","schedule":"*/10 * * * *"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1626247939659'
 fi
 
 
