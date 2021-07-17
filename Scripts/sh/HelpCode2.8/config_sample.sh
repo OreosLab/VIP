@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210714-002
+## Mod: Build20210717-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -240,6 +240,19 @@ export PURCHASE_SHOPS="true"
 export TUAN_ACTIVEID=""
 ## 22、京东UA。点点券脚本运行环境变量
 export JD_USER_AGENT="jdltapp;iPhone;3.1.0;14.4;3b6e79334551fc6f31952d338b996789d157c4e8"
+## 22、京东试用jd_try相关环境变量
+##控制每次获取商品数量，默认12
+export JD_TRY_PAGE_SIZE=""
+##商品分类，以 @ 隔开，示例：家用电器@手机数码@电脑办公@家居家装
+export JD_TRY_CIDS_KEYS=""
+##试用类型，以 @ 隔开，示例：免费试用@闪电试
+export JD_TRY_TYPE_KEYS=""
+##过滤试用商品关键字，以 @ 隔开(默认内置了很多关键字，建议使用默认)
+export JD_TRY_GOOD_FILTERS=""
+##试用商品最低价格
+export JD_TRY_MIN_PRICE=""
+##试用商品最多提供数量（过滤垃圾商品）
+export JD_TRY_MAX_SUPPLY_COUNT=""
 
 # 阿道夫部分环境变量
 ## 1、阿道夫脚本加购开关，填true加购
@@ -355,8 +368,10 @@ export sleepNum="0.5"
 ### 布尔值，True:使用作者远程仓库更新的id，False：使用本地shopid.txt的id
 export isRemoteSid="true"
 ## 5、东东超市商品兑换
-### 您的ck格式：pt_key=xxx;pt_pin=xxx; (多账号&分隔)。无效变量，已集成改写代码至最新 code.sh
-### export cookies=''
+#【填写您要兑换的商品】ENV设置： export coinToBeans='京豆包'
+export coinToBeans='京豆包'
+#多账号并发，默认关闭 ENV设置： export blueCoin_Cc=True
+export blueCoin_Cc='True'
 ### 【填写您要兑换的商品】
 export coinToBeans="京豆包"
 ### 轮次
