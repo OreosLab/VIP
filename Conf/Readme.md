@@ -379,10 +379,10 @@ export isRemoteSid="true"
 
 ```
 ## 东东超市商品兑换
-### 您的ck格式：pt_key=xxx;pt_pin=xxx; (多账号&分隔)
-export cookies=""
-### 【填写您要兑换的商品】
-export coinToBeans="京豆包"
+### 填写商品名字，兼容模糊关键词
+export coinToBeans='京豆包'
+### 多账号并发，默认关闭
+export blueCoin_Cc='False'
 ### 轮次
 export startMaxNum="30"
 ### 多线程并发，相当于每秒点击兑换次数...适当调整，手机会发烫
