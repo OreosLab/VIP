@@ -79,7 +79,7 @@ ql repo $default ##此处勿动
 ## ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
 
 # 15. Aaron-lv
-## ql repo https://github.com/Aaron-lv/sync.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER" "jd_scripts"
+## ql repo https://github.com/Aaron-lv/sync.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER|^JD|^MovementFaker|^ZooFaker" "jd_scripts"
 
 
 # 单脚本
