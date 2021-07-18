@@ -45,7 +45,7 @@ chmod 755 $extra_shell_path
 echo -e "（1）panghu999\n（2）JDHelloWorld\n（3）he1pu\n（4）shufflewzc"
 echo -n "输入你想拉取的仓库编号(默认为 4):"
 read -r defaultNum
-defualtNum=${defaultNum:-'4'}
+defaultNum=${defaultNum:-'4'}
 sed -i "s/\$default4/\$default$defaultNum/g" $extra_shell_path
 
 # 将 extra.sh 添加到定时任务
