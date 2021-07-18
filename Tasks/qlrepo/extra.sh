@@ -23,7 +23,7 @@ b3="activity|backUp|Coupon|update"
 d3="^jd[^_]|USER|MovementFaker|JDJRValidator_Pure|sign_graphics_validate|ZooFaker_Necklace"
 ## （4）预设的 shufflewzc 仓库
 u4="https://github.com/shufflewzc/faker2.git"
-p4="jd_|jx_|getJDCookie"
+p4="jd_|jx_|jddj_|getJDCookie"
 b4="activity|backUp"
 d4="^jd[^_]|USER|ZooFaker_Necklace|JDJRValidator_Pure|sign_graphics_validate"
 ## 默认拉取仓库参数集合
