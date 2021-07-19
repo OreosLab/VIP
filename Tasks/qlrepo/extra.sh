@@ -10,7 +10,7 @@
 u1="https://github.com/panghu999/jd_scripts.git"
 p1="jd_|jx_|getJDCookie" 
 b1="activity|backUp|Coupon|jd_try|format_" 
-d1="^jd[^_]|USER" 
+d1="^jd[^_]|USER|^TS|utils|package"
 ## （2）预设的 JDHelloWorld 仓库
 u2="https://github.com/JDHelloWorld/jd_scripts.git"
 p2="jd_|jx_|getJDCookie"
@@ -20,12 +20,12 @@ d2="^jd[^_]|USER"
 u3="https://github.com/he1pu/JDHelp.git"
 p3="jd_|jx_|getJDCookie" 
 b3="activity|backUp|Coupon|update" 
-d3="^jd[^_]|USER|MovementFaker|JDJRValidator_Pure|sign_graphics_validate|ZooFaker_Necklace"
+d3="^jd[^_]|USER|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
 ## （4）预设的 shufflewzc 仓库
 u4="https://github.com/shufflewzc/faker2.git"
-p4="jd_|jx_|jddj_|getJDCookie"
-b4="activity|backUp"
-d4="^jd[^_]|USER|ZooFaker_Necklace|JDJRValidator_Pure|sign_graphics_validate"
+p4="jd_[^Move]|jx_|jddj_|getJDCookie"
+b4="activity|backUp|Coupon|update"
+d4="^jd[^_]|USER|^JS|^TS|^sign|utils"
 ## 默认拉取仓库参数集合
 default1="$u1 $p1 $b1 $d1"
 default2="$u2 $p2 $b2 $d2"
@@ -40,13 +40,13 @@ default=$default4 ##此处修改，只改数字，默认 shufflewzc 仓库
 ql repo $default ##此处勿动
 
 # 2. passerby-b
-## ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event" "jddj_cookie"
+## ql repo https://github.com/passerby-b/JDDJ.git "jddj_" "scf_test_event|jddj_fruit_code.js|jddj_getck.js|jd_|jddj_cookie"
 
 # 3. curtinlv
-## ql repo https://github.com/curtinlv/JD-Script.git
+## ql repo https://github.com/curtinlv/JD-Script.git "jd_"
 
 # 4. smiek2221
-## ql repo https://github.com/smiek2221/scripts.git "jd_|gua_" "" "ZooFaker_Necklace.js|JDJRValidator_Pure.js|sign_graphics_validate.js"
+## ql repo https://github.com/smiek2221/scripts.git "jd_|gua_" "" "^ZooFaker|^JDJRValidator|^sign"
 
 # 5. cdle
 ## ql repo https://github.com/cdle/jd_study.git "jd_"
@@ -73,20 +73,15 @@ ql repo $default ##此处勿动
 ## ql repo https://github.com/panghu999/panghu.git "jd_"
 
 # 13. star261
-## ql repo https://github.com/star261/jd.git "jd_|star" "" "^MovementFaker"
+## ql repo https://github.com/star261/jd.git "jd_|star" "" "MovementFaker"
 
 # 14. Wenmoux
 ## ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
-
-# 15. Aaron-lv
-## ql repo https://github.com/Aaron-lv/sync.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER|^JD|^MovementFaker|^ZooFaker" "jd_scripts"
 
 
 # 单脚本
 ## 名称之后标注﹢的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
 # 1. curtinlv﹢
-## 抢京豆 0 0 * * *
-## ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_qjd.py
 ## 入会 15 8 * * *
 ## ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/OpenCard/jd_OpenCard.py
 ## 关注 15 8 * * *
