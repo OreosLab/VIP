@@ -95,7 +95,6 @@ ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
 ### 名称之后标注`﹢`的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
 > `curtinlv`﹢
 
-```
 >> 入会
 ```
 ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/OpenCard/jd_OpenCard.py
