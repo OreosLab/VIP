@@ -108,21 +108,15 @@ ql repo https://github.com/Wenmoux/scripts.git "chinnkarahoi_jd_bookshop" "" "" 
 
 
 # 依赖
+install_dependencies(){
 ## Python 3 安装 requests
 pip3 install requests
 ## 安装 canvas，适用于柠檬胖虎代维护 lxk0301 仓库，宠汪汪二代目和宠汪汪兑换，只支持国内机
 apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && cd scripts && npm install canvas --build-from-source
 ## 安装 png-js，适用于 JDHelloWorld 和 he1pu 的宠汪汪二代目和宠汪汪兑奖品二代目
 npm install png-js -S
-## 安装 date-fns
-npm install date-fns -S
-## 安装 axios
-npm install axios -S
-## 安装 crypto-js
-npm install crypto-js -S
-## 安装 ts-md5
-npm install ts-md5 -S
-## 安装 tslib
-npm install tslib -S
-## 安装 @types/node
-npm install @types/node -S
+## 安装 date-fns axios crypto-js ts-md5 tslib @types/node ,用于解决新版惊喜财富岛依赖问题
+npm i -S date-fns axios crypto-js ts-md5 tslib @types/node dotenv
+}
+
+install_dependencies &
