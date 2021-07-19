@@ -25,7 +25,7 @@ d3="^jd[^_]|USER|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
 u4="https://github.com/shufflewzc/faker2.git"
 p4="jd_|jx_|jddj_|getJDCookie"
 b4="activity|backUp|Coupon|update"
-d4="^jd[^_]|USER|^JS|^TS|^sign|utils"
+d4="^jd[^_]|USER|^JS|^TS|^sign"
 ## 默认拉取仓库参数集合
 default1="$u1 $p1 $b1 $d1"
 default2="$u2 $p2 $b2 $d2"
