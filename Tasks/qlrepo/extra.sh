@@ -10,12 +10,12 @@
 u1="https://github.com/panghu999/jd_scripts.git"
 p1="jd_|jx_|getJDCookie" 
 b1="activity|backUp|Coupon|jd_try|format_" 
-d1="^jd[^_]|USER|^TS|utils|package"
+d1="^jd[^_]|USER"
 ## （2）预设的 JDHelloWorld 仓库
 u2="https://github.com/JDHelloWorld/jd_scripts.git"
 p2="jd_|jx_|getJDCookie"
 b2="activity|backUp|Coupon|enen|update"
-d2="^jd[^_]|USER"
+d2="^jd[^_]|USER|^TS|utils|package"
 ## （3）预设的 he1pu 仓库
 u3="https://github.com/he1pu/JDHelp.git"
 p3="jd_|jx_|getJDCookie" 
@@ -23,7 +23,7 @@ b3="activity|backUp|Coupon|update"
 d3="^jd[^_]|USER|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
 ## （4）预设的 shufflewzc 仓库
 u4="https://github.com/shufflewzc/faker2.git"
-p4="jd_[^Move]|jx_|jddj_|getJDCookie"
+p4="jd_|jx_|jddj_|getJDCookie"
 b4="activity|backUp|Coupon|update"
 d4="^jd[^_]|USER|^JS|^TS|^sign|utils"
 ## 默认拉取仓库参数集合
