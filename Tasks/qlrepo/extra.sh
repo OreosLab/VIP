@@ -20,7 +20,7 @@ d2="^jd[^_]|USER|^TS|utils|package"
 u3="https://github.com/he1pu/JDHelp.git"
 p3="jd_|jx_|getJDCookie"
 k3="activity|backUp|Coupon|update"
-d3="^jd[^_]|USER|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
+d3="^jd[^_]|USER|utils|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
 ## （4）预设的 shufflewzc 仓库
 u4="https://github.com/shufflewzc/faker2.git"
 p4="jd_|jx_|jddj_|getJDCookie"
