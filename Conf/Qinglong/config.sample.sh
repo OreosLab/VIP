@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210711-005
+## Mod: Build20210719-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -402,6 +402,14 @@ export olympicgames_inviteId=""
 ### 填写 pt_pin@金额，pt_pin为用户名，可以在 COOKIES 中提取；金额为 2 或 10，例如 LiLei@2 或 HanMeimei@10。多值用 & 连接，例如 LiLei@2&HanMeimei@10
 ### export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1@10/g; s/\n/\&/g;")"  ##兑10元现金，比较难兑
 export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\1@2/g; s/ /&/g;")"           ##兑2元现金
+
+# JDHelloWorld 环境变量
+## 1、新版京喜财富岛提现
+### 提现金额，可选0.1 0.5 1 2 10
+export CFD_CASHOUT_MONEY=10
+### token，顺序、数量必须与cookie一致。抓包地址：https://m.jingxi.com/jxbfd/user/ExchangePrize
+### export CFD_CASH_TOKEN='[{"strPgtimestamp":"你的值","strPhoneID":"你的值","strPgUUNum":"你的值"},{"strPgtimestamp":"你的值","strPhoneID":"你的值","strPgUUNum":"你的值"}]'
+export CFD_CASH_TOKEN='[{"strPgtimestamp":"1626623544085","strPhoneID":"878e21db65d2d606","strPgUUNum":"56eaaf98f7d7a69c59e50c6bb40e79c1"}]'
 
 ## 其他命令：
 ## 1、一键改写京东兑蓝币脚本的cookies；需手动运行 (已集成至最新的 code.sh)
