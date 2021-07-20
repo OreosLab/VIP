@@ -65,7 +65,7 @@ if [ $Rextra = 'y' ]; then
     # 拷贝对应的 utils 文件夹
     if [ $defaultNum -gt 1 -a $defaultNum -ne 5 ]; then
     repo=(1 JDHelloWorld_jd_scripts/utils he1pu_JDHelp/utils shufflewzc_faker2/utils 5 Aaron-lv_sync_jd_scripts/utils)
-    cp -rf $dir_repo/${repo[$defaultNum]-1} /ql/scripts
+    cp -rf $dir_repo/${repo[$defaultNum-1]} /ql/scripts
     fi
     # 将 extra.sh 添加到定时任务
     if [ "$(grep -c extra /ql/config/crontab.list)" = 0 ]; then
