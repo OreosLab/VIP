@@ -5,32 +5,39 @@
 ## 推荐配置：如下。自行在需要的命令前注释和取消注释 ##，该文件最前的 # 勿动
 
 
-## 预设仓库和参数（u=url，p=path，b=blacklist，d=dependence），如果懂得定义可以自行修改
+## 预设仓库和参数（u=url，p=path，k=blacklist，d=dependence，b=branch），如果懂得定义可以自行修改
 ## （1）预设的 panghu999 仓库
 u1="https://github.com/panghu999/jd_scripts.git"
 p1="jd_|jx_|getJDCookie" 
-b1="activity|backUp|Coupon|jd_try|format_" 
+k1="activity|backUp|Coupon|jd_try|format_" 
 d1="^jd[^_]|USER"
 ## （2）预设的 JDHelloWorld 仓库
 u2="https://github.com/JDHelloWorld/jd_scripts.git"
 p2="jd_|jx_|getJDCookie"
-b2="activity|backUp|Coupon|enen|update"
+k2="activity|backUp|Coupon|enen|update"
 d2="^jd[^_]|USER|^TS|utils|package"
 ## （3）预设的 he1pu 仓库
 u3="https://github.com/he1pu/JDHelp.git"
 p3="jd_|jx_|getJDCookie" 
-b3="activity|backUp|Coupon|update" 
+k3="activity|backUp|Coupon|update" 
 d3="^jd[^_]|USER|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
 ## （4）预设的 shufflewzc 仓库
 u4="https://github.com/shufflewzc/faker2.git"
 p4="jd_|jx_|jddj_|getJDCookie"
-b4="activity|backUp|Coupon|update"
+k4="activity|backUp|Coupon|update"
 d4="^jd[^_]|USER|utils|^ZooFaker|^JDJRValidator|^sign"
+## （6）预设的 Aaron-lv 仓库
+u6="https://github.com/Aaron-lv/sync.git"
+p6="jd_|jx_|getJDCookie"
+k6="activity|backUp|Coupon"
+d6="^jd[^_]|USER|utils"
+b6="jd_scripts"
 ## 默认拉取仓库参数集合
-default1="$u1 $p1 $b1 $d1"
-default2="$u2 $p2 $b2 $d2"
-default3="$u3 $p3 $b3 $d3"
-default4="$u4 $p4 $b4 $d4"
+default1="$u1 $p1 $k1 $d1"
+default2="$u2 $p2 $k2 $d2"
+default3="$u3 $p3 $k3 $d3"
+default4="$u4 $p4 $k4 $d4"
+default6="$u6 $p6 $k6 &d6 $b6"
 ## 默认拉取仓库编号设置
 default=$default4 ##此处修改，只改数字，默认 shufflewzc 仓库
 
