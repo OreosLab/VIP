@@ -64,8 +64,9 @@ if [ $Rextra = 'y' ]; then
     sed -i "s/\$default4/\$default$defaultNum/g" $extra_shell_path
     # 拷贝对应的 utils 文件夹
     if [ $defaultNum -gt 1 -a $defaultNum -ne 5 ]; then
-    repo=(1 JDHelloWorld_jd_scripts he1pu_JDHelp shufflewzc_faker2 5 Aaron-lv_sync_jd_scripts)
-    cp -rf $dir_repo/${repo[defaultNum-1]}/utils /ql/scripts
+        repo=(1 JDHelloWorld/jd_scripts he1pu/JDHelp shufflewzc/faker2 5 Aaron-lv/sync_jd_scripts)
+        sudo apt-get install subversion
+        svn checkout https://github.com/${repo[default-1]}/trunk/utils $dir_script
     fi
     # 将 extra.sh 添加到定时任务
     if [ "$(grep -c extra /ql/config/crontab.list)" = 0 ]; then
