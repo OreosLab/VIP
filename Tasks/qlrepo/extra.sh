@@ -25,19 +25,19 @@ d3="^jd[^_]|USER|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
 u4="https://github.com/shufflewzc/faker2.git"
 p4="jd_|jx_|jddj_|getJDCookie"
 k4="activity|backUp|Coupon|update"
-d4="^jd[^_]|USER|^ZooFaker|^JDJRValidator|^sign"
+d4="^jd[^_]|USER|utils|^ZooFaker|^JDJRValidator|^sign"
 ## （6）预设的 Aaron-lv 仓库
 u6="https://github.com/Aaron-lv/sync.git"
 p6="jd_|jx_|getJDCookie"
 k6="activity|backUp|Coupon"
-d6="^jd[^_]|USER"
+d6="^jd[^_]|USER|utils"
 b6="jd_scripts"
 ## 默认拉取仓库参数集合
 default1="$u1 $p1 $k1 $d1"
 default2="$u2 $p2 $k2 $d2"
 default3="$u3 $p3 $k3 $d3"
 default4="$u4 $p4 $k4 $d4"
-default6="$u6 $p6 $k6 &d6 $b6"
+default6="$u6 $p6 $k6 $d6 $b6"
 ## 默认拉取仓库编号设置
 default=$default4 ##此处修改，只改数字，默认 shufflewzc 仓库
 
