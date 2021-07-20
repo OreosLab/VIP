@@ -58,13 +58,15 @@ if [ $Rextra = 'y' ]; then
     # 授权
     chmod 755 $extra_shell_path
     # extra.sh 预设仓库及默认拉取仓库设置
-    echo -e "（1）panghu999\n（2）JDHelloWorld\n（3）he1pu\n（4）shufflewzc\n (6)Aaron-lv"
+    echo -e "（1）panghu999\n（2）JDHelloWorld\n（3）he1pu\n（4）shufflewzc\n (6) Aaron-lv"
     read -p "输入你想拉取的仓库编号(默认为 4):" defaultNum
     defaultNum=${defaultNum:-'4'}
     sed -i "s/\$default4/\$default$defaultNum/g" $extra_shell_path
     # 拷贝对应的 utils 文件夹
-    repo=(JDHelloWorld_jd_scripts/utils he1pu_JDHelp/utils shufflewzc_faker2/utils Aaron-lv_sync_jd_scripts/utils)
-    cp -rf $dir_repo/${repo[$defaultNum]} /ql/scripts 
+    if [ $defaultNum -gt 1 -a $defaultNum -ne 5 ]; then
+    repo=(1 JDHelloWorld_jd_scripts/utils he1pu_JDHelp/utils shufflewzc_faker2/utils 5 Aaron-lv_sync_jd_scripts/utils)
+    cp -rf $dir_repo/${repo[$defaultNum]-1} /ql/scripts
+    fi
     # 将 extra.sh 添加到定时任务
     if [ "$(grep -c extra /ql/config/crontab.list)" = 0 ]; then
         echo "开始添加 task ql extra"
