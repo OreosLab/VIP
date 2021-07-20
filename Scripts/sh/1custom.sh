@@ -3,11 +3,11 @@
 ## 本脚本搬运并模仿 liuqitoday
 dir_shell=/ql/config
 dir_script=/ql/scripts
+dir_repo=/ql/repo
 config_shell_path=$dir_shell/config.sh
 extra_shell_path=$dir_shell/extra.sh
 code_shell_path=$dir_shell/code.sh
 task_before_shell_path=$dir_shell/task_before.sh
-utils_path=$dir_script/utils.zip
 
 
 # 控制是否执行变量
@@ -58,15 +58,13 @@ if [ $Rextra = 'y' ]; then
     # 授权
     chmod 755 $extra_shell_path
     # extra.sh 预设仓库及默认拉取仓库设置
-    echo -e "（1）panghu999\n（2）JDHelloWorld\n（3）he1pu\n（4）shufflewzc"
+    echo -e "（1）panghu999\n（2）JDHelloWorld\n（3）he1pu\n（4）shufflewzc\n (6)Aaron-lv"
     read -p "输入你想拉取的仓库编号(默认为 4):" defaultNum
     defaultNum=${defaultNum:-'4'}
     sed -i "s/\$default4/\$default$defaultNum/g" $extra_shell_path
-    # 下载 faker2 utils.zip
-    if [ $defaultNum = '4' ]; then
-        curl -s https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/js/utils.zip > $utils_path && unzip -o $utils_path -d $dir_script
-        rm -f $utils_path
-    fi
+    # 拷贝对应的 utils 文件夹
+    repo=(JDHelloWorld_jd_scripts/utils he1pu_JDHelp/utils shufflewzc_faker2/utils Aaron-lv_sync_jd_scripts/utils)
+    cp -rf $dir_repo/${repo[$defaultNum]} /ql/scripts 
     # 将 extra.sh 添加到定时任务
     if [ "$(grep -c extra /ql/config/crontab.list)" = 0 ]; then
         echo "开始添加 task ql extra"
@@ -95,7 +93,7 @@ if [ $Rcode = 'y' ]; then
     # 授权
     chmod 755 $code_shell_path
     # code.sh 预设仓库及默认调用仓库设置
-    echo -e "## 将\"repo=\$repo1\"改成\"repo=\$repo2\"或其他，以默认调用其他仓库脚本日志\nrepo1='panghu999_jd_scripts' #预设的 panghu999 仓库\nrepo2='JDHelloWorld_jd_scripts' #预设的 JDHelloWorld 仓库\nrepo3='he1pu_JDHelp' #预设的 he1pu 仓库\nrepo4='shufflewzc_faker2' #预设的 shufflewzc 仓库\nrepo=\$repo1 #默认调用 panghu999 仓库脚本日志"
+    echo -e "## 将\"repo=\$repo1\"改成\"repo=\$repo2\"或其他，以默认调用其他仓库脚本日志\nrepo1='panghu999_jd_scripts' #预设的 panghu999 仓库\nrepo2='JDHelloWorld_jd_scripts' #预设的 JDHelloWorld 仓库\nrepo3='he1pu_JDHelp' #预设的 he1pu 仓库\nrepo4='shufflewzc_faker2' #预设的 shufflewzc 仓库\nrepo6='Aaron-lv_sync_jd_scripts' #预设的 Aaron-lv 仓库\nrepo=\$repo1 #默认调用 panghu999 仓库脚本日志"
     read -p "输入你想调用的仓库编号(默认为 4):"
     repoNum=${repoNum:-'4'}
     sed -i "s/\$repo1/\$repo$repoNum/g" $code_shell_path
