@@ -66,7 +66,7 @@ if [ $Rextra = 'y' ]; then
     if [ $defaultNum -gt 1 -a $defaultNum -ne 5 ]; then
         repo=(1 JDHelloWorld/jd_scripts he1pu/JDHelp shufflewzc/faker2 5 Aaron-lv/sync_jd_scripts)
         sudo apt-get install subversion
-        svn checkout https://github.com/${repo[default-1]}/trunk/utils $dir_script
+        svn checkout https://github.com/${repo[defaultNum-1]}/trunk/utils $dir_script
     fi
     # 将 extra.sh 添加到定时任务
     if [ "$(grep -c extra /ql/config/crontab.list)" = 0 ]; then
