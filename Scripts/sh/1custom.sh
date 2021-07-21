@@ -32,7 +32,7 @@ fi
 
 
 # 下载 config.sh
-if [ ! -a "$config_shel_path" ]; then
+if [ ! -a "$config_shell_path" ]; then
     touch $config_shell_path
 fi
 if [ "${Rconfig}" = 'y' -o "${Rall}" = 1 ]; then
@@ -79,8 +79,6 @@ if [ "${Rextra}" = 'y' -o "${Rall}" = 1 ]; then
 else
     echo "已为您跳过替换 extra.sh"
 fi
-# 立即执行一次
-docker exec -it qinglong $extra_shell_path
 
 
 # 下载 code.sh
