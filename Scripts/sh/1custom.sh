@@ -11,7 +11,7 @@ task_before_shell_path=$dir_shell/task_before.sh
 
 
 # 控制是否执行变量
-read -p "是否全部替换或下载，建议初次配置选择，输入 1 即可全部替换，输入 0 则跳出，默认和其他不全部：" Rall
+read -p "是否全部替换或下载，输入 1 即可全部替换，输入 0 则跳出，默认和其他不全部替换，建议初次配置输入 1：" Rall
 if [ "${Rall}" = 1 ]; then
     echo "将执行全部替换操作"
 elif [ "${Rall}" = 0 ]; then
