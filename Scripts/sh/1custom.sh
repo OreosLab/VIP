@@ -11,8 +11,12 @@ task_before_shell_path=$dir_shell/task_before.sh
 
 
 # 控制是否执行变量
-read -p "是否全部替换或下载，建议初次配置选择，输入 1 即可全部替换，输入 0 则跳出，默认不全部：" Rall
-if [ "${Rall}" -a "${Rall}" != 1 ]; then
+read -p "是否全部替换或下载，建议初次配置选择，输入 1 即可全部替换，输入 0 则跳出，默认和其他不全部：" Rall
+if [ "${Rall}" = 1 ]; then
+    echo "将执行全部替换操作"
+elif [ "${Rall}" = 0 ]; then
+    exit 0
+else
     echo "以下操作默认为是，不需要的请输入 n"
     read -p "是否替换或下载 config.sh y/n：" Rconfig
     Rconfig=${Rconfig:-'y'}
@@ -24,9 +28,8 @@ if [ "${Rall}" -a "${Rall}" != 1 ]; then
     Rbefore=${Rbefore:-'y'}
     read -p "是否添加 task:ql bot（会拉取机器人并自动更新） y/n：" Rbot
     Rbot=${Rbot:-'y'}
-elif [ "${Rall}" = 0 ]; then
-    exit 0
 fi
+
 
 # 下载 config.sh
 if [ ! -a "$config_shel_path" ]; then
