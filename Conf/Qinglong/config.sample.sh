@@ -47,6 +47,8 @@ export PUSH_KEY=""
 export BARK_PUSH=""
 ## 下方填写推送声音设置，例如choo，具体值请在bark-推送铃声-查看所有铃声
 export BARK_SOUND=""
+## 下方填写推送消息分组，默认为"QingLong"
+export BARK_GROUP="QingLong"
 
 ## 3. Telegram 
 ## 下方填写自己申请@BotFather的Token，如10xxx4:AAFcqxxxxgER5uw
@@ -238,6 +240,19 @@ export PURCHASE_SHOPS="true"
 export TUAN_ACTIVEID=""
 ## 22、京东UA。点点券脚本运行环境变量
 export JD_USER_AGENT="jdltapp;iPhone;3.1.0;14.4;3b6e79334551fc6f31952d338b996789d157c4e8"
+## 23、京东试用jd_try相关环境变量
+### 控制每次获取商品数量，默认12
+export JD_TRY_PAGE_SIZE=""
+### 商品分类，以 @ 隔开，示例：家用电器@手机数码@电脑办公@家居家装
+export JD_TRY_CIDS_KEYS=""
+### 试用类型，以 @ 隔开，示例：免费试用@闪电试
+export JD_TRY_TYPE_KEYS=""
+### 过滤试用商品关键字，以 @ 隔开(默认内置了很多关键字，建议使用默认)
+export JD_TRY_GOOD_FILTERS=""
+### 试用商品最低价格
+export JD_TRY_MIN_PRICE=""
+### 试用商品最多提供数量（过滤垃圾商品）
+export JD_TRY_MAX_SUPPLY_COUNT=""
 
 # 阿道夫部分环境变量
 ## 1、阿道夫脚本加购开关，填true加购
