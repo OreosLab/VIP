@@ -79,6 +79,8 @@ if [ "${Rextra}" = 'y' -o "${Rall}" = 1 ]; then
 else
     echo "已为您跳过替换 extra.sh"
 fi
+# 立即执行一次
+docker exec -it qinglong ql extra
 
 
 # 下载 code.sh
