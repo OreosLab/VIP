@@ -277,17 +277,6 @@ export HALF_RAIN_RRA="" ##不解释，先放着
 ```
 
 
-## JDHelloWorld 部分环境变量
-
-```
-## 宠汪汪二代目
-### 默认80，10、20、40、80可选
-export feedNum="80"
-### 默认双人跑
-export JD_JOY_teamLevel="2"
-```
-
-
 ## 柠檬（胖虎部分环境变量）
 
 ```
@@ -499,6 +488,25 @@ export olympicgames_inviteId=""
 ## 愤怒的锦鲤
 ### 高速并发请求，专治偷助力。在kois环境变量中填入需要助力的pt_pin，有多个请用@符号连接
 export kois="pt_pin1@pt_pin2"
+```
+
+
+## JDHelloWorld 环境变量
+
+```
+## 1、宠汪汪二代目
+### 默认80，10、20、40、80可选
+export feedNum="80"
+### 默认双人跑
+export JD_JOY_teamLevel="2"
+```
+```
+## 2、新版京喜财富岛提现
+### 提现金额，可选0.1 0.5 1 2 10
+export CFD_CASHOUT_MONEY=10
+### token，顺序、数量必须与cookie一致。抓包地址：https://m.jingxi.com/jxbfd/user/ExchangePrize
+### export CFD_CASH_TOKEN='[{"strPgtimestamp":"你的值","strPhoneID":"你的值","strPgUUNum":"你的值"},{"strPgtimestamp":"你的值","strPhoneID":"你的值","strPgUUNum":"你的值"}]'
+export CFD_CASH_TOKEN='[{"strPgtimestamp":"1626623544085","strPhoneID":"878e21db65d2d606","strPgUUNum":"56eaaf98f7d7a69c59e50c6bb40e79c1"}]'
 ```
 
 
