@@ -11,9 +11,9 @@ task_before_shell_path=$dir_shell/task_before.sh
 
 
 # 控制是否执行变量
-echo "以下操作默认为是，不需要的请输入 n"
 read -p "是否全部替换或下载，建议初次配置选择，输入 1 即可全部替换，默认不全部：" Rall
 if [ ${Rall} != 1 ]; then
+    echo "以下操作默认为是，不需要的请输入 n"
     read -p "是否替换或下载 config.sh y/n：" Rconfig
     Rconfig=${Rconfig:-'y'}
     read -p "是否替换或下载 extra.sh y/n：" Rextra
