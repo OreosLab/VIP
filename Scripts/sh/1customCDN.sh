@@ -32,7 +32,7 @@ fi
 
 
 # 下载 config.sh
-if [ ! -a "$config_shel_path" ]; then
+if [ ! -a "$config_shell_path" ]; then
     touch $config_shell_path
 fi
 if [ "${Rconfig}" = 'y' -o "${Rall}" = 1 ]; then
