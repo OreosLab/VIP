@@ -13,7 +13,7 @@ task_before_shell_path=$dir_shell/task_before.sh
 # 控制是否执行变量
 echo "以下操作默认为是，不需要的请输入 n"
 read -p "是否全部替换或下载，建议初次配置选择，输入 1 即可全部替换，默认不全部：" Rall
-if [ $Rall != "1" ]; then
+if [ ${Rall} != "1" ]; then
     read -p "是否替换或下载 config.sh y/n：" Rconfig
     Rconfig=${Rconfig:-'y'}
     read -p "是否替换或下载 extra.sh y/n：" Rextra
@@ -30,7 +30,7 @@ fi
 if [ ! -a "$config_shel_path" ]; then
     touch $config_shell_path
 fi
-if [ $Rconfig = 'y' -o $Rall = "1" ]; then
+if [ ${Rconfig} = 'y' -o ${Rall} = 1 ]; then
     curl -s --connect-timeout 3 https://raw.githubusercontent.com/Oreomeow/VIP/main/Conf/Qinglong/config.sample.sh > $config_shell_path
     cp $config_shell_path $dir_shell/config.sh
     # 判断是否下载成功
@@ -48,7 +48,7 @@ fi
 if [ ! -a "$extra_shell_path" ]; then
     touch $extra_shell_path
 fi
-if [ $Rextra = 'y' -o $Rall = "1" ]; then
+if [ ${Rextra} = 'y' -o ${Rall} = 1 ]; then
     curl -s --connect-timeout 3 https://raw.githubusercontent.com/Oreomeow/VIP/main/Tasks/qlrepo/extra.sh > $extra_shell_path
     cp $extra_shell_path $dir_shell/extra.sh
     # 判断是否下载成功
@@ -80,7 +80,7 @@ fi
 if [ ! -a "$code_shell_path" ]; then
     touch $code_shell_path
 fi
-if [ $Rcode = 'y' -o $Rall = "1" ]; then
+if [ ${Rcode} = 'y' -o ${Rall} = 1 ]; then
     curl -s --connect-timeout 3 https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/code.sh > $code_shell_path
     cp $code_shell_path $dir_shell/code.sh
     # 判断是否下载成功
@@ -112,7 +112,7 @@ fi
 if [ ! -a "$task_before_shell_path" ] ; then
     touch $task_before_shell_path
 fi
-if [ $Rbefore = 'y' -o $Rall = "1" ]; then
+if [ ${Rbefore} = 'y' -o ${Rall} = 1 ]; then
     curl -s --connect-timeout 3 https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/task_before.sh > $task_before_shell_path
     # 判断是否下载成功
     task_before_size=$(ls -l $task_before_shell_path | awk '{print $5}')
@@ -126,9 +126,9 @@ fi
 
 
 # 添加定时任务 ql bot
-if [ "$(grep -c bot /ql/config/crontab.list)" != 0 -a $Rbot = 'y' ]; then
+if [ "$(grep -c bot /ql/config/crontab.list)" != 0 -a ${Rbot} = 'y' ]; then
     echo "您的任务列表中已存在 task ql bot"
-elif [ "$(grep -c bot /ql/config/crontab.list)" = 0 ] && [ $Rbot = 'y' -o $Rall = "1" ]; then
+elif [ "$(grep -c bot /ql/config/crontab.list)" = 0 ] && [ ${Rbot} = 'y' -o ${Rall} = 1 ]; then
     echo "开始添加 task ql bot"
     # 获取token
     token=$(cat /ql/config/auth.json | jq --raw-output .token)
