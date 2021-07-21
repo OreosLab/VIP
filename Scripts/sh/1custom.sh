@@ -11,24 +11,27 @@ task_before_shell_path=$dir_shell/task_before.sh
 
 
 # 控制是否执行变量
-echo "以下操作默认为是，不需要的请输入 n"
-read -p "是否替换或下载 config.sh y/n：" Rconfig
-Rconfig=${Rconfig:-'y'}
-read -p "是否替换或下载 extra.sh y/n：" Rextra
-Rextra=${Rextra:-'y'}
-read -p "是否替换或下载 code.sh y/n：" Rcode
-Rcode=${Rcode:-'y'}
-read -p "是否替换或下载 task_before.sh y/n：" Rbefore
-Rbefore=${Rbefore:-'y'}
-read -p "是否添加 task:ql bot（会拉取机器人并自动更新） y/n：" Rbot
-Rbot=${Rbot:-'y'}
+echo "以下操作默认为是，不需要的请输入 n，如果输入 A 则取消选择，直接进行全部替换"
+read -p "是否全部替换或下载，请输入 A，建议初次使用选择"：" Rall
+if [ $Rall != 'A' ]; then
+    read -p "是否替换或下载 config.sh y/n：" Rconfig
+    Rconfig=${Rconfig:-'y'}
+    read -p "是否替换或下载 extra.sh y/n：" Rextra
+    Rextra=${Rextra:-'y'}
+    read -p "是否替换或下载 code.sh y/n：" Rcode
+    Rcode=${Rcode:-'y'}
+    read -p "是否替换或下载 task_before.sh y/n：" Rbefore
+    Rbefore=${Rbefore:-'y'}
+    read -p "是否添加 task:ql bot（会拉取机器人并自动更新） y/n：" Rbot
+    Rbot=${Rbot:-'y'}
+fi
 
 
 # 下载 config.sh
 if [ ! -a "$config_shel_path" ]; then
     touch $config_shell_path
 fi
-if [ $Rconfig = 'y' ]; then
+if [ $Rconfig = 'y' -o $Rall = 'A' ]; then
     curl -s --connect-timeout 3 https://raw.githubusercontent.com/Oreomeow/VIP/main/Conf/Qinglong/config.sample.sh > $config_shell_path
     cp $config_shell_path $dir_shell/config.sh
     # 判断是否下载成功
@@ -46,7 +49,7 @@ fi
 if [ ! -a "$extra_shell_path" ]; then
     touch $extra_shell_path
 fi
-if [ $Rextra = 'y' ]; then
+if [ $Rextra = 'y' -o $Rall = 'A' ]; then
     curl -s --connect-timeout 3 https://raw.githubusercontent.com/Oreomeow/VIP/main/Tasks/qlrepo/extra.sh > $extra_shell_path
     cp $extra_shell_path $dir_shell/extra.sh
     # 判断是否下载成功
@@ -78,7 +81,7 @@ fi
 if [ ! -a "$code_shell_path" ]; then
     touch $code_shell_path
 fi
-if [ $Rcode = 'y' ]; then
+if [ $Rcode = 'y' -o $Rall = 'A' ]; then
     curl -s --connect-timeout 3 https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/code.sh > $code_shell_path
     cp $code_shell_path $dir_shell/code.sh
     # 判断是否下载成功
@@ -110,7 +113,7 @@ fi
 if [ ! -a "$task_before_shell_path" ] ; then
     touch $task_before_shell_path
 fi
-if [ $Rbefore = 'y' ]; then
+if [ $Rbefore = 'y' -o $Rall = 'A' ]; then
     curl -s --connect-timeout 3 https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/task_before.sh > $task_before_shell_path
     # 判断是否下载成功
     task_before_size=$(ls -l $task_before_shell_path | awk '{print $5}')
@@ -126,7 +129,7 @@ fi
 # 添加定时任务 ql bot
 if [ "$(grep -c bot /ql/config/crontab.list)" != 0 -a $Rbot = 'y' ]; then
     echo "您的任务列表中已存在 task ql bot"
-elif [ "$(grep -c bot /ql/config/crontab.list)" = 0 -a $Rbot = 'y' ]; then
+elif [ "$(grep -c bot /ql/config/crontab.list)" = 0 -a $Rbot = 'y' -o $Rall = 'A' ]; then
     echo "开始添加 task ql bot"
     # 获取token
     token=$(cat /ql/config/auth.json | jq --raw-output .token)
