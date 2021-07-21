@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#Build 20210717-001
+## Build 20210721-001
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -14,8 +14,8 @@ repo2='JDHelloWorld_jd_scripts'                    #预设的 JDHelloWorld 仓�
 repo3='he1pu_JDHelp'                               #预设的 he1pu 仓库
 repo4='shufflewzc_faker2'                          #预设的 shufflewzc 仓库
 repo5='Wenmoux_scripts_wen_chinnkarahoi'           #预设的 Wenmoux 仓库，用于读取口袋书店互助码。需提前拉取温某人的仓库或口袋书店脚本并完整运行。
-repo6='Aaron-lv_sync_jd_scripts'
-repo=$repo1                                        #默认调用 panghu999 仓库脚本日志
+repo6='Aaron-lv_sync_jd_scripts'                   #预设的 Aaron-lv 仓库
+repo=$repo4                                        #默认调用 panghu999 仓库脚本日志
 
 ## 调试模式开关，默认是0，表示关闭；设置为1，表示开启
 DEBUG="1"
@@ -71,6 +71,11 @@ BreakHelpNum="4 9-14 15~18 19_21"  ## 屏蔽账号序号或序号区间
 ## 定义是否自动更新配置文件中的互助码和互助规则，默认为1，表示更新；留空或其他数值表示不更新。
 UpdateType="1"
 
+## 定义是否自动安装或修复缺失的依赖，默认为1，表示自动修复；留空或其他数值表示不修复。
+FixDependType="1"
+## 定义监控修复的依赖名称
+package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv typescript fs require tslib"
+
 ## 需组合的环境变量列表，env_name需要和var_name一一对应，如何有新活动按照格式添加(不懂勿动)
 env_name=(
   FRUITSHARECODES
@@ -120,7 +125,7 @@ name_js=(
   "$repo"_jd_crazy_joy
   "$repo"_jd_jdzz
   "$repo"_jd_jxnc
-  "$repo5"_jd_bookshop
+  "$repo"_jd_bookshop
   "$repo"_jd_cash
   "$repo"_jd_sgmh
   "$repo6"_jd_cfd
@@ -578,8 +583,87 @@ backup_del(){
 [[ $CLEANBAK = "1" ]] && find $dir_config/bak/ -type f -mtime +$CLEANBAK_DAYS | xargs rm -rvf
 }
 
+install_dependencies_normal(){
+    for i in $@; do
+        case $i in
+            canvas)
+                cd /ql/scripts
+                if [[ "$(npm ls $i)" =~ (empty) ]]; then
+                    apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && npm i $i --prefix /ql/scripts --build-from-source
+                fi
+                ;;
+            typescript)
+                if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
+                    if [[ "$(npm ls $i)" =~ $i ]]; then
+                        npm uninstall $i
+                    fi
+                    npm i $i -g --force
+                fi
+                ;;
+            *)
+                if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
+                    if [[ "$(npm ls $i)" =~ $i ]]; then
+                        npm uninstall $i
+                    fi
+                    npm i $i -g
+                fi
+                ;;
+        esac
+    done
+}
+
+install_dependencies_force(){
+    for i in $@; do
+        cd /ql/scripts
+        if [[ "$(npm ls $i)" =~ $i ]]; then
+            npm uninstall $i
+            rm -rf /ql/scripts/node_modules/$i
+            rm -rf /ql/scripts/node_modules/lodash
+        elif [[ "$(npm ls $i -g)" =~ $i ]]; then
+            npm uninstall -g $i
+            rm -rf /usr/local/lib/node_modules/$i
+            rm -rf /usr/local/lib/node_modules/lodash
+	    fi
+        case $i in
+            canvas)
+                cd /ql/scripts
+                if [[ "$(npm ls $i)" =~ (empty) ]]; then
+                    apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && npm i $i --prefix /ql/scripts --build-from-source --force
+                fi
+                ;;
+            typescript)
+                if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
+                    if [[ "$(npm ls $i)" =~ $i ]]; then
+                        npm uninstall $i
+                    fi
+                    npm i $i -g --force
+                fi
+                ;;
+            *)
+                if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
+                    if [[ "$(npm ls $i)" =~ $i ]]; then
+                        npm uninstall $i
+                    fi
+                    npm i $i -g --force
+                fi
+                ;;
+        esac
+    done
+}
+
+install_dependencies_all(){
+    install_dependencies_normal $package_name
+    cd /ql/scripts
+    for i in $package_name; do
+        if [[ "$(npm ls $i -g)" =~ (empty) ]] && [[ "$(npm ls $i)" =~ (empty) ]] || [[ "$(npm ls $i)" =~ ERR ]] || [[ "$(npm ls $i -g)" =~ ERR ]]; then
+            install_dependencies_force $i
+        fi
+    done
+}
+
 
 ## 执行并写入日志
+[[ $FixDependType = "1" ]] && install_dependencies_all >/dev/null 2>&1 &
 today="$(date +%Y年%m月%d日)"
 cur_time="【$(date +%X)】"
 log_time=$(date "+%Y-%m-%d-%H-%M-%S")
@@ -592,4 +676,4 @@ sleep 5
 update_help
 
 ## 修改curtinlv入会领豆配置文件的参数
-sed -i "4c JD_COOKIE = '$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*\(pt_key=\S\+;\)\S*\(pt_pin=\S\+;\)\S*/\1\2/g;" | perl -pe "s| |&|g")'" /ql/repo/curtinlv_JD-Script/OpenCard/OpenCardConfig.ini
+[[ -f /ql/repo/curtinlv_JD-Script/OpenCard/OpenCardConfig.ini ]] && sed -i "4c JD_COOKIE = '$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*\(pt_key=\S\+;\)\S*\(pt_pin=\S\+;\)\S*/\1\2/g;" | perl -pe "s| |&|g")'" /ql/repo/curtinlv_JD-Script/OpenCard/OpenCardConfig.ini
