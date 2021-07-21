@@ -131,7 +131,7 @@ fi
 
 
 # 添加定时任务 ql bot
-if [ "$(grep -c bot /ql/config/crontab.list)" != 0 -a "${Rbot}" = 'y' ]; then
+if [ "$(grep -c bot /ql/config/crontab.list)" != 0 ] && [ "${Rbot}" = 'y' -o "${Rall}" = 1 ]; then
     echo "您的任务列表中已存在 task ql bot"
 elif [ "$(grep -c bot /ql/config/crontab.list)" = 0 ] && [ "${Rbot}" = 'y' -o "${Rall}" = 1 ]; then
     echo "开始添加 task ql bot"
