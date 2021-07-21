@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 
 ## 本脚本搬运并模仿 liuqitoday
@@ -100,7 +101,7 @@ if [ "${Rcode}" = 'y' -o "${Rall}" = 1 ]; then
     echo -e "## 将\"repo=\$repo1\"改成\"repo=\$repo2\"或其他，以默认调用其他仓库脚本日志\nrepo1='panghu999_jd_scripts' #预设的 panghu999 仓库\nrepo2='JDHelloWorld_jd_scripts' #预设的 JDHelloWorld 仓库\nrepo3='he1pu_JDHelp' #预设的 he1pu 仓库\nrepo4='shufflewzc_faker2' #预设的 shufflewzc 仓库\nrepo6='Aaron-lv_sync_jd_scripts' #预设的 Aaron-lv 仓库\nrepo=\$repo1 #默认调用 panghu999 仓库脚本日志"
     read -p "输入您想调用的仓库编号(默认为 4):"
     repoNum=${repoNum:-'4'}
-    sed -i "s/\$repo4/\$repo$repoNum/g" $code_shell_path
+    sed -i "s/\$repo4/\$repo${repoNum}/g" $code_shell_path
     # 将 code.sh 添加到定时任务
     if [ "$(grep -c code.sh /ql/config/crontab.list)" = 0 ]; then
         echo "开始添加 task code.sh"
