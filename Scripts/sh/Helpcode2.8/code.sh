@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210721-001
+## Build 20210721-002
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -440,8 +440,10 @@ for ((i=1; i<=100; i++)); do
                 fi
 #            fi
         fi
-    elif [[ $i -gt $user_sum ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name_my$i")" ]]; then
+    elif [[ $i -gt $user_sum ]] && [[ $i -gt 1 ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name_my$i")" ]]; then
         sed -i "/^$config_name_my$i/d" $file_task_before
+    elif [[ $i -eq 1 ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name_my$i")" ]]; then
+        sed -i "s/^$config_name_my$i='\S*'$/$config_name_my$i=''/" $file_task_before
     fi
 done
 
@@ -459,8 +461,10 @@ for ((j=1; j<=100; j++)); do
         if [ "$new_rule" != "$old_rule" ]; then
             sed -i "s/^$config_name_for_other$j=\"$old_rule\"$/$config_name_for_other$j=\"$new_rule\"/" $file_task_before
         fi
-    elif [[ $j -gt $user_sum ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name_for_other$j")" ]]; then
+    elif [[ $j -gt $user_sum ]] && [[ $j -gt 1 ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name_for_other$j")" ]]; then
         sed -i "/^$config_name_for_other$j/d" $file_task_before
+    elif [[ $j -eq 1 ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name_for_other$j")" ]]; then
+        sed -i "s/^$config_name_for_other$j=\"\S*\"$/$config_name_for_other$j=\"\"/" $file_task_before
     fi
 done
 }
@@ -490,17 +494,19 @@ for ((k=1; k<=100; k++)); do
                 sed -i "s/^$config_name$k='$old_code'$/$config_name$k='$new_code'/" $file_task_before
             fi
         fi
-    elif [[ $k -gt $user_sum ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name$k")" ]]; then
+    elif [[ $k -gt $user_sum ]] && [[ $k -gt 1 ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name$k")" ]]; then
         sed -i "/^$config_name$k/d" $file_task_before
+    elif [[ $k -eq 1 ]] && [[ ! -z "$(cat $file_task_before | grep "^$config_name$k")" ]]; then
+        sed -i "s/^$config_name$k='\S*'$/$config_name$k=''/" $file_task_before
     fi
 done
 }
 
 export_codes_sub_only(){
-if [ "$(cat $dir_scripts/"$repo"_jd_cfd.js | grep "// console.log(\`token")" != "" ]; then
-    echo -e "\n# 正在修改 "$repo"_jd_cfd.js ，待完全运行 "$repo"_jd_cfd.js 后即可输出 token ！"
-fi
-sed -i 's/.*\(c.*log\).*\(${JSON.*token)}\).*/      \1(\`\\n【京东账号${$.index}（${$.UserName}）的京喜token好友互助码】\2\\n\`)/g' /ql/scripts/*_jd_cfd.js
+    if [ "$(cat $dir_scripts/"$repo"_jd_cfd.js | grep "// console.log(\`token")" != "" ]; then
+        echo -e "\n# 正在修改 "$repo"_jd_cfd.js ，待完全运行 "$repo"_jd_cfd.js 后即可输出 token ！"
+    fi
+    sed -i 's/.*\(c.*log\).*\(${JSON.*token)}\).*/      \1(\`\\n【京东账号${$.index}（${$.UserName}）的京喜token好友互助码】\2\\n\`)/g' /ql/scripts/*_jd_cfd.js
     local task_name=$1
     local config_name=$2
     local chinese_name=$3
@@ -589,12 +595,15 @@ install_dependencies_normal(){
             canvas)
                 cd /ql/scripts
                 if [[ "$(npm ls $i)" =~ (empty) ]]; then
+                    if [[ "echo $(npm ls $i) | grep ERR" != "" ]]; then
+                        npm uninstall $i
+                    fi
                     apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && npm i $i --prefix /ql/scripts --build-from-source
                 fi
                 ;;
             typescript)
                 if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
-                    if [[ "$(npm ls $i)" =~ $i ]]; then
+                    if [[ "echo $(npm ls $i -g) | grep ERR" != "" ]]; then
                         npm uninstall $i
                     fi
                     npm i $i -g --force
@@ -602,7 +611,7 @@ install_dependencies_normal(){
                 ;;
             *)
                 if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
-                    if [[ "$(npm ls $i)" =~ $i ]]; then
+                    if [[ "echo $(npm ls $i -g) | grep ERR" != "" ]]; then
                         npm uninstall $i
                     fi
                     npm i $i -g
@@ -614,36 +623,25 @@ install_dependencies_normal(){
 
 install_dependencies_force(){
     for i in $@; do
-        cd /ql/scripts
-        if [[ "$(npm ls $i)" =~ $i ]]; then
-            npm uninstall $i
-            rm -rf /ql/scripts/node_modules/$i
-            rm -rf /ql/scripts/node_modules/lodash
-        elif [[ "$(npm ls $i -g)" =~ $i ]]; then
-            npm uninstall -g $i
-            rm -rf /usr/local/lib/node_modules/$i
-            rm -rf /usr/local/lib/node_modules/lodash
-	    fi
         case $i in
             canvas)
                 cd /ql/scripts
                 if [[ "$(npm ls $i)" =~ (empty) ]]; then
-                    apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && npm i $i --prefix /ql/scripts --build-from-source --force
-                fi
-                ;;
-            typescript)
-                if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
-                    if [[ "$(npm ls $i)" =~ $i ]]; then
+                    if [[ "$(npm ls $i)" =~ $i ]] || [[ "echo $(npm ls $i) | grep ERR" != "" ]]; then
                         npm uninstall $i
                     fi
-                    npm i $i -g --force
+                    rm -rf /ql/scripts/node_modules/$i
+                    rm -rf /usr/local/lib/node_modules/lodash/*
+                    apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && npm i $i --prefix /ql/scripts --build-from-source --force
                 fi
                 ;;
             *)
                 if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
-                    if [[ "$(npm ls $i)" =~ $i ]]; then
+                    if [[ "$(npm ls $i)" =~ $i ]] || [[ "$(npm ls $i -g)" =~ $i ]] || [[ "echo $(npm ls $i -g) | grep ERR" != "" ]]; then
                         npm uninstall $i
                     fi
+                    rm -rf /usr/local/lib/node_modules/$i
+                    rm -rf /usr/local/lib/node_modules/lodash/*
                     npm i $i -g --force
                 fi
                 ;;
@@ -655,9 +653,7 @@ install_dependencies_all(){
     install_dependencies_normal $package_name
     cd /ql/scripts
     for i in $package_name; do
-        if [[ "$(npm ls $i -g)" =~ (empty) ]] && [[ "$(npm ls $i)" =~ (empty) ]] || [[ "$(npm ls $i)" =~ ERR ]] || [[ "$(npm ls $i -g)" =~ ERR ]]; then
-            install_dependencies_force $i
-        fi
+        install_dependencies_force $i
     done
 }
 

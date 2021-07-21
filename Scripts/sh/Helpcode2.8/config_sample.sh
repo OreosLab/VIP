@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210717-001
+## Mod: Build20210721-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -109,21 +109,24 @@ export GOBOT_TOKEN=""
 export GOBOT_QQ=""
 
 ## 10. 临时屏蔽某个Cookie
-## 如果某些Cookie已经失效了，但暂时还没法更新，可以使用此功能在不删除该Cookie和重新修改Cookie编号的前提下，临时屏蔽掉某些编号的Cookie
+## 如果某些 Cookie 已经失效了，但暂时还没法更新，可以使用此功能在不删除该Cookie和重新修改Cookie编号的前提下，临时屏蔽掉某些编号的Cookie
 ## 多个Cookie编号以半角的空格分隔，两侧一对半角双引号，使用此功能后，在运行js脚本时账户编号将发生变化
-## 举例1：TempBlockCookie="2"    临时屏蔽掉Cookie2
-## 举例2：TempBlockCookie="2 4"  临时屏蔽掉Cookie2和Cookie4
+## 举例1：TempBlockCookie="2"    临时屏蔽掉 Cookie2
+## 举例2：TempBlockCookie="2 4"  临时屏蔽掉 Cookie2 和 Cookie4
 
-## 如果只是想要屏蔽某个账号不参加某些活动，可以参考下面 case 这个命令的例子来控制
+## 如果只是想要屏蔽某个 Cookie 不参加某些活动，可以参考下面 case 这个命令的例子来控制
 ## case $1 in
 ##     *jd_fruit*)                            # 东东农场活动脚本关键词
-##         TempBlockCookie="5"                # 账号5不玩东东农场
+##         TempBlockCookie="5"                # Cookie5 不玩东东农场
 ##         ;;
 ##     *jd_dreamFactory* | *jd_jdfactory*)    # 京喜工厂和东东工厂的活动脚本关键词
-##         TempBlockCookie="2"                # 账号2不玩京喜工厂和东东工厂
+##         TempBlockCookie="2"                # Cookie2 不玩京喜工厂和东东工厂
 ##         ;;
 ##     *jd_jdzz* | *jd_joy*)                  # 京喜赚赚和宠汪汪的活动脚本关键词
-##         TempBlockCookie="3 6"              # 账号3、账号6不玩京东赚赚和宠汪汪
+##         TempBlockCookie="3 6"              # Cookie3 、Cookie6 不玩京东赚赚和宠汪汪
+##         ;;
+##     *)                                     # 其他活动
+##         TempBlockCookie=""                 # 默认为空值，表示其他帐号参加全部活动。填写帐号序号表示临时屏蔽指定 Cookie 参加其他活动
 ##         ;;
 ## esac
 case $1 in
@@ -134,6 +137,9 @@ case $1 in
         TempBlockCookie=""
         ;;
     *jd_jdzz* | *jd_joy*)
+        TempBlockCookie=""
+        ;;
+    *)
         TempBlockCookie=""
         ;;
 esac
@@ -352,7 +358,11 @@ export zlzh=$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\'\1\',/g
 export qjd_zlzh=$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')  ## 支持中文用户名
 ## 3、签到领现金助力
 export cash_zlzh=$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')  ## 支持中文用户名
-## 4、入会开卡
+## 4、京喜工厂开团助力 for Python
+### 支持指定账号开团，跑1次脚本默认开3次团，如未指定账号默认给账号一开团。
+### 变量ENV 指定开团账号。可填用户名 或 pt_pin 的值。示例：export jxgc_kaituan="用户1&用户2"
+export jxgc_kaituan="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\)\S*;/\1/g; s/ /\&/g;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"
+## 5、入会开卡
 ### int，入会送豆满足此值，否则不入会
 export openCardBean="30"
 ### 布尔值，是否记录符合条件的shopid(默认True)
@@ -419,6 +429,14 @@ export olympicgames_inviteId=""
 ### 填写 pt_pin@金额，pt_pin为用户名，可以在 COOKIES 中提取；金额为 2 或 10，例如 LiLei@2 或 HanMeimei@10。多值用 & 连接，例如 LiLei@2&HanMeimei@10
 ### export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1@10/g; s/\n/\&/g;")"  ##兑10元现金，比较难兑
 export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\1@2/g; s/ /&/g;")"           ##兑2元现金
+
+# JDHelloWorld 环境变量
+## 1、新版京喜财富岛提现
+### 提现金额，可选0.1 0.5 1 2 10
+export CFD_CASHOUT_MONEY=10
+### token，顺序、数量必须与cookie一致。抓包地址：https://m.jingxi.com/jxbfd/user/ExchangePrize
+### export CFD_CASH_TOKEN='[{"strPgtimestamp":"你的值","strPhoneID":"你的值","strPgUUNum":"你的值"},{"strPgtimestamp":"你的值","strPhoneID":"你的值","strPgUUNum":"你的值"}]'
+export CFD_CASH_TOKEN='[{"strPgtimestamp":"1626623544085","strPhoneID":"878e21db65d2d606","strPgUUNum":"56eaaf98f7d7a69c59e50c6bb40e79c1"}]'
 
 ## 其他命令：
 ## 1、一键改写京东兑蓝币脚本的cookies；需手动运行 (已集成至最新的 code.sh)
