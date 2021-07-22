@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210721-002
+## Build 20210722-001
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -15,7 +15,7 @@ repo3='he1pu_JDHelp'                               #预设的 he1pu 仓库
 repo4='shufflewzc_faker2'                          #预设的 shufflewzc 仓库
 repo5='Wenmoux_scripts_wen_chinnkarahoi'           #预设的 Wenmoux 仓库，用于读取口袋书店互助码。需提前拉取温某人的仓库或口袋书店脚本并完整运行。
 repo6='Aaron-lv_sync_jd_scripts'                   #预设的 Aaron-lv 仓库
-repo=$repo4                                        #默认调用 panghu999 仓库脚本日志
+repo=$repo4                                        #默认调用 shufflewzc 仓库脚本日志
 
 ## 调试模式开关，默认是0，表示关闭；设置为1，表示开启
 DEBUG="1"
@@ -93,7 +93,7 @@ env_name=(
   JDHEALTH_SHARECODES
   JD818_SHARECODES
   CITY_SHARECODES
-  JXNCTOKENS
+  MONEYTREE_SHARECODES
 )
 var_name=(
   ForOtherFruit
@@ -111,6 +111,7 @@ var_name=(
   ForOtherHealth
   ForOtherCarni
   ForOtherCity
+  ForOtherMoneyTree
 )
 
 ## name_js为脚本文件名，如果使用ql repo命令拉取，文件名含有作者名
@@ -132,6 +133,7 @@ name_js=(
   "$repo"_jd_health
   "$repo"_jd_carnivalcity
   "$repo"_jd_city
+  "$repo4"_jd_moneyTree_heip
 )
 
 name_config=(
@@ -150,6 +152,7 @@ name_config=(
   Health
   Carni
   City
+  MoneyTree
 )
 
 name_chinese=(
@@ -168,6 +171,7 @@ name_chinese=(
   东东健康社区
   京东手机狂欢城
   城城领现金
+  摇钱树
 )
 
 #仅输出互助码的环境变量

@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210721-001
+## Mod: Build20210721-002
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -12,20 +12,20 @@ AutoDelCron="true"
 AutoAddCron="true"
 
 ## ql repo命令拉取脚本时需要拉取的文件后缀，直接写文件后缀名即可
-RepoFileExtensions="js py"
+RepoFileExtensions="js py ts"
 
 ## 由于github仓库拉取较慢，所以会默认添加代理前缀，如不需要请移除
 GithubProxyUrl="https://ghproxy.com/"
 
 ## 设置定时任务执行的超时时间，默认1h，后缀"s"代表秒(默认值), "m"代表分, "h"代表小时, "d"代表天
-CommandTimeoutTime="1h"
+CommandTimeoutTime="3h"
 
 ## 设置批量执行任务时的并发数，默认同时执行5个任务
-MaxConcurrentNum="40"
+MaxConcurrentNum="20"
 
 ## 在运行 task 命令时，随机延迟启动任务的最大延迟时间
 ## 默认给javascript任务加随机延迟，如 RandomDelay="300" ，表示任务将在 1-300 秒内随机延迟一个秒数，然后再运行，取消延迟赋值为空
-RandomDelay="300"
+RandomDelay=""
 
 ## 如果你自己会写shell脚本，并且希望在每次运行 ql update 命令时，额外运行你的 shell 脚本，请赋值为 "true"，默认为true
 EnableExtraShell="true"
@@ -47,6 +47,8 @@ export PUSH_KEY=""
 export BARK_PUSH=""
 ## 下方填写推送声音设置，例如choo，具体值请在bark-推送铃声-查看所有铃声
 export BARK_SOUND=""
+## 下方填写推送消息分组，默认为"QingLong"
+export BARK_GROUP="QingLong"
 
 ## 3. Telegram 
 ## 下方填写自己申请@BotFather的Token，如10xxx4:AAFcqxxxxgER5uw
@@ -214,18 +216,16 @@ export SUPERMARKET_LOTTERY="true"
 export FRUIT_BEAN_CARD="true"
 ## 12、是否取关商品。环境变量内容的意思依次是是否取关全部商品(0表示一个都不),是否取关全部店铺数(0表示一个都不),遇到此商品不再进行取关,遇到此店铺不再进行取关
 export UN_SUBSCRIBES="300,300,,"
-## 12、定义 unsubscribe 取关参数
-## 具体教程：https://gitee.com/lxk0301/jd_docker/blob/master/githubAction.md#%E5%8F%96%E5%85%B3%E5%BA%97%E9%93%BAsecret%E7%9A%84%E8%AF%B4%E6%98%8E
-## jd_unsubscribe这个任务是用来取关每天做任务关注的商品和店铺，默认在每次运行时取关20个商品和20个店铺
-## 如果取关数量不够，可以根据情况增加，还可以设置 jdUnsubscribeStopGoods 和 jdUnsubscribeStopShop 
-## 商品取关数量
-goodPageSize="30"
-## 店铺取关数量
-shopPageSize="60"
-## 遇到此商品不再取关此商品以及它后面的商品，需去商品详情页长按拷贝商品信息
-jdUnsubscribeStopGoods=""
-## 遇到此店铺不再取关此店铺以及它后面的店铺，请从头开始输入店铺名称
-jdUnsubscribeStopShop=""
+## 12、jd_unsubscribe这个任务是用来取关每天做任务关注的商品和店铺，默认在每次运行时取关20个商品和20个店铺
+### 如果取关数量不够，可以根据情况增加，还可以设置 jdUnsubscribeStopGoods 和 jdUnsubscribeStopShop 
+### 商品取关数量
+export goodPageSize="30"
+### 店铺取关数量
+export shopPageSize="60"
+### 遇到此商品不再取关此商品以及它后面的商品，需去商品详情页长按拷贝商品信息
+export jdUnsubscribeStopGoods=""
+### 遇到此店铺不再取关此店铺以及它后面的店铺，请从头开始输入店铺名称
+export jdUnsubscribeStopShop=""
 ## 13、疯狂的JOY循环助力开关。true表示循环助力,false表示不循环助力，默认不开启循环助力
 export JDJOY_HELPSELF="true"
 ## 14、疯狂的JOY京豆兑换。0表示不换,其他按可兑换数填写。目前最小2000
@@ -246,18 +246,18 @@ export PURCHASE_SHOPS="true"
 export TUAN_ACTIVEID=""
 ## 22、京东UA。点点券脚本运行环境变量
 export JD_USER_AGENT="jdltapp;iPhone;3.1.0;14.4;3b6e79334551fc6f31952d338b996789d157c4e8"
-## 22、京东试用jd_try相关环境变量
-##控制每次获取商品数量，默认12
+## 23、京东试用jd_try相关环境变量
+### 控制每次获取商品数量，默认12
 export JD_TRY_PAGE_SIZE=""
-##商品分类，以 @ 隔开，示例：家用电器@手机数码@电脑办公@家居家装
+### 商品分类，以 @ 隔开，示例：家用电器@手机数码@电脑办公@家居家装
 export JD_TRY_CIDS_KEYS=""
-##试用类型，以 @ 隔开，示例：免费试用@闪电试
+### 试用类型，以 @ 隔开，示例：免费试用@闪电试
 export JD_TRY_TYPE_KEYS=""
-##过滤试用商品关键字，以 @ 隔开(默认内置了很多关键字，建议使用默认)
+### 过滤试用商品关键字，以 @ 隔开(默认内置了很多关键字，建议使用默认)
 export JD_TRY_GOOD_FILTERS=""
-##试用商品最低价格
+### 试用商品最低价格
 export JD_TRY_MIN_PRICE=""
-##试用商品最多提供数量（过滤垃圾商品）
+### 试用商品最多提供数量（过滤垃圾商品）
 export JD_TRY_MAX_SUPPLY_COUNT=""
 
 # 阿道夫部分环境变量
@@ -279,13 +279,6 @@ export RAIN_NOTIFY_CONTROL="false"
 export SUPER_RAIN_RRA=""
 ## 半点京豆雨RRA
 export HALF_RAIN_RRA=""
-
-# JDHelloWorld 部分环境变量
-## 宠汪汪二代目
-### 默认80，10、20、40、80可选
-export feedNum="80"
-### 默认双人跑
-export JD_JOY_teamLevel="2"
 
 # 柠檬（胖虎部分环境变量）
 ## 1、京喜工厂抢茅台
@@ -361,7 +354,7 @@ export cash_zlzh=$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\'\1
 ## 4、京喜工厂开团助力 for Python
 ### 支持指定账号开团，跑1次脚本默认开3次团，如未指定账号默认给账号一开团。
 ### 变量ENV 指定开团账号。可填用户名 或 pt_pin 的值。示例：export jxgc_kaituan="用户1&用户2"
-export jxgc_kaituan="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\)\S*;/\1/g; s/ /\&/g;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"
+export jxgc_kaituan="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\)\S*;/\1/g; s/ /\&/g;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
 ## 5、入会开卡
 ### int，入会送豆满足此值，否则不入会
 export openCardBean="30"
@@ -378,12 +371,10 @@ export sleepNum="0.5"
 ### 布尔值，True:使用作者远程仓库更新的id，False：使用本地shopid.txt的id
 export isRemoteSid="true"
 ## 5、东东超市商品兑换
-#【填写您要兑换的商品】ENV设置： export coinToBeans='京豆包'
+# 填写您要兑换的商品名字，兼容模糊关键词
 export coinToBeans='京豆包'
-#多账号并发，默认关闭 ENV设置： export blueCoin_Cc=True
+#多账号并发，默认开启 True，关闭 False
 export blueCoin_Cc='True'
-### 【填写您要兑换的商品】
-export coinToBeans="京豆包"
 ### 轮次
 export startMaxNum="30"
 ### 多线程并发，相当于每秒点击兑换次数...适当调整，手机会发烫
@@ -396,14 +387,14 @@ export endtime="00:00:30.00000000"
 # Wenmoux 部分环境变量 
 ## 1、QQ星系牧场自动兑换20豆
 export Cowexchange="true"
-## 欧洲狂欢杯兑换兑换豆子，填38豆子，填39e卡
+## 2、欧洲狂欢杯兑换兑换豆子，填38豆子，填39e卡
 export Cupexid="39"
-## 10秒阅读
-## 填写自己CK
+## 3、10秒阅读
+### 填写自己CK
 export Readck=""
-## 填写自己设备UA
+### 填写自己设备UA
 export Read10UA=""
-## 填true推送消息，默认不推送
+### 填true推送消息，默认不推送
 export jrpush=""
 
 # smiek2221 环境变量
@@ -431,13 +422,14 @@ export olympicgames_inviteId=""
 export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\1@2/g; s/ /&/g;")"           ##兑2元现金
 
 # JDHelloWorld 环境变量
-## 1、新版京喜财富岛提现
+## 1、宠汪汪二代目
+### 默认80，10、20、40、80可选
+export feedNum="80"
+### 默认双人跑
+export JD_JOY_teamLevel="2"
+## 2、新版京喜财富岛提现
 ### 提现金额，可选0.1 0.5 1 2 10
 export CFD_CASHOUT_MONEY=10
 ### token，顺序、数量必须与cookie一致。抓包地址：https://m.jingxi.com/jxbfd/user/ExchangePrize
 ### export CFD_CASH_TOKEN='[{"strPgtimestamp":"你的值","strPhoneID":"你的值","strPgUUNum":"你的值"},{"strPgtimestamp":"你的值","strPhoneID":"你的值","strPgUUNum":"你的值"}]'
 export CFD_CASH_TOKEN='[{"strPgtimestamp":"1626623544085","strPhoneID":"878e21db65d2d606","strPgUUNum":"56eaaf98f7d7a69c59e50c6bb40e79c1"}]'
-
-## 其他命令：
-## 1、一键改写京东兑蓝币脚本的cookies；需手动运行 (已集成至最新的 code.sh)
-## sed -i "s/cookies=''/cookies='$(. /ql/shell/share.sh && . /ql/config/env.sh && echo $JD_COOKIE)'/g" /ql/scripts/*_jd_blueCoin.py
