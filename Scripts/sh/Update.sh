@@ -15,16 +15,16 @@ defaultNum=4
 repoNum=4
 
 
-ql raw https://git.io/config.sh
+curl -sL https://git.io/config.sh > $config_raw_path
 mv -b $config_raw_path $dir_config
 
-ql raw https://git.io/extra.sh
+curl -sL https://git.io/extra.sh > $extra_raw_path
 mv -b $extra_raw_path $dir_config
 sed -i "s/\$default4/\$default${defaultNum}/g" $extra_config_path
 
-ql raw https://git.io/code.sh
+curl -sL https://git.io/code.sh > $code_raw_path
 mv -b $code_raw_path $dir_config
 sed -i "s/\$repo4/\$repoNum${repoNum}/g" $code_config_path
 
-ql raw https://git.io/task_before.sh
+curl -sL https://git.io/task_before.sh > $task_before_raw_path
 # mv -b $task_before_raw_path $dir_config
