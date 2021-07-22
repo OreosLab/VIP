@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 dir_config=/ql/config
 dir_scripts=/ql/scripts
 dir_raw=/ql/raw
