@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Mod: Build20210722V1
+## Mod: Build20210723V1
 
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 使用方法：定时任务→添加定时→命令【ql extra】→定时规则【15 0-23/4 * * *】-运行
@@ -100,12 +100,7 @@ ql repo $default ##此处勿动
 ## 京喜工厂瓜分电力开团 ID
 ## ql raw https://raw.githubusercontent.com/chiupam/JD_Diy/master/pys/activeId.py
 
-# 3. Aaron-lv
-## 财富岛
-## ql raw https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
-ql repo https://github.com/Aaron-lv/sync.git "jd_cfd" "" "" "jd_scripts"
-
-# 4. Wenmoux
+# 3. Wenmoux
 ## 口袋书店
 ## ql raw https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/chinnkarahoi_jd_bookshop.js
 ql repo https://github.com/Wenmoux/scripts.git "chinnkarahoi_jd_bookshop" "" "" "wen"
