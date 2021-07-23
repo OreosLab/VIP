@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Mod: Build20210723V1
+## Mod: Build20210723V2
 
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 使用方法：定时任务→添加定时→命令【ql extra】→定时规则【15 0-23/4 * * *】-运行
@@ -44,6 +44,31 @@ default6="$u6 $p6 $k6 $d6 $b6"
 default=$default4 ##此处修改，只改数字，默认 shufflewzc 仓库
 
 
+# 单脚本
+## 名称之后标注﹢的单脚本，若下面已拉取仓库的可以不拉。这里适用于只拉取部分脚本使用
+# 1. curtinlv﹢
+## 入会 15 8 * * *
+## ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/OpenCard/jd_OpenCard.py
+## 关注 15 8 * * *
+## ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/jd_getFollowGift.py
+
+# 2. chiupam
+## 京喜工厂瓜分电力开团 ID
+## ql raw https://raw.githubusercontent.com/chiupam/JD_Diy/master/pys/activeId.py
+
+
+# 3. Aaron-lv
+## 财富岛
+## ql raw https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
+ql repo https://github.com/Aaron-lv/sync.git "jd_cfd" "" "" "jd_scripts"
+
+
+# 4. Wenmoux
+## 口袋书店
+## ql raw https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/chinnkarahoi_jd_bookshop.js
+ql repo https://github.com/Wenmoux/scripts.git "chinnkarahoi_jd_bookshop" "" "" "wen"
+
+
 # 整库
 # 1. Unknown 备份托管等（如上）
 ql repo $default ##此处勿动
@@ -85,22 +110,4 @@ ql repo $default ##此处勿动
 ## ql repo https://github.com/star261/jd.git "jd_|star" "" "MovementFaker"
 
 # 14. Wenmoux
-## ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
-
-
-# 单脚本
-## 名称之后标注﹢的单脚本，若上面已拉取仓库的可以不拉，否则会重复拉取。这里适用于只拉取部分脚本使用
-# 1. curtinlv﹢
-## 入会 15 8 * * *
-## ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/OpenCard/jd_OpenCard.py
-## 关注 15 8 * * *
-## ql raw https://raw.githubusercontent.com/curtinlv/JD-Script/main/getFollowGifts/jd_getFollowGift.py
-
-# 2. chiupam
-## 京喜工厂瓜分电力开团 ID
-## ql raw https://raw.githubusercontent.com/chiupam/JD_Diy/master/pys/activeId.py
-
-# 3. Wenmoux
-## 口袋书店
-## ql raw https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/chinnkarahoi_jd_bookshop.js
-ql repo https://github.com/Wenmoux/scripts.git "chinnkarahoi_jd_bookshop" "" "" "wen"
+## ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "
