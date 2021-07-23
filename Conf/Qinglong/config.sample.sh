@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210721-002
+## Mod: Build20210723-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -408,6 +408,18 @@ export summer_movement_HelpHelpHelpFlag="true" ##是否只执行邀请助力 tru
 if [ $(date "+%H") -eq 13 ]; then
     export summer_movement_HelpHelpHelpFlag="true"
 fi
+## 4、京东签到图形验证修改火爆问题
+### 如果 read ECONNRESET 错误 可以试试
+### 环境变量 JOY_HOST 修改域名 https://jdjoy.jd.com 可以改成ip https://49.7.27.236
+### 如果上面ip不行就自己去ping下域名对应的ip cmd窗口输入—>ping jdjoy.jd.com 再改
+### 不要频繁请求 请过个半小时 1小时在执行
+export JOY_HOST=""
+## 5、图形验证文件 JDJRValidator_Pure.js 验证次数
+### 新增验证次数上限 默认25次 验证可能无法成功
+export JDJR_validator_Count="25"
+## 6、财富大陆热气球接客次数
+### 新增热气球接客 默认每次运行执行10次
+export gua_wealth_island_serviceNum="10"
 
 # cdle 环境变量
 ## 1、愤怒的锦鲤
@@ -421,6 +433,22 @@ export olympicgames_inviteId=""
 ### export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1@10/g; s/\n/\&/g;")"  ##兑10元现金，比较难兑
 export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\1@2/g; s/ /&/g;")"           ##兑2元现金
 
+# star261 环境变量
+## 1、京喜工厂开团
+### 默认第一个CK开团，例：若OPEN_DREAMFACTORY_TUAN="2,3"，则第2，第3个CK开团，其他账号参加第2，第3个CK开的团。每执行一次，会领取上一次成团的奖励和新开一次团，每天执行4次能开完3次团和领取3次团的奖励。一个账号能参团一次，一个账号一天能开三次团，请根据自己的情况设置需要开团的CK，一般至少5个CK能成团
+### 助力规则：开团账号开团，其他账号自动参团。 例：有A,B,C账号，A，B账号开团，则B，C会参加A的团，A会参加B的团。账号内互助之后，开团账号若有剩下参团次数，会尝试加入作者团
+### 成团条件：成团所需人数根据活动所需人数变化，一般为5-7人，若5人成团，则5个CK能成团一次，9个CK能成团两次，13个CK能成团三次
+export OPEN_DREAMFACTORY_TUAN=""
+## 2、燃动夏季
+### 会助力作者百元守卫战 参数helpAuthorFlag 默认助力
+### 百元守卫战,先脚本内互助，多的助力会助力作者
+export helpAuthorFlag="true" ##是否助力作者SH true 助力，false 不助力
+## 3、燃动夏季下注
+### 每个奖品会花费200币下注，不想下注的人不要跑
+### 若想下满注则设置环境变量 MAX_BET=true 前提：需要账号已经开通店铺会员
+### 每日20点开奖，脚本会自动开奖
+export MAX_BET="true"
+
 # JDHelloWorld 环境变量
 ## 1、宠汪汪二代目
 ### 默认80，10、20、40、80可选
@@ -433,3 +461,9 @@ export CFD_CASHOUT_MONEY=10
 ### token，顺序、数量必须与cookie一致。抓包地址：https://m.jingxi.com/jxbfd/user/ExchangePrize
 ### export CFD_CASH_TOKEN='[{"strPgtimestamp":"你的值","strPhoneID":"你的值","strPgUUNum":"你的值"},{"strPgtimestamp":"你的值","strPhoneID":"你的值","strPgUUNum":"你的值"}]'
 export CFD_CASH_TOKEN='[{"strPgtimestamp":"1626623544085","strPhoneID":"878e21db65d2d606","strPgUUNum":"56eaaf98f7d7a69c59e50c6bb40e79c1"}]'
+## 3、宠汪汪等提示预存验证码数量不足
+export validate_num="" ##你需要的数值
+
+# Aaron-lv 环境变量
+## 1、京东健康社区京豆兑换
+export JD_HEALTH_REWARD_NAME="20" ##只能兑换京豆，填写纯数字20 10 5 3
