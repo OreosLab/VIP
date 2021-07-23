@@ -512,7 +512,7 @@ export kois="pt_pin1@pt_pin2"
 ```
 
 ```
-## 真·抢京豆
+## 4、真·抢京豆
 ### 高速并发抢京豆，专治偷助力。设置环境变量angryBeanPins为指定账号助力，默认不助力。环境变量angryBeanMode可选值priority和speed，默认speed模式。
 export angryBeanPins="pt_pin1@pt_pin2"
 export angryBeanMode="speed"
