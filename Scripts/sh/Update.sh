@@ -24,7 +24,7 @@ sed -i "s/\$default4/\$default${defaultNum}/g" $extra_config_path
 
 curl -sL https://git.io/code.sh > $code_raw_path
 mv -b $code_raw_path $dir_config
-sed -i "s/\$repo4/\$repoNum${repoNum}/g" $code_config_path
+sed -i "s/\$repo4/\$repo${repoNum}/g" $code_config_path
 
 curl -sL https://git.io/task_before.sh > $task_before_raw_path
 # mv -b $task_before_raw_path $dir_config
