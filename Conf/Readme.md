@@ -280,14 +280,14 @@ export HALF_RAIN_RRA="" ##不解释，先放着
 ## 柠檬（胖虎部分环境变量）
 
 ```
-## 京喜工厂抢茅台
+## 1、京喜工厂抢茅台
 ### 自定义商品变量
 export shopid="1598" ##你要商品ID 冰箱
 export shopid1="1607"  ##你要商品ID 茅台
 ```
 
 ```
-## 推一推
+## 2、推一推
 ### 入口：极速版-赚金币 
 ### 分享到QQ查看邀请码，packetId就是
 ### 自定义变量
@@ -295,14 +295,14 @@ export tytpacketId=""
 ```
 
 ```
-## 是兄弟就砍我
+## 3、是兄弟就砍我
 ### 自定义邀请码环境变量
 export actId="" ##你要参加砍价的商品ID
 export packetId="" ##你要参加砍价的邀请码
 ```
 
 ```
-## 是兄弟就砍我2
+## 4、是兄弟就砍我2
 ### 惊喜欢乐砍 自定义变量 入口：京喜APP-我的-惊喜欢乐砍
 export launchid="" ##你的邀请码
 export first="false" ##第一次参加变量设置为true查看商品ID，填写商品ID后自动获取邀请码邀请；如果只助力，变量设置为false
@@ -310,14 +310,14 @@ export active="" ##商品ID
 ```
 
 ```
-## 赚金币
+## 5、赚金币
 ### 入口：极速版-百元生活费-赚金币-邀请好友
 ### 第一次运行可不填写邀请码，运行一次查看自己的邀请码
 export InviterPin="" ##你的邀请码
 ```
 
 ```
-## 0元砍价，入口：京东-我的-0元砍价
+## 6、0元砍价，入口：京东-我的-0元砍价
 ### 使用教程：
 ### 第一步，运行脚本一次日志查看商品ID
 ### 获取你要砍价的ID后变量填写
@@ -327,20 +327,20 @@ export activity="" ##这里填获取的商品activityId
 ```
 
 ```
-## 邀请有礼  
+## 7、邀请有礼  
 ### 自定义邀请码环境变量
 export yqm="" ##你的邀请码
 ```
 
 ```
-## 全民挖现金
+## 8、全民挖现金
 ### 入口：京东-我的-全民挖现金
 ### 运行一次查看邀请码 变量你的邀请码 
 export shareCode=""
 ```
 
 ```
-## 签到领现金添加变量方式
+## 9、签到领现金添加变量方式
 ### 自行添加变量设置邀请码 格式如下 默认10个
 export cashinviteCode=""
 export cashinviteCode2=""
@@ -348,12 +348,12 @@ export cashinviteCode3=""
 ```
 
 ```
-## 大老板农场 新增自定义变量通知开关
+## 10、大老板农场 新增自定义变量通知开关
 export dlbtz="true" ##通知打开，false为关闭
 ```
 
 ```
-## 零食街自动兑换变量
+## 11、零食街自动兑换变量
 ### 自行取消注释和注释
 ##export ljsdh="jdAward1" ##兑换5豆
 ##export ljsdh="jdAward2" ##兑换10豆
@@ -365,13 +365,34 @@ export ljsdh="jdAward3" ##兑换100豆
 ## curtinlv 环境变量
 
 ```
-## 赚京豆
+## 1、赚京豆
 ### 助力账号，填写pt_pin或用户名的值，如 zlzh = ['aaaa','xxxx','yyyy'] ，支持ENV
 export zlzh=['CurtinLV','xxxx','yyyy']
 ```
 
 ```
-## 入会开卡
+## 2、全民抢京豆
+export qjd_zlzh=['Your JD_User', '买买买', '东哥']
+```
+
+```
+## 3、签到领现金助力
+### 入口：App搜索领现金
+### 设置被助力的账号可填用户名 或 pin的值 不要;
+export cash_zlzh = ['Your JD_User', '买买买']
+```
+
+```
+## 4、京喜工厂开团助力 for python
+### 设置开团的账号可填用户名 或 pin的值 不要;
+### jxgc_kaituan = ['用户1','用户2']
+export jxgc_kaituan = []
+### 京喜UA
+export UserAgent = ''
+```
+
+```
+## 5、入会开卡
 ### int，入会送豆满足此值，否则不入会
 export openCardBean="30"
 ### 布尔值，是否记录符合条件的shopid(默认True)
@@ -389,7 +410,7 @@ export isRemoteSid="true"
 ```
 
 ```
-## 东东超市商品兑换
+## 6、东东超市商品兑换
 ### 填写商品名字，兼容模糊关键词
 export coinToBeans='京豆包'
 ### 多账号并发，默认关闭
@@ -404,42 +425,21 @@ export starttime="23:59:59.00000000"
 export endtime="00:00:30.00000000"
 ```
 
-```
-## 抢京豆
-export qjd_zlzh=['Your JD_User', '买买买', '东哥']
-```
-
-```
-## 签到领现金助力
-### 入口：App搜索领现金
-### 设置被助力的账号可填用户名 或 pin的值 不要;
-export cash_zlzh = ['Your JD_User', '买买买']
-```
-
-```
-## 京喜工厂开团助力
-### 设置开团的账号可填用户名 或 pin的值 不要;
-### jxgc_kaituan = ['用户1','用户2']
-export jxgc_kaituan = []
-### 京喜UA
-export UserAgent = ''
-```
-
 
 ## Wenmoux 部分环境变量
 
 ``` 
-## QQ星系牧场自动兑换20豆
+## 1、QQ星系牧场自动兑换20豆
 export Cowexchange="true"
 ```
 
 ```
-## 欧洲狂欢杯兑换兑换豆子，填38豆子，填39e卡
+## 2、欧洲狂欢杯兑换兑换豆子，填38豆子，填39e卡
 export Cupexid="39"
 ```
 
 ```
-## 10秒阅读
+## 3、10秒阅读
 export Readck="" ##自己CK
 export Read10UA="" ##自己设备UA
 export jrpush="" ##填true推送消息，默认不推送
@@ -449,17 +449,17 @@ export jrpush="" ##填true推送消息，默认不推送
 ## smiek2221 环境变量
 
 ```
-## 燃动夏季—入会
+## 1、燃动夏季—入会
 export summer_movement_joinjoinjoinhui="false" ##是否入会 true 入会，false 不入会
 ```
 
 ```
-## 燃动夏季—百元守卫战SH
+## 2、燃动夏季—百元守卫战SH
 export summer_movement_ShHelpFlag="1" ##0 不开启也不助力 1 开启并助力 2 开启但不助力 默认开启并助力
 ```
 
 ```
-## 燃动夏季-新增只做邀请助力功能
+## 3、燃动夏季-新增只做邀请助力功能
 export summer_movement_HelpHelpHelpFlag="false" ##是否只执行邀请助力 true 是 false 不是 默认 false
 ### 可以设置13点执行一下脚本
 if [ $(date "+%H") -eq 13 ]; then
@@ -468,7 +468,7 @@ fi
 ```
 
 ```
-## 京东签到图形验证修改火爆问题
+## 4、京东签到图形验证修改火爆问题
 ### 如果 read ECONNRESET 错误 可以试试
 ### 环境变量 JOY_HOST 修改域名 https://jdjoy.jd.com 可以改成ip https://49.7.27.236
 ### 如果上面ip不行就自己去ping下域名对应的ip cmd窗口输入—>ping jdjoy.jd.com 再改
@@ -477,13 +477,13 @@ export JOY_HOST=""
 ```
 
 ```
-## 图形验证文件 JDJRValidator_Pure.js 验证次数
+## 5、图形验证文件 JDJRValidator_Pure.js 验证次数
 ### 新增验证次数上限 默认25次 验证可能无法成功
 export JDJR_validator_Count="25"
 ```
 
 ```
-## 财富大陆热气球接客次数
+## 6、财富大陆热气球接客次数
 ### 新增热气球接客 默认每次运行执行10次
 export gua_wealth_island_serviceNum="10"
 ```
@@ -492,7 +492,7 @@ export gua_wealth_island_serviceNum="10"
 ## cdle 环境变量
 
 ```
-## 签到领现金兑换
+## 1、签到领现金兑换
 ### 需要填写exchangeAccounts参数，兑换多少取决于app内显示，默认为所有账号兑换10红包，部分账号会出现参数错误的提示。
 ### 填写 pt_pin@金额，pt_pin为用户名，可以在 COOKIES 中提取；金额为 2 或 10，例如 LiLei@2 或 HanMeimei@10。多值用 & 连接，例如 LiLei@2&HanMeimei@10
 export exchangeAccounts="pt_pin1@2"  ##抢2元红包
@@ -500,13 +500,13 @@ export exchangeAccounts="pt_pin1@2"  ##抢2元红包
 ```
 
 ```
-## 全民运动会守卫红包
+## 2、全民运动会守卫红包
 ### 助力码，需手动抓包
 export olympicgames_inviteId=""
 ```
 
 ```
-## 愤怒的锦鲤
+## 3、愤怒的锦鲤
 ### 高速并发请求，专治偷助力。在kois环境变量中填入需要助力的pt_pin，有多个请用@符号连接
 export kois="pt_pin1@pt_pin2"
 ```
@@ -515,7 +515,7 @@ export kois="pt_pin1@pt_pin2"
 ## star261 环境变量
 
 ```
-## 京喜工厂开团
+## 1、京喜工厂开团
 ### 默认第一个CK开团，例：若OPEN_DREAMFACTORY_TUAN="2,3"，则第2，第3个CK开团，其他账号参加第2，第3个CK开的团。每执行一次，会领取上一次成团的奖励和新开一次团，每天执行4次能开完3次团和领取3次团的奖励。一个账号能参团一次，一个账号一天能开三次团，请根据自己的情况设置需要开团的CK，一般至少5个CK能成团
 ### 助力规则：开团账号开团，其他账号自动参团。 例：有A,B,C账号，A，B账号开团，则B，C会参加A的团，A会参加B的团。账号内互助之后，开团账号若有剩下参团次数，会尝试加入作者团
 ### 成团条件：成团所需人数根据活动所需人数变化，一般为5-7人，若5人成团，则5个CK能成团一次，9个CK能成团两次，13个CK能成团三次
@@ -523,14 +523,14 @@ export OPEN_DREAMFACTORY_TUAN=""
 ```
 
 ```
-## 燃动夏季
+## 2、燃动夏季
 ### 会助力作者百元守卫战 参数helpAuthorFlag 默认助力
 ### 百元守卫战,先脚本内互助，多的助力会助力作者
 export helpAuthorFlag="true" ##是否助力作者SH true 助力，false 不助力
 ```
 
 ```
-## 燃动夏季下注
+## 3、燃动夏季下注
 ### 每个奖品会花费200币下注，不想下注的人不要跑
 ### 若想下满注则设置环境变量 MAX_BET=true 前提：需要账号已经开通店铺会员
 ### 每日20点开奖，脚本会自动开奖
@@ -566,8 +566,8 @@ export validate_num="" ##你需要的数值
 ## Aaron-lv 环境变量
 
 ```
-## 京东健康社区京豆兑换
-export JD_HEALTH_REWARD_NAME="20" ##只能兑换京豆，填写纯数字，20 10 5 3
+## 1、京东健康社区京豆兑换
+export JD_HEALTH_REWARD_NAME="20" ##只能兑换京豆，填写纯数字20 10 5 3
 ```
 
 
