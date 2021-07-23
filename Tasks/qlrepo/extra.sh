@@ -26,7 +26,7 @@ d3="^jd[^_]|USER|utils|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
 ## （4）预设的 shufflewzc 仓库
 u4="https://github.com/shufflewzc/faker2.git"
 p4="jd_|jx_|jddj_|getJDCookie"
-k4="activity|backUp|Coupon|update"
+k4="activity|backUp|update"
 d4="^jd[^_]|USER|utils|^ZooFaker|^JDJRValidator|^sign"
 ## （6）预设的 Aaron-lv 仓库
 u6="https://github.com/Aaron-lv/sync.git"
