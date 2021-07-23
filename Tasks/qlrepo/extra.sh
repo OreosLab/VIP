@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Mod: Build20210723V2
+## Mod: Build20210723V3
 
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 使用方法：定时任务→添加定时→命令【ql extra】→定时规则【15 0-23/4 * * *】-运行
@@ -60,13 +60,13 @@ default=$default4 ##此处修改，只改数字，默认 shufflewzc 仓库
 # 3. Aaron-lv
 ## 财富岛
 ## ql raw https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
-ql repo https://github.com/Aaron-lv/sync.git "jd_cfd" "" "" "jd_scripts"
+## ql repo https://github.com/Aaron-lv/sync.git "jd_cfd" "" "" "jd_scripts"
 
 
 # 4. Wenmoux
 ## 口袋书店
 ## ql raw https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/chinnkarahoi_jd_bookshop.js
-ql repo https://github.com/Wenmoux/scripts.git "chinnkarahoi_jd_bookshop" "" "" "wen"
+## ql repo https://github.com/Wenmoux/scripts.git "chinnkarahoi_jd_bookshop" "" "" "wen"
 
 
 # 整库
