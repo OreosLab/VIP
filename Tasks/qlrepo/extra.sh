@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Mod: Build20210723V3
+## Mod: Build20210724V1
 
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 使用方法：定时任务→添加定时→命令【ql extra】→定时规则【15 0-23/4 * * *】-运行
@@ -110,4 +110,4 @@ ql repo $default ##此处勿动
 ## ql repo https://github.com/star261/jd.git "jd_|star" "" "MovementFaker"
 
 # 14. Wenmoux
-## ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "
+## ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
