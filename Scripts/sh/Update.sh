@@ -15,7 +15,7 @@ defaultNum=4
 repoNum=4
 HelpType="HelpType=\"0\""
 BreakHelpType="BreakHelpType=\"1\""
-BreakHelpNum="BreakHelpType=\"11-47\""
+BreakHelpNum="BreakHelpNum=\"11-47\""
 
 curl -sL https://git.io/config.sh > $config_raw_path
 mv -b $config_raw_path $dir_config
