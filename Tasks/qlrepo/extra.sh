@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Mod: Build20210724V1
+## Mod: Build20210724V2
 
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 使用方法：定时任务→添加定时→命令【ql extra】→定时规则【15 0-23/4 * * *】-运行
@@ -25,7 +25,7 @@ k3="activity|backUp|Coupon|update"
 d3="^jd[^_]|USER|utils|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
 ## （4）预设的 shufflewzc 仓库
 u4="https://github.com/shufflewzc/faker2.git"
-p4="jd_|jx_|jddj_|getJDCookie"
+p4="jd_|jx_|gua_|jddj_|getJDCookie"
 k4="activity|backUp|update"
 d4="^jd[^_]|USER|utils|^ZooFaker|^JDJRValidator|^sign"
 ## （6）预设的 Aaron-lv 仓库
