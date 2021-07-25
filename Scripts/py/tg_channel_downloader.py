@@ -21,10 +21,10 @@ drive_name = 'gc'  # rclone drive name
 max_num = 5  # 同时下载数量
 # filter file name/文件名过滤
 filter_list = ['你好，欢迎加入 Quantumu', '\n']
-# filter chat id /过滤某些频道不下载
-blacklist = []
-donwload_all_chat = True # 监控所有你加入的频道，收到的新消息如果包含媒体都会下载，默认关闭
-filter_file_name = ['jpg','avi','mkv','rar','zip','mp4','webp','tgs'] # 过滤文件后缀，可以填jpg、avi、mkv、rar等。
+# filter chat id /指定某些频道下载
+whitelist = []
+donwload_all_chat = False # 监控所有你加入的频道，收到的新消息如果包含媒体都会下载，默认关闭
+filter_file_name = ['sh'] # 指定文件后缀，可以填jpg、avi、mkv、rar等。
 #***********************************************************************************#
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -82,7 +82,7 @@ async def worker(name):
         entity = queue_item[2]
         file_name = queue_item[3]
         for filter_file in filter_file_name:
-            if file_name.endswith(filter_file):
+            if not file_name.endswith(filter_file):
                 return
         dirname = validateTitle(f'{chat_title}({entity.id})')
         datetime_dir_name = message.date.strftime("%Y年%m月")
@@ -211,7 +211,7 @@ async def all_chat_download(update):
     if message.media:
         chat_id = update.message.to_id
         entity = await client.get_entity(chat_id)
-        if entity.id in blacklist:
+        if not entity.id in whitelist:
             return
         chat_title = entity.title
         # 如果是一组媒体
