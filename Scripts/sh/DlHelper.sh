@@ -1,9 +1,7 @@
 #!/bin/bash
 
 dir_sync=/root/Help/互助研究院\(1597522865\)/2021年07月
-py=/root/telegram_channel_downloader/tg_channel_downloader.py
 
-python3 $py &
 
 (
   echo "resolve_username DlHelper_bot"
