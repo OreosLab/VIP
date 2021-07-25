@@ -1,7 +1,8 @@
 #!/bin/bash
 
 dir_sync=/root/Help/互助研究院\(1597522865\)/2021年07月
-
+dir_git=/root/GitHub/VIP
+Help=$dir_git/Scripts/sh/Helpcode2\.8
 
 (
   echo "resolve_username DlHelper_bot"
@@ -11,6 +12,8 @@ dir_sync=/root/Help/互助研究院\(1597522865\)/2021年07月
   echo "safe_quit"
 ) | docker exec -i telegram-cli telegram-cli -N
 
-find $dir_sync -name "*code\.sh" -exec mv {} $dir_sync/code\.sh \;
-find $dir_sync -name "*task_before\.sh" -exec mv {} $dir_sync/task_before\.sh \;
-find $dir_sync -name "*config_sample\.sh" -exec mv {} $dir_sync/config_sample\.sh \;
+cd $dir_git
+git fetch --all && git reset --hard origin/master && git pull
+find $dir_sync -name "*code\.sh" -exec mv {} $Help/code\.sh \;
+find $dir_sync -name "*task_before\.sh" -exec mv {} $Help/task_before\.sh \;
+find $dir_sync -name "*config_sample\.sh" -exec mv {} $Help/config_sample\.sh \;
