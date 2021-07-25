@@ -13,7 +13,7 @@ Help=$dir_git/Scripts/sh/Helpcode2\.8
 ) | docker exec -i telegram-cli telegram-cli -N
 
 cd $dir_git
-git fetch --all && git reset --hard origin/master && git pull
+git fetch --all && git reset --hard origin/main && git pull
 find $dir_sync -name "*code\.sh" -exec mv {} $Help/code\.sh \;
 find $dir_sync -name "*task_before\.sh" -exec mv {} $Help/task_before\.sh \;
 find $dir_sync -name "*config_sample\.sh" -exec mv {} $Help/config_sample\.sh \;
