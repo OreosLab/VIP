@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Mod: Build20210724V2
+## Mod: Build20210726V1
 
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 使用方法：定时任务→添加定时→命令【ql extra】→定时规则【15 0-23/4 * * *】-运行
@@ -15,7 +15,7 @@ k1="activity|backUp|Coupon|jd_try|format_"
 d1="^jd[^_]|USER"
 ## （2）预设的 JDHelloWorld 仓库
 u2="https://github.com/JDHelloWorld/jd_scripts.git"
-p2="jd_|jx_|getJDCookie""^jd[^_]|USER|^TS|utils|notify|env|package|ken.js"
+p2="jd_|jx_|getJDCookie"
 k2="activity|backUp|Coupon|enen|update|test"
 d2="^jd[^_]|USER|^TS|utils|notify|env|package|ken.js"
 ## （3）预设的 he1pu 仓库
