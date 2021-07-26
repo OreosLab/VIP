@@ -13,3 +13,7 @@ qinglong:
     - ./raw:/ql/raw
     - ./scripts:/ql/scripts
     - ./jbot:/ql/jbot
+  environment: 
+    - ENABLE_HANGUP=false    # 是否启用JOY挂机
+    - ENABLE_TG_BOT=true     # 是否启用TGBOT交互
+    - ENABLE_WEB_PANEL=true  # 是否开启面板
