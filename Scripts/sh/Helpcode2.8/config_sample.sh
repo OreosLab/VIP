@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210723-001
+## Mod: Build20210726-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -371,9 +371,9 @@ export sleepNum="0.5"
 ### 布尔值，True:使用作者远程仓库更新的id，False：使用本地shopid.txt的id
 export isRemoteSid="true"
 ## 6、东东超市商品兑换
-# 填写您要兑换的商品名字，兼容模糊关键词
+### 填写商品名字，兼容模糊关键词
 export coinToBeans='京豆包'
-#多账号并发，默认开启 True，关闭 False
+### 多账号并发，默认开启 True，关闭 False
 export blueCoin_Cc='True'
 ### 轮次
 export startMaxNum="30"
@@ -420,6 +420,9 @@ export JDJR_validator_Count="25"
 ## 6、财富大陆热气球接客次数
 ### 新增热气球接客 默认每次运行执行10次
 export gua_wealth_island_serviceNum="10"
+## 7、燃动夏季-新增屏蔽账号
+### export summer_movement_outuserID="2,5,7" ##屏蔽第几个账号的例子
+export summer_movement_outuserID=""
 
 # cdle 环境变量
 ## 1、愤怒的锦鲤
@@ -433,9 +436,9 @@ export olympicgames_inviteId=""
 ### export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1@10/g; s/\n/\&/g;")"  ##兑10元现金，比较难兑
 export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\1@2/g; s/ /&/g;")"           ##兑2元现金
 ## 4、真·抢京豆
-### 高速并发抢京豆，专治偷助力。设置环境变量angryBeanPins为指定账号助力，默认不助力。环境变量angryBeanMode可选值priority和speed，默认speed模式。
+### 高速并发抢京豆，专治偷助力。设置环境变量angryBeanPins为指定账号助力，默认不助力。环境变量angryBeanMode可选值priority或speed或smart，默认smart模式。
 export angryBeanPins="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
-export angryBeanMode="speed"
+export angryBeanMode="smart"
 
 # star261 环境变量
 ## 1、京喜工厂开团

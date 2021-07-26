@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /etc/profile
+
 dir_sync=/root/Help/互助研究院\(1597522865\)/2021年07月
 dir_git=/root/GitHub/VIP
 Help=$dir_git/Scripts/sh/Helpcode2\.8
