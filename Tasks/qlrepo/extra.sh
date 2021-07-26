@@ -15,9 +15,9 @@ k1="activity|backUp|Coupon|jd_try|format_"
 d1="^jd[^_]|USER"
 ## （2）预设的 JDHelloWorld 仓库
 u2="https://github.com/JDHelloWorld/jd_scripts.git"
-p2="jd_|jx_|getJDCookie"
-k2="activity|backUp|Coupon|enen|update"
-d2="^jd[^_]|USER|TS|tools"
+p2="jd_|jx_|getJDCookie""^jd[^_]|USER|^TS|utils|notify|env|package|ken.js"
+k2="activity|backUp|Coupon|enen|update|test"
+d2="^jd[^_]|USER|^TS|utils|notify|env|package|ken.js"
 ## （3）预设的 he1pu 仓库
 u3="https://github.com/he1pu/JDHelp.git"
 p3="jd_|jx_|getJDCookie"
