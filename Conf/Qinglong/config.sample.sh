@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210723-001
+## Mod: Build20210726-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -420,6 +420,9 @@ export JDJR_validator_Count="25"
 ## 6、财富大陆热气球接客次数
 ### 新增热气球接客 默认每次运行执行10次
 export gua_wealth_island_serviceNum="10"
+## 7、燃动夏季-新增屏蔽账号
+### export summer_movement_outuserID="2,5,7" ##屏蔽第几个账号的例子
+export summer_movement_outuserID=""
 
 # cdle 环境变量
 ## 1、愤怒的锦鲤
