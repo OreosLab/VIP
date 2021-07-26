@@ -488,6 +488,12 @@ export JDJR_validator_Count="25"
 export gua_wealth_island_serviceNum="10"
 ```
 
+```
+## 7、燃动夏季-新增屏蔽账号
+### export summer_movement_outuserID="2,5,7" ##屏蔽第几个账号的例子
+export summer_movement_outuserID=""
+```
+
 
 ## cdle 环境变量
 
