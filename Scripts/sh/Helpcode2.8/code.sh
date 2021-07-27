@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210722-001
+## Build 20210727-001
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -19,6 +19,9 @@ repo=$repo4                                        #默认调用 shufflewzc 仓�
 
 ## 调试模式开关，默认是0，表示关闭；设置为1，表示开启
 DEBUG="1"
+
+## 本脚本限制的最大线程数量
+proc_num="7"
 
 ## 备份配置文件开关，默认是1，表示开启；设置为0，表示关闭。备份路径 /ql/config/bak/
 BACKUP="1"
@@ -68,7 +71,8 @@ diy_help_rules(){
 BreakHelpType="0"                  ## 屏蔽模式
 BreakHelpNum="4 9-14 15~18 19_21"  ## 屏蔽账号序号或序号区间
 
-## 定义是否自动更新配置文件中的互助码和互助规则，默认为1，表示更新；留空或其他数值表示不更新。
+## 定义是否自动更新配置文件中的互助码和互助规则
+## 默认为 UpdateType="1" 表示更新互助码和互助规则；UpdateType="2" 表示只更新互助码，不更新互助规则；UpdateType="3" 表示只更新互助规则，不更新互助码；留空或其他数值表示不更新。
 UpdateType="1"
 
 ## 定义是否自动安装或修复缺失的依赖，默认为1，表示自动修复；留空或其他数值表示不修复。
@@ -209,7 +213,7 @@ export_codes_sub() {
     local BreakHelpInterval=$(echo $BreakHelpNum | perl -pe "{s|~|-|; s|_|-|}" | sed 's/\(\d\+\)-\(\d\+\)/{\1..\2}/g')
     local BreakHelpNumArray=($(eval echo $BreakHelpInterval))
     local BreakHelpNumVerify=$(echo $BreakHelpNum | sed 's/ //g' | perl -pe "{s|-||; s|~||; s|_||}" | sed 's/^\d\+$//g')
-    local i j k m n t pt_pin_in_log code tmp_grep tmp_my_code tmp_for_other user_num tmp_helptype HelpTemp random_num_list
+    local i j k m n q t pt_pin_in_log code tmp_grep tmp_my_code tmp_for_other user_num tmp_helptype HelpTemp random_num_list
     local envs=$(eval echo "\$JD_COOKIE")
     local array=($(echo $envs | sed 's/&/ /g'))
     local user_sum=${#array[*]}
@@ -245,6 +249,17 @@ export_codes_sub() {
         ## 输出ForOther系列变量
         if [[ ${#code[*]} -gt 0 ]]; then
             [[ $DiyHelpType = "1" ]] && diy_help_rules $2
+            case $2 in
+                Fruit | Bean | DreamFactory | Jxnc | Cfd)
+                    q="4"
+                    ;;
+                Pet)
+                    q="6"
+                    ;;
+                *)
+                    q="$user_sum"
+                    ;;
+            esac
             case $tmp_helptype in
             0) ## 全部一致
                 HelpTemp="全部一致"
@@ -279,7 +294,7 @@ export_codes_sub() {
                 for ((m = 0; m < ${#pt_pin[*]}; m++)); do
                     tmp_for_other=""
                     j=$((m + 1))
-                    for ((n = $m; n < $(($user_sum + $m)); n++)); do
+                    for ((n = $m; n < $(($q + $m)); n++)); do
                         [[ $m -eq $n ]] && continue
                         if [[ $((n + 1)) -le $user_sum ]]; then
                             k=$((n + 1))
@@ -309,7 +324,7 @@ export_codes_sub() {
                 echo -e "\n## 采用\"$HelpTemp\"互助模板："
                 for ((m = 0; m < ${#pt_pin[*]}; m++)); do
                     tmp_for_other=""
-                    random_num_list=$(seq $user_sum | sort -R)
+                    random_num_list=$(seq $user_sum | sort -R | head -$((q-1)))
                     j=$((m + 1))
                     for n in $random_num_list; do
                         [[ $j -eq $n ]] && continue
@@ -337,7 +352,7 @@ export_codes_sub() {
                 for ((m = 0; m < ${#pt_pin[*]}; m++)); do
                     tmp_for_other=""
                     j=$((m + 1))
-                    for ((n = 0; n < ${#pt_pin[*]}; n++)); do
+                    for ((n = 0; n < $q; n++)); do
                         [[ $m -eq $n ]] && continue
                         k=$((n + 1))
                         if [[ $BreakHelpType = "1" ]]; then
@@ -392,7 +407,7 @@ export_all_codes() {
         esac
     fi
     [[ $BreakHelpType = "1" ]] && echo -e "\n#$cur_time 您已启用屏蔽模式，账号 $BreakHelpNum 将不被助力！"
-    if [ "$ps_num" -gt 7 ]; then
+    if [ "$ps_num" -gt $proc_num ]; then
         echo -e "\n#$cur_time 检测到 code.sh 的线程过多 ，请稍后再试！"
         exit
     elif [ -z $repo ]; then
@@ -413,7 +428,7 @@ export_all_codes() {
 }
 
 #更新配置文件中互助码的函数
-help_codes_rules(){
+help_codes(){
 local envs=$(eval echo "\$JD_COOKIE")
 local array=($(echo $envs | sed 's/&/ /g'))
 local user_sum=${#array[*]}
@@ -450,6 +465,17 @@ for ((i=1; i<=100; i++)); do
         sed -i "s/^$config_name_my$i='\S*'$/$config_name_my$i=''/" $file_task_before
     fi
 done
+}
+
+#更新配置文件中互助规则的函数
+help_rules(){
+local envs=$(eval echo "\$JD_COOKIE")
+local array=($(echo $envs | sed 's/&/ /g'))
+local user_sum=${#array[*]}
+local config_name=$1
+local config_name_my=My$config_name
+local config_name_for_other=ForOther$config_name
+local i j k
 
 #更新配置文件中的互助规则
 if [ -z "$(cat $file_task_before | grep "^$config_name_for_other\d")" ]; then
@@ -544,7 +570,7 @@ export_codes_sub_only(){
                 echo "$config_name$j='$tmp_my_code'"
             done
         else
-            echo "#$cur_time 从日志中未找到任何互助码"
+            echo "## 从日志中未找到任何互助码"
         fi
 fi
 }
@@ -555,17 +581,51 @@ update_help(){
 latest_log=$log_path
 case $UpdateType in
     1)
-        if [ "$ps_num" -le 7 ] && [ -f $log_path ] && [ -f $file_task_before ]; then
+        if [ "$ps_num" -le $proc_num ] && [ -f $log_path ] && [ -f $file_task_before ]; then
             backup_del
             echo -e "\n#$cur_time 开始更新配置文件的互助码和互助规则" | tee -a $latest_log
             for i in ${name_config[@]}; do
-                help_codes_rules $i
+                help_codes $i
+                help_rules $i
             done
             for i in ${name_config_only[@]}; do
                 help_codes_only $i
             done
             sed -i "4c ## 上次导入时间：$(date +%Y年%m月%d日\ %X)" /ql/config/task_before.sh
             echo -e "\n#$cur_time 配置文件的互助码和互助规则已完成更新" | tee -a $latest_log
+        elif [ ! -f $log_path ]; then
+            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！" | tee -a $latest_log
+        elif [ ! -f $file_task_before ]; then
+            echo -e "\n#$cur_time 配置文件不存在，请检查后重试！" | tee -a $latest_log
+        fi
+        ;;
+    2)
+        if [ "$ps_num" -le $proc_num ] && [ -f $log_path ] && [ -f $file_task_before ]; then
+            backup_del
+            echo -e "\n#$cur_time 开始更新配置文件的互助码，不更新互助规则" | tee -a $latest_log
+            for i in ${name_config[@]}; do
+                help_codes $i
+            done
+            for i in ${name_config_only[@]}; do
+                help_codes_only $i
+            done
+            sed -i "4c ## 上次导入时间：$(date +%Y年%m月%d日\ %X)" /ql/config/task_before.sh
+            echo -e "\n#$cur_time 配置文件的互助码已完成更新" | tee -a $latest_log
+        elif [ ! -f $log_path ]; then
+            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！" | tee -a $latest_log
+        elif [ ! -f $file_task_before ]; then
+            echo -e "\n#$cur_time 配置文件不存在，请检查后重试！" | tee -a $latest_log
+        fi
+        ;;
+    3)
+        if [ "$ps_num" -le $proc_num ] && [ -f $log_path ] && [ -f $file_task_before ]; then
+            backup_del
+            echo -e "\n#$cur_time 开始更新配置文件的互助规则，不更新互助码" | tee -a $latest_log
+            for i in ${name_config[@]}; do
+                help_rules $i
+            done
+            sed -i "4c ## 上次导入时间：$(date +%Y年%m月%d日\ %X)" /ql/config/task_before.sh
+            echo -e "\n#$cur_time 配置文件的互助规则已完成更新" | tee -a $latest_log
         elif [ ! -f $log_path ]; then
             echo -e "\n#$cur_time 日志文件不存在，请检查后重试！" | tee -a $latest_log
         elif [ ! -f $file_task_before ]; then
@@ -654,11 +714,13 @@ install_dependencies_force(){
 }
 
 install_dependencies_all(){
-    install_dependencies_normal $package_name
-    cd /ql/scripts
-    for i in $package_name; do
-        install_dependencies_force $i
-    done
+    if [ "$ps_num" -le $proc_num ]; then
+        install_dependencies_normal $package_name
+        cd /ql/scripts
+        for i in $package_name; do
+            install_dependencies_force $i
+        done
+	fi
 }
 
 
