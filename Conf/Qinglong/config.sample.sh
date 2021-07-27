@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210726-001
+## Mod: Build20210727-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -15,7 +15,7 @@ AutoAddCron="true"
 RepoFileExtensions="js py ts"
 
 ## 由于github仓库拉取较慢，所以会默认添加代理前缀，如不需要请移除
-GithubProxyUrl=""
+GithubProxyUrl="https://ghproxy.com/"
 
 ## 设置定时任务执行的超时时间，默认1h，后缀"s"代表秒(默认值), "m"代表分, "h"代表小时, "d"代表天
 CommandTimeoutTime="3h"
@@ -373,8 +373,8 @@ export isRemoteSid="true"
 ## 6、东东超市商品兑换
 ### 填写商品名字，兼容模糊关键词
 export coinToBeans='京豆包'
-### 多账号并发，默认关闭
-export blueCoin_Cc='False'
+### 多账号并发，默认开启 True，关闭 False
+export blueCoin_Cc='True'
 ### 轮次
 export startMaxNum="30"
 ### 多线程并发，相当于每秒点击兑换次数...适当调整，手机会发烫
@@ -423,22 +423,42 @@ export gua_wealth_island_serviceNum="10"
 ## 7、燃动夏季-新增屏蔽账号
 ### export summer_movement_outuserID="2,5,7" ##屏蔽第几个账号的例子
 export summer_movement_outuserID=""
+## 8、修复点点券
+### 新增显示有多少个非法请求 可以开通知 
+export DDQ_NOTIFY_CONTROL="" ##不填或false为通知，true为不通知
 
 # cdle 环境变量
-## 1、愤怒的锦鲤
-### 助力账号，填写pt_pin或用户名的值。多个 pt_pin 值用 @ 连接
-export kois="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
-## 2、全民运动会守卫红包
+## 1、全民运动会守卫红包
 ### 助力码，需手动抓包
 export olympicgames_inviteId=""
-## 3、签到领现金兑换
+## 2、签到领现金兑换
 ### 填写 pt_pin@金额，pt_pin为用户名，可以在 COOKIES 中提取；金额为 2 或 10，例如 LiLei@2 或 HanMeimei@10。多值用 & 连接，例如 LiLei@2&HanMeimei@10
-### export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1@10/g; s/\n/\&/g;")"  ##兑10元现金，比较难兑
+### export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*pt_pin=\(\S\+\);\S*/\1@10/g; s/\n/\&/g;")"  ##兑10元现金，比较难兑
 export exchangeAccounts="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\(\S\+\);\S*/\1@2/g; s/ /&/g;")"           ##兑2元现金
-## 4、真·抢京豆
-### 高速并发抢京豆，专治偷助力。设置环境变量angryBeanPins为指定账号助力，默认不助力。环境变量angryBeanMode可选值priority或speed或smart，默认smart模式。
-export angryBeanPins="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*;pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
+## 3、愤怒的现金
+### 极速助力，打击黑产盗取现金的犯罪行为。默认向前助力9个账号，若要指定被助力账号，需cashHelpPins环境变量中填入需要助力的pt_pin，有多个请用@符号连接。
+export cashHelpPins="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;")"
+## 4、愤怒的锦鲤
+### 助力账号，填写pt_pin或用户名的值。多个 pt_pin 值用 @ 连接
+export kois="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;")"
+## 5、发财大赢家助力
+### 需要设置环境变量dyjHelpPins来指定要助力的账号
+export dyjHelpPins="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;")"
+## 6、早起赢现金
+### 入口：京东汽车-瓜分万元
+### 备注：支付一元才能参与活动，填写环境变量morningScPins给指定账号打卡
+export morningScPins="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;")"
+## 7、赚30元
+### 备注：赚30元每日签到红包、天降红包助力，在earn30Pins环境变量中填入需要签到和接受助力的账号。
+### 技巧：每月可以提现100元，但需要邀请一个新人下首单。可以用已注册手机号重新注册为新人账号，切换ip可以提高成功率。
+export earn30Pins="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;")"
+## 8、真·抢京豆
+### 高速并发抢京豆，专治偷助力。设置环境变量angryBeanPins为指定账号助力，默认不助力。
+### 环境变量angryBeanMode可选值priority或speed或smart，默认smart模式。
+### 默认推送通知，如要屏蔽通知需将环境变量enableAngryBeanNotify的值设为false。
+export angryBeanPins="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*pt_pin=\(\S\+\);\S*/\1/g; s/\n/@/g;")"
 export angryBeanMode="smart"
+export enableAngryBeanNotify="true"
 
 # star261 环境变量
 ## 1、京喜工厂开团
