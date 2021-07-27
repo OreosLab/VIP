@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210727-001
+## Mod: Build20210727-002
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -125,10 +125,10 @@ export GOBOT_QQ=""
 ##         TempBlockCookie="2"                # Cookie2 不玩京喜工厂和东东工厂
 ##         ;;
 ##     *jd_jdzz* | *jd_joy*)                  # 京喜赚赚和宠汪汪的活动脚本关键词
-##         TempBlockCookie="3 6"              # Cookie3 、Cookie6 不玩京东赚赚和宠汪汪
+##         TempBlockCookie="3 7_8 9-10 12~13" # Cookie3 、Cookie7至8、Cookie9至10、Cookie12至13 不玩京东赚赚和宠汪汪
 ##         ;;
 ##     *)                                     # 其他活动
-##         TempBlockCookie=""                 # 默认为空值，表示其他帐号参加全部活动。填写帐号序号表示临时屏蔽指定 Cookie 参加其他活动
+##         TempBlockCookie=""                 # 默认为空值，表示其他帐号参加全部活动。填写帐号序号表示临时指定 Cookie 只能参加其他活动
 ##         ;;
 ## esac
 case $1 in
