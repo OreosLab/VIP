@@ -82,7 +82,7 @@ export JOY_RUN_NOTIFY=""
 
 ```
 ## 11、东东超市兑换奖品是否关闭推送通知。填false为不关闭推送,true为关闭推送
-export MARKET_REWARD_NOTIFY="true"
+export MARKET_REWARD_NOTIFY=""
 ```
 
 ```
@@ -295,29 +295,40 @@ export tytpacketId=""
 ```
 
 ```
-## 3、是兄弟就砍我
-### 自定义邀请码环境变量
-export actId="" ##你要参加砍价的商品ID
-export packetId="" ##你要参加砍价的邀请码
+## 3、拆红包
+export chbpacketId=""
 ```
 
 ```
-## 4、是兄弟就砍我2
+## 4、是兄弟就砍我
+### 是兄弟就来砍我脚本要参加砍价的商品ID
+export actId=""
+export actId1=""
+export actId2=""
+export actId3=""
+export actId4=""
+### 是兄弟就来砍我脚本要要参加砍价的邀请码
+export packetId="" 
+```
+
+```
+## 5、是兄弟就砍我2
 ### 惊喜欢乐砍 自定义变量 入口：京喜APP-我的-惊喜欢乐砍
 export launchid="" ##你的邀请码
-export first="false" ##第一次参加变量设置为true查看商品ID，填写商品ID后自动获取邀请码邀请；如果只助力，变量设置为false
+### 第一次参加变量设置为true查看商品ID，填写商品ID后自动获取邀请码邀请；如果只助力，变量设置为false
+export first="false"
 export active="" ##商品ID
 ```
 
 ```
-## 5、赚金币
+## 6、赚金币
 ### 入口：极速版-百元生活费-赚金币-邀请好友
 ### 第一次运行可不填写邀请码，运行一次查看自己的邀请码
 export InviterPin="" ##你的邀请码
 ```
 
 ```
-## 6、0元砍价，入口：京东-我的-0元砍价
+## 7、0元砍价，入口：京东-我的-0元砍价
 ### 使用教程：
 ### 第一步，运行脚本一次日志查看商品ID
 ### 获取你要砍价的ID后变量填写
@@ -327,20 +338,30 @@ export activity="" ##这里填获取的商品activityId
 ```
 
 ```
-## 7、邀请有礼  
+## 8、邀请有礼  
 ### 自定义邀请码环境变量
 export yqm="" ##你的邀请码
 ```
 
 ```
-## 8、全民挖现金
+## 9、全民挖现金
 ### 入口：京东-我的-全民挖现金
 ### 运行一次查看邀请码 变量你的邀请码 
 export shareCode=""
 ```
 
 ```
-## 9、签到领现金添加变量方式
+## 10、省钱大赢家本期活动ID
+export redEnvelopeId=""
+```
+
+```
+## 11、省钱大赢家邀请码
+export inviter=""
+```
+
+```
+## 12、签到领现金添加变量方式
 ### 自行添加变量设置邀请码 格式如下 默认10个
 export cashinviteCode=""
 export cashinviteCode2=""
@@ -348,12 +369,12 @@ export cashinviteCode3=""
 ```
 
 ```
-## 10、大老板农场 新增自定义变量通知开关
-export dlbtz="true" ##通知打开，false为关闭
+## 13、大老板农场 新增自定义变量通知开关。true通知打开，false为关闭
+export dlbtz="true" 
 ```
 
 ```
-## 11、零食街自动兑换变量
+## 14、零食街自动兑换变量
 ### 自行取消注释和注释
 ##export ljsdh="jdAward1" ##兑换5豆
 ##export ljsdh="jdAward2" ##兑换10豆
@@ -494,34 +515,66 @@ export gua_wealth_island_serviceNum="10"
 export summer_movement_outuserID=""
 ```
 
+```
+## 8、修复点点券
+### 新增显示有多少个非法请求 可以开通知 
+export DDQ_NOTIFY_CONTROL="" ##不填或false为通知，true为不通知
+```
 
 ## cdle 环境变量
 
 ```
-## 1、签到领现金兑换
-### 需要填写exchangeAccounts参数，兑换多少取决于app内显示，默认为所有账号兑换10红包，部分账号会出现参数错误的提示。
-### 填写 pt_pin@金额，pt_pin为用户名，可以在 COOKIES 中提取；金额为 2 或 10，例如 LiLei@2 或 HanMeimei@10。多值用 & 连接，例如 LiLei@2&HanMeimei@10
-export exchangeAccounts="pt_pin1@2"  ##抢2元红包
-##export exchangeAccounts="pt_pin2@10"  ##抢10元红包，比较难兑
-```
-
-```
-## 2、全民运动会守卫红包
+## 1、全民运动会守卫红包
 ### 助力码，需手动抓包
 export olympicgames_inviteId=""
 ```
 
 ```
-## 3、愤怒的锦鲤
-### 高速并发请求，专治偷助力。在kois环境变量中填入需要助力的pt_pin，有多个请用@符号连接
+## 2、签到领现金兑换
+### 填写 pt_pin@金额，pt_pin为用户名，可以在 COOKIES 中提取；金额为 2 或 10，例如 LiLei@2 或 HanMeimei@10。多值用 & 连接，例如 LiLei@2&HanMeimei@10
+export exchangeAccounts="LiLei@2&HanMeimei@10"  
+```
+
+```
+## 3、愤怒的现金
+### 极速助力，打击黑产盗取现金的犯罪行为。默认向前助力9个账号，若要指定被助力账号，需cashHelpPins环境变量中填入需要助力的pt_pin，有多个请用@符号连接。
+export cashHelpPins="pt_pin1@pt_pin2"
+```
+
+```
+## 4、愤怒的锦鲤
+### 助力账号，填写pt_pin或用户名的值。多个 pt_pin 值用 @ 连接
 export kois="pt_pin1@pt_pin2"
 ```
 
 ```
-## 4、真·抢京豆
-### 高速并发抢京豆，专治偷助力。设置环境变量angryBeanPins为指定账号助力，默认不助力。环境变量angryBeanMode可选值priority和speed，默认speed模式。
+## 5、发财大赢家助力
+### 需要设置环境变量dyjHelpPins来指定要助力的账号
+export dyjHelpPins="pt_pin1@pt_pin2"
+```
+
+```
+## 6、早起赢现金
+### 入口：京东汽车-瓜分万元
+### 备注：支付一元才能参与活动，填写环境变量morningScPins给指定账号打卡
+export morningScPins="pt_pin1@pt_pin2"
+```
+
+```
+## 7、赚30元
+### 备注：赚30元每日签到红包、天降红包助力，在earn30Pins环境变量中填入需要签到和接受助力的账号。
+### 技巧：每月可以提现100元，但需要邀请一个新人下首单。可以用已注册手机号重新注册为新人账号，切换ip可以提高成功率。
+export earn30Pins="pt_pin1@pt_pin2"
+```
+
+```
+## 8、真·抢京豆
+### 高速并发抢京豆，专治偷助力。设置环境变量angryBeanPins为指定账号助力，默认不助力。
+### 环境变量angryBeanMode可选值priority或speed或smart，默认smart模式。
+### 默认推送通知，如要屏蔽通知需将环境变量enableAngryBeanNotify的值设为false。
 export angryBeanPins="pt_pin1@pt_pin2"
-export angryBeanMode="speed"
+export angryBeanMode="smart"
+export enableAngryBeanNotify="true"
 ```
 
 
