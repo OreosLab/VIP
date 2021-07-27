@@ -253,7 +253,7 @@ export_codes_sub() {
                 Fruit | Bean | DreamFactory | Jxnc | Cfd)
                     q="4"
                     ;;
-                Pet)
+                Pet | Sgmh)
                     q="6"
                     ;;
                 *)
