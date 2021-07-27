@@ -22,7 +22,7 @@
                 "type":"runjs",
                 "target":"https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/js/News/wechatsubs.js"
             },
-            "running":true
+            "running":false
         },
         {
             "name":"NASA每日一图",
@@ -51,6 +51,16 @@
             "job":{
                 "type":"runjs",
                 "target":"https://raw.githubusercontent.com/zZPiglet/Task/master/MovieCalendar/MovieCalendar.js"
+            },
+            "running":true
+        },
+        {
+            "name":"东京奥运会🏅金牌榜",
+            "type":"cron",
+            "time":"0 */6 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/ddgksf2013/Cuttlefish/master/Script/OlympicRanking.js"
             },
             "running":true
         }
