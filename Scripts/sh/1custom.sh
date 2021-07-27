@@ -28,7 +28,7 @@ else
     Rbefore=${Rbefore:-'y'}
     read -p "是否添加 task:ql bot（会拉取机器人并自动更新） y/n：" Rbot
     Rbot=${Rbot:-'y'}
-    read -p "是否添加 task:自动更新模板（会自动更新对比工具初始模板） y/n" Rsample
+    read -p "是否添加 task:自动更新模板（会自动更新对比工具初始模板） y/n：" Rsample
     Rsample=${Rsample:-'y'}
 fi
 
