@@ -37,7 +37,7 @@ if [ ! -a "$config_shell_path" ]; then
     touch $config_shell_path
 fi
 if [ "${Rconfig}" = 'y' -o "${Rall}" = 1 ]; then
-    curl -s --connect-timeout 3 https://raw.githubusercontents.com/Oreomeow/VIP/main/Conf/Qinglong/config.sample.sh > $config_shell_path
+    curl -sL --connect-timeout 3 https://raw.githubusercontents.com/Oreomeow/VIP/main/Conf/Qinglong/config.sample.sh > $config_shell_path
     cp $config_shell_path $dir_shell/config.sh
     # 判断是否下载成功
     config_size=$(ls -l $config_shell_path | awk '{print $5}')
@@ -55,7 +55,7 @@ if [ ! -a "$extra_shell_path" ]; then
     touch $extra_shell_path
 fi
 if [ "${Rextra}" = 'y' -o "${Rall}" = 1 ]; then
-    curl -s --connect-timeout 3 https://raw.githubusercontents.com/Oreomeow/VIP/main/Tasks/qlrepo/extra.sh > $extra_shell_path
+    curl -sL --connect-timeout 3 https://raw.githubusercontents.com/Oreomeow/VIP/main/Tasks/qlrepo/extra.sh > $extra_shell_path
     cp $extra_shell_path $dir_shell/extra.sh
     # 判断是否下载成功
     extra_size=$(ls -l $extra_shell_path | awk '{print $5}')
@@ -87,7 +87,7 @@ if [ ! -a "$code_shell_path" ]; then
     touch $code_shell_path
 fi
 if [ "${Rcode}" = 'y' -o "${Rall}" = 1 ]; then
-    curl -s --connect-timeout 3 https://raw.githubusercontents.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/code.sh > $code_shell_path
+    curl -sL --connect-timeout 3 https://raw.githubusercontents.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/code.sh > $code_shell_path
     cp $code_shell_path $dir_shell/code.sh
     # 判断是否下载成功
     code_size=$(ls -l $code_shell_path | awk '{print $5}')
@@ -119,7 +119,7 @@ if [ ! -a "$task_before_shell_path" ] ; then
     touch $task_before_shell_path
 fi
 if [ "${Rbefore}" = 'y' -o "${Rall}" = 1 ]; then
-    curl -s --connect-timeout 3 https://raw.githubusercontents.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/task_before.sh > $task_before_shell_path
+    curl -sL --connect-timeout 3 https://raw.githubusercontents.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/task_before.sh > $task_before_shell_path
     # 判断是否下载成功
     task_before_size=$(ls -l $task_before_shell_path | awk '{print $5}')
     if (( $(echo "${task_before_size} < 100" | bc -l) )); then
