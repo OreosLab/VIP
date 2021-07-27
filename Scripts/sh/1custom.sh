@@ -11,7 +11,7 @@ task_before_shell_path=$dir_shell/task_before.sh
 
 
 # 控制是否执行变量
-read -p "是否全部替换或下载，输入 1 即可全部替换，输入 0 则跳出，默认和其他不全部替换，建议初次配置输入 1：" Rall
+read -p "是否全部替换或下载，输入 1 即可全部替换，输入 0 则跳出，回车默认和其他可进行部分替换，建议初次配置输入 1：" Rall
 if [ "${Rall}" = 1 ]; then
     echo "将执行全部替换操作"
 elif [ "${Rall}" = 0 ]; then
@@ -28,6 +28,8 @@ else
     Rbefore=${Rbefore:-'y'}
     read -p "是否添加 task:ql bot（会拉取机器人并自动更新） y/n：" Rbot
     Rbot=${Rbot:-'y'}
+    read -p "是否添加 task:自动更新模板（会自动更新对比工具初始模板） y/n" Rsample
+    Rsample=${Rsample:-'y'}
 fi
 
 
@@ -132,15 +134,28 @@ fi
 
 
 # 添加定时任务 ql bot
-if [ "$(grep -c bot /ql/config/crontab.list)" != 0 ] && [ "${Rbot}" = 'y' -o "${Rall}" = 1 ]; then
+if [ "$(grep -c "ql\ bot" /ql/config/crontab.list)" != 0 ] && [ "${Rbot}" = 'y' -o "${Rall}" = 1 ]; then
     echo "您的任务列表中已存在 task ql bot"
-elif [ "$(grep -c bot /ql/config/crontab.list)" = 0 ] && [ "${Rbot}" = 'y' -o "${Rall}" = 1 ]; then
+elif [ "$(grep -c "ql\ bot" /ql/config/crontab.list)" = 0 ] && [ "${Rbot}" = 'y' -o "${Rall}" = 1 ]; then
     echo "开始添加 task ql bot"
     # 获取token
     token=$(cat /ql/config/auth.json | jq --raw-output .token)
     curl -s -H 'Accept: application/json' -H "Authorization: Bearer $token" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{"name":"拉取机器人","command":"ql bot","schedule":"13 14 * * *"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1626247933219'
 else
     echo "已为您跳过添加定时任务 ql bot"
+fi
+
+
+# 添加定时任务 自动更新模板
+if [ "$(grep -c "config.sample.sh" /ql/config/crontab.list)" != 0 ] && [ "${Rsample}" = 'y' -o "${Rall}" = 1 ]; then
+    echo "您的任务列表中已存在 task 自动更新模板"
+elif [ "$(grep -c "config.sample.sh" /ql/config/crontab.list)" = 0 ] && [ "${Rsample}" = 'y' -o "${Rall}" = 1 ]; then
+    echo "开始添加 task ql bot"
+    # 获取token
+    token=$(cat /ql/config/auth.json | jq --raw-output .token)
+    curl -s -H 'Accept: application/json' -H "Authorization: Bearer $token" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{"name":"自动更新模板","command":"curl -L https://git.io/config.sh -o /ql/sample/config.sample.sh && cp -rf /ql/sample/config.sample.sh /ql/config","schedule":"45 6,18 * * *"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1627380635389'
+else
+    echo "已为您跳过添加定时任务 自动更新模板"
 fi
 
 

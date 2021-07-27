@@ -22,22 +22,36 @@ docker pull whyour/qinglong:latest
 ``` sh
 docker run -dit \
    -v $PWD/ql/config:/ql/config \
-   -v $PWD/ql/log:/ql/log \
    -v $PWD/ql/db:/ql/db \
+   -v $PWD/ql/repo:/ql/repo \
+   -v $PWD/ql/raw:/ql/raw \
+   -v $PWD/ql/scripts:/ql/scripts \
+   -v $PWD/ql/log:/ql/log \
+   -v $PWD/ql/jbot:/ql/jbot \
    -p 5700:5700 \
+   -e ENABLE_HANGUP=true \
+   -e ENABLE_TG_BOT=true \
+   -e ENABLE_WEB_PANEL=true \
    --name qinglong \
    --hostname qinglong \
    --restart always \
    whyour/qinglong:latest
 ```
 
-#### 2-2 n1等路由器
+#### 2-2 N1等路由器
 
 ``` sh
 docker run -dit \
    -v $PWD/ql/config:/ql/config \
-   -v $PWD/ql/log:/ql/log \
    -v $PWD/ql/db:/ql/db \
+   -v $PWD/ql/repo:/ql/repo \
+   -v $PWD/ql/raw:/ql/raw \
+   -v $PWD/ql/scripts:/ql/scripts \
+   -v $PWD/ql/log:/ql/log \
+   -v $PWD/ql/jbot:/ql/jbot \
+   -e ENABLE_HANGUP=true \
+   -e ENABLE_TG_BOT=true \
+   -e ENABLE_WEB_PANEL=true \
    --net host \
    --name qinglong \
    --hostname qinglong \
@@ -49,18 +63,23 @@ docker run -dit \
 
 ``` sh
 docker run -dit \
-  --name QL \
-  --hostname QL \
+  --name qinglong \
+  --hostname qinglong \
   --restart always \
   --net=macnet \
   --ip=192.168.2.20 \
   --dns=192.168.2.2 \
   --mac-address C2:F2:9C:C5:B1:01 \
-  -v $PWD/QL/config:/ql/config \
-  -v $PWD/QL/log:/ql/log \
-  -v $PWD/QL/db:/ql/db \
-  -v $PWD/QL/scripts:/ql/scripts \
-  -v $PWD/QL/jbot:/ql/jbot \
+  -v $PWD/ql/config:/ql/config \
+  -v $PWD/ql/db:/ql/db \
+  -v $PWD/ql/repo:/ql/repo \
+  -v $PWD/ql/raw:/ql/raw \
+  -v $PWD/ql/scripts:/ql/scripts \
+  -v $PWD/ql/log:/ql/log \
+  -v $PWD/ql/jbot:/ql/jbot \
+  -e ENABLE_HANGUP=true \
+  -e ENABLE_TG_BOT=true \
+  -e ENABLE_WEB_PANEL=true \
   whyour/qinglong:latest
 ```
 
