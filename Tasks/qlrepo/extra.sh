@@ -83,7 +83,7 @@ ql repo $default ##此处勿动
 ## ql repo https://github.com/smiek2221/scripts.git "jd_|gua_" "" "^ZooFaker|^JDJRValidator|^sign"
 
 # 5. cdle
-## ql repo https://github.com/cdle/jd_study.git "jd_"
+## ql repo https://github.com/cdle/jd_study.git "jd_" "expired"
 
 # 6. ZCY01
 ## ql repo https://github.com/ZCY01/daily_scripts.git "jd_"

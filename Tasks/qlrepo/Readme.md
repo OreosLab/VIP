@@ -15,7 +15,7 @@ ql raw <fileurl>
   
   1. `JDHelloWorld`
   ```
-  ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen|update" "^jd[^_]|USER|^TS|utils|package"
+  ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen|update|test" "^jd[^_]|USER|^TS|utils|notify|env|package|ken.js"
   ```
   2. `he1pu`（自动提交助力码-京喜工厂、种豆得豆、东东工厂、东东农场、健康社区、京喜财富岛、东东萌宠、闪购盲盒，随机从数据库中选取助力码互助）
   ```
@@ -23,7 +23,7 @@ ql raw <fileurl>
   ```
   3. `shufflewzc`
   ```
-  ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|jddj_|getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER|utils|^ZooFaker|^JDJRValidator|^sign"
+  ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|gua_|jddj_|getJDCookie" "activity|backUp|update" "^jd[^_]|USER|^ZooFaker|^JDJRValidator|^sign"
   ```
   4. `Aaron-lv`
   ```
@@ -52,7 +52,7 @@ ql repo https://github.com/smiek2221/scripts.git "jd_|gua_" "" "^ZooFaker|^JDJRV
 ```
 - `cdle`
 ```
-ql repo https://github.com/cdle/jd_study.git "jd_"
+ql repo https://github.com/cdle/jd_study.git "jd_" "expired"
 ```
 - `ZCY01`
 ```

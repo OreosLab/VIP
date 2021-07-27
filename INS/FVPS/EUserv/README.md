@@ -23,7 +23,7 @@
 
 #### 抛弃DNS64、自定义域名、IP分流教程（推荐）：https://youtu.be/fY9HDLJ7mnM
 
-#### 联合Oracle甲骨文https://github.com/YG-tsj/Oracle-warp #双栈Warp接管IPV4与IPV6网络：https://youtu.be/o7e_ikV-m-g
+#### 联合Oracle甲骨文https://github.com/YG-tsj/CFWarp-Pro #双栈Warp接管IPV4与IPV6网络：https://youtu.be/o7e_ikV-m-g
 -------------------------------------------------------------------------------------------------------
 
 ### 一：恢复EUserv官方DNS64（重装系统者，可直接跳到第二步脚本安装）
@@ -48,7 +48,7 @@ wget -qO- https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/warp64.sh|bash
 
 #### 注意：域名解析所填写的IP必须是VPS本地IP，与WARP分配的IP没关系！
 
-#### 推荐使用Xray脚本项目（mack-a）：https://github.com/mack-a/v2ray-agent  注意：只选择CDN（WS协议与gRPC协议），IP地址改为自定义优选IP，例：icook.tw
+#### 推荐使用Xray脚本项目（mack-a）：https://github.com/mack-a/v2ray-agent  注意：大家自行测试，德鸡在有些地区或者运营商不支持TCP，只能选择CDN（WS协议与gRPC协议），IP地址改为自定义优选IP，例：icook.tw
 
 #### 提示：配置文件wgcf.conf和注册文件wgcf-account.toml都已备份在/etc/wireguard目录下！
 --------------------------------------------------------------------------------------------------------------

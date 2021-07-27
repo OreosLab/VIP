@@ -14,7 +14,13 @@ qinglong:
     - ./log:/ql/log
     - ./db:/ql/db
     - ./repo:/ql/repo
+    - ./raw:/ql/raw
     - ./scripts:/ql/scripts
+    - ./jbot:/ql/jbot
+  environment: 
+    - ENABLE_HANGUP=false    # 是否启用JOY挂机
+    - ENABLE_TG_BOT=true     # 是否启用TGBOT交互
+    - ENABLE_WEB_PANEL=true  # 是否开启面板
 ```
 - 解决青龙拉取`smiek2221/scripts`更新错误问题
 ``` sh

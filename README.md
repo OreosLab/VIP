@@ -1,5 +1,5 @@
 # 📌 [News](./Log/News.md#news)
-# 📌 [Jiaolong Updates](./Log/Updatelog/Jiaolong.md#jiaolong)
+
 
 # Statement
 
@@ -25,7 +25,7 @@
 ## [★](./Tasks) Tasks
 ### [<img src="/Icons/qinglong/QL.png" title="QL" width="30" height="30" />][QL] ← More
 ```
-ql repo https://github.com/shufflewzc/faker2.git "jd_[^Move]|jx_|jddj_｜getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER|^JS|^TS|^sign|utils"
+ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|gua_|jddj_|getJDCookie" "activity|backUp|update" "^jd[^_]|USER|^ZooFaker|^JDJRValidator|^sign"
 ```
 - [extra.sh](./Tasks/qlrepo/extra.sh)
 
