@@ -115,11 +115,12 @@ fi
 
 
 # 下载 task_before.sh
-if [ ! -a "$task_before_shell_path" ] ; then
+if [ ! -a "$task_before_shell_path" ]; then
     touch $task_before_shell_path
 fi
 if [ "${Rbefore}" = 'y' -o "${Rall}" = 1 ]; then
     curl -sL --connect-timeout 3 https://raw.githubusercontents.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/task_before.sh > $task_before_shell_path
+    cp $task_before_shell_path $dir_shell/task_before.sh
     # 判断是否下载成功
     task_before_size=$(ls -l $task_before_shell_path | awk '{print $5}')
     if (( $(echo "${task_before_size} < 100" | bc -l) )); then
