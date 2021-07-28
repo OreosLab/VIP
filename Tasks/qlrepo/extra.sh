@@ -12,44 +12,50 @@
 ## 2.安装依赖
 ### （1）默认不安装，因为Build 20210728-002 及以上版本的 code.sh 自动检查修复依赖
 ### （2）若需要在此处使用，请删除依赖附近的注释
+## 3.Ninja
+### （1）默认不启动和更新
+### （2）若需要启动和更新，则令 Ninja=up
+Ninja=down ##up为运行，down为不运行
 
-## 预设仓库和参数（u=url，p=path，k=blacklist，d=dependence，b=branch），如果懂得定义可以自行修改
-## （1）预设的 panghu999 仓库
+
+# 一、拉取仓库
+# A.预设仓库和参数（u=url，p=path，k=blacklist，d=dependence，b=branch），如果懂得定义可以自行修改
+# （1）预设的 panghu999 仓库
 u1="https://github.com/panghu999/jd_scripts.git"
 p1="jd_|jx_|getJDCookie"
 k1="activity|backUp|Coupon|jd_try|format_"
 d1="^jd[^_]|USER"
-## （2）预设的 JDHelloWorld 仓库
+# （2）预设的 JDHelloWorld 仓库
 u2="https://github.com/JDHelloWorld/jd_scripts.git"
 p2="jd_|jx_|getJDCookie"
 k2="activity|backUp|Coupon|enen|update|test"
 d2="^jd[^_]|USER|^TS|utils|notify|env|package|ken.js"
-## （3）预设的 he1pu 仓库
+# （3）预设的 he1pu 仓库
 u3="https://github.com/he1pu/JDHelp.git"
 p3="jd_|jx_|getJDCookie"
 k3="activity|backUp|Coupon|update"
 d3="^jd[^_]|USER|utils|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
-## （4）预设的 shufflewzc 仓库
+# （4）预设的 shufflewzc 仓库
 u4="https://github.com/shufflewzc/faker2.git"
 p4="jd_|jx_|gua_|jddj_|getJDCookie"
 k4="activity|backUp|update"
 d4="^jd[^_]|USER|utils|^ZooFaker|^JDJRValidator|^sign"
-## （6）预设的 Aaron-lv 仓库
+# （6）预设的 Aaron-lv 仓库
 u6="https://github.com/Aaron-lv/sync.git"
 p6="jd_|jx_|getJDCookie"
 k6="activity|backUp|Coupon"
 d6="^jd[^_]|USER|utils"
 b6="jd_scripts"
-## 默认拉取仓库参数集合
+# 默认拉取仓库参数集合
 default1="$u1 $p1 $k1 $d1"
 default2="$u2 $p2 $k2 $d2"
 default3="$u3 $p3 $k3 $d3"
 default4="$u4 $p4 $k4 $d4"
 default6="$u6 $p6 $k6 $d6 $b6"
-## 默认拉取仓库编号设置
+# 默认拉取仓库编号设置
 default=$default4 ##此处修改，只改数字，默认 shufflewzc 仓库
 
-# 单脚本
+# B.单脚本
 ## 名称之后标注﹢的单脚本，若下面已拉取仓库的可以不拉。这里适用于只拉取部分脚本使用
 # 1. curtinlv﹢
 ## 入会 15 8 * * *
@@ -75,7 +81,7 @@ default=$default4 ##此处修改，只改数字，默认 shufflewzc 仓库
 ## 京东多合一签到脚本
 ## ql repo https://github.com/NobyDa/Script.git "JD-DailyBonus" "" "JD_DailyBonus" "master"
 
-# 整库
+# C.整库
 # 1. Unknown 备份托管等（如上）
 ql repo $default ##此处勿动
 
@@ -119,7 +125,14 @@ ql repo $default ##此处勿动
 ## ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
 
 
-# 依赖
+# 二、Ninja
+## 说明：默认不运行，运行会自动更新 ninja、启动 ninja 命令添加到青龙 configs 文件夹的 extra.sh 文件，实现开机自动更新和启动
+if [ "${Ninja}" = 'up' ]; then
+    cd /ql/ninja/backend && git pull -f && pnpm install && pm2 start && cp sendNotify.js /ql/scripts/sendNotify.js &
+fi
+
+
+# 三、依赖
 :<<\EOF #取消注释请删除该行和后面提到的一行
 package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv typescript fs require tslib"
 
