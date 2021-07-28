@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210728-001
+## Build 20210728-002
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -647,27 +647,21 @@ install_dependencies_normal(){
         case $i in
             canvas)
                 cd /ql/scripts
+                if [[ "$(echo $(npm ls $i) | grep ERR)" != "" ]]; then
+                    npm uninstall $i
+                fi
                 if [[ "$(npm ls $i)" =~ (empty) ]]; then
-                    if [[ "echo $(npm ls $i) | grep ERR" != "" ]]; then
-                        npm uninstall $i
-                    fi
                     apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && npm i $i --prefix /ql/scripts --build-from-source
                 fi
                 ;;
-            typescript)
-                if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
-                    if [[ "echo $(npm ls $i -g) | grep ERR" != "" ]]; then
-                        npm uninstall $i
-                    fi
-                    npm i $i -g --force
-                fi
-                ;;
             *)
+                if [[ "$(npm ls $i)" =~ $i ]]; then
+                    npm uninstall $i
+                elif [[ "$(echo $(npm ls $i -g) | grep ERR)" != "" ]]; then
+                    npm uninstall $i -g
+                fi
                 if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
-                    if [[ "echo $(npm ls $i -g) | grep ERR" != "" ]]; then
-                        npm uninstall $i
-                    fi
-                    npm i $i -g
+                    [[ $i = "typescript" ]] && npm i $i -g --force || npm i $i -g
                 fi
                 ;;
         esac
@@ -679,22 +673,27 @@ install_dependencies_force(){
         case $i in
             canvas)
                 cd /ql/scripts
-                if [[ "$(npm ls $i)" =~ (empty) ]]; then
-                    if [[ "$(npm ls $i)" =~ $i ]] || [[ "echo $(npm ls $i) | grep ERR" != "" ]]; then
-                        npm uninstall $i
-                    fi
+                if [[ "$(npm ls $i)" =~ $i && "$(echo $(npm ls $i) | grep ERR)" != "" ]]; then
+                    npm uninstall $i
                     rm -rf /ql/scripts/node_modules/$i
                     rm -rf /usr/local/lib/node_modules/lodash/*
+                fi
+                if [[ "$(npm ls $i)" =~ (empty) ]]; then
                     apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && npm i $i --prefix /ql/scripts --build-from-source --force
                 fi
                 ;;
             *)
-                if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
-                    if [[ "$(npm ls $i)" =~ $i ]] || [[ "$(npm ls $i -g)" =~ $i ]] || [[ "echo $(npm ls $i -g) | grep ERR" != "" ]]; then
-                        npm uninstall $i
-                    fi
-                    rm -rf /usr/local/lib/node_modules/$i
+                cd /ql/scripts
+                if [[ "$(npm ls $i)" =~ $i ]]; then
+                    npm uninstall $i
+                    rm -rf /ql/scripts/node_modules/$i
                     rm -rf /usr/local/lib/node_modules/lodash/*
+                elif [[ "$(npm ls $i -g)" =~ $i && "$(echo $(npm ls $i -g) | grep ERR)" != "" ]]; then
+                    npm uninstall $i -g
+                    rm -rf /ql/scripts/node_modules/$i
+                    rm -rf /usr/local/lib/node_modules/lodash/*
+                fi
+                if [[ "$(npm ls $i -g)" =~ (empty) ]]; then
                     npm i $i -g --force
                 fi
                 ;;
@@ -703,18 +702,15 @@ install_dependencies_force(){
 }
 
 install_dependencies_all(){
-    if [ "$ps_num" -le $proc_num ]; then
-        install_dependencies_normal $package_name
-        cd /ql/scripts
-        for i in $package_name; do
-            install_dependencies_force $i
-        done
-    fi
+    install_dependencies_normal $package_name
+    for i in $package_name; do
+        install_dependencies_force $i
+    done
 }
 
 
 ## 执行并写入日志
-[[ $FixDependType = "1" ]] && install_dependencies_all >/dev/null 2>&1 &
+[[ $FixDependType = "1" ]] && [[ "$ps_num" -le $proc_num ]] && install_dependencies_all >/dev/null 2>&1 &
 today="$(date +%Y年%m月%d日)"
 cur_time="【$(date +%X)】"
 log_time=$(date "+%Y-%m-%d-%H-%M-%S")
