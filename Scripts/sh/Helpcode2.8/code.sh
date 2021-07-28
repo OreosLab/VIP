@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210727-001
+## Build 20210728-001
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -213,7 +213,7 @@ export_codes_sub() {
     local BreakHelpInterval=$(echo $BreakHelpNum | perl -pe "{s|~|-|; s|_|-|}" | sed 's/\(\d\+\)-\(\d\+\)/{\1..\2}/g')
     local BreakHelpNumArray=($(eval echo $BreakHelpInterval))
     local BreakHelpNumVerify=$(echo $BreakHelpNum | sed 's/ //g' | perl -pe "{s|-||; s|~||; s|_||}" | sed 's/^\d\+$//g')
-    local i j k m n q t pt_pin_in_log code tmp_grep tmp_my_code tmp_for_other user_num tmp_helptype HelpTemp random_num_list
+    local i j k m n t pt_pin_in_log code tmp_grep tmp_my_code tmp_for_other user_num tmp_helptype HelpTemp random_num_list
     local envs=$(eval echo "\$JD_COOKIE")
     local array=($(echo $envs | sed 's/&/ /g'))
     local user_sum=${#array[*]}
@@ -249,17 +249,6 @@ export_codes_sub() {
         ## 输出ForOther系列变量
         if [[ ${#code[*]} -gt 0 ]]; then
             [[ $DiyHelpType = "1" ]] && diy_help_rules $2
-            case $2 in
-                Fruit | Bean | DreamFactory | Jxnc | Cfd)
-                    q="4"
-                    ;;
-                Pet | Sgmh)
-                    q="6"
-                    ;;
-                *)
-                    q="$user_sum"
-                    ;;
-            esac
             case $tmp_helptype in
             0) ## 全部一致
                 HelpTemp="全部一致"
@@ -294,7 +283,7 @@ export_codes_sub() {
                 for ((m = 0; m < ${#pt_pin[*]}; m++)); do
                     tmp_for_other=""
                     j=$((m + 1))
-                    for ((n = $m; n < $(($q + $m)); n++)); do
+                    for ((n = $m; n < $(($user_sum + $m)); n++)); do
                         [[ $m -eq $n ]] && continue
                         if [[ $((n + 1)) -le $user_sum ]]; then
                             k=$((n + 1))
@@ -324,7 +313,7 @@ export_codes_sub() {
                 echo -e "\n## 采用\"$HelpTemp\"互助模板："
                 for ((m = 0; m < ${#pt_pin[*]}; m++)); do
                     tmp_for_other=""
-                    random_num_list=$(seq $user_sum | sort -R | head -$((q-1)))
+                    random_num_list=$(seq $user_sum | sort -R)
                     j=$((m + 1))
                     for n in $random_num_list; do
                         [[ $j -eq $n ]] && continue
@@ -352,7 +341,7 @@ export_codes_sub() {
                 for ((m = 0; m < ${#pt_pin[*]}; m++)); do
                     tmp_for_other=""
                     j=$((m + 1))
-                    for ((n = 0; n < $q; n++)); do
+                    for ((n = 0; n < $user_sum; n++)); do
                         [[ $m -eq $n ]] && continue
                         k=$((n + 1))
                         if [[ $BreakHelpType = "1" ]]; then
@@ -720,7 +709,7 @@ install_dependencies_all(){
         for i in $package_name; do
             install_dependencies_force $i
         done
-	fi
+    fi
 }
 
 
