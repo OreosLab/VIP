@@ -22,7 +22,7 @@ mv -b $config_raw_path $dir_config
 
 curl -sL https://git.io/extra.sh > $extra_raw_path
 mv -b $extra_raw_path $dir_config
-sed -i "s/\$default4/\$default${defaultNum}/g" $extra_config_path
+sed -i "s/CollectedRepo=(4)/CollectedRepo=(${defaultNum})/g" $extra_config_path
 
 curl -sL https://git.io/code.sh > $code_raw_path
 mv -b $code_raw_path $dir_config
