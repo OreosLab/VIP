@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Mod: Build20210730V1
+## Mod: Build20210731V1
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 安装node依赖使用 pnpm install -g xxx xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
 ## 安装python依赖使用 pip3 install xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
@@ -15,7 +15,7 @@
 ### （2）若需要在此处使用，请在设置区设置
 ## 3. Ninja
 ### （1）默认不启动和更新
-### （2）若需要启动和更新，则令 Ninja=up
+### （2）若需要启动和更新，则令 Ninja=up。此情况下未运行成功将强制重装
 
 
 #------ 设置区 ------#
@@ -120,8 +120,31 @@ done
 
 
 # 🍪Ninja
-if [ "${Ninja}" = "up" ]; then
-    cd /ql/ninja/backend && git checkout . && git pull && pnpm install && pm2 start && cp sendNotify.js /ql/scripts/sendNotify.js &
+update_Ninja_normal(){
+    [ ! -d /ql/ninja/backend ] && mkdir -p && git checkout . && git pull && pnpm install && pm2 start && cp sendNotify.js /ql/scripts/sendNotify.js &
+}
+
+reinstall_Ninja_force(){
+    ps -ef|grep ninja|grep -v grep
+    if [ $? -ne 0 ]
+        cd /ql
+        ps -ef|grep ninja|grep -v grep|awk '{print $1}'|xargs kill -9 && rm -rf /ql/ninja && rm -rf /ql/ninja
+        git clone https://github.com/MoonBegonia/ninja.git /ql/ninja  ## 拉取仓库
+        cd /ql/ninja/backend
+        pnpm install  ## 安装局部依赖
+        cp .env.example .env  ## 复制环境变量配置文件
+        cp sendNotify.js /ql/scripts/sendNotify.js ## 复制通知脚本到青龙容器
+        pm2 start
+    fi
+}
+
+check_Ninja_all(){
+    update_Ninja_normal
+    reinstall_Ninja_force
+}
+
+if [ "Ninja" = "up" ]; then
+    check_Ninja_all &
 fi
 
 
