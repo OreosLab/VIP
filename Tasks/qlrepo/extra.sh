@@ -23,7 +23,7 @@
 CollectedRepo=(4) ##示例：CollectedRepo=(2 4 6)
 OtherRepo=() ##示例：OtherRepo=(1 3)
 ## 2. 是否安装依赖和安装依赖包的名称设置
-Install="no" ##yes为安装，no为不安装
+dependencies="no" ##yes为安装，no为不安装
 package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv typescript fs require tslib"
 ## 3. Ninja 是否需要启动和更新设置
 Ninja="down" ##up为运行，down为不运行
@@ -121,7 +121,7 @@ done
 
 # 🍪Ninja
 update_Ninja_normal(){
-    [ ! -d /ql/ninja/backend ] && mkdir -p && git checkout . && git pull && pnpm install && pm2 start && cp sendNotify.js /ql/scripts/sendNotify.js &
+    [ ! -d /ql/ninja/backend ] && mkdir -p && git checkout . && git pull && pnpm install && pm2 start && cp sendNotify.js /ql/scripts/sendNotify.js
 }
 
 reinstall_Ninja_force(){
@@ -215,6 +215,6 @@ install_dependencies_all(){
     done
 }
 
-if [ "${Install}" = 'yes' ]; then
+if [ "${dependencies}" = 'yes' ]; then
     install_dependencies_all &
 fi
