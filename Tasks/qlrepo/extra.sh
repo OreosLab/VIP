@@ -36,7 +36,7 @@ Ninja="down" ##up为运行，down为不运行
 3-he1pu
 4-shufflewzc
 6-Aaron-lv
-
+7-Tsukasa007
 二、其他仓库（Other Repositories）
 1-passerby-b
 2-curtinlv
@@ -67,6 +67,9 @@ CR4(){
 }
 CR6(){
     ql repo https://github.com/Aaron-lv/sync.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER|utils" "jd_scripts"
+}
+CR7(){
+    ql repo https://github.com/Tsukasa007/my_script.git "" "jdCookie|USER_AGENTS|sendNotify|backup" "" "master"
 }
 for i in ${CollectedRepo[@]}; do
     CR$i
@@ -100,7 +103,7 @@ OR9(){
     ql repo https://github.com/photonmang/quantumultX.git "JDscripts"
 }
 OR10(){
-    ql repo https://github.com/jiulan/platypus.git
+    ql repo https://github.com/jiulan/platypus.git "jd_|jx_" "" "" "main"
 }
 OR11(){
     ql repo https://github.com/panghu999/panghu.git "jd_"
@@ -117,8 +120,8 @@ done
 
 
 # 🍪Ninja
-if [ "${Ninja}" = 'up' ]; then
-    cd /ql/ninja/backend && git checkout . && git pull && pnpm install && pm2 start && cp sendNotify.js /ql/scripts/sendNotify.js
+if [ "${Ninja}" = "up" ]; then
+    cd /ql/ninja/backend && git checkout . && git pull && pnpm install && pm2 start && cp sendNotify.js /ql/scripts/sendNotify.js &
 fi
 
 
