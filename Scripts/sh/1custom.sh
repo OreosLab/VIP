@@ -67,10 +67,10 @@ if [ "${Rextra}" = 'y' -o "${Rall}" = 1 ]; then
     # 授权
     chmod 755 $extra_shell_path
     # extra.sh 预设仓库及默认拉取仓库设置
-    echo -e "（1）panghu999\n（2）JDHelloWorld\n（3）he1pu\n（4）shufflewzc\n（6）Aaron-lv"
-    read -p "输入您想拉取的仓库编号(默认为 4):" defaultNum
-    defaultNum=${defaultNum:-'4'}
-    sed -i "s/\$default4/\$default${defaultNum}/g" $extra_shell_path
+    echo -e "（2）JDHelloWorld\n（3）he1pu\n（4）shufflewzc\n（6）Aaron-lv"
+    read -p "输入您想拉取的仓库编号(默认为 4),拉取多个请用空格隔开:" defaultNum
+    defaultNum=${defaultNum:-"4"}
+    sed -i "s/CollectedRepo=(4)/CollectedRepo=(${defaultNum})/g" $extra_shell_path
     # 将 extra.sh 添加到定时任务
     if [ "$(grep -c extra /ql/config/crontab.list)" = 0 ]; then
         echo "开始添加 task ql extra"

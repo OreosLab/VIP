@@ -84,7 +84,7 @@ ql repo https://github.com/panghu999/panghu.git "jd_"
 ```
 - `star261`
 ```
-ql repo https://github.com/star261/jd.git "jd_|star" "" "MovementFaker"
+ql repo https://github.com/star261/jd.git "jd_|star" "" "code" "main"
 ```
 - `Wenmoux`
 ```
@@ -131,6 +131,18 @@ ql raw https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/chinnkarahoi_jd_
 or
 ```
 ql repo https://github.com/Wenmoux/scripts.git "chinnkarahoi_jd_bookshop" "" "" "wen"
+```
+
+> `NobyDa`
+
+>> 京东多合一签到脚本
+
+```
+ql raw https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
+```
+or
+```
+ql repo https://github.com/NobyDa/Script.git "JD-DailyBonus" "" "JD_DailyBonus" "master"
 ```
 
 ## 已删库存档
