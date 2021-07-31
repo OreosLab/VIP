@@ -637,6 +637,53 @@ export JD_HEALTH_REWARD_NAME="20" ##只能兑换京豆，填写纯数字20 10 5 
 ```
 
 
+# Ninja 环境变量
+
+## 青龙内设置
+```
+## 1、通知黑名单
+### 使用 & 分隔，例如 东东乐园&东东萌宠
+export NOTIFY_SKIP_LIST=""
+```
+
+## .env 设置
+```
+# 是否允许添加账号 不允许添加时则只允许已有账号登录
+ALLOW_ADD=true
+
+#允许添加账号的最大数量
+ALLOW_NUM=40
+
+# Ninja 运行端口
+NINJA_PORT=5701
+
+# Ninja 是否发送通知
+NINJA_NOTIFY=true
+
+# user-agent
+# NINJA_UA=""
+```
+
+
+# 不知名大佬 环境变量
+
+```
+## 1、清空购物车
+### 将需要跳过清理的账号(cookie中的pt_pin)放到变量CleanUsers中，多个用@隔开
+export CleanUsers=""
+```
+
+
+# Tsukasa007 环境变量
+
+```
+## 1、定格夺冠
+### 一天只能领400豆1个ck20豆，不设置变量默认只会运行到ck21
+### 填写11就是跑到11个ck就停止，填写21就是跑到21个ck就停止，如果没豆那就改变量，ck多每天改一次收益最大化
+export Jd_opencard_championship=""
+```
+
+
 ## 通知环境变量
 
 ```

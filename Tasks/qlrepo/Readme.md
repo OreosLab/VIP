@@ -19,11 +19,11 @@ ql raw <fileurl>
   ```
   2. `he1pu`（自动提交助力码-京喜工厂、种豆得豆、东东工厂、东东农场、健康社区、京喜财富岛、东东萌宠、闪购盲盒，随机从数据库中选取助力码互助）
   ```
-  ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER|utils|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
+  ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "Coupon|update" "^jd[^_]|USER|^sign|^ZooFaker|utils"
   ```
   3. `shufflewzc`
   ```
-  ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|gua_|jddj_|getJDCookie" "activity|backUp|update" "^jd[^_]|USER|^ZooFaker|^JDJRValidator|^sign"
+  ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|gua_|jddj_|getJDCookie" "activity|backUp" "^jd[^_]|USER|^JS|^TS|^JDJRValidator_Pure|^ZooFaker|^sign"
   ```
   4. `Aaron-lv`
   ```
@@ -48,11 +48,11 @@ ql repo https://github.com/curtinlv/JD-Script.git "jd_"
 ```
 - `smiek2221`
 ```
-ql repo https://github.com/smiek2221/scripts.git "jd_|gua_" "" "^ZooFaker|^JDJRValidator|^sign"
+ql repo https://github.com/smiek2221/scripts.git "jd_|gua_" "" "^MovementFaker|^JDJRValidator|^ZooFaker|^sign" 
 ```
 - `cdle`
 ```
-ql repo https://github.com/cdle/jd_study.git "jd_" "expired"
+ql repo https://github.com/cdle/jd_study.git "jd_" "disposable|expired|jdc"
 ```
 - `ZCY01`
 ```
@@ -76,11 +76,7 @@ ql repo https://github.com/photonmang/quantumultX.git "JDscripts"
 ```
 - `jiulan`
 ```
-ql repo https://github.com/jiulan/platypus.git
-```
-- `panghu999/panghu`
-```
-ql repo https://github.com/panghu999/panghu.git "jd_"
+ql repo https://github.com/jiulan/platypus.git "jd_|jx_" "" "overdue" "main"
 ```
 - `star261`
 ```
@@ -89,6 +85,10 @@ ql repo https://github.com/star261/jd.git "jd_|star" "" "code" "main"
 - `Wenmoux`
 ```
 ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
+```
+- `Tsukasa007`
+```
+ql repo https://github.com/Tsukasa007/my_script.git "jd_|jx_" "jdCookie|USER_AGENTS|sendNotify|backup" "" "master"
 ```
 
 ## 单脚本
@@ -161,4 +161,8 @@ ql repo https://github.com/zooPanda/zoo.git "zoo"
 - `longzhuzhu`
 ```
 ql repo https://github.com/longzhuzhu/nianyu.git "qx"
+```
+- `panghu999/panghu`
+```
+ql repo https://github.com/panghu999/panghu.git "jd_"
 ```

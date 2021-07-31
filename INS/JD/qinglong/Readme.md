@@ -23,10 +23,10 @@ docker pull whyour/qinglong:latest
 docker run -dit \
    -v $PWD/ql/config:/ql/config \
    -v $PWD/ql/db:/ql/db \
+   -v $PWD/ql/log:/ql/log \
    -v $PWD/ql/repo:/ql/repo \
    -v $PWD/ql/raw:/ql/raw \
    -v $PWD/ql/scripts:/ql/scripts \
-   -v $PWD/ql/log:/ql/log \
    -v $PWD/ql/jbot:/ql/jbot \
    -p 5700:5700 \
    -e ENABLE_HANGUP=true \
@@ -44,10 +44,10 @@ docker run -dit \
 docker run -dit \
    -v $PWD/ql/config:/ql/config \
    -v $PWD/ql/db:/ql/db \
+   -v $PWD/ql/log:/ql/log \
    -v $PWD/ql/repo:/ql/repo \
    -v $PWD/ql/raw:/ql/raw \
    -v $PWD/ql/scripts:/ql/scripts \
-   -v $PWD/ql/log:/ql/log \
    -v $PWD/ql/jbot:/ql/jbot \
    -e ENABLE_HANGUP=true \
    -e ENABLE_TG_BOT=true \
@@ -72,10 +72,10 @@ docker run -dit \
   --mac-address C2:F2:9C:C5:B1:01 \
   -v $PWD/ql/config:/ql/config \
   -v $PWD/ql/db:/ql/db \
+  -v $PWD/ql/log:/ql/log \
   -v $PWD/ql/repo:/ql/repo \
   -v $PWD/ql/raw:/ql/raw \
   -v $PWD/ql/scripts:/ql/scripts \
-  -v $PWD/ql/log:/ql/log \
   -v $PWD/ql/jbot:/ql/jbot \
   -e ENABLE_HANGUP=true \
   -e ENABLE_TG_BOT=true \

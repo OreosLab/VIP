@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Mod: Build20210731V3
+## Mod: Build20210731V4
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 安装node依赖使用 pnpm install -g xxx xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
 ## 安装python依赖使用 pip3 install xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
@@ -15,7 +15,7 @@
 ### （2）若需要在此处使用，请在设置区设置
 ## 3. Ninja
 ### （1）默认不启动和更新
-### （2）若需要启动和更新，则令 Ninja=up。此情况下未运行成功将强制重装
+### （2）若需要启动和更新，则令 Ninja="up"，此情况下未运行成功将强制重装
 ### （3）⚠未修改容器映射的请勿修改，否则会出现青龙打不开或者设备死机等不良后果，映射参考 https://github.com/MoonBegonia/ninja#%E5%AE%B9%E5%99%A8%E5%86%85
 
 
@@ -37,7 +37,7 @@ Ninja="down" ##up为运行，down为不运行，谨慎修改
 3-he1pu
 4-shufflewzc
 6-Aaron-lv
-7-Tsukasa007
+7-yuannian1112
 二、其他仓库（Other Repositories）
 1-passerby-b
 2-curtinlv
@@ -49,9 +49,9 @@ Ninja="down" ##up为运行，down为不运行，谨慎修改
 8-Ariszy (Zhiyi-N)
 9-photonmang
 10-jiulan
-11-panghu999/panghu
 12-star261
 13-Wenmoux
+14-Tsukasa007
 EOF
 
 
@@ -61,16 +61,16 @@ CR2(){
     ql repo https://github.com/JDHelloWorld/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|enen|update|test" "^jd[^_]|USER|^TS|utils|notify|env|package|ken.js"
 }
 CR3(){
-    ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER|utils|^MovementFaker|^JDJRValidator|^sign|^ZooFaker"
+    ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "Coupon|update" "^jd[^_]|USER|^sign|^ZooFaker|utils"
 }
 CR4(){
-    ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|gua_|jddj_|getJDCookie" "activity|backUp|update" "^jd[^_]|USER|^ZooFaker|^JDJRValidator|^sign"
+    ql repo https://github.com/shufflewzc/faker2.git "jd_|jx_|gua_|jddj_|getJDCookie" "activity|backUp|Coupon|update" "^jd[^_]|USER|^JS|^TS|^JDJRValidator_Pure|^ZooFaker|^sign"
 }
 CR6(){
     ql repo https://github.com/Aaron-lv/sync.git "jd_|jx_|getJDCookie" "activity|backUp|Coupon" "^jd[^_]|USER|utils" "jd_scripts"
 }
 CR7(){
-    ql repo https://github.com/Tsukasa007/my_script.git "" "jdCookie|USER_AGENTS|sendNotify|backup" "" "master"
+    ql repo https://github.com/yuannian1112/jd_scripts.git "jd_|jx_|getJDCookie" "activity|backUp" "^jd[^_]|USER|utils"
 }
 for i in ${CollectedRepo[@]}; do
     CR$i
@@ -83,10 +83,10 @@ OR2(){
     ql repo https://github.com/curtinlv/JD-Script.git "jd_"
 }
 OR3(){
-    ql repo https://github.com/smiek2221/scripts.git "jd_|gua_" "" "^ZooFaker|^JDJRValidator|^sign"
+    ql repo https://github.com/smiek2221/scripts.git "jd_|gua_" "" "^MovementFaker|^JDJRValidator|^ZooFaker|^sign"
 }
 OR4(){
-    ql repo https://github.com/cdle/jd_study.git "jd_" "expired"
+    ql repo https://github.com/cdle/jd_study.git "jd_" "disposable|expired|jdc"
 }
 OR5(){
     ql repo https://github.com/ZCY01/daily_scripts.git "jd_"
@@ -104,7 +104,7 @@ OR9(){
     ql repo https://github.com/photonmang/quantumultX.git "JDscripts"
 }
 OR10(){
-    ql repo https://github.com/jiulan/platypus.git "jd_|jx_" "" "" "main"
+    ql repo https://github.com/jiulan/platypus.git "jd_|jx_" "" "overdue" "main"
 }
 OR11(){
     ql repo https://github.com/panghu999/panghu.git "jd_"
@@ -114,6 +114,9 @@ OR12(){
 }
 OR13(){
     ql repo https://github.com/Wenmoux/scripts.git "other|jd" "" "" "wen"
+}
+OR14(){
+    ql repo https://github.com/Tsukasa007/my_script.git "jd_|jx_" "jdCookie|USER_AGENTS|sendNotify|backup" "" "master"
 }
 for i in ${OtherRepo[@]}; do
     OR$i

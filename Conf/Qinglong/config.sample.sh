@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210729-001
+## Mod: Build20210731-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -494,3 +494,19 @@ export validate_num="" ##你需要的数值
 # Aaron-lv 环境变量
 ## 1、京东健康社区京豆兑换
 export JD_HEALTH_REWARD_NAME="20" ##只能兑换京豆，填写纯数字20 10 5 3
+
+# Ninja 环境变量
+## 1、通知黑名单
+### 使用 & 分隔，例如 东东乐园&东东萌宠
+export NOTIFY_SKIP_LIST=""
+
+# 不知名大佬 环境变量
+## 1、清空购物车
+### 将需要跳过清理的账号(cookie中的pt_pin)放到变量CleanUsers中，多个用@隔开
+export CleanUsers=""
+
+# Tsukasa007 环境变量
+## 1、定格夺冠
+### 一天只能领400豆1个ck20豆，不设置变量默认只会运行到ck21
+### 填写11就是跑到11个ck就停止，填写21就是跑到21个ck就停止，如果没豆那就改变量，ck多每天改一次收益最大化
+export Jd_opencard_championship=""
