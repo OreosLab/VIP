@@ -21,44 +21,44 @@ docker pull whyour/qinglong:latest
 
 ``` sh
 docker run -dit \
-   -v $PWD/ql/config:/ql/config \
-   -v $PWD/ql/db:/ql/db \
-   -v $PWD/ql/log:/ql/log \
-   -v $PWD/ql/repo:/ql/repo \
-   -v $PWD/ql/raw:/ql/raw \
-   -v $PWD/ql/scripts:/ql/scripts \
-   -v $PWD/ql/jbot:/ql/jbot \
-   -p 5700:5700 \
-   -e ENABLE_HANGUP=true \
-   -e ENABLE_TG_BOT=true \
-   -e ENABLE_WEB_PANEL=true \
-   -e TZ=CST-8 \
-   --name qinglong \
-   --hostname qinglong \
-   --restart always \
-   whyour/qinglong:latest
+  -v $PWD/ql/config:/ql/config \
+  -v $PWD/ql/db:/ql/db \
+  -v $PWD/ql/log:/ql/log \
+  -v $PWD/ql/repo:/ql/repo \
+  -v $PWD/ql/raw:/ql/raw \
+  -v $PWD/ql/scripts:/ql/scripts \
+  -v $PWD/ql/jbot:/ql/jbot \
+  -p 5700:5700 \
+  -e ENABLE_HANGUP=true \
+  -e ENABLE_TG_BOT=true \
+  -e ENABLE_WEB_PANEL=true \
+  -e TZ=CST-8 \
+  --name qinglong \
+  --hostname qinglong \
+  --restart always \
+  whyour/qinglong:latest
 ```
 
 #### 2-2 N1等路由器
 
 ``` sh
 docker run -dit \
-   -v $PWD/ql/config:/ql/config \
-   -v $PWD/ql/db:/ql/db \
-   -v $PWD/ql/log:/ql/log \
-   -v $PWD/ql/repo:/ql/repo \
-   -v $PWD/ql/raw:/ql/raw \
-   -v $PWD/ql/scripts:/ql/scripts \
-   -v $PWD/ql/jbot:/ql/jbot \
-   -e ENABLE_HANGUP=true \
-   -e ENABLE_TG_BOT=true \
-   -e ENABLE_WEB_PANEL=true \
-   -e TZ=CST-8 \
-   --net host \
-   --name qinglong \
-   --hostname qinglong \
-   --restart always \
-   whyour/qinglong:latest
+  -v $PWD/ql/config:/ql/config \
+  -v $PWD/ql/db:/ql/db \
+  -v $PWD/ql/log:/ql/log \
+  -v $PWD/ql/repo:/ql/repo \
+  -v $PWD/ql/raw:/ql/raw \
+  -v $PWD/ql/scripts:/ql/scripts \
+  -v $PWD/ql/jbot:/ql/jbot \
+  -e ENABLE_HANGUP=true \
+  -e ENABLE_TG_BOT=true \
+  -e ENABLE_WEB_PANEL=true \
+  -e TZ=CST-8 \
+  --net host \
+  --name qinglong \
+  --hostname qinglong \
+  --restart always \
+  whyour/qinglong:latest
 ```
 
 #### 2-3 MacVlan方式
