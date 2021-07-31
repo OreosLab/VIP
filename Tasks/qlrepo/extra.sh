@@ -126,7 +126,7 @@ update_Ninja_normal(){
 
 reinstall_Ninja_force(){
     ps -ef|grep ninja|grep -v grep
-    if [ $? -ne 0 ]
+    if [ $? -ne 0 ]; then
         cd /ql
         ps -ef|grep ninja|grep -v grep|awk '{print $1}'|xargs kill -9 && rm -rf /ql/ninja && rm -rf /ql/ninja
         git clone https://github.com/MoonBegonia/ninja.git /ql/ninja  ## 拉取仓库
