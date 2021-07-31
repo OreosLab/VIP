@@ -26,7 +26,7 @@ OtherRepo=() ##示例：OtherRepo=(1 3)
 dependencies="no" ##yes为安装，no为不安装
 package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv typescript fs require tslib"
 ## 3. Ninja 是否需要启动和更新设置
-Ninja="down" ##up为运行，down为不运行
+Ninja="up" ##up为运行，down为不运行
 
 
 #------ 编号区 ------#
@@ -143,7 +143,7 @@ check_Ninja_all(){
     reinstall_Ninja_force
 }
 
-if [ "Ninja" = "up" ]; then
+if [ "${Ninja}" = "up" ]; then
     check_Ninja_all &
 fi
 
@@ -215,6 +215,6 @@ install_dependencies_all(){
     done
 }
 
-if [ "${dependencies}" = 'yes' ]; then
+if [ "${dependencies}" = "yes" ]; then
     install_dependencies_all &
 fi
