@@ -23,9 +23,10 @@ services:
       - ./jbot:/ql/jbot
       - ./ninja:/ql/ninja
     environment: 
-      - ENABLE_HANGUP=false    # 是否启用JOY挂机
-      - ENABLE_TG_BOT=true     # 是否启用TGBOT交互
-      - ENABLE_WEB_PANEL=true  # 是否开启面板
+      - ENABLE_HANGUP=true
+      - ENABLE_TG_BOT=true
+      - ENABLE_WEB_PANEL=true
+      - TZ=CST-8
 ```
 - 解决青龙拉取`smiek2221/scripts`更新错误问题
 ``` sh

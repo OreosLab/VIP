@@ -32,6 +32,7 @@ docker run -dit \
    -e ENABLE_HANGUP=true \
    -e ENABLE_TG_BOT=true \
    -e ENABLE_WEB_PANEL=true \
+   -e TZ=CST-8 \
    --name qinglong \
    --hostname qinglong \
    --restart always \
@@ -52,6 +53,7 @@ docker run -dit \
    -e ENABLE_HANGUP=true \
    -e ENABLE_TG_BOT=true \
    -e ENABLE_WEB_PANEL=true \
+   -e TZ=CST-8 \
    --net host \
    --name qinglong \
    --hostname qinglong \
@@ -80,6 +82,7 @@ docker run -dit \
   -e ENABLE_HANGUP=true \
   -e ENABLE_TG_BOT=true \
   -e ENABLE_WEB_PANEL=true \
+  -e TZ=CST-8 \
   whyour/qinglong:latest
 ```
 
