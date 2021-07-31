@@ -637,16 +637,16 @@ export JD_HEALTH_REWARD_NAME="20" ##只能兑换京豆，填写纯数字20 10 5 
 ```
 
 
-# Ninja 环境变量
+## Ninja 环境变量
 
-## 青龙内设置
+### 青龙内设置
 ```
 ## 1、通知黑名单
 ### 使用 & 分隔，例如 东东乐园&东东萌宠
 export NOTIFY_SKIP_LIST=""
 ```
 
-## .env 设置
+### .env 设置
 ```
 # 是否允许添加账号 不允许添加时则只允许已有账号登录
 ALLOW_ADD=true
@@ -665,7 +665,7 @@ NINJA_NOTIFY=true
 ```
 
 
-# 不知名大佬 环境变量
+## 不知名大佬环境变量
 
 ```
 ## 1、清空购物车
@@ -674,7 +674,7 @@ export CleanUsers=""
 ```
 
 
-# Tsukasa007 环境变量
+## Tsukasa007 环境变量
 
 ```
 ## 1、定格夺冠

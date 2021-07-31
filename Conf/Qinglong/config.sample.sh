@@ -500,7 +500,7 @@ export JD_HEALTH_REWARD_NAME="20" ##只能兑换京豆，填写纯数字20 10 5 
 ### 使用 & 分隔，例如 东东乐园&东东萌宠
 export NOTIFY_SKIP_LIST=""
 
-# 不知名大佬 环境变量
+# 不知名大佬环境变量
 ## 1、清空购物车
 ### 将需要跳过清理的账号(cookie中的pt_pin)放到变量CleanUsers中，多个用@隔开
 export CleanUsers=""
