@@ -1,19 +1,24 @@
-qinglong:
-  image: whyour/qinglong:latest
-  container_name: qinglong
-  hostname: qinglong
-  restart: always
-  ports:
-    - "5700:5700"
-  volumes:
-    - ./config:/ql/config
-    - ./log:/ql/log
-    - ./db:/ql/db
-    - ./repo:/ql/repo
-    - ./raw:/ql/raw
-    - ./scripts:/ql/scripts
-    - ./jbot:/ql/jbot
-  environment: 
-    - ENABLE_HANGUP=false    # 是否启用JOY挂机
-    - ENABLE_TG_BOT=true     # 是否启用TGBOT交互
-    - ENABLE_WEB_PANEL=true  # 是否开启面板
+version: "3"
+services:
+  qinglong:
+    image: whyour/qinglong:latest
+    container_name: qinglong
+    hostname: qinglong
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5700:5700"
+      - "5701:5701"
+    volumes:
+      - ./config:/ql/config
+      - ./db:/ql/db
+      - ./log:/ql/log
+      - ./repo:/ql/repo
+      - ./raw:/ql/raw
+      - ./scripts:/ql/scripts
+      - ./jbot:/ql/jbot
+      - ./ninja:/ql/ninja
+    environment: 
+      - ENABLE_HANGUP=false    # 是否启用JOY挂机
+      - ENABLE_TG_BOT=true     # 是否启用TGBOT交互
+      - ENABLE_WEB_PANEL=true  # 是否开启面板

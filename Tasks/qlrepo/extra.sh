@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Mod: Build20210731V2
+## Mod: Build20210731V3
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 安装node依赖使用 pnpm install -g xxx xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
 ## 安装python依赖使用 pip3 install xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
@@ -16,17 +16,18 @@
 ## 3. Ninja
 ### （1）默认不启动和更新
 ### （2）若需要启动和更新，则令 Ninja=up。此情况下未运行成功将强制重装
+### （3）⚠未修改容器映射的请勿修改，否则会出现青龙打不开或者设备死机等不良后果，映射参考 https://github.com/MoonBegonia/ninja#%E5%AE%B9%E5%99%A8%E5%86%85
 
 
 #------ 设置区 ------#
-## 1. 默认拉取仓库编号设置，默认 shufflewzc 仓库
+## 1. 拉取仓库编号设置，默认 shufflewzc 仓库
 CollectedRepo=(4) ##示例：CollectedRepo=(2 4 6)
 OtherRepo=() ##示例：OtherRepo=(1 3)
 ## 2. 是否安装依赖和安装依赖包的名称设置
 dependencies="no" ##yes为安装，no为不安装
 package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv typescript fs require tslib"
 ## 3. Ninja 是否需要启动和更新设置
-Ninja="down" ##up为运行，down为不运行
+Ninja="down" ##up为运行，down为不运行，谨慎修改
 
 
 #------ 编号区 ------#
