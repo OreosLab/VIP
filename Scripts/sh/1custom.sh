@@ -211,7 +211,7 @@ set_bot_json(){
     read -p "\"api_id\":" api_id
     read -p "\"api_hash\":" api_hash
     sed -i "s/123456789/${user_id}/" $bot_json
-    sed -i "s/123456789:ABCDEFGSHSFDASDFAD/${bot_token}/" $bot_json
+    sed -ri "s/123456789\:ABCDEFGSHSFDASDFAD/${bot_token}/" $bot_json
     sed -i "s/456423156/${api_id}/" $bot_json
     sed -i "s/ASDFAWEFADSFAWEFDSFASFD/${api_hash}/" $bot_json
 }
