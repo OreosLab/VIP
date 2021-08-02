@@ -215,21 +215,22 @@ set_bot_json(){
     sed -i "s/456423156/${api_id}/" $bot_json
     sed -i "s/ASDFAWEFADSFAWEFDSFASFD/${api_hash}/" $bot_json
 }
-# 再运行一次 ql bot
-run_ql_bot(){
-    ql bot
+# 重启
+ql_restart(){
+    ql restart
 }
 if [ "${all}" = 1 ]; then
-    add_ql_bot && set_bot_json && run_ql_bot
+    add_ql_bot && set_bot_json && ql_restart
 else
     case ${bot} in
         0)  echo "已为您跳过 bot 操作"
         ;;
         1)  add_ql_bot
         ;;
-        2)  add_ql_bot && set_bot_json && run_ql_bot
+        2)  add_ql_bot && set_bot_json && ql_restart
     esac    
 fi
+
 
 
 # 添加定时任务 自动更新模板
