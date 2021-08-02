@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# cron 0 6,18 * * *
+
 dir_config=/ql/config
 dir_scripts=/ql/scripts
 dir_raw=/ql/raw
