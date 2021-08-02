@@ -252,7 +252,7 @@ run_curl_sample(){
 if [ "${all}" = 1 ]; then
     add_curl_sample && run_curl_sample
 else
-    case ${bot} in
+    case ${sample} in
         0)  echo "已为您跳过自动更新模板"
         ;;
         1)  add_curl_sample
