@@ -231,6 +231,7 @@ else
     esac    
 fi
 
+
 # 添加定时任务 自动更新模板
 add_curl_sample(){
     if [ "$(grep -c "config.sample.sh" /ql/config/crontab.list)" != 0 ]; then
