@@ -11,18 +11,20 @@ code_raw_path=$dir_raw/code.sh
 code_config_path=$dir_config/code.sh
 task_before_raw_path=$dir_raw/task_before.sh
 task_before_config_path=$dir_config/task_before.sh
-defaultNum=4
+CollectedRepo=4
+OtherRepo=14
 repoNum=4
 HelpType="HelpType=\"0\""
 BreakHelpType="BreakHelpType=\"1\""
-BreakHelpNum="BreakHelpNum=\"11-47\""
+BreakHelpNum="BreakHelpNum=\"11-1000\""
 
 curl -sL https://git.io/config.sh > $config_raw_path
 mv -b $config_raw_path $dir_config
 
 curl -sL https://git.io/extra.sh > $extra_raw_path
 mv -b $extra_raw_path $dir_config
-sed -i "s/CollectedRepo=(4)/CollectedRepo=(${defaultNum})/g" $extra_config_path
+sed -i "s/CollectedRepo=(4)/CollectedRepo=(${CollectedRepo})/g" $extra_config_path
+sed -i "s/OtherRepo=()/OtherRepo=(${OtherRepo})/g" $extra_config_path
 
 curl -sL https://git.io/code.sh > $code_raw_path
 mv -b $code_raw_path $dir_config
