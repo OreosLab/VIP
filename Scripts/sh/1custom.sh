@@ -247,7 +247,7 @@ add_curl_sample(){
     fi
 }
 run_curl_sample(){
-    curl -L https://git.io/config.sh -o /ql/sample/config.sample.sh && cp -rf /ql/sample/config.sample.sh /ql/config
+    curl -sL https://git.io/config.sh -o /ql/sample/config.sample.sh && cp -rf /ql/sample/config.sample.sh /ql/config
 }
 if [ "${all}" = 1 ]; then
     add_curl_sample && run_curl_sample
