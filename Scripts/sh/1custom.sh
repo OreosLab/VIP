@@ -207,11 +207,11 @@ set_bot_json(){
     ql bot
     sleep 5
     echo -e "\"//user_id\": \"↓↓↓  你的USERID，去除双引号  ↓↓↓\",\n\"user_id\": 123456789,\n\"//bot_token\": \"↓↓↓  你的机器人TOKEN  ↓↓↓\",\n\"bot_token\": \"123456789:ABCDEFGSHSFDASDFAD\",\n\"//api_id\": \"↓↓↓  https://my.telegram.org 在该网站申请到的id  ↓↓↓\",\n\"api_id\": \"456423156\",\n\"//api_hash\": \"↓↓↓  https://my.telegram.org 在该网站申请到的hash  ↓↓↓\",\n\"api_hash\": \"ASDFAWEFADSFAWEFDSFASFD\","
-    echo -e "----- 以上为示例，以下为你的配置(只填数字) -----"
-    read -p "\"user_id\":" user_id
-    read -p "\"bot_token\":" bot_token
-    read -p "\"api_id\":" api_id
-    read -p "\"api_hash\":" api_hash
+    echo -e "----- 以上为示例，以下为你的配置(不要引号) -----"
+    read -p "\"user_id\": " user_id
+    read -p "\"bot_token\": " bot_token
+    read -p "\"api_id\": " api_id
+    read -p "\"api_hash\": " api_hash
     sed -i "s/123456789,/${user_id},/" $bot_json
     sed -ri "s/123456789\:ABCDEFGSHSFDASDFAD/${bot_token}/" $bot_json
     sed -i "s/456423156/${api_id}/" $bot_json
