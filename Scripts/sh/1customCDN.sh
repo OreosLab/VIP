@@ -94,6 +94,7 @@ add_ql_extra(){
 # 运行一次 ql extra
 run_ql_extra(){
     ql extra
+    sleep 5
 }
 if [ "${all}" = 1 ]; then
     dl_extra_shell && set_default_extra && add_ql_extra && run_ql_extra
@@ -204,6 +205,7 @@ add_ql_bot(){
 # 运行一次并简单设置 bot.json
 set_bot_json(){
     ql bot
+    sleep 5
     echo -e "\"//user_id\": \"↓↓↓  你的USERID，去除双引号  ↓↓↓\",\n\"user_id\": 123456789,\n\"//bot_token\": \"↓↓↓  你的机器人TOKEN  ↓↓↓\",\n\"bot_token\": \"123456789:ABCDEFGSHSFDASDFAD\",\n\"//api_id\": \"↓↓↓  https://my.telegram.org 在该网站申请到的id  ↓↓↓\",\n\"api_id\": \"456423156\",\n\"//api_hash\": \"↓↓↓  https://my.telegram.org 在该网站申请到的hash  ↓↓↓\",\n\"api_hash\": \"ASDFAWEFADSFAWEFDSFASFD\","
     echo -e "----- 以上为示例，以下为你的配置 -----"
     read -p "\"user_id\":" user_id
@@ -218,6 +220,7 @@ set_bot_json(){
 # 再运行一次 ql bot
 run_ql_bot(){
     ql bot
+    sleep 5
 }
 if [ "${all}" = 1 ]; then
     add_ql_bot && set_bot_json && run_ql_bot
@@ -244,7 +247,7 @@ add_curl_sample(){
     fi
 }
 run_curl_sample(){
-    curl -L https://raw.githubusercontents.com/Oreomeow/VIP/main/Conf/Qinglong/config.sample.sh -o /ql/sample/config.sample.sh && cp -rf /ql/sample/config.sample.sh /ql/config
+    curl -sL https://raw.githubusercontents.com/Oreomeow/VIP/main/Conf/Qinglong/config.sample.sh -o /ql/sample/config.sample.sh && cp -rf /ql/sample/config.sample.sh /ql/config
 }
 if [ "${all}" = 1 ]; then
     add_curl_sample && run_curl_sample
