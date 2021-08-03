@@ -22,7 +22,7 @@
 #------ 设置区 ------#
 ## 1. 拉取仓库编号设置，默认 shufflewzc 仓库
 CollectedRepo=(4) ##示例：CollectedRepo=(2 4 6)
-OtherRepo=(14) ##示例：OtherRepo=(1 3)
+OtherRepo=() ##示例：OtherRepo=(1 3)
 ## 2. 是否安装依赖和安装依赖包的名称设置
 dependencies="no" ##yes为安装，no为不安装
 package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv typescript fs require tslib"
