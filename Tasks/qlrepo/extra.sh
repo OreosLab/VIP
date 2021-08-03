@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Mod: Build20210731V4
+## Mod: Build20210803V1
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 安装node依赖使用 pnpm install -g xxx xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
 ## 安装python依赖使用 pip3 install xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
@@ -22,7 +22,7 @@
 #------ 设置区 ------#
 ## 1. 拉取仓库编号设置，默认 shufflewzc 仓库
 CollectedRepo=(4) ##示例：CollectedRepo=(2 4 6)
-OtherRepo=() ##示例：OtherRepo=(1 3)
+OtherRepo=(14) ##示例：OtherRepo=(1 3)
 ## 2. 是否安装依赖和安装依赖包的名称设置
 dependencies="no" ##yes为安装，no为不安装
 package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv typescript fs require tslib"
@@ -125,7 +125,7 @@ done
 
 # 🍪Ninja
 update_Ninja_normal(){
-    [ ! -d /ql/ninja/backend ] && mkdir -p && git checkout . && git pull && pnpm install && pm2 start && cp sendNotify.js /ql/scripts/sendNotify.js
+    ! test -d "/ql/ninja/backend" && mkdir -p "/ql/ninja/backend" && git checkout . && git pull && pnpm install && pm2 start && cp sendNotify.js /ql/scripts/sendNotify.js
 }
 
 reinstall_Ninja_force(){
