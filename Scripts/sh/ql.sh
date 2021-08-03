@@ -125,7 +125,7 @@ input_container_name() {
     echo -n -e "\e[33m三.请输入要创建的Docker容器名称[默认为：qinglong]->\e[0m"
     read container_name
     if [ -z "$container_name" ]; then
-        CONTAINER_NAME="jd_v4_bot"
+        CONTAINER_NAME="qinglong"
     else
         CONTAINER_NAME=$container_name
     fi
@@ -275,7 +275,28 @@ if [ ! -f "$CONFIG_PATH/config.sh" ]; then
 log "4.下面列出所有容器"
 docker ps
 
-log "5.安装已经完成。下面开始青龙内部配置"
-docker exec -it $CONTAINER_NAME bash -c "$(curl -fsSL https://gitee.com/allin1code/a1/raw/master/1customCDN.sh)"
+#Nginx静态解析检测
+log "5.开始检测Nginx静态解析"
+echo "开始扫描静态解析是否在线！"
+ps -fe|grep nginx|grep -v grep
+if [ $? -ne 0 ]; then
+    echo $NOWTIME" 扫描结束！Nginx静态解析停止了！准备重启！"
+    docker exec -it $CONTAINER_NAME nginx -c /etc/nginx/nginx.conf
+    echo $NOWTIME" Nginx静态解析重启完成！"
+else
+    echo $NOWTIME" 扫描结束！Nginx静态解析正常呢！"
+fi
 
-log "6.全面部署已完成。enjoy!!!"
+if [ "$port" = "2" ]; then
+    log "6.安装已经完成，请自行调整端口映射并进入面板一次以便进行内部配置"
+else
+    log "6.安装已经完成，请进入面板一次以便进行内部配置"
+
+sleep 20
+
+if [ "$port" != "2" ]; then
+    log "7.下面开始青龙内部配置"
+    docker exec -it $CONTAINER_NAME bash -c "$(curl -fsSL https://gitee.com/allin1code/a1/raw/master/1customCDN.sh)"
+fi
+
+log "🎉全面部署已完成。enjoy!!!"
