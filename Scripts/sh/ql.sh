@@ -2,8 +2,7 @@
 
 clear
 
-echo -e "\033[36m
-
+echo -e "\e[36m
    ▄▄▄▄       ██                         ▄▄▄▄                                   
   ██▀▀██      ▀▀                         ▀▀██                                   
  ██    ██   ████     ██▄████▄   ▄███▄██    ██       ▄████▄   ██▄████▄   ▄███▄██ 
@@ -12,7 +11,8 @@ echo -e "\033[36m
   ██▄▄██▀  ▄▄▄██▄▄▄  ██    ██  ▀██▄▄███    ██▄▄▄   ▀██▄▄██▀  ██    ██  ▀██▄▄███ 
    ▀▀▀██   ▀▀▀▀▀▀▀▀  ▀▀    ▀▀   ▄▀▀▀ ██     ▀▀▀▀     ▀▀▀▀    ▀▀    ▀▀   ▄▀▀▀ ██ 
        ▀                        ▀████▀▀                                 ▀████▀▀
-"
+\e[0m\n"
+
 DOCKER_IMG_NAME="whyour/qinglong"
 JD_PATH=""
 SHELL_FOLDER=$(pwd)
@@ -48,36 +48,36 @@ warn() {
 
 cancelrun() {
     if [ $# -gt 0 ]; then
-        echo     "\033[31m $1 \033[0m"
+        echo     "\e[31m $1 \e[0m"
     fi
     exit 1
 }
 
 docker_install() {
-    echo "检查Docker......"
+    echo "检测 Docker......"
     if [ -x "$(command -v docker)" ]; then
-       echo "检查到Docker已安装!"
+       echo "检测到 Docker 已安装!"
     else
        if [ -r /etc/os-release ]; then
             lsb_dist="$(. /etc/os-release && echo "$ID")"
         fi
         if [ $lsb_dist == "openwrt" ]; then
-            echo "openwrt 环境请自行安装docker"
-            #exit 1
+            echo "openwrt 环境请自行安装 docker"
+            exit 1
         else
-            echo "安装docker环境..."
+            echo "安装 docker 环境..."
             curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
-            echo "安装docker环境...安装完成!"
+            echo "安装 docker 环境...安装完成!"
             systemctl enable docker
             systemctl start docker
         fi
     fi
 }
 
+# 配置文件保存目录
 docker_install
-warn "降低学习成本，小白回车到底，一路默认选择"
-#配置文件目录
-echo -n -e "\e[33m一.请输入配置文件保存的绝对路径（示例：/root),直接回车为当前目录:\e[0m"
+warn "\n降低学习成本，小白回车到底，一路默认选择"
+echo -n -e "\e[33m一、请输入配置文件保存的绝对路径（示例：/root)，回车默认为当前目录:\e[0m"
 read jd_path
 if [ -z "$jd_path" ]; then
     JD_PATH=$SHELL_FOLDER
@@ -96,12 +96,11 @@ LOG_PATH=$JD_PATH/ql/log
 JBOT_PATH=$JD_PATH/ql/jbot
 NINJA_PATH=$JD_PATH/ql/ninja
 
-
-#检测镜像是否存在
+# 检测镜像是否存在
 if [ ! -z "$(docker images -q $DOCKER_IMG_NAME:$TAG 2> /dev/null)" ]; then
     HAS_IMAGE=true
     OLD_IMAGE_ID=$(docker images -q --filter reference=$DOCKER_IMG_NAME:$TAG)
-    inp "检测到先前已经存在的镜像，是否拉取最新的镜像：\n1) 是[默认]\n2) 不需要"
+    inp "检测到先前已经存在的镜像，是否拉取最新的镜像：\n1) 拉取[默认]\n2) 不拉取"
     echo -n -e "\e[36m输入您的选择->\e[0m"
     read update
     if [ "$update" = "2" ]; then
@@ -109,24 +108,24 @@ if [ ! -z "$(docker images -q $DOCKER_IMG_NAME:$TAG 2> /dev/null)" ]; then
     fi
 fi
 
-#检测容器是否存在
+# 检测容器是否存在
 check_container_name() {
     if [ ! -z "$(docker ps -a | grep $CONTAINER_NAME 2> /dev/null)" ]; then
         HAS_CONTAINER=true
-        inp "检测到先前已经存在的容器，是否删除先前的容器：\n1) 是[默认]\n2) 不要"
+        inp "检测到先前已经存在的容器，是否删除先前的容器：\n1) 删除[默认]\n2) 不删除"
         echo -n -e "\e[36m输入您的选择->\e[0m"
         read update
         if [ "$update" = "2" ]; then
             PULL_IMAGE=false
-            inp "您选择了不要删除之前的容器，需要重新输入容器名称"
+            inp "您选择了不删除之前的容器，需要重新输入容器名称"
             input_container_name
         fi
     fi
 }
 
-#容器名称
+# 容器名称
 input_container_name() {
-    echo -n -e "\e[33m三.请输入要创建的Docker容器名称[默认为：qinglong]->\e[0m"
+    echo -n -e "\e[33m二、请输入要创建的 Docker 容器名称[默认为：qinglong]->\e[0m"
     read container_name
     if [ -z "$container_name" ]; then
         CONTAINER_NAME="qinglong"
@@ -137,10 +136,9 @@ input_container_name() {
 }
 input_container_name
 
-
-#是否安装WatchTower
-inp "5.是否安装containrrr/watchtower自动更新Docker容器：\n1) 安装\n2) 不安装[默认]"
-echo -n -e "\e[33m输入您的选择->\e[0m"
+# 是否安装 WatchTower
+inp "是否安装 containrrr/watchtower 自动更新 Docker 容器：\n1) 安装\n2) 不安装[默认]"
+echo -n -e "\e[36m输入您的选择->\e[0m"
 read watchtower
 if [ "$watchtower" = "1" ]; then
     INSTALL_WATCH=true
@@ -171,6 +169,7 @@ inp "根据设备是否映射端口：\n1) 映射[默认]\n2) 不映射"
 echo -n -e "\e[36m输入您的选择->\e[0m"
 read port
 
+
 #配置已经创建完成，开始执行
 log "1.开始创建配置文件目录"
 PATH_LIST=($CONFIG_PATH $DB_PATH $REPO_PATH $RAW_PATH $SCRIPT_PATH $LOG_PATH $JBOT_PATH $NINJA_PATH)
@@ -197,6 +196,7 @@ if [ $HAS_IMAGE = true ] && [ $PULL_IMAGE = true ]; then
 fi
 
 log "3.开始创建容器并执行"
+
 run_port(){
     docker run -dit \
         -t \
@@ -217,6 +217,7 @@ run_port(){
         $ENABLE_WEB_PANEL_ENV \
         $DOCKER_IMG_NAME:$TAG
 }
+
 run_noport(){
     docker run -dit \
         -t \
@@ -236,10 +237,13 @@ run_noport(){
         $ENABLE_WEB_PANEL_ENV \
         $DOCKER_IMG_NAME:$TAG
 }
+
+# 端口存在检测
 check_port() {
-    echo "正在检测端口......"
+    echo "正在检测端口 $1"
     netstat -tlpn | grep "\b$1\b"
 }
+
 while check_port $JD_PORT; do
     if [ "$port" != "2" ]; then
         warn "端口被占用，请重新输入青龙面板端口："
@@ -248,14 +252,16 @@ while check_port $JD_PORT; do
         break
     fi 
 done
+
 while check_port $NINJA_PORT; do
     if [ "$port" != "2" ]; then
-        warn "端口被占用，请重新输入Ninja端口："
+        warn "端口被占用，请重新输入 Ninja 端口："
         read NINJA_PORT
     else
         break
     fi
 done
+
 if [ "$port" = "2" ]; then
     run_noport
 else
@@ -263,7 +269,7 @@ else
 fi
 
 if [ $? -ne 0 ] ; then
-    cancelrun "** 错误: 容器创建失败，多数由于docker空间不足引起，请检查！"
+    cancelrun "** 错误: 容器创建失败，多数由于 docker 空间不足引起，请检查！"
 fi
 
 if [ $INSTALL_WATCH = true ]; then
@@ -277,8 +283,7 @@ if [ $INSTALL_WATCH = true ]; then
     $CONTAINER_NAME
 fi
 
-#检查config文件是否存在
-
+# 检查 config 文件是否存在
 if [ ! -f "$CONFIG_PATH/config.sh" ]; then
     docker cp $CONTAINER_NAME:/ql/sample/config.sample.sh $CONFIG_PATH/config.sh
     if [ $? -ne 0 ] ; then
@@ -289,35 +294,49 @@ if [ ! -f "$CONFIG_PATH/config.sh" ]; then
 log "4.下面列出所有容器"
 docker ps
 
-#Nginx静态解析检测
-log "5.开始检测Nginx静态解析"
+# Nginx 静态解析检测
+log "5.开始检测 Nginx 静态解析"
 echo "开始扫描静态解析是否在线！"
 ps -fe|grep nginx|grep -v grep
 if [ $? -ne 0 ]; then
-    echo $NOWTIME" 扫描结束！Nginx静态解析停止了！准备重启！"
+    echo $NOWTIME" 扫描结束！Nginx 静态解析停止！准备重启！"
     docker exec -it $CONTAINER_NAME nginx -c /etc/nginx/nginx.conf
-    echo $NOWTIME" Nginx静态解析重启完成！"
+    echo $NOWTIME" Nginx 静态解析重启完成！"
 else
-    echo $NOWTIME" 扫描结束！Nginx静态解析正常呢！"
+    echo $NOWTIME" 扫描结束！Nginx 静态解析正常！"
 fi
 
 if [ "$port" = "2" ]; then
-    log "6.安装已经完成，请自行调整端口映射并进入面板一次以便进行内部配置"
+    log "6.安装已完成，请自行调整端口映射并进入面板一次以便进行内部配置"
 else
-    log "6.安装已经完成，请进入面板一次以便进行内部配置"
+    log "6.安装已完成，请进入面板一次以便进行内部配置"
+    cat $CONFIG_PATH/auth.json
+    log "6.1.用户名和密码已显示，请登录 ip:5700"
 fi
 
+# 防止 CPU 占用过高导致死机
+echo "---------- 机器累了，休息 20s ----------"
 sleep 20
 
-inp "是否已经进入了面板？是否继续：\n1) 继续[默认]\n2) 结束"
+# 显示被修改的密码
+inp "是否显示被修改的密码：\n1) 显示[默认]\n2) 不显示"
+echo -n -e "\e[36m输入您的选择->\e[0m"
+read display
+if [ "$display" != "2" ]; then
+    cat $CONFIG_PATH/auth.json
+    echo "顺便观察一下是否成功生成了 token"
+fi  
+
+# token 检测
+inp "是否进入面板成功生成了 token？是否继续：\n1) 继续[默认]\n2) 结束"
 echo -n -e "\e[36m输入您的选择->\e[0m"
 read access
 if [ "$access" != "2" ]; then
     if [ "$(grep -c "token" $CONFIG_PATH/auth.json)" != 0 ]; then
-        log "7.下面开始青龙内部配置"
+        log "7.开始青龙内部配置"
         docker exec -it $CONTAINER_NAME bash -c "$(curl -fsSL https://gitee.com/allin1code/a1/raw/master/1customCDN.sh)"
     else
-        warn "7.未检测到 token，不进行内部配置"
+        warn "7.未检测到 token，取消内部配置"
     fi
 else
     exit 0
