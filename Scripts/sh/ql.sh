@@ -79,9 +79,13 @@ warn "降低学习成本，小白回车到底，一路默认选择"
 #配置文件目录
 echo -n -e "\e[33m一.请输入配置文件保存的绝对路径（示例：/root),直接回车为当前目录:\e[0m"
 read jd_path
-JD_PATH=$jd_path
 if [ -z "$jd_path" ]; then
     JD_PATH=$SHELL_FOLDER
+elif [ -d "$jd_path" ]; then
+    JD_PATH=$jd_path
+else
+    mkdir -p $jd_path
+    JD_PATH=$jd_path
 fi
 CONFIG_PATH=$JD_PATH/ql/config
 DB_PATH=$JD_PATH/ql/db
@@ -168,17 +172,12 @@ echo -n -e "\e[36m输入您的选择->\e[0m"
 read port
 
 #配置已经创建完成，开始执行
-
 log "1.开始创建配置文件目录"
-[ ! -d $CONFIG_PATH ] && mkdir -p
-[ ! -d $DB_PATH ] && mkdir -p
-[ ! -d $REPO_PATH ] && mkdir -p
-[ ! -d $RAW_PATH ] && mkdir -p
-[ ! -d $SCRIPT_PATH ] && mkdir -p
-[ ! -d $LOG_PATH ] && mkdir -p
-[ ! -d $JBOT_PATH ] && mkdir -p
-[ ! -d $NINJA_PATH ] && mkdir -p
-
+PATH_LIST=($CONFIG_PATH $DB_PATH $REPO_PATH $RAW_PATH $SCRIPT_PATH $LOG_PATH $JBOT_PATH $NINJA_PATH)
+for i in ${PATH_LIST[@]}; do
+    mkdir -p $i
+done
+ 
 if [ $HAS_CONTAINER = true ] && [ $DEL_CONTAINER = true ]; then
     log "2.1.删除先前的容器"
     docker stop $CONTAINER_NAME >/dev/null
@@ -237,6 +236,26 @@ run_noport(){
         $ENABLE_WEB_PANEL_ENV \
         $DOCKER_IMG_NAME:$TAG
 }
+check_port() {
+    echo "正在检测端口......"
+    netstat -tlpn | grep "\b$1\b"
+}
+while check_port $JD_PORT; do
+    if [ "$port" != "2" ]; then
+        warn "端口被占用，请重新输入青龙面板端口："
+        read JD_PORT
+    else
+        break
+    fi 
+done
+while check_port $NINJA_PORT; do
+    if [ "$port" != "2" ]; then
+        warn "端口被占用，请重新输入Ninja端口："
+        read NINJA_PORT
+    else
+        break
+    fi
+done
 if [ "$port" = "2" ]; then
     run_noport
 else
@@ -290,11 +309,18 @@ fi
 
 sleep 20
 
-if [ "$(grep -c "token" $CONFIG_PATH/auth.json)" != 0 ]; then
-    log "7.下面开始青龙内部配置"
-    docker exec -it $CONTAINER_NAME bash -c "$(curl -fsSL https://gitee.com/allin1code/a1/raw/master/1customCDN.sh)"
+inp "是否已经进入了面板？是否继续：\n1) 继续[默认]\n2) 结束"
+echo -n -e "\e[36m输入您的选择->\e[0m"
+read access
+if [ "$access" != "2" ]; then
+    if [ "$(grep -c "token" $CONFIG_PATH/auth.json)" != 0 ]; then
+        log "7.下面开始青龙内部配置"
+        docker exec -it $CONTAINER_NAME bash -c "$(curl -fsSL https://gitee.com/allin1code/a1/raw/master/1customCDN.sh)"
+    else
+        warn "7.未检测到 token，不进行内部配置"
+    fi
 else
-    warn "7.未检测到 token，不进行内部配置"
+    exit 0
 fi
 
-log "🎉全面部署已完成！enjoy!!!"
+log "全面部署已完成！enjoy!!!"
