@@ -293,6 +293,8 @@ sleep 20
 if [ "$(grep -c "token" $CONFIG_PATH/auth.json)" != 0 ]; then
     log "7.下面开始青龙内部配置"
     docker exec -it $CONTAINER_NAME bash -c "$(curl -fsSL https://gitee.com/allin1code/a1/raw/master/1customCDN.sh)"
+else
+    warn "7.未检测到 token，不进行内部配置"
 fi
 
 log "🎉全面部署已完成！enjoy!!!"
