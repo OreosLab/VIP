@@ -245,7 +245,7 @@ export PURCHASE_SHOPS="true"
 ## 21、京喜工厂拼团瓜分电力活动的activeId（当前需抓包替换或去群里求别人分享）
 export TUAN_ACTIVEID=""
 ## 22、京东UA。点点券脚本运行环境变量
-export JD_USER_AGENT="jdltapp;iPhone;3.1.0;14.4;3b6e79334551fc6f31952d338b996789d157c4e8"
+export JD_USER_AGENT=""
 ## 23、京东试用jd_try相关环境变量
 ### 控制每次获取商品数量，默认12
 export JD_TRY_PAGE_SIZE=""
