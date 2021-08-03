@@ -299,4 +299,4 @@ if [ "$(grep -c "token" $CONFIG_PATH/auth.json)" != 0 ]; then
     docker exec -it $CONTAINER_NAME bash -c "$(curl -fsSL https://gitee.com/allin1code/a1/raw/master/1customCDN.sh)"
 fi
 
-log "🎉全面部署已完成。enjoy!!!"
+log "全面部署已完成。enjoy!!!"
