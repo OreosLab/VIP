@@ -77,7 +77,7 @@ docker_install() {
 docker_install
 warn "降低学习成本，小白回车到底，一路默认选择"
 #配置文件目录
-echo -n -e "\e[33m一.请输入配置文件保存的绝对路径,直接回车为当前目录:\e[0m"
+echo -n -e "\e[33m一.请输入配置文件保存的绝对路径（示例：/root),直接回车为当前目录:\e[0m"
 read jd_path
 JD_PATH=$jd_path
 if [ -z "$jd_path" ]; then
@@ -203,44 +203,44 @@ fi
 
 log "3.开始创建容器并执行"
 port(){
-docker run -dit \
-    -t \
-    -v $CONFIG_PATH:/ql/config \
-    -v $DB_PATH/ql/db:/ql/db \
-    -v $LOG_PATH/ql/log:/ql/log \
-    -v $REPO_PATH/ql/repo:/ql/repo \
-    -v $RAW_PATH/ql/raw:/ql/raw \
-    -v $SCRIPT_PATH/ql/scripts:/ql/scripts \
-    -v $JBOT_PATH/ql/jbot:/ql/jbot \
-    -v $NINJA_PATH/ql/ninja:/ql/ninja \
-    -p $JD_PORT:5700 \
-    -p $NINJA_PORT:5701 \
-    --name $CONTAINER_NAME \
-    --hostname qinglong \
-    --restart always \
-    --network $NETWORK \
-    $ENABLE_HANGUP_ENV \
-    $ENABLE_WEB_PANEL_ENV \
-    $DOCKER_IMG_NAME:$TAG
+    docker run -dit \
+        -t \
+        -v $CONFIG_PATH:/ql/config \
+        -v $DB_PATH/ql/db:/ql/db \
+        -v $LOG_PATH/ql/log:/ql/log \
+        -v $REPO_PATH/ql/repo:/ql/repo \
+        -v $RAW_PATH/ql/raw:/ql/raw \
+        -v $SCRIPT_PATH/ql/scripts:/ql/scripts \
+        -v $JBOT_PATH/ql/jbot:/ql/jbot \
+        -v $NINJA_PATH/ql/ninja:/ql/ninja \
+        -p $JD_PORT:5700 \
+        -p $NINJA_PORT:5701 \
+        --name $CONTAINER_NAME \
+        --hostname qinglong \
+        --restart always \
+        --network $NETWORK \
+        $ENABLE_HANGUP_ENV \
+        $ENABLE_WEB_PANEL_ENV \
+        $DOCKER_IMG_NAME:$TAG
 }
 noport(){
-docker run -dit \
-    -t \
-    -v $CONFIG_PATH:/ql/config \
-    -v $DB_PATH/ql/db:/ql/db \
-    -v $LOG_PATH/ql/log:/ql/log \
-    -v $REPO_PATH/ql/repo:/ql/repo \
-    -v $RAW_PATH/ql/raw:/ql/raw \
-    -v $SCRIPT_PATH/ql/scripts:/ql/scripts \
-    -v $JBOT_PATH/ql/jbot:/ql/jbot \
-    -v $NINJA_PATH/ql/ninja:/ql/ninja \
-    --name $CONTAINER_NAME \
-    --hostname qinglong \
-    --restart always \
-    --network $NETWORK \
-    $ENABLE_HANGUP_ENV \
-    $ENABLE_WEB_PANEL_ENV \
-    $DOCKER_IMG_NAME:$TAG
+    docker run -dit \
+        -t \
+        -v $CONFIG_PATH:/ql/config \
+        -v $DB_PATH/ql/db:/ql/db \
+        -v $LOG_PATH/ql/log:/ql/log \
+        -v $REPO_PATH/ql/repo:/ql/repo \
+        -v $RAW_PATH/ql/raw:/ql/raw \
+        -v $SCRIPT_PATH/ql/scripts:/ql/scripts \
+        -v $JBOT_PATH/ql/jbot:/ql/jbot \
+        -v $NINJA_PATH/ql/ninja:/ql/ninja \
+        --name $CONTAINER_NAME \
+        --hostname qinglong \
+        --restart always \
+        --network $NETWORK \
+        $ENABLE_HANGUP_ENV \
+        $ENABLE_WEB_PANEL_ENV \
+        $DOCKER_IMG_NAME:$TAG
 }
 if [ "$port" = "2" ]; then
     noport
@@ -294,7 +294,7 @@ else
 
 sleep 20
 
-if [ "$port" != "2" ]; then
+if [ "$(grep -c "token" $CONFIG_PATH auth.json)" != 0 ]; then
     log "7.下面开始青龙内部配置"
     docker exec -it $CONTAINER_NAME bash -c "$(curl -fsSL https://gitee.com/allin1code/a1/raw/master/1customCDN.sh)"
 fi
