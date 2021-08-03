@@ -163,25 +163,21 @@ if [ "$pannel" = "2" ]; then
     ENABLE_WEB_PANNEL_ENV=""
 fi
 
-inp "根据设备是否映射端口：\n1) 启用[默认]\n2) 不启用"
+inp "根据设备是否映射端口：\n1) 映射[默认]\n2) 不映射"
 echo -n -e "\e[36m输入您的选择->\e[0m"
 read port
 
 #配置已经创建完成，开始执行
 
 log "1.开始创建配置文件目录"
-mkdir -p $CONFIG_PATH
-mkdir -p $DB_PATH
-mkdir -p $REPO_PATH
-mkdir -p $RAW_PATH
-mkdir -p $SCRIPT_PATH
-mkdir -p $LOG_PATH
-mkdir -p $JBOT_PATH
-mkdir -p $NINJA_PATH
-
-if [ $? -ne 0 ] ; then
-    cancelrun "** 错误: 目录创建错误请重试！"
-fi
+[ ! -d $CONFIG_PATH ] && mkdir -p
+[ ! -d $DB_PATH ] && mkdir -p
+[ ! -d $REPO_PATH ] && mkdir -p
+[ ! -d $RAW_PATH ] && mkdir -p
+[ ! -d $SCRIPT_PATH ] && mkdir -p
+[ ! -d $LOG_PATH ] && mkdir -p
+[ ! -d $JBOT_PATH ] && mkdir -p
+[ ! -d $NINJA_PATH ] && mkdir -p
 
 if [ $HAS_CONTAINER = true ] && [ $DEL_CONTAINER = true ]; then
     log "2.1.删除先前的容器"
@@ -202,38 +198,37 @@ if [ $HAS_IMAGE = true ] && [ $PULL_IMAGE = true ]; then
 fi
 
 log "3.开始创建容器并执行"
-port(){
+run_port(){
     docker run -dit \
         -t \
         -v $CONFIG_PATH:/ql/config \
-        -v $DB_PATH/ql/db:/ql/db \
-        -v $LOG_PATH/ql/log:/ql/log \
-        -v $REPO_PATH/ql/repo:/ql/repo \
-        -v $RAW_PATH/ql/raw:/ql/raw \
-        -v $SCRIPT_PATH/ql/scripts:/ql/scripts \
-        -v $JBOT_PATH/ql/jbot:/ql/jbot \
-        -v $NINJA_PATH/ql/ninja:/ql/ninja \
+        -v $DB_PATH:/ql/db \
+        -v $LOG_PATH:/ql/log \
+        -v $REPO_PATH:/ql/repo \
+        -v $RAW_PATH:/ql/raw \
+        -v $SCRIPT_PATH:/ql/scripts \
+        -v $JBOT_PATH:/ql/jbot \
+        -v $NINJA_PATH:/ql/ninja \
         -p $JD_PORT:5700 \
         -p $NINJA_PORT:5701 \
         --name $CONTAINER_NAME \
         --hostname qinglong \
         --restart always \
-        --network $NETWORK \
         $ENABLE_HANGUP_ENV \
         $ENABLE_WEB_PANEL_ENV \
         $DOCKER_IMG_NAME:$TAG
 }
-noport(){
+run_noport(){
     docker run -dit \
         -t \
         -v $CONFIG_PATH:/ql/config \
-        -v $DB_PATH/ql/db:/ql/db \
-        -v $LOG_PATH/ql/log:/ql/log \
-        -v $REPO_PATH/ql/repo:/ql/repo \
-        -v $RAW_PATH/ql/raw:/ql/raw \
-        -v $SCRIPT_PATH/ql/scripts:/ql/scripts \
-        -v $JBOT_PATH/ql/jbot:/ql/jbot \
-        -v $NINJA_PATH/ql/ninja:/ql/ninja \
+        -v $DB_PATH:/ql/db \
+        -v $LOG_PATH:/ql/log \
+        -v $REPO_PATH:/ql/repo \
+        -v $RAW_PATH:/ql/raw \
+        -v $SCRIPT_PATH:/ql/scripts \
+        -v $JBOT_PATH:/ql/jbot \
+        -v $NINJA_PATH:/ql/ninja \
         --name $CONTAINER_NAME \
         --hostname qinglong \
         --restart always \
@@ -243,9 +238,9 @@ noport(){
         $DOCKER_IMG_NAME:$TAG
 }
 if [ "$port" = "2" ]; then
-    noport
+    run_noport
 else
-    port
+    run_port
 fi
 
 if [ $? -ne 0 ] ; then
