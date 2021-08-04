@@ -521,6 +521,14 @@ export summer_movement_outuserID=""
 export DDQ_NOTIFY_CONTROL="" ##不填或false为通知，true为不通知
 ```
 
+```
+## 9、奥运夺金牌开卡
+export guaolympicopencard="true"
+## 10、奥运夺金挑战赛
+export guaolympicopencard2="true"
+```
+
+
 ## cdle 环境变量
 
 ```
@@ -699,6 +707,12 @@ export JD_OLYMPIC_WIN_GOLD=""
 ## 4、全民奔跑 激扬奥运
 ### env OLYMPIC_START_DRAW = true 就是开启ck1抽奖 (!!!抽奖时间可能很长，慢慢抽吧!!!)
 export OLYMPIC_START_DRAW="true"
+```
+
+```
+## 5、全奶爸盛典 爸气全开
+### 填写11就是跑到11个ck就停止，填写21就是跑到21个ck就停止，一天最多助力20个ck 推荐10的倍数 +1 填写！！
+export JD_OPENCARD_DADDY=""
 ```
 
 
