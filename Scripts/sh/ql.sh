@@ -323,7 +323,7 @@ inp "是否显示被修改的密码：\n1) 显示[默认]\n2) 不显示"
 echo -n -e "\e[36m输入您的选择->\e[0m"
 read display
 if [ "$display" != "2" ]; then
-    echo ""
+    echo -e "\n"
     cat $CONFIG_PATH/auth.json
     log "6.2.用被修改的密码登录面板并进入"
 fi  
