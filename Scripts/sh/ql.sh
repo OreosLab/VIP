@@ -191,7 +191,7 @@ if [ $HAS_IMAGE = true ] && [ $PULL_IMAGE = true ]; then
     log "2.3.开始拉取最新的镜像"
     docker pull $DOCKER_IMG_NAME:$TAG
     if [ $? -ne 0 ] ; then
-        cancelrun "** 错误: 拉取不到镜像！"
+        cancelrun "** 错误：拉取不到镜像！"
     fi
 fi
 
@@ -269,7 +269,7 @@ else
 fi
 
 if [ $? -ne 0 ] ; then
-    cancelrun "** 错误: 容器创建失败，多数由于 docker 空间不足引起，请检查！"
+    cancelrun "** 错误：容器创建失败，多数由于 docker 空间不足引起，请检查！"
 fi
 
 if [ $INSTALL_WATCH = true ]; then
@@ -287,7 +287,7 @@ fi
 if [ ! -f "$CONFIG_PATH/config.sh" ]; then
     docker cp $CONTAINER_NAME:/ql/sample/config.sample.sh $CONFIG_PATH/config.sh
     if [ $? -ne 0 ] ; then
-        cancelrun "** 错误: 找不到配置文件！"
+        cancelrun "** 错误：找不到配置文件！"
     fi
  fi
 
@@ -316,7 +316,7 @@ else
 fi
 
 # 防止 CPU 占用过高导致死机
-echo -e "---------- 机器累了，休息 20s，趁机去操作一下吧 ----------"
+echo -e "-------- 机器累了，休息 20s，趁机去操作一下吧 --------"
 sleep 20
 
 # 显示 auth.json
