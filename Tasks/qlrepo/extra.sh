@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Mod: Build20210803V1
+## Mod: Build20210804V1
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 安装node依赖使用 pnpm install -g xxx xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
 ## 安装python依赖使用 pip3 install xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
@@ -14,9 +14,8 @@
 ### （1）默认不安装，因为 Build 20210728-002 及以上版本的 code.sh 自动检查修复依赖
 ### （2）若需要在此处使用，请在设置区设置
 ## 3. Ninja
-### （1）默认不启动和更新
-### （2）若需要启动和更新，则令 Ninja="up"，此情况下未运行成功将强制重装
-### （3）⚠未修改容器映射的请勿修改，否则会出现青龙打不开或者设备死机等不良后果，映射参考 https://github.com/MoonBegonia/ninja#%E5%AE%B9%E5%99%A8%E5%86%85
+### （1）默认启动并自动更新，未运行成功将强制重装
+### （2）⚠未修改容器映射的请勿修改，否则会出现青龙打不开或者设备死机等不良后果，映射参考 https://github.com/MoonBegonia/ninja#%E5%AE%B9%E5%99%A8%E5%86%85
 
 
 #------ 设置区 ------#
@@ -74,6 +73,7 @@ CR7(){
 }
 for i in ${CollectedRepo[@]}; do
     CR$i
+    sleep 10
 done
 
 OR1(){
@@ -120,6 +120,7 @@ OR14(){
 }
 for i in ${OtherRepo[@]}; do
     OR$i
+    sleep 5
 done
 
 
