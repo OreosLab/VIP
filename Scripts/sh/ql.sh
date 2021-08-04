@@ -310,7 +310,7 @@ if [ "$port" = "2" ]; then
     log "6.安装已完成，请自行调整端口映射并进入面板一次以便进行内部配置"
 else
     log "6.安装已完成，请进入面板一次以便进行内部配置"
-    log "6.1.用户名和密码已显示，请登录 ip:5700"
+    log "6.1.用户名和密码已显示，请登录 ip:$JD_PORT"
     cat $CONFIG_PATH/auth.json    
 fi
 
@@ -323,6 +323,7 @@ inp "是否显示被修改的密码：\n1) 显示[默认]\n2) 不显示"
 echo -n -e "\e[36m输入您的选择->\e[0m"
 read display
 if [ "$display" != "2" ]; then
+    echo ""
     cat $CONFIG_PATH/auth.json
     log "6.2.用被修改的密码登录面板并进入"
 fi  
