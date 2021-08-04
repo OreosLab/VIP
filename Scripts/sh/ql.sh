@@ -311,7 +311,8 @@ if [ "$port" = "2" ]; then
 else
     log "6.安装已完成，请进入面板一次以便进行内部配置"
     log "6.1.用户名和密码已显示，请登录 ip:$JD_PORT"
-    cat $CONFIG_PATH/auth.json    
+    cat $CONFIG_PATH/auth.json
+    echo -e "\n"
 fi
 
 # 防止 CPU 占用过高导致死机
@@ -325,6 +326,7 @@ read display
 if [ "$display" != "2" ]; then
     echo -e "\n"
     cat $CONFIG_PATH/auth.json
+    echo -e "\n"
     log "6.2.用被修改的密码登录面板并进入"
 fi  
 
@@ -334,6 +336,7 @@ echo -n -e "\e[36m输入您的选择->\e[0m"
 read access
 log "6.3.观察 token 是否成功生成"
 cat $CONFIG_PATH/auth.json
+echo -e "\n"
 if [ "$access" != "2" ]; then
     if [ "$(grep -c "token" $CONFIG_PATH/auth.json)" != 0 ]; then
         log "7.开始青龙内部配置"
