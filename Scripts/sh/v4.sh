@@ -168,7 +168,8 @@ inp "请选择容器的网络类型：\n1) host[默认]\n2) bridge"
 echo -n -e "\e[36m输入您的选择->\e[0m"
 read net
 if [ "$net" = "2" ]; then
-    NETWORK="bridge"
+    NET="bridge"
+    CHANGE_NETWORK="--network $NET"
 fi
 
 inp "是否在启动容器时自动启动挂机程序：\n1) 开启[默认]\n2) 关闭"
