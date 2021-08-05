@@ -259,8 +259,8 @@ while check_port $JD_PORT; do
         echo -n -e "\e[31m端口被占用，请重新输入 V4 面板端口：\e[0m"
         read JD_PORT
     else
-        break
         MAPPING_PORT="-p $JD_PORT:5678"
+        break
     fi 
 done
 
