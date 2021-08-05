@@ -427,7 +427,7 @@ export guaopencard_addSku5="true"
 ## 13、七夕告白季-开卡
 export guaopencard6="true"
 export guaopencard_addSku6="true"
-## 14-28、预备
+## 14-27、预备
 j=20
 for (( i = 7; i <= j; i++ )); do
     export guaopencard$i="true"
