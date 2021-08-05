@@ -20,7 +20,7 @@ elif [ "${all}" = 0 ]; then
 else
     read -p "config.sh 操作（替换或下载选项为 y，不替换为 n，回车为替换）请输入：" Rconfig
     Rconfig=${Rconfig:-'y'}
-    read -p "extra.sh 操作（替换或下载选项为 a，修改默认拉取仓库设置为 b，添加到定时任务为 c，立即执行一次为 d，全部不执行为 n，回车全部执行 | 示例：acd）请输入：" extra
+    read -p "extra.sh 操作（替换或下载选项为 a，修改设置区设置为 b，添加到定时任务为 c，立即执行一次为 d，全部不执行为 n，回车全部执行 | 示例：acd）请输入：" extra
     extra=${extra:-'abcd'}
     read -p "code.sh 操作（替换或下载选项为 a，修改默认调用日志设置为 b，添加到定时任务为 c，全部不执行为 n，回车全部执行 | 示例：ac）请输入：" code
     code=${code:-'abcd'}
@@ -115,8 +115,8 @@ set_default_extra(){
     sed -i "s/CollectedRepo=(4)/CollectedRepo=(${CollectedRepo})/g" $extra_shell_path
     sed -i "s/OtherRepo=()/OtherRepo=(${OtherRepo})/g" $extra_shell_path
     echo -e "Ninja\n### （1）默认启动并自动更新，未运行成功将强制重装\n### （2）！！！未修改容器映射的请勿运行，否则会出现青龙打不开或者设备死机等不良后果，映射参考 https://github.com/MoonBegonia/ninja#%E5%AE%B9%E5%99%A8%E5%86%85"
-    read -p "Ninja="up" ##up为运行，down为不运行 输入您的设置（默认运行） up/down" Ninja
-    sed -i "s/\"up\"/\"${Ninja}\"" $extra_shell_path
+    read -p "Ninja="up" ##up为运行，down为不运行 输入您的设置（默认运行） up/down：" Ninja
+    sed -i "s/\"up\"/\"${Ninja}\"/" $extra_shell_path
 }
 # 将 ql extra 添加到定时任务
 add_ql_extra(){
