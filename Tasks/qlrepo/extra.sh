@@ -15,7 +15,7 @@
 ### （2）若需要在此处使用，请在设置区设置
 ## 3. Ninja
 ### （1）默认启动并自动更新，未运行成功将强制重装
-### （2）⚠未修改容器映射的请勿修改，否则会出现青龙打不开或者设备死机等不良后果，映射参考 https://github.com/MoonBegonia/ninja#%E5%AE%B9%E5%99%A8%E5%86%85
+### （2）⚠未修改容器映射的请勿运行，否则会出现青龙打不开或者设备死机等不良后果，映射参考 https://github.com/MoonBegonia/ninja#%E5%AE%B9%E5%99%A8%E5%86%85
 
 
 #------ 设置区 ------#
@@ -26,7 +26,7 @@ OtherRepo=(14) ##示例：OtherRepo=(1 3)
 dependencies="no" ##yes为安装，no为不安装
 package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv typescript fs require tslib"
 ## 3. Ninja 是否需要启动和更新设置
-Ninja="up" ##up为运行，down为不运行，谨慎修改
+Ninja="up" ##up为运行，down为不运行
 
 
 #------ 编号区 ------#
