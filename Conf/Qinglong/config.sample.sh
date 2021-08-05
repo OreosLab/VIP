@@ -427,15 +427,12 @@ export guaopencard_addSku5="true"
 ## 13、七夕告白季-开卡
 export guaopencard6="true"
 export guaopencard_addSku6="true"
-## 14-n、预备
-export guaopencard7="true"
-export guaopencard_addSku7="true"
-export guaopencard8="true"
-export guaopencard_addSku8="true"
-export guaopencard9="true"
-export guaopencard_addSku9="true"
-export guaopencard10="true"
-export guaopencard_addSku10="true"
+## 14-28、预备
+j=20
+for (( i = 7; i <= j; i++ )); do
+    export guaopencard$i="true"
+    export guaopencard_addSku$i="true"
+done
 
 # cdle 环境变量
 ## 1、全民运动会守卫红包
@@ -533,5 +530,5 @@ export OLYMPIC_START_DRAW="true"
 ### 填写11就是跑到11个ck就停止，填写21就是跑到21个ck就停止，一天最多助力20个ck，推荐10的倍数 +1 填写！！
 export JD_OPENCARD_DADDY=""
 ## 6、大牌联合 冰爽一夏
-### 这个活动经过我的测试，邀请了38个ck，有18次20豆，所以有点随机不好判断一天有多少豆，默认21停，觉得自己牛逼，就改成 999 跑完算了！！
+### 这个活动经过Tsukasa007的测试，邀请了38个ck，有18次20豆，所以有点随机不好判断一天有多少豆，默认21停，觉得自己牛逼，就改成 999 跑完算了！！
 export JD_OPENCARD_COOL_SUMMER="999"
