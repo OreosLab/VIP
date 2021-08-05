@@ -298,7 +298,7 @@ if [ $INSTALL_WATCH = true ]; then
     $CONTAINER_NAME
 fi
 
-# 检查config文件是否存在
+# 检查 config 文件是否存在
 if [ ! -f "$CONFIG_PATH/config.sh" ]; then
     docker cp $CONTAINER_NAME:/jd/sample/config.sample.sh $CONFIG_PATH/config.sh
     if [ $? -ne 0 ] ; then
@@ -317,3 +317,5 @@ fi
 log "6.安装已经完成。创建好后请阅读映射的 config 目录下的的 config.sh，并根据注释修改。"
 log "7.如果启用了 ENABLE_TG_BOT，创建好后请阅读映射的 config 目录下的的 config.sh 和 bot.json，并根据说明修改，首次创建并不会启动 bot，修改好 bot.json 后请重启容器。"
 log "命令提示：\njtask mtask otask 链接的都是同一个脚本，m=my，o=own，j=jd。三者区分仅用在 crontab.list 中，以区别不同类型任务，手动运行直接 jtask 即可。\ndocker exec $CONTAINER_NAME jtask   # 运行 scripts 脚本\ndocker exec $CONTAINER_NAME otask   # 运行 own 脚本\ndocker exec $CONTAINER_NAME mtask   # 运行你自己的脚本，如果某些 own 脚本识别不出来 cron，你也可以自行添加 mtask 任务\ndocker exec $CONTAINER_NAME jlog    # 删除旧日志\ndocker exec $CONTAINER_NAME jup     # 更新所有脚本\ndocker exec $CONTAINER_NAME jcode   # 导出所有互助码\ndocker exec $CONTAINER_NAME jcsv    # 记录豆豆变化情况"
+
+log "enjoy!!!"
