@@ -170,7 +170,7 @@ echo -n -e "\e[36m输入您的选择->\e[0m"
 read port
 
 
-#配置已经创建完成，开始执行
+# 配置已经创建完成，开始执行
 log "1.开始创建配置文件目录"
 PATH_LIST=($CONFIG_PATH $DB_PATH $REPO_PATH $RAW_PATH $SCRIPT_PATH $LOG_PATH $JBOT_PATH $NINJA_PATH)
 for i in ${PATH_LIST[@]}; do
