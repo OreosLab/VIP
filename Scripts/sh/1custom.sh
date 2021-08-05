@@ -228,7 +228,7 @@ run_ql_bot(){
     sleep 10
 }
 if [ "${all}" = 1 ]; then
-    add_ql_bot && set_bot_json &&  run_ql_bot
+    add_ql_bot && set_bot_json && run_ql_bot
 else
     case ${bot} in
         0)  echo "已为您跳过 bot 操作"
