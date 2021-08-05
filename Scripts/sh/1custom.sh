@@ -79,6 +79,9 @@ set_default_extra(){
     CollectedRepo=${CollectedRepo:-"4"}
     sed -i "s/CollectedRepo=(4)/CollectedRepo=(${CollectedRepo})/g" $extra_shell_path
     sed -i "s/OtherRepo=()/OtherRepo=(${OtherRepo})/g" $extra_shell_path
+    echo -e "Ninja\n### （1）默认启动并自动更新，未运行成功将强制重装\n### （2）！！！未修改容器映射的请勿运行，否则会出现青龙打不开或者设备死机等不良后果，映射参考 https://github.com/MoonBegonia/ninja#%E5%AE%B9%E5%99%A8%E5%86%85"
+    read -p "Ninja="up" ##up为运行，down为不运行 输入您的设置（默认运行） up/down" Ninja
+    sed -i "s/\"up\"/\"${Ninja}\"" $extra_shell_path
 }
 # 将 ql extra 添加到定时任务
 add_ql_extra(){
@@ -205,7 +208,8 @@ add_ql_bot(){
 # 运行一次并简单设置 bot.json
 set_bot_json(){
     ql bot
-    sleep 5
+    echo -e "------ 机器累了，休息 10s ------"
+    sleep 10
     echo -e "\"//user_id\": \"↓↓↓  你的USERID，去除双引号  ↓↓↓\",\n\"user_id\": 123456789,\n\"//bot_token\": \"↓↓↓  你的机器人TOKEN  ↓↓↓\",\n\"bot_token\": \"123456789:ABCDEFGSHSFDASDFAD\",\n\"//api_id\": \"↓↓↓  https://my.telegram.org 在该网站申请到的id  ↓↓↓\",\n\"api_id\": \"456423156\",\n\"//api_hash\": \"↓↓↓  https://my.telegram.org 在该网站申请到的hash  ↓↓↓\",\n\"api_hash\": \"ASDFAWEFADSFAWEFDSFASFD\","
     echo -e "----- 以上为示例，以下为你的配置(不要引号) -----"
     read -p "\"user_id\": " user_id
@@ -220,10 +224,11 @@ set_bot_json(){
 # 再运行一次 ql bot
 run_ql_bot(){
     ql bot
-    sleep 5
+    echo -e "------ 机器累了，休息 10s ------"
+    sleep 10
 }
 if [ "${all}" = 1 ]; then
-    add_ql_bot && set_bot_json && run_ql_bot
+    add_ql_bot && set_bot_json &&  run_ql_bot
 else
     case ${bot} in
         0)  echo "已为您跳过 bot 操作"
@@ -263,4 +268,4 @@ fi
 
 
 # 提示配置结束
-echo "配置到此结束，您是否成功了呢？"
+echo -e "\n配置到此结束，您是否成功了呢？"

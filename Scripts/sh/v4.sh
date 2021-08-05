@@ -156,7 +156,7 @@ input_container_name() {
 }
 input_container_name
 
-# 是否安装WatchTower
+# 是否安装 WatchTower
 inp "是否安装 containrrr/watchtower 自动更新 Docker 容器：\n1) 安装\n2) 不安装[默认]"
 echo -n -e "\e[33m输入您的选择->\e[0m"
 read watchtower
