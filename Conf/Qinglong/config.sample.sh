@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210804-001
+## Mod: Build20210805-002
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -260,18 +260,6 @@ export JD_TRY_MIN_PRICE=""
 ### 试用商品最多提供数量（过滤垃圾商品）
 export JD_TRY_MAX_SUPPLY_COUNT=""
 
-# 阿道夫部分环境变量
-## 1、阿道夫脚本加购开关，填true加购
-export ADOLF_ADDSKU="true"
-## 2、阿道夫脚本入会开关，填true入会
-export ADOLF_MARTIN="true"
-
-# zoopanda 部分环境变量
-## 1、zoopanda 与粽不同入会
-export ZOO_OPENCAD="true"
-## 2、zoopanda 与粽不同加购
-export ZOO_ADD2CART="true"
-
 # 龙猪猪环境变量
 ## 京豆雨通知，填写true为不关闭推送，false为关闭推送
 export RAIN_NOTIFY_CONTROL="false"
@@ -433,6 +421,21 @@ export guaolympicopencard2="true"
 ## 11、大牌联合 冰爽一夏
 export guaopencard4="true"
 export guaopencard_addSku4="true"
+## 12、冰爽夏日 钜惠送好礼
+export guaopencard5="true"
+export guaopencard_addSku5="true"
+## 13、七夕告白季-开卡
+export guaopencard6="true"
+export guaopencard_addSku6="true"
+## 14-n、预备
+export guaopencard7="true"
+export guaopencard_addSku7="true"
+export guaopencard8="true"
+export guaopencard_addSku8="true"
+export guaopencard9="true"
+export guaopencard_addSku9="true"
+export guaopencard10="true"
+export guaopencard_addSku10="true"
 
 # cdle 环境变量
 ## 1、全民运动会守卫红包
