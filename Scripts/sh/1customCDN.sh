@@ -114,9 +114,9 @@ set_default_extra(){
     CollectedRepo=${CollectedRepo:-"4"}
     sed -i "s/CollectedRepo=(4)/CollectedRepo=(${CollectedRepo})/g" $extra_shell_path
     sed -i "s/OtherRepo=()/OtherRepo=(${OtherRepo})/g" $extra_shell_path
-    echo -e "Ninja\n### （1）默认启动并自动更新，未运行成功将强制重装\n### （2）！！！未修改容器映射的请勿运行，否则会出现青龙打不开或者设备死机等不良后果，映射参考 https://github.com/MoonBegonia/ninja#%E5%AE%B9%E5%99%A8%E5%86%85"
-    read -p "Ninja="up" ##up为运行，down为不运行 输入您的设置（默认运行） up/down：" Ninja
-    sed -i "s/\"up\"/\"${Ninja}\"/" $extra_shell_path
+    echo -e "Ninja\n###（1）默认启动并自动更新\n###（2）！！！未修改容器映射的请勿运行，否则会出现青龙打不开或者设备死机等不良后果，映射参考 https://github.com/MoonBegonia/ninja#%E5%AE%B9%E5%99%A8%E5%86%85"
+    read -p "Ninja="up" ## up为运行，down为不运行，请输入您的设置（默认运行） up/down：" Ninja
+    sed -i "s/Ninja=\"up\"/Ninja=\"${Ninja}\"/" $extra_shell_path
 }
 # 将 ql extra 添加到定时任务
 add_ql_extra(){

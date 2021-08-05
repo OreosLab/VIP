@@ -36,8 +36,6 @@ ENABLE_WEB_PANEL=true
 ENABLE_HANGUP=true
 OLD_IMAGE_ID=""
 MOUNT_SCRIPT=""
-MAPPING_PORT="-p $JD_PORT:5678"
-CHANGE_NETWORK="--network $NETWORK"
 ENABLE_HANGUP_ENV="--env ENABLE_HANGUP=true"
 ENABLE_BOT_ENV="--env ENABLE_TG_BOT=true"
 ENABLE_WEB_PANEL_ENV="--env ENABLE_WEB_PANEL=true"
@@ -170,6 +168,8 @@ read net
 if [ "$net" = "2" ]; then
     NETWORK="bridge"
     CHANGE_NETWORK="--network $NETWORK"
+else
+    CHANGE_NETWORK="--network $NETWORK"
 fi
 
 inp "是否在启动容器时自动启动挂机程序：\n1) 开启[默认]\n2) 关闭"
@@ -193,25 +193,26 @@ if [ "$pannel" = "2" ]; then
     ENABLE_WEB_PANNEL_ENV=""
 fi
 
-inp "根据设备是否映射端口：\n1) 映射[默认]\n2) 不映射"
-echo -n -e "\e[36m输入您的选择->\e[0m"
-read port
-if [ "$port" = "2" ]; then
-    MAPPING_PORT=""
-else 
-    CHANGE_NETWORK=""
-fi
-
-if [ "$port" != "2" ]; then
-    inp "是否修改端口：\n1) 修改\n2) 不修改[默认]"
+# 端口问题
+modify_v4_port(){
+    inp "是否修改 V4 端口[默认 5678]：\n1) 修改\n2) 不修改[默认]"
     echo -n -e "\e[36m输入您的选择->\e[0m"
     read change_port
     if [ "$change_port" = "1" ]; then
         echo -n -e "\e[36m输入您想修改的端口->\e[0m"
         read JD_PORT
-        MAPPING_PORT="-p $JD_PORT:5678"
     fi
+}
+inp "根据设备是否映射端口：\n1) 映射[默认]\n2) 不映射"
+echo -n -e "\e[36m输入您的选择->\e[0m"
+read port
+if [ "$port" = "2" ]; then
+    MAPPING_JD_PORT=""
+else
+    CHANGE_NETWORK=""
+    modify_v4_port
 fi
+
 
 # 配置已经创建完成，开始执行
 log "1.开始创建配置文件目录"
@@ -251,18 +252,18 @@ fi
 
 # 端口存在检测
 check_port() {
-    echo "正在检测端口 $1"
+    echo "正在检测端口:$1"
     netstat -tlpn | grep "\b$1\b"
 }
-while check_port $JD_PORT; do
-    if [ "$port" != "2" ]; then
-        echo -n -e "\e[31m端口被占用，请重新输入 V4 面板端口：\e[0m"
+if [ "$port" != "2" ]; then
+    while check_port $JD_PORT; do    
+        echo -n -e "\e[31m端口:$JD_PORT 被占用，请重新输入 V4 面板端口：\e[0m"
         read JD_PORT
-    else
-        MAPPING_PORT="-p $JD_PORT:5678"
-        break
-    fi 
-done
+    done
+    echo -e "\e[34m恭喜，端口:$JD_PORT 可用\e[0m"
+    MAPPING_JD_PORT="-p $JD_PORT:5678"
+fi
+
 
 log "3.开始创建容器并执行"
 docker run -dit \
@@ -272,7 +273,7 @@ docker run -dit \
     -v $OWN_PATH:/jd/own \
     $MOUNT_SCRIPT \
     -v $DIY_PATH:/jd/jbot/diy \
-    $MAPPING_PORT \
+    $MAPPING_JD_PORT \
     --name $CONTAINER_NAME \
     --hostname jd_v4_bot \
     --restart always \

@@ -27,6 +27,7 @@ PULL_IMAGE=true
 HAS_CONTAINER=false
 DEL_CONTAINER=true
 INSTALL_WATCH=false
+INSTALL_NINJA=true
 ENABLE_WEB_PANEL=true
 ENABLE_HANGUP=true
 OLD_IMAGE_ID=""
@@ -149,6 +150,9 @@ echo -n -e "\e[36m输入您的选择->\e[0m"
 read net
 if [ "$net" = "2" ]; then
     NETWORK="bridge"
+    CHANGE_NETWORK="--network $NETWORK"
+else
+    CHANGE_NETWORK="--network $NETWORK"
 fi
 
 inp "是否在启动容器时自动启动挂机程序：\n1) 开启[默认]\n2) 关闭"
@@ -165,9 +169,46 @@ if [ "$pannel" = "2" ]; then
     ENABLE_WEB_PANNEL_ENV=""
 fi
 
+# 端口问题
+modify_ql_port(){
+    inp "是否修改青龙端口[默认 5700]：\n1) 修改\n2) 不修改[默认]"
+    echo -n -e "\e[36m输入您的选择->\e[0m"
+    read change_ql_port
+    if [ "$change_ql_port" = "1" ]; then
+        echo -n -e "\e[36m输入您想修改的端口->\e[0m"
+        read JD_PORT
+    fi
+}
+modify_Ninja_port(){
+    inp "是否修改 Ninja 端口[默认 5701]：\n1) 修改\n2) 不修改[默认]"
+    echo -n -e "\e[36m输入您的选择->\e[0m"
+    read change_Ninja_port
+    if [ "$change_Ninja_port" = "1" ]; then
+        echo -n -e "\e[36m输入您想修改的端口->\e[0m"
+        read NINJA_PORT
+    fi
+}
 inp "根据设备是否映射端口：\n1) 映射[默认]\n2) 不映射"
 echo -n -e "\e[36m输入您的选择->\e[0m"
 read port
+if [ "$port" = "2" ]; then
+    MAPPING_JD_PORT=""
+    MAPPING_NINJA_PORT=""
+else
+    CHANGE_NETWORK=""
+    MAPPING_JD_PORT="-p $JD_PORT:5700"
+    inp "是否安装 Ninja，若已存在则强制重装：\n1) 安装[默认]\n2) 不安装"
+    echo -n -e "\e[36m输入您的选择->\e[0m"
+    read Ninja
+    if [ "$Ninja" = "2" ]; then
+        INSTALL_NINJA=false
+        modify_ql_port
+        MAPPING_NINJA_PORT=""
+    else
+        modify_ql_port
+        modify_Ninja_port
+    fi
+fi
 
 
 # 配置已经创建完成，开始执行
@@ -195,78 +236,49 @@ if [ $HAS_IMAGE = true ] && [ $PULL_IMAGE = true ]; then
     fi
 fi
 
-log "3.开始创建容器并执行"
-
-run_port(){
-    docker run -dit \
-        -t \
-        -v $CONFIG_PATH:/ql/config \
-        -v $DB_PATH:/ql/db \
-        -v $LOG_PATH:/ql/log \
-        -v $REPO_PATH:/ql/repo \
-        -v $RAW_PATH:/ql/raw \
-        -v $SCRIPT_PATH:/ql/scripts \
-        -v $JBOT_PATH:/ql/jbot \
-        -v $NINJA_PATH:/ql/ninja \
-        -p $JD_PORT:5700 \
-        -p $NINJA_PORT:5701 \
-        --name $CONTAINER_NAME \
-        --hostname qinglong \
-        --restart always \
-        $ENABLE_HANGUP_ENV \
-        $ENABLE_WEB_PANEL_ENV \
-        $DOCKER_IMG_NAME:$TAG
-}
-
-run_noport(){
-    docker run -dit \
-        -t \
-        -v $CONFIG_PATH:/ql/config \
-        -v $DB_PATH:/ql/db \
-        -v $LOG_PATH:/ql/log \
-        -v $REPO_PATH:/ql/repo \
-        -v $RAW_PATH:/ql/raw \
-        -v $SCRIPT_PATH:/ql/scripts \
-        -v $JBOT_PATH:/ql/jbot \
-        -v $NINJA_PATH:/ql/ninja \
-        --name $CONTAINER_NAME \
-        --hostname qinglong \
-        --restart always \
-        --network $NETWORK \
-        $ENABLE_HANGUP_ENV \
-        $ENABLE_WEB_PANEL_ENV \
-        $DOCKER_IMG_NAME:$TAG
-}
-
 # 端口存在检测
-check_port() {
-    echo "正在检测端口 $1"
+check_port(){
+    echo "正在检测端口:$1"
     netstat -tlpn | grep "\b$1\b"
 }
-
-while check_port $JD_PORT; do
-    if [ "$port" != "2" ]; then
-        echo -n -e "\e[31m端口被占用，请重新输入青龙面板端口：\e[0m"
+if [ "$port" != "2" ]; then
+    while check_port $JD_PORT; do    
+        echo -n -e "\e[31m端口:$JD_PORT 被占用，请重新输入青龙面板端口：\e[0m"
         read JD_PORT
-    else
-        break
-    fi 
-done
-
-while check_port $NINJA_PORT; do
-    if [ "$port" != "2" ]; then
-        echo -n -e "\e[31m端口被占用，请重新输入 Ninja 面板端口：\e[0m"
-        read NINJA_PORT
-    else
-        break
-    fi
-done
-
-if [ "$port" = "2" ]; then
-    run_noport
-else
-    run_port
+    done
+    echo -e "\e[34m恭喜，端口:$JD_PORT 可用\e[0m"
+    MAPPING_JD_PORT="-p $JD_PORT:5700"
 fi
+if [ "$Ninja" != "2" ]; then
+    while check_port $NINJA_PORT; do    
+        echo -n -e "\e[31m端口:$NINJA_PORT 被占用，请重新输入 Ninja 面板端口：\e[0m"
+        read NINJA_PORT
+    done
+    echo -e "\e[34m恭喜，端口:$NINJA_PORT 可用\e[0m"
+    MAPPING_NINJA_PORT="-p $NINJA_PORT:5701"
+fi
+
+
+log "3.开始创建容器并执行"
+docker run -dit \
+    -t \
+    -v $CONFIG_PATH:/ql/config \
+    -v $DB_PATH:/ql/db \
+    -v $LOG_PATH:/ql/log \
+    -v $REPO_PATH:/ql/repo \
+    -v $RAW_PATH:/ql/raw \
+    -v $SCRIPT_PATH:/ql/scripts \
+    -v $JBOT_PATH:/ql/jbot \
+    -v $NINJA_PATH:/ql/ninja \
+    $MAPPING_JD_PORT \
+    $MAPPING_NINJA_PORT \
+    --name $CONTAINER_NAME \
+    --hostname qinglong \
+    --restart always \
+    $CHANGE_NETWORK \
+    $ENABLE_HANGUP_ENV \
+    $ENABLE_WEB_PANEL_ENV \
+    $DOCKER_IMG_NAME:$TAG
 
 if [ $? -ne 0 ] ; then
     cancelrun "** 错误：容器创建失败，多数由于 docker 空间不足引起，请检查！"
@@ -299,11 +311,11 @@ log "5.开始检测 Nginx 静态解析"
 echo "开始扫描静态解析是否在线！"
 ps -fe|grep nginx|grep -v grep
 if [ $? -ne 0 ]; then
-    echo $NOWTIME" 扫描结束！Nginx 静态解析停止！准备重启！"
+    echo echo "$(date +%Y-%m-%d" "%H:%M:%S) 扫描结束！Nginx 静态解析停止！准备重启！"
     docker exec -it $CONTAINER_NAME nginx -c /etc/nginx/nginx.conf
-    echo $NOWTIME" Nginx 静态解析重启完成！"
+    echo "$(date +%Y-%m-%d" "%H:%M:%S) Nginx 静态解析重启完成！"
 else
-    echo $NOWTIME" 扫描结束！Nginx 静态解析正常！"
+    echo "$(date +%Y-%m-%d" "%H:%M:%S) 扫描结束！Nginx 静态解析正常！"
 fi
 
 if [ "$port" = "2" ]; then
@@ -339,10 +351,15 @@ cat $CONFIG_PATH/auth.json
 echo -e "\n"
 if [ "$access" != "2" ]; then
     if [ "$(grep -c "token" $CONFIG_PATH/auth.json)" != 0 ]; then
-        log "7.开始青龙内部配置"
+        log "7.开始安装或重装 Ninja"
+        if [ "$INSTALL_NINJA" = true ]; then
+            docker exec -it $CONTAINER_NAME bash -c "cd /ql;ps -ef|grep ninja|grep -v grep|awk '{print $1}'|xargs kill -9;rm -rf /ql/ninja;git clone https://github.com/MoonBegonia/ninja.git /ql/ninja;cd /ql/ninja/backend;pnpm install;cp .env.example .env;cp sendNotify.js /ql/scripts/sendNotify.js;sed -i \"s/NINJA_PORT=5701/NINJA_PORT=${NINJA_PORT}/\" /ql/ninja/backend/.env;sed -i \"s/ALLOW_NUM=40/ALLOW_NUM=100/\" /ql/ninja/backend/.env;pm2 start"
+            docker exec -it $CONTAINER_NAME bash -c "sed -i \"s/NINJA_PORT=5701/NINJA_PORT=${NINJA_PORT}/\" /ql/ninja/backend/.env && sed -i \"s/ALLOW_NUM=40/ALLOW_NUM=100/\" /ql/ninja/backend/.env && pm2 start"
+        fi
+        log "8.开始青龙内部配置"
         docker exec -it $CONTAINER_NAME bash -c "$(curl -fsSL https://gitee.com/allin1code/a1/raw/master/1customCDN.sh)"
     else
-        warn "7.未检测到 token，取消内部配置"
+        warn "8.未检测到 token，取消内部配置"
     fi
 else
     exit 0
