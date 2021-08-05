@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Mod: Build20210804V1
+## Mod: Build20210805V1
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 安装node依赖使用 pnpm install -g xxx xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
 ## 安装python依赖使用 pip3 install xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
@@ -126,7 +126,7 @@ done
 
 # 🍪Ninja
 update_Ninja_normal(){
-    cd /ql/ninja/backend && git checkout . && git pull && pnpm install && pm2 start && cp sendNotify.js /ql/scripts/sendNotify.js  
+    cd /ql/ninja/backend && git pull -f && pnpm install && pm2 start && cp sendNotify.js /ql/scripts/sendNotify.js
 }
 
 reinstall_Ninja_force(){

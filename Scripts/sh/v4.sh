@@ -270,9 +270,8 @@ docker run -dit \
     -v $CONFIG_PATH:/jd/config \
     -v $LOG_PATH:/jd/log \
     -v $OWN_PATH:/jd/own \
-    -v $SCRIPT_PATH:/jd/scripts \
-    -v $DIY_PATH:/jd/jbot/diy \
     $MOUNT_SCRIPT \
+    -v $DIY_PATH:/jd/jbot/diy \
     $MAPPING_PORT \
     --name $CONTAINER_NAME \
     --hostname jd_v4_bot \
