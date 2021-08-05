@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210804-001
+## Mod: Build20210804-003
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -426,6 +426,13 @@ export summer_movement_outuserID=""
 ## 8、修复点点券
 ### 新增显示有多少个非法请求 可以开通知 
 export DDQ_NOTIFY_CONTROL="" ##不填或false为通知，true为不通知
+## 9、奥运夺金牌开卡
+export guaolympicopencard="true"
+## 10、奥运夺金挑战赛
+export guaolympicopencard2="true"
+## 11、大牌联合 冰爽一夏
+export guaopencard_addSku4="true"
+export guaopencard4="true"
 
 # cdle 环境变量
 ## 1、全民运动会守卫红包
@@ -522,9 +529,6 @@ export OLYMPIC_START_DRAW="true"
 ## 5、全奶爸盛典 爸气全开
 ### 填写11就是跑到11个ck就停止，填写21就是跑到21个ck就停止，一天最多助力20个ck 推荐10的倍数 +1 填写！！
 export JD_OPENCARD_DADDY=""
-
-# shufflewzc 环境变量
-## 1、奥运夺金牌开卡
-export guaolympicopencard="true"
-## 2、奥运夺金挑战赛
-export guaolympicopencard2="true"
+## 6、大牌联合 冰爽一夏
+### 填写11就是跑到11个ck就停止，填写21就是跑到21个ck就停止，一天最多助力20个ck 推荐10的倍数 +1 填写！！
+export JD_OPENCARD_COOL_SUMMER=""
