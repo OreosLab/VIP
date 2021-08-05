@@ -30,7 +30,8 @@ sed -i "s/OtherRepo=()/OtherRepo=(${OtherRepo})/g" $extra_config_path
 
 curl -sL https://git.io/code.sh > $code_raw_path
 mv -b $code_raw_path $dir_config
-sed -i "s/\$repo4/\$repo${repoNum}/g" $code_config_path
+
+sed -i "s/\repo=$repo6/\repo=$repo${repoNum}/g" $code_config_path
 sed -i "/^HelpType=/c${HelpType}" $code_config_path
 sed -i "/^BreakHelpType=/c${BreakHelpType}" $code_config_path
 sed -i "/^BreakHelpNum=/c${BreakHelpNum}" $code_config_path
