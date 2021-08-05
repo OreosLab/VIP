@@ -72,7 +72,7 @@ docker_install() {
         fi
         if [ $lsb_dist == "openwrt" ]; then
             echo "openwrt 环境请自行安装 docker"
-            #exit 1
+            exit 1
         else
             echo "安装 docker 环境..."
             curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
@@ -101,7 +101,6 @@ LOG_PATH=$JD_PATH/jd_v4_bot/log
 OWN_PATH=$JD_PATH/jd_v4_bot/own
 SCRIPT_PATH=$JD_PATH/jd_v4_bot/scripts
 DIY_PATH=$JD_PATH/jd_v4_bot/diy
-
 
 inp "是否为 arm64 架构：\n1) x86[默认]\n2) arm64"
 echo -n -e "\e[36m输入您的选择->\e[0m"
@@ -157,7 +156,7 @@ input_container_name() {
 }
 input_container_name
 
-#是否安装WatchTower
+# 是否安装WatchTower
 inp "是否安装 containrrr/watchtower 自动更新 Docker 容器：\n1) 安装\n2) 不安装[默认]"
 echo -n -e "\e[33m输入您的选择->\e[0m"
 read watchtower
