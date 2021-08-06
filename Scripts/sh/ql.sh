@@ -18,7 +18,7 @@ JD_PATH=""
 SHELL_FOLDER=$(pwd)
 CONTAINER_NAME=""
 TAG="latest"
-NETWORK="host"
+NETWORK="bridge"
 JD_PORT=5700
 NINJA_PORT=5701
 
@@ -145,11 +145,11 @@ if [ "$watchtower" = "1" ]; then
     INSTALL_WATCH=true
 fi
 
-inp "请选择容器的网络类型：\n1) host[默认]\n2) bridge"
+inp "请选择容器的网络类型：\n1) host\n2) bridge[默认]"
 echo -n -e "\e[36m输入您的选择->\e[0m"
 read net
-if [ "$net" = "2" ]; then
-    NETWORK="bridge"
+if [ "$net" = "1" ]; then
+    NETWORK="host"
     CHANGE_NETWORK="--network $NETWORK"
 else
     CHANGE_NETWORK="--network $NETWORK"

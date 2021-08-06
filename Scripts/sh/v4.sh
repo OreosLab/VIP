@@ -20,7 +20,7 @@ JD_PATH=""
 SHELL_FOLDER=$(pwd)
 CONTAINER_NAME=""
 TAG="v4_bot"
-NETWORK="host"
+NETWORK="bridge"
 JD_PORT=5678
 
 HAS_IMAGE=false
@@ -97,7 +97,7 @@ OWN_PATH=$JD_PATH/jd_v4_bot/own
 SCRIPT_PATH=$JD_PATH/jd_v4_bot/scripts
 DIY_PATH=$JD_PATH/jd_v4_bot/diy
 
-inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3）jiulan/jd:v4"
+inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3) jiulan/jd:v4"
 echo -n -e "\e[36m输入您的选择->\e[0m"
 read image
 image=${image:-'1'}
@@ -158,17 +158,17 @@ input_container_name
 
 # 是否安装 WatchTower
 inp "是否安装 containrrr/watchtower 自动更新 Docker 容器：\n1) 安装\n2) 不安装[默认]"
-echo -n -e "\e[33m输入您的选择->\e[0m"
+echo -n -e "\e[36m输入您的选择->\e[0m"
 read watchtower
 if [ "$watchtower" = "1" ]; then
     INSTALL_WATCH=true
 fi
 
-inp "请选择容器的网络类型：\n1) host[默认]\n2) bridge"
+inp "请选择容器的网络类型：\n1) host\n2) bridge[默认]"
 echo -n -e "\e[36m输入您的选择->\e[0m"
 read net
-if [ "$net" = "2" ]; then
-    NETWORK="bridge"
+if [ "$net" = "1" ]; then
+    NETWORK="host"
     CHANGE_NETWORK="--network $NETWORK"
 else
     CHANGE_NETWORK="--network $NETWORK"
