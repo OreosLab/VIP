@@ -100,7 +100,7 @@ OWN_PATH=$JD_PATH/jd_v4_bot/own
 SCRIPT_PATH=$JD_PATH/jd_v4_bot/scripts
 DIY_PATH=$JD_PATH/jd_v4_bot/diy
 
-inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3)jiulan/jd:v4"
+inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3）jiulan/jd:v4"
 echo -n -e "\e[36m输入您的选择->\e[0m"
 read image
 image=${image:-'1'}
@@ -148,10 +148,10 @@ check_container_name() {
 
 # 容器名称
 input_container_name() {
-    echo -n -e "\e[33m\n二、请输入要创建的 Docker 容器名称[默认为：jd_v4_bot]->\e[0m"
+    echo -n -e "\e[33m\n二、请输入要创建的 Docker 容器名称[默认为：v4]->\e[0m"
     read container_name
     if [ -z "$container_name" ]; then
-        CONTAINER_NAME="jd_v4_bot"
+        CONTAINER_NAME="v4"
     else
         CONTAINER_NAME=$container_name
     fi
