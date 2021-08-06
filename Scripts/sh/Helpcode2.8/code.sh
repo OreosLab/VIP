@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210805-002
+## Build 20210806-001
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -537,38 +537,38 @@ case $UpdateType in
     1)
         if [ "$ps_num" -le $proc_num ] && [ -f $log_path ]; then
             backup_del
-            echo -e "\n#$cur_time 开始更新配置文件的互助码和互助规则"
+            echo -e "\n#$cur_time 开始更新配置文件的互助码和互助规则" | tee -a $latest_log
             for ((i = 0; i < ${#name_config[*]}; i++)); do
                 help_codes "${name_config[i]}" "${name_chinese[i]}"
                 [[ "${name_config[i]}" != "TokenJxnc" ]] && help_rules "${name_config[i]}" "${name_chinese[i]}"
             done
-            echo -e "\n#$cur_time 配置文件的互助码和互助规则已完成更新"
+            echo -e "\n#$cur_time 配置文件的互助码和互助规则已完成更新" | tee -a $latest_log
         elif [ ! -f $log_path ]; then
-            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！"
+            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！" | tee -a $latest_log
         fi
         ;;
     2)
         if [ "$ps_num" -le $proc_num ] && [ -f $log_path ]; then
             backup_del
-            echo -e "\n#$cur_time 开始更新配置文件的互助码，不更新互助规则"
+            echo -e "\n#$cur_time 开始更新配置文件的互助码，不更新互助规则" | tee -a $latest_log
             for ((i = 0; i < ${#name_config[*]}; i++)); do
                 help_codes "${name_config[i]}" "${name_chinese[i]}"
             done
-            echo -e "\n#$cur_time 配置文件的互助码已完成更新"
+            echo -e "\n#$cur_time 配置文件的互助码已完成更新" | tee -a $latest_log
         elif [ ! -f $log_path ]; then
-            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！"
+            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！" | tee -a $latest_log
         fi
         ;;
     3)
         if [ "$ps_num" -le $proc_num ] && [ -f $log_path ]; then
             backup_del
-            echo -e "\n#$cur_time 开始更新配置文件的互助规则，不更新互助码"
+            echo -e "\n#$cur_time 开始更新配置文件的互助规则，不更新互助码" | tee -a $latest_log
             for ((i = 0; i < ${#name_config[*]}; i++)); do
                 [[ "${name_config[i]}" != "TokenJxnc" ]] && help_rules "${name_config[i]}" "${name_chinese[i]}"
             done
-            echo -e "\n#$cur_time 配置文件的互助规则已完成更新"
+            echo -e "\n#$cur_time 配置文件的互助规则已完成更新" | tee -a $latest_log
         elif [ ! -f $log_path ]; then
-            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！"
+            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！" | tee -a $latest_log
         fi
         ;;
     *)
@@ -687,7 +687,7 @@ log_path="$dir_code/$log_time.log"
 make_dir "$dir_code"
 ps_num="$(ps | grep code.sh | grep -v grep | wc -l)"
 #[[ ! -z "$(ps -ef|grep -w 'code.sh'|grep -v grep)" ]] && ps -ef|grep -w 'code.sh'|grep -v grep|awk '{print $1}'|xargs kill -9
-export_all_codes | perl -pe "{s|京东种豆|种豆|; s|crazyJoy任务|疯狂的JOY|}"
+export_all_codes | perl -pe "{s|京东种豆|种豆|; s|crazyJoy任务|疯狂的JOY|}" | tee $log_path
 sleep 5
 update_help
 
