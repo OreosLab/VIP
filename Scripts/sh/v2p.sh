@@ -41,7 +41,7 @@ inp() {
 }
 
 warn() {
-    echo -e "\e[31m\n$1 \e[0m\n"
+    echo -e "\e[31m$1 \e[0m"
 }
 
 cancelrun() {
