@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210806-001
+## Build 20210807-001
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -426,26 +426,20 @@ if [ ! -f $ShareCode_log ] || [ -z "$(cat $ShareCode_log | grep "^$config_name_m
    echo -e "\n## $chinese_name\n${config_name_my}1=''\n" >> $ShareCode_log
 fi
 for ((i=1; i<=100; i++)); do
-    local new_code="$(cat $log_path | grep "^$config_name_my$i=.*'$" | sed "s/.*'\(.*\)'.*/\1/")"
-    local old_code="$(cat $ShareCode_log | grep "^$config_name_my$i=.*'$" | sed "s/.*'\(.*\)'.*/\1/")"
-    if [[ $i -le $user_sum ]] && [[ ! -z "$(cat $log_path | grep "^$config_name_my$i=.*'$")" ]]; then
+    local new_code="$(cat $log_path | grep "^$config_name_my$i=.\+'$" | sed "s/\S\+'\([^']*\)'$/\1/")"
+    local old_code="$(cat $ShareCode_log | grep "^$config_name_my$i=.\+'$" | sed "s/\S\+'\([^']*\)'$/\1/")"
+    if [[ $i -le $user_sum ]]; then
         if [ -z "$(grep "^$config_name_my$i" $ShareCode_log)" ]; then
             sed -i "/^$config_name_my$[$i-1]='.*'/ s/$/\n$config_name_my$i=\'\'/" $ShareCode_log
         fi
         if [ "$new_code" != "$old_code" ]; then
-#            if [ $1 = "BookShop" ]; then
-#                if [[ "$new_code" != "undefined" ]] && [[ "$new_code" != "{}" ]] && [[ "$new_code" != "" ]]; then
-#                    sed -i "s/^$config_name_my$i='$old_code'$/$config_name_my$i='$new_code'/" $ShareCode_log
-#                fi
-#            else
-                if [[ "$new_code" != "undefined" ]] && [[ "$new_code" != "{}" ]] || [[ "$new_code" = "" ]]; then
-                    sed -i "s/^$config_name_my$i='$old_code'$/$config_name_my$i='$new_code'/" $ShareCode_log
-                fi
-#            fi
+            if [[ "$new_code" != "undefined" ]] && [[ "$new_code" != "{}" ]]; then
+                sed -i "s/^$config_name_my$i='$old_code'$/$config_name_my$i='$new_code'/" $ShareCode_log
+            fi
         fi
-    elif [[ $i -gt $user_sum ]] && [[ $i -gt 1 ]] && [[ ! -z "$(cat $ShareCode_log | grep "^$config_name_my$i")" ]]; then
+    elif [[ $i -gt $user_sum ]] && [[ $i -gt 1 ]]; then
         sed -i "/^$config_name_my$i/d" $ShareCode_log
-    elif [[ $i -eq 1 ]] && [[ ! -z "$(cat $ShareCode_log | grep "^$config_name_my$i")" ]]; then
+    elif [[ $i -eq 1 ]] && [[ -z "$new_code" ]]; then
         sed -i "s/^$config_name_my$i='\S*'$/$config_name_my$i=''/" $ShareCode_log
     fi
 done
@@ -470,18 +464,18 @@ if [ -z "$(cat $ShareCode_log | grep "^$config_name_for_other\d")" ]; then
    echo -e "${config_name_for_other}1=\"\"" >> $ShareCode_log
 fi
 for ((j=1; j<=100; j++)); do
-    local new_rule="$(cat $log_path | grep "^$config_name_for_other$j=.*\"$" | sed "s/.*\"\(.*\)\".*/\1/")"
-    local old_rule="$(cat $ShareCode_log | grep "^$config_name_for_other$j=.*\"$" | sed "s/.*\"\(.*\)\".*/\1/")"
-    if [[ $j -le $user_sum ]] && [[ ! -z $new_rule ]]; then
+    local new_rule="$(cat $log_path | grep "^$config_name_for_other$j=.\+\"$" | sed "s/\S\+\"\([^\"]*\)\"$/\1/")"
+    local old_rule="$(cat $ShareCode_log | grep "^$config_name_for_other$j=.\+\"$" | sed "s/\S\+\"\([^\"]*\)\"$/\1/")"
+    if [[ $j -le $user_sum ]]; then
         if [ -z "$(grep "^$config_name_for_other$j" $ShareCode_log)" ]; then
             sed -i "/^$config_name_for_other$[$j-1]=".*"/ s/$/\n$config_name_for_other$j=\"\"/" $ShareCode_log
         fi
         if [ "$new_rule" != "$old_rule" ]; then
             sed -i "s/^$config_name_for_other$j=\"$old_rule\"$/$config_name_for_other$j=\"$new_rule\"/" $ShareCode_log
         fi
-    elif [[ $j -gt $user_sum ]] && [[ $j -gt 1 ]] && [[ ! -z "$(cat $ShareCode_log | grep "^$config_name_for_other$j")" ]]; then
+    elif [[ $j -gt $user_sum ]] && [[ $j -gt 1 ]]; then
         sed -i "/^$config_name_for_other$j/d" $ShareCode_log
-    elif [[ $j -eq 1 ]] && [[ ! -z "$(cat $ShareCode_log | grep "^$config_name_for_other$j")" ]]; then
+    elif [[ $j -eq 1 ]] && [[ -z "$new_rule" ]]; then
         sed -i "s/^$config_name_for_other$j=\"\S*\"$/$config_name_for_other$j=\"\"/" $ShareCode_log
     fi
 done
@@ -537,38 +531,38 @@ case $UpdateType in
     1)
         if [ "$ps_num" -le $proc_num ] && [ -f $log_path ]; then
             backup_del
-            echo -e "\n#$cur_time 开始更新配置文件的互助码和互助规则" | tee -a $latest_log
+            echo -e "\n#$cur_time 开始更新配置文件的互助码和互助规则"
             for ((i = 0; i < ${#name_config[*]}; i++)); do
                 help_codes "${name_config[i]}" "${name_chinese[i]}"
                 [[ "${name_config[i]}" != "TokenJxnc" ]] && help_rules "${name_config[i]}" "${name_chinese[i]}"
             done
-            echo -e "\n#$cur_time 配置文件的互助码和互助规则已完成更新" | tee -a $latest_log
+            echo -e "\n#$cur_time 配置文件的互助码和互助规则已完成更新"
         elif [ ! -f $log_path ]; then
-            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！" | tee -a $latest_log
+            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！"
         fi
         ;;
     2)
         if [ "$ps_num" -le $proc_num ] && [ -f $log_path ]; then
             backup_del
-            echo -e "\n#$cur_time 开始更新配置文件的互助码，不更新互助规则" | tee -a $latest_log
+            echo -e "\n#$cur_time 开始更新配置文件的互助码，不更新互助规则"
             for ((i = 0; i < ${#name_config[*]}; i++)); do
                 help_codes "${name_config[i]}" "${name_chinese[i]}"
             done
-            echo -e "\n#$cur_time 配置文件的互助码已完成更新" | tee -a $latest_log
+            echo -e "\n#$cur_time 配置文件的互助码已完成更新"
         elif [ ! -f $log_path ]; then
-            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！" | tee -a $latest_log
+            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！"
         fi
         ;;
     3)
         if [ "$ps_num" -le $proc_num ] && [ -f $log_path ]; then
             backup_del
-            echo -e "\n#$cur_time 开始更新配置文件的互助规则，不更新互助码" | tee -a $latest_log
+            echo -e "\n#$cur_time 开始更新配置文件的互助规则，不更新互助码"
             for ((i = 0; i < ${#name_config[*]}; i++)); do
                 [[ "${name_config[i]}" != "TokenJxnc" ]] && help_rules "${name_config[i]}" "${name_chinese[i]}"
             done
-            echo -e "\n#$cur_time 配置文件的互助规则已完成更新" | tee -a $latest_log
+            echo -e "\n#$cur_time 配置文件的互助规则已完成更新"
         elif [ ! -f $log_path ]; then
-            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！" | tee -a $latest_log
+            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！"
         fi
         ;;
     *)
@@ -687,7 +681,7 @@ log_path="$dir_code/$log_time.log"
 make_dir "$dir_code"
 ps_num="$(ps | grep code.sh | grep -v grep | wc -l)"
 #[[ ! -z "$(ps -ef|grep -w 'code.sh'|grep -v grep)" ]] && ps -ef|grep -w 'code.sh'|grep -v grep|awk '{print $1}'|xargs kill -9
-export_all_codes | perl -pe "{s|京东种豆|种豆|; s|crazyJoy任务|疯狂的JOY|}" | tee $log_path
+export_all_codes | perl -pe "{s|京东种豆|种豆|; s|crazyJoy任务|疯狂的JOY|}"
 sleep 5
 update_help
 
