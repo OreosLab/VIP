@@ -100,11 +100,16 @@ OWN_PATH=$JD_PATH/jd_v4_bot/own
 SCRIPT_PATH=$JD_PATH/jd_v4_bot/scripts
 DIY_PATH=$JD_PATH/jd_v4_bot/diy
 
-inp "是否为 arm64 架构：\n1) x86[默认]\n2) arm64"
+inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3)jiulan/jd:v4"
 echo -n -e "\e[36m输入您的选择->\e[0m"
-read Processor_architecture
-if [ "$Processor_architecture" = "2" ]; then
-    TAG="v4_bot_arm64"
+read image
+image=${image:-'1'}
+if [ "$image" = "2" ]; then
+    DOCKER_IMG_NAME="jiulan/jd"
+    TAG="test"
+elif [ "$image" = "3" ]; then
+    DOCKER_IMG_NAME="jiulan/jd"
+    TAG="v4"
 fi
 
 inp "是否将 scripts 目录映射到外部：\n1) 映射[默认]\n2) 不映射"
@@ -311,7 +316,12 @@ docker ps
 
 if [ "$pannel" != "2" ]; then
     log "5.开始安装面板"
-    docker exec $CONTAINER_NAME bash -c "$(curl -fsSL https://raw.githubusercontent.com/Annyoo2021/jd_v4_bot/main/v4mb.sh)"
+    if [ "$image" = "1" ]; then
+        url="https://raw.githubusercontents.com/Annyoo2021/jd_v4_bot/main/v4mb.sh"
+    else
+        url="https://raw.githubusercontents.com/jiulan/jd_v4/main/v4mb.sh"
+    fi
+    docker exec $CONTAINER_NAME bash -c "$(curl -fsSL $url)"
 fi
 
 log "6.安装已经完成。创建好后请阅读映射的 config 目录下的的 config.sh，并根据注释修改。"
