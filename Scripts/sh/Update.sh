@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# cron 0 6,18 * * *
+<<'COMMENT'
+建议cron: 0 6,18 * * *  bash Update.sh
+COMMENT
 
 dir_config=/ql/config
 dir_scripts=/ql/scripts
