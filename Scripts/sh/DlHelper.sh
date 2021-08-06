@@ -23,4 +23,4 @@ find $dir_sync -name "*code\.sh" -exec mv {} $Help/code\.sh \;
 find $dir_sync -name "*task_before\.sh" -exec mv {} $Help/task_before\.sh \;
 find $dir_sync -name "*config_sample\.sh" -exec mv {} $Help/config_sample\.sh \;
 
-ps -ef|grep tg_channel_downloader.py|grep -v grep|awk '{print $1}'|xargs kill -9
+ps -ef|grep tg_channel_downloader.py|grep -v grep|awk '{print $2}'|xargs kill -9
