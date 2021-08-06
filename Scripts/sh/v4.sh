@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # source: https://github.com/Annyoo2021/jd_v4_bot
 
