@@ -19,8 +19,6 @@ DOCKER_IMG_NAME="annyooo/jd"
 JD_PATH=""
 SHELL_FOLDER=$(pwd)
 CONTAINER_NAME=""
-CONFIG_PATH=""
-LOG_PATH=""
 TAG="v4_bot"
 NETWORK="host"
 JD_PORT=5678
@@ -31,7 +29,6 @@ PULL_IMAGE=true
 HAS_CONTAINER=false
 DEL_CONTAINER=true
 INSTALL_WATCH=false
-TEST_BEAN_CHAGE=false
 ENABLE_WEB_PANEL=true
 ENABLE_HANGUP=true
 OLD_IMAGE_ID=""
@@ -55,7 +52,7 @@ warn() {
 
 cancelrun() {
     if [ $# -gt 0 ]; then
-        echo     "\e[31m $1 \e[0m"
+        echo -e "\e[31m $1 \e[0m"
     fi
     exit 1
 }
