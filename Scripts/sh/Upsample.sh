@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 docker exec -it qinglong /bin/sh -c "cd /ql/config
 curl -sL https://git.io/config.sh > /ql/config/config.sample.sh
