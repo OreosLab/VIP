@@ -192,30 +192,30 @@ set_default_code(){
         sed -i "/^repo6=/a\repo7='yuannian1112_jd_scripts'" $code_shell_path
     fi
 }
-# 将 bash code.sh 添加到定时任务
-add_bash_code(){
+# 将 task code.sh 添加到定时任务
+add_task_code(){
     if [ "$(grep -c "code.sh" /ql/config/crontab.list)" != 0 ]; then
-        echo "您的任务列表中已存在 task:bash code.sh"
+        echo "您的任务列表中已存在 task:task code.sh"
     else
-        echo "开始添加 task:bash code.sh"
+        echo "开始添加 task:task code.sh"
         # 获取token
         token=$(cat /ql/config/auth.json | jq --raw-output .token)
-        curl -s -H 'Accept: application/json' -H "Authorization: Bearer $token" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{"name":"格式化更新助力码","command":"bash /ql/config/code.sh &","schedule":"*/10 * * * *"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1626247939659'
+        curl -s -H 'Accept: application/json' -H "Authorization: Bearer $token" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{"name":"格式化更新助力码","command":"task /ql/config/code.sh","schedule":"*/10 * * * *"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1626247939659'
     fi
 }
 if [ "${all}" = 1 ]; then
-    get_valid_code && dl_code_shell && set_default_code && add_bash_code
+    get_valid_code && dl_code_shell && set_default_code && add_task_code
 elif [ "${code}" = 'n' ]; then
     echo "已为您跳过操作 code.sh"
 else
     if [[ ${code} =~ 'a' ]]; then
-        get_valid_code && dl_code_shell
+        dl_code_shell
     fi
     if [[ ${code} =~ 'b' ]]; then
         set_default_code
     fi
     if [[ ${code} =~ 'c' ]]; then
-        add_bash_code
+        add_task_code
     fi
 fi
 
