@@ -2,26 +2,23 @@
 
 clear
 
-echo -e "\e[34m
-           mmmm                          mm    mm   mmmmm    mmmmmm   
-           \"\"##                          \"##  ##\"  #\"\"\"\"##m  ##\"\"\"\"#m 
-  m####m     ##       m####m    m#####m   ##  ##         ##  ##    ## 
- ##mmmm##    ##      ##mmmm##  ##\"    \"   ##  ##       m#\"   ######\"  
- ##\"\"\"\"\"\"    ##      ##\"\"\"\"\"\"  ##          ####      m#\"     ##       
- \"##mmmm#    ##mmm   \"##mmmm#  \"##mmmm#    ####    m##mmmmm  ##       
-   \"\"\"\"\"      \"\"\"\"     \"\"\"\"\"     \"\"\"\"\"     \"\"\"\"    \"\"\"\"\"\"\"\"  \"\"       
-\e[0m
+echo "
+
+ ▄▄    ▄▄  ▄▄    ▄▄  ▄▄       
+ ██    ██  ██    ██  ██       
+ ██    ██  ██    ██  ██       
+ ████████  ████████  ██       
+ ██    ██  ██    ██  ██       
+ ██    ██  ██    ██  ██▄▄▄▄▄▄ 
+
 "
 
-DOCKER_IMG_NAME="elecv2/elecv2p"
-V2P_PATH=""
+DOCKER_IMG_NAME="classmatelin/hhl"
+JD_PATH=""
 SHELL_FOLDER=$(pwd)
 CONTAINER_NAME=""
 TAG="latest"
 NETWORK="bridge"
-V2P_PORT=8100        # webUI 后台管理界面。添加规则/JS 文件管理/定时任务管理/MITM 证书等
-HTTP_PORT=8101       # ANYPROXY HTTP 代理端口。（代理端口不是网页，不能通过浏览器直接访问）
-REQUEST_PORT=8102    # ANYPROXY 代理请求查看端口
 
 HAS_IMAGE=false
 EXT_ALL=true
@@ -29,8 +26,9 @@ PULL_IMAGE=true
 HAS_CONTAINER=false
 DEL_CONTAINER=true
 INSTALL_WATCH=false
+ENABLE_WEB_PANEL=true
+ENABLE_HANGUP=true
 OLD_IMAGE_ID=""
-
 
 log() {
     echo -e "\e[32m\n$1 \e[0m\n"
@@ -79,34 +77,29 @@ docker_install() {
 # 配置文件保存目录
 set_savedir(){
 echo -n -e "\e[33m\n一、请输入配置文件保存的绝对路径（示例：/root)，回车默认为当前目录:\e[0m"
-read v2p_path
-if [ -z "$v2p_path" ]; then
-    V2P_PATH=$SHELL_FOLDER
-elif [ -d "$v2p_path" ]; then
-    V2P_PATH=$v2p_path
+read jd_path
+if [ -z "$jd_path" ]; then
+    JD_PATH=$SHELL_FOLDER
+elif [ -d "$jd_path" ]; then
+    JD_PATH=$jd_path
 else
-    mkdir -p $v2p_path
-    V2P_PATH=$v2p_path
+    mkdir -p $jd_path
+    JD_PATH=$jd_path
 fi
-JSFile_PATH=$V2P_PATH/elecv2p/JSFile
-LISTS_PATH=$V2P_PATH/elecv2p/Lists
-STORE_PATH=$V2P_PATH/elecv2p/Store
-SHELL_PATH=$V2P_PATH/elecv2p/Shell
-ROOTCA_PATH=$V2P_PATH/elecv2p/rootCA
-EFSS_PATH=$V2P_PATH/elecv2p/efss
+CONF_PATH=$JD_PATH/hhl/conf
+LOG_PATH=$JD_PATH/hhl/logs
+SHELL_PATH=$JD_PATH/hhl/shell
+TOOL_PATH=$JD_PATH/hhl/tools
 }
 
 docker_install
-warn "小白基本回车即可，更多学习内容尽在 https://github.com/elecV2/elecV2P"
+warn "项目地址：https://github.com/ClassmateLin/jd_scripts"
 
-inp "是否为 arm 架构系统：\n1) x86/x64等[默认]\n2）arm64\n3）arm32"
+inp "选择你想拉取的 hhl 镜像：\n1) classmatelin/hhl[默认]\n2) classmatelin/hhl-n1"
 opt
-read architecture
-architecture=${image:-'1'}
-if [ "$architecture" = "2" ]; then
-    TAG="arm64"
-elif [ "$architecture" = "3" ]; then
-    TAG="arm32"
+read image
+if [ "$image" = "2" ]; then
+    DOCKER_IMG_NAME="classmatelin/hhl-n1"
 fi
 
 inp "是否将目录映射到外部：\n1) 映射[默认]\n2) 不映射"
@@ -147,10 +140,10 @@ check_container_name() {
 
 # 容器名称
 input_container_name() {
-    echo -n -e "\e[33m\n二、请输入要创建的 Docker 容器名称[默认为：elecv2p]->\e[0m"
+    echo -n -e "\e[33m\n二、请输入要创建的 Docker 容器名称[默认为：hhl]->\e[0m"
     read container_name
     if [ -z "$container_name" ]; then
-        CONTAINER_NAME="elecv2p"
+        CONTAINER_NAME="hhl"
     else
         CONTAINER_NAME=$container_name
     fi
@@ -167,7 +160,6 @@ if [ "$watchtower" = "1" ]; then
 fi
 
 inp "请选择容器的网络类型：\n1) host\n2) bridge[默认]"
-echo -e "\e[31m如果在部分复杂的网络情况下出现无法联网或访问的问题，尝试在命令中添加 --net=host，即选择 host 模式\e[0m\n"
 opt
 read net
 if [ "$net" = "1" ]; then
@@ -177,22 +169,10 @@ else
     CHANGE_NETWORK="--network $NETWORK"
 fi
 
-inp "是否修改端口[默认 8100|8101|8102]：\n1) 修改\n2) 不修改[默认]"
-opt
-read change_port
-if [ "$change_port" = "1" ]; then
-    echo -n -e "\e[36m输入您想修改的 webUI 端口->\e[0m"
-    read V2P_PORT
-    echo -n -e "\e[36m输入您想修改的代理端口->\e[0m"
-    read HTTP_PORT
-    echo -n -e "\e[36m输入您想修改的代理请求查看端口->\e[0m"
-    read REQUEST_PORT
-fi
-
 # 配置已经创建完成，开始执行
 if [ $EXT_ALL = true ]; then
     log "1.开始创建配置文件目录"
-    PATH_LIST=($JSFILE_PATH $LISTS_PATH $STORE_PATH $SHELL_PATH $ROOTCA_PATH $EFSS_PATH)
+    PATH_LIST=($CONF_PATH $LOG_PATH $SHELL_PATH $TOOL_PATH)
     for i in ${PATH_LIST[@]}; do
         mkdir -p $i
     done
@@ -219,44 +199,15 @@ if [ $HAS_IMAGE = true ] && [ $PULL_IMAGE = true ]; then
     fi
 fi
 
-# 端口存在检测
-check_port() {
-    echo "正在检测端口:$1"
-    netstat -tlpn | grep "\b$1\b"
-}
-if [ "$port" != "2" ]; then
-    while check_port $V2P_PORT; do    
-        echo -n -e "\e[31m端口:$V2P_PORT 被占用，请重新输入 webUI 端口：\e[0m"
-        read V2P_PORT
-    done
-    echo -e "\e[34m恭喜，端口:$V2P_PORT 可用\e[0m"
-    while check_port $HTTP_PORT; do    
-        echo -n -e "\e[31m端口:$HTTP_PORT 被占用，请重新输入代理端口：\e[0m"
-        read HTTP_PORT
-    done
-    echo -e "\e[34m恭喜，端口:$HTTP_PORT 可用\e[0m"
-    while check_port $REQUEST_PORT; do    
-        echo -n -e "\e[31m端口:$REQUEST_PORT 被占用，请重新输入代理请求端口：\e[0m"
-        read REQUEST_PORT
-    done
-    echo -e "\e[34m恭喜，端口:$REQUEST_PORT 可用\e[0m"
-fi
-
 
 log "3.开始创建容器并执行"
 run_v(){
     docker run -dit \
         -t \
-        -e TZ=Asia/Shanghai \
-        -p $V2P_PORT:80 \
-        -p $HTTP_PORT:8001 \
-        -p $REQUEST_PORT:8002 \
-        -v $JSFILE_PATH:/usr/local/app/script/JSFile \
-        -v $LISTS_PATH:/usr/local/app/script/Lists \
-        -v $STORE_PATH:/usr/local/app/script/Store \
-        -v $SHELL_PATH:/usr/local/app/script/Shell \
-        -v $ROOTCA_PATH:/usr/local/app/rootCA \
-        -v $EFSS_PATH:/usr/local/app/efss \
+        -v $CONF_PATH:/scripts/conf \
+        -v $LOG_PATH:/scripts/logs \
+        -v $SHELL_PATH:/scripts/shell \
+        -v $TOOL_PATH:/scripts/tools \
         --name $CONTAINER_NAME \
         --restart always \
         $CHANGE_NETWORK \
@@ -265,10 +216,6 @@ run_v(){
 run_nov(){
     docker run -dit \
         -t \
-        -e TZ=Asia/Shanghai \
-        -p $V2P_PORT:80 \
-        -p $HTTP_PORT:8001 \
-        -p $REQUEST_PORT:8002 \
         --name $CONTAINER_NAME \
         --restart always \
         $CHANGE_NETWORK \
@@ -295,8 +242,18 @@ if [ $INSTALL_WATCH = true ]; then
     $CONTAINER_NAME
 fi
 
+# 检查 config 文件是否存在
+if [ ! -f "$CODE_DIR/conf/config.yaml" ]; then
+    docker cp $CONTAINER_NAME:/scripts/conf/config.yaml $CONFIG_PATH/config.yaml
+    if [ $? -ne 0 ] ; then
+        cancelrun "** 错误：找不到配置文件！"
+    fi
+ fi
+
 log "4.下面列出所有容器"
 docker ps
+
+log "5.薅薅乐使用说明：https://github.com/ClassmateLin/jd_scripts#readme"
 
 
 log "enjoy!!!"

@@ -101,7 +101,7 @@ OWN_PATH=$JD_PATH/v4/own
 SCRIPT_PATH=$JD_PATH/v4/scripts
 DIY_PATH=$JD_PATH/v4/diy
 
-inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3) jiulan/jd:v4\n4) jiulan/jd:v4_arm64"
+inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd:v4_bot[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3) jiulan/jd:v4\n4) jiulan/jd:v4_arm64"
 opt
 read image
 image=${image:-'1'}
