@@ -236,7 +236,6 @@ docker ps
 
 log "5.薅薅乐使用说明：https://github.com/ClassmateLin/jd_scripts#readme"
 
-log "6.手动执行更新脚本请使用命令 docker exec -it $CONTAINER_NAME bash /scripts/shell/docker-entrypoint.sh"
+warn "6.请手动执行一次更新脚本命令 docker exec -it $CONTAINER_NAME /bin/docker-entrypoint"
 
-log "7.开始执行更新脚本......结束后可点一下终端界面，然后按 Ctrl+C 退出\nenjoy!!!"
-docker exec $CONTAINER_NAME bash /scripts/shell/docker-entrypoint.sh &
+log "结束后可点一下终端界面，然后按 Ctrl+C 退出\nenjoy!!!"
