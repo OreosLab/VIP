@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210807-001
+## Build 20210807-002
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -76,7 +76,7 @@ BreakHelpNum="4 9-14 15~18 19_21"  ## 屏蔽账号序号或序号区间
 UpdateType="1"
 
 ## 定义是否自动安装或修复缺失的依赖，默认为1，表示自动修复；留空或其他数值表示不修复。
-FixDependType="1"
+FixDependType=""
 ## 定义监控修复的依赖名称
 package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv typescript fs require tslib"
 
@@ -676,8 +676,8 @@ install_dependencies_all(){
 [[ $FixDependType = "1" ]] && [[ "$ps_num" -le $proc_num ]] && install_dependencies_all >/dev/null 2>&1 &
 today="$(date +%Y年%m月%d日)"
 cur_time="【$(date +%X)】"
-log_time=$(date "+%Y-%m-%d-%H-%M-%S")
-log_path="$dir_code/$log_time.log"
+[[ -z $log_time ]] && log_time=$(date "+%Y-%m-%d-%H-%M-%S")
+[[ -z $log_path ]] && log_path="$dir_code/$log_time.log"
 make_dir "$dir_code"
 ps_num="$(ps | grep code.sh | grep -v grep | wc -l)"
 #[[ ! -z "$(ps -ef|grep -w 'code.sh'|grep -v grep)" ]] && ps -ef|grep -w 'code.sh'|grep -v grep|awk '{print $1}'|xargs kill -9
