@@ -95,11 +95,11 @@ else
     mkdir -p $jd_path
     JD_PATH=$jd_path
 fi
-CONFIG_PATH=$JD_PATH/jd_v4_bot/config
-LOG_PATH=$JD_PATH/jd_v4_bot/log
-OWN_PATH=$JD_PATH/jd_v4_bot/own
-SCRIPT_PATH=$JD_PATH/jd_v4_bot/scripts
-DIY_PATH=$JD_PATH/jd_v4_bot/diy
+CONFIG_PATH=$JD_PATH/v4/config
+LOG_PATH=$JD_PATH/v4/log
+OWN_PATH=$JD_PATH/v4/own
+SCRIPT_PATH=$JD_PATH/v4/scripts
+DIY_PATH=$JD_PATH/v4/diy
 
 inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3) jiulan/jd:v4\n4) jiulan/jd:v4_arm64"
 opt
@@ -284,7 +284,7 @@ docker run -dit \
     -v $DIY_PATH:/jd/jbot/diy \
     $MAPPING_JD_PORT \
     --name $CONTAINER_NAME \
-    --hostname jd_v4_bot \
+    --hostname v4 \
     --restart always \
     $CHANGE_NETWORK \
     $ENABLE_HANGUP_ENV \
