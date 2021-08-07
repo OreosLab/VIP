@@ -243,7 +243,7 @@ if [ $INSTALL_WATCH = true ]; then
 fi
 
 # 检查 config 文件是否存在
-if [ ! -f "$CODE_DIR/conf/config.yaml" ]; then
+if [ ! -f "$CONFIG_PATH/conf/config.yaml" ]; then
     docker cp $CONTAINER_NAME:/scripts/conf/config.yaml $CONFIG_PATH/config.yaml
     if [ $? -ne 0 ] ; then
         cancelrun "** 错误：找不到配置文件！"
