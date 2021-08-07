@@ -242,14 +242,6 @@ if [ $INSTALL_WATCH = true ]; then
     $CONTAINER_NAME
 fi
 
-# 检查 config 文件是否存在
-if [ ! -f "$CONFIG_PATH/conf/config.yaml" ]; then
-    docker cp $CONTAINER_NAME:/scripts/conf/config.yaml $CONFIG_PATH/config.yaml
-    if [ $? -ne 0 ] ; then
-        cancelrun "** 错误：找不到配置文件！"
-    fi
- fi
-
 log "4.下面列出所有容器"
 docker ps
 
