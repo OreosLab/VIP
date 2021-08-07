@@ -46,8 +46,12 @@ inp() {
     echo -e "\e[33m\n$1 \e[0m\n"
 }
 
+opt(){
+    echo -n -e "\e[36m输入您的选择->\e[0m"
+}
+
 warn() {
-    echo -e "\e[31m$1 \e[0m"
+    echo -e "\e[31m$1 \e[0m\n"
 }
 
 cancelrun() {
@@ -81,7 +85,7 @@ docker_install() {
 docker_install
 warn "一路有我，回车即可，小白福音！！！这是 TG BOT 版！！！"
 # 配置文件保存目录
-echo -n -e "\e[33m\n一、请输入配置文件保存的绝对路径（示例：/root)，回车默认为当前目录:\e[0m"
+echo -n -e "\e[33m一、请输入配置文件保存的绝对路径（示例：/root)，回车默认为当前目录:\e[0m"
 read jd_path
 if [ -z "$jd_path" ]; then
     JD_PATH=$SHELL_FOLDER
@@ -97,8 +101,8 @@ OWN_PATH=$JD_PATH/jd_v4_bot/own
 SCRIPT_PATH=$JD_PATH/jd_v4_bot/scripts
 DIY_PATH=$JD_PATH/jd_v4_bot/diy
 
-inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3) jiulan/jd:v4"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3) jiulan/jd:v4\n4) jiulan/jd:v4_arm64"
+opt
 read image
 image=${image:-'1'}
 if [ "$image" = "2" ]; then
@@ -107,10 +111,13 @@ if [ "$image" = "2" ]; then
 elif [ "$image" = "3" ]; then
     DOCKER_IMG_NAME="jiulan/jd"
     TAG="v4"
+elif [ "$image" = "3" ]; then
+    DOCKER_IMG_NAME="jiulan/jd"
+    TAG="v4_arm64"
 fi
 
 inp "是否将 scripts 目录映射到外部：\n1) 映射[默认]\n2) 不映射"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read ext_s
 if [ "$ext_s" = "2" ]; then
     EXT_SCRIPT=false
@@ -121,7 +128,7 @@ if [ ! -z "$(docker images -q $DOCKER_IMG_NAME:$TAG 2> /dev/null)" ]; then
     HAS_IMAGE=true
     OLD_IMAGE_ID=$(docker images -q --filter reference=$DOCKER_IMG_NAME:$TAG)
     inp "检测到先前已经存在的镜像，是否拉取最新的镜像：\n1) 拉取[默认]\n2) 不拉取"
-    echo -n -e "\e[36m输入您的选择->\e[0m"
+    opt
     read update
     if [ "$update" = "2" ]; then
         PULL_IMAGE=false
@@ -133,7 +140,7 @@ check_container_name() {
     if [ ! -z "$(docker ps -a | grep $CONTAINER_NAME 2> /dev/null)" ]; then
         HAS_CONTAINER=true
         inp "检测到先前已经存在的容器，是否删除先前的容器：\n1) 删除[默认]\n2) 不删除"
-        echo -n -e "\e[36m输入您的选择->\e[0m"
+        opt
         read update
         if [ "$update" = "2" ]; then
             PULL_IMAGE=false
@@ -158,14 +165,14 @@ input_container_name
 
 # 是否安装 WatchTower
 inp "是否安装 containrrr/watchtower 自动更新 Docker 容器：\n1) 安装\n2) 不安装[默认]"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read watchtower
 if [ "$watchtower" = "1" ]; then
     INSTALL_WATCH=true
 fi
 
 inp "请选择容器的网络类型：\n1) host\n2) bridge[默认]"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read net
 if [ "$net" = "1" ]; then
     NETWORK="host"
@@ -175,21 +182,21 @@ else
 fi
 
 inp "是否在启动容器时自动启动挂机程序：\n1) 开启[默认]\n2) 关闭"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read hang_s
 if [ "$hang_s" = "2" ]; then
     ENABLE_HANGUP_ENV=""
 fi
 
 inp "是否启用 TG BOT：\n1) 启用[默认]\n2) 不启用"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read bot
 if [ "$bot" = "2" ]; then
     ENABLE_BOT_ENV=""
 fi
 
 inp "是否启用 V4 面板：\n1) 启用[默认]\n2) 不启用"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read pannel
 if [ "$pannel" = "2" ]; then
     ENABLE_WEB_PANNEL_ENV=""
@@ -198,7 +205,7 @@ fi
 # 端口问题
 modify_v4_port(){
     inp "是否修改 V4 端口[默认 5678]：\n1) 修改\n2) 不修改[默认]"
-    echo -n -e "\e[36m输入您的选择->\e[0m"
+    opt
     read change_port
     if [ "$change_port" = "1" ]; then
         echo -n -e "\e[36m输入您想修改的端口->\e[0m"
@@ -206,7 +213,7 @@ modify_v4_port(){
     fi
 }
 inp "根据设备是否映射端口：\n1) 映射[默认]\n2) 不映射"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read port
 if [ "$port" = "2" ]; then
     MAPPING_JD_PORT=""

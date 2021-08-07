@@ -40,8 +40,12 @@ inp() {
     echo -e "\e[33m\n$1 \e[0m\n"
 }
 
+opt(){
+    echo -n -e "\e[36m输入您的选择->\e[0m"
+}
+
 warn() {
-    echo -e "\e[31m$1 \e[0m"
+    echo -e "\e[31m$1 \e[0m\n"
 }
 
 cancelrun() {
@@ -96,7 +100,7 @@ docker_install
 warn "小白基本回车即可，更多学习内容尽在 https://github.com/elecV2/elecV2P"
 
 inp "是否为 arm 架构系统：\n1) x86/x64等[默认]\n2）arm64\n3）arm32"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read architecture
 architecture=${image:-'1'}
 if [ "$architecture" = "2" ]; then
@@ -106,7 +110,7 @@ elif [ "$architecture" = "3" ]; then
 fi
 
 inp "是否将目录映射到外部：\n1) 映射[默认]\n2) 不映射"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read ext_all
 if [ "$ext_all" = "2" ]; then
     EXT_ALL=false
@@ -119,7 +123,7 @@ if [ ! -z "$(docker images -q $DOCKER_IMG_NAME:$TAG 2> /dev/null)" ]; then
     HAS_IMAGE=true
     OLD_IMAGE_ID=$(docker images -q --filter reference=$DOCKER_IMG_NAME:$TAG)
     inp "检测到先前已经存在的镜像，是否拉取最新的镜像：\n1) 拉取[默认]\n2) 不拉取"
-    echo -n -e "\e[36m输入您的选择->\e[0m"
+    opt
     read update
     if [ "$update" = "2" ]; then
         PULL_IMAGE=false
@@ -131,7 +135,7 @@ check_container_name() {
     if [ ! -z "$(docker ps -a | grep $CONTAINER_NAME 2> /dev/null)" ]; then
         HAS_CONTAINER=true
         inp "检测到先前已经存在的容器，是否删除先前的容器：\n1) 删除[默认]\n2) 不删除"
-        echo -n -e "\e[36m输入您的选择->\e[0m"
+        opt
         read update
         if [ "$update" = "2" ]; then
             PULL_IMAGE=false
@@ -156,7 +160,7 @@ input_container_name
 
 # 是否安装 WatchTower
 inp "是否安装 containrrr/watchtower 自动更新 Docker 容器：\n1) 安装\n2) 不安装[默认]"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read watchtower
 if [ "$watchtower" = "1" ]; then
     INSTALL_WATCH=true
@@ -164,7 +168,7 @@ fi
 
 inp "请选择容器的网络类型：\n1) host\n2) bridge[默认]"
 echo -e "\e[31m如果在部分复杂的网络情况下出现无法联网或访问的问题，尝试在命令中添加 --net=host，即选择 host 模式\e[0m\n"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read net
 if [ "$net" = "1" ]; then
     NETWORK="host"
@@ -174,7 +178,7 @@ else
 fi
 
 inp "是否修改端口[默认 8100|8101|8102]：\n1) 修改\n2) 不修改[默认]"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read change_port
 if [ "$change_port" = "1" ]; then
     echo -n -e "\e[36m输入您想修改的 webUI 端口->\e[0m"

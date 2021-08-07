@@ -43,8 +43,12 @@ inp() {
     echo -e "\e[33m\n$1 \e[0m\n"
 }
 
+opt(){
+    echo -n -e "\e[36m输入您的选择->\e[0m"
+}
+
 warn() {
-    echo -e "\e[31m$1 \e[0m"
+    echo -e "\e[31m$1 \e[0m\n"
 }
 
 cancelrun() {
@@ -102,7 +106,7 @@ if [ ! -z "$(docker images -q $DOCKER_IMG_NAME:$TAG 2> /dev/null)" ]; then
     HAS_IMAGE=true
     OLD_IMAGE_ID=$(docker images -q --filter reference=$DOCKER_IMG_NAME:$TAG)
     inp "检测到先前已经存在的镜像，是否拉取最新的镜像：\n1) 拉取[默认]\n2) 不拉取"
-    echo -n -e "\e[36m输入您的选择->\e[0m"
+    opt
     read update
     if [ "$update" = "2" ]; then
         PULL_IMAGE=false
@@ -114,7 +118,7 @@ check_container_name() {
     if [ ! -z "$(docker ps -a | grep $CONTAINER_NAME 2> /dev/null)" ]; then
         HAS_CONTAINER=true
         inp "检测到先前已经存在的容器，是否删除先前的容器：\n1) 删除[默认]\n2) 不删除"
-        echo -n -e "\e[36m输入您的选择->\e[0m"
+        opt
         read update
         if [ "$update" = "2" ]; then
             PULL_IMAGE=false
@@ -139,14 +143,14 @@ input_container_name
 
 # 是否安装 WatchTower
 inp "是否安装 containrrr/watchtower 自动更新 Docker 容器：\n1) 安装\n2) 不安装[默认]"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read watchtower
 if [ "$watchtower" = "1" ]; then
     INSTALL_WATCH=true
 fi
 
 inp "请选择容器的网络类型：\n1) host\n2) bridge[默认]"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read net
 if [ "$net" = "1" ]; then
     NETWORK="host"
@@ -156,14 +160,14 @@ else
 fi
 
 inp "是否在启动容器时自动启动挂机程序：\n1) 开启[默认]\n2) 关闭"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read hang_s
 if [ "$hang_s" = "2" ]; then
     ENABLE_HANGUP_ENV=""
 fi
 
 inp "是否启用青龙面板：\n1) 启用[默认]\n2) 不启用"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read pannel
 if [ "$pannel" = "2" ]; then
     ENABLE_WEB_PANNEL_ENV=""
@@ -172,7 +176,7 @@ fi
 # 端口问题
 modify_ql_port(){
     inp "是否修改青龙端口[默认 5700]：\n1) 修改\n2) 不修改[默认]"
-    echo -n -e "\e[36m输入您的选择->\e[0m"
+    opt
     read change_ql_port
     if [ "$change_ql_port" = "1" ]; then
         echo -n -e "\e[36m输入您想修改的端口->\e[0m"
@@ -181,7 +185,7 @@ modify_ql_port(){
 }
 modify_Ninja_port(){
     inp "是否修改 Ninja 端口[默认 5701]：\n1) 修改\n2) 不修改[默认]"
-    echo -n -e "\e[36m输入您的选择->\e[0m"
+    opt
     read change_Ninja_port
     if [ "$change_Ninja_port" = "1" ]; then
         echo -n -e "\e[36m输入您想修改的端口->\e[0m"
@@ -189,7 +193,7 @@ modify_Ninja_port(){
     fi
 }
 inp "根据设备是否映射端口：\n1) 映射[默认]\n2) 不映射"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read port
 if [ "$port" = "2" ]; then
     MAPPING_JD_PORT=""
@@ -198,7 +202,7 @@ else
     CHANGE_NETWORK=""
     MAPPING_JD_PORT="-p $JD_PORT:5700"
     inp "是否安装 Ninja，若已存在则强制重装：\n1) 安装[默认]\n2) 不安装"
-    echo -n -e "\e[36m输入您的选择->\e[0m"
+    opt
     read Ninja
     if [ "$Ninja" = "2" ]; then
         INSTALL_NINJA=false
@@ -311,7 +315,7 @@ log "5.开始检测 Nginx 静态解析"
 echo "开始扫描静态解析是否在线！"
 ps -fe|grep nginx|grep -v grep
 if [ $? -ne 0 ]; then
-    echo echo "$(date +%Y-%m-%d" "%H:%M:%S) 扫描结束！Nginx 静态解析停止！准备重启！"
+    echo "$(date +%Y-%m-%d" "%H:%M:%S) 扫描结束！Nginx 静态解析停止！准备重启！"
     docker exec -it $CONTAINER_NAME nginx -c /etc/nginx/nginx.conf
     echo "$(date +%Y-%m-%d" "%H:%M:%S) Nginx 静态解析重启完成！"
 else
@@ -333,7 +337,7 @@ sleep 20
 
 # 显示 auth.json
 inp "是否显示被修改的密码：\n1) 显示[默认]\n2) 不显示"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read display
 if [ "$display" != "2" ]; then
     echo -e "\n"
@@ -344,7 +348,7 @@ fi
 
 # token 检测
 inp "是否已进入面板：\n1) 进入[默认]\n2) 未进入"
-echo -n -e "\e[36m输入您的选择->\e[0m"
+opt
 read access
 log "6.3.观察 token 是否成功生成"
 cat $CONFIG_PATH/auth.json
