@@ -84,10 +84,7 @@ else
     mkdir -p $jd_path
     JD_PATH=$jd_path
 fi
-CONF_PATH=$JD_PATH/hhl/conf
-LOG_PATH=$JD_PATH/hhl/logs
-SHELL_PATH=$JD_PATH/hhl/shell
-TOOL_PATH=$JD_PATH/hhl/tools
+HHL_PATH=$JD_PATH/hhl
 }
 
 docker_install
@@ -170,10 +167,7 @@ fi
 # 配置已经创建完成，开始执行
 if [ $EXT_ALL = true ]; then
     log "1.开始创建配置文件目录"
-    PATH_LIST=($CONF_PATH $LOG_PATH $SHELL_PATH $TOOL_PATH)
-    for i in ${PATH_LIST[@]}; do
-        mkdir -p $i
-    done
+    mkdir -p $HHL_PATH
     if [ $? -ne 0 ] ; then
     cancelrun "** 错误：目录创建错误请重试！"
     fi
@@ -202,10 +196,7 @@ log "3.开始创建容器并执行"
 run_v(){
     docker run -dit \
         -t \
-        -v $CONF_PATH:/scripts/conf \
-        -v $LOG_PATH:/scripts/logs \
-        -v $SHELL_PATH:/scripts/shell \
-        -v $TOOL_PATH:/scripts/tools \
+        -v $HHL_PATH:/scripts \
         --name $CONTAINER_NAME \
         --restart always \
         $CHANGE_NETWORK \
@@ -244,6 +235,8 @@ log "4.下面列出所有容器"
 docker ps
 
 log "5.薅薅乐使用说明：https://github.com/ClassmateLin/jd_scripts#readme"
+
+log "6.手动执行更新脚本使用命令 docker exec -it $CONTAINER_NAME bash /scripts/shell/docker-entrypoint.sh"
 
 
 log "enjoy!!!"
