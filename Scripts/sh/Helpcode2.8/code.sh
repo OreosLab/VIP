@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210807-002
+## Build 20210807-003
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -253,7 +253,7 @@ export_codes_sub() {
                             done
                             tmp_for_other="$tmp_for_other@\${$config_name_my$j}"
                         else
-                            echo -e "\n#$cur_time 变量值填写不规范，请检查后重试！"
+                            echo -e "\n#【`date +%X`】 变量值填写不规范，请检查后重试！"
                             tmp_for_other="$tmp_for_other@\${$config_name_my$j}"
                         fi
                     else
@@ -287,7 +287,7 @@ export_codes_sub() {
                                 done
                                 tmp_for_other="$tmp_for_other@\${$config_name_my$k}"
                             else
-                                echo -e "\n#$cur_time 变量值填写不规范，请检查后重试！"
+                                echo -e "\n#【`date +%X`】 变量值填写不规范，请检查后重试！"
                                 tmp_for_other="$tmp_for_other@\${$config_name_my$k}"
                             fi
                         else
@@ -314,7 +314,7 @@ export_codes_sub() {
                                 done
                                 tmp_for_other="$tmp_for_other@\${$config_name_my$n}"
                             else
-                                echo -e "\n#$cur_time 变量值填写不规范，请检查后重试！"
+                                echo -e "\n#【`date +%X`】 变量值填写不规范，请检查后重试！"
                                 tmp_for_other="$tmp_for_other@\${$config_name_my$n}"
                             fi
                         else
@@ -341,7 +341,7 @@ export_codes_sub() {
                                 done
                                 tmp_for_other="$tmp_for_other@\${$config_name_my$k}"
                             else
-                                echo -e "\n#$cur_time 变量值填写不规范，请检查后重试！"
+                                echo -e "\n#【`date +%X`】 变量值填写不规范，请检查后重试！"
                                 tmp_for_other="$tmp_for_other@\${$config_name_my$k}"
                             fi
                         else
@@ -354,22 +354,22 @@ export_codes_sub() {
             esac
         fi
     else
-        echo "#$cur_time 未运行过 $task_name.js 脚本，未产生日志"
+        echo "#【`date +%X`】 未运行过 $task_name.js 脚本，未产生日志"
     fi
 }
 
 ## 汇总输出
 export_all_codes() {
     gen_pt_pin_array
-    [[ $DEBUG = "1" ]] && echo -e "\n#$cur_time 当前 code.sh 的线程数量：$ps_num"
-    [[ $DEBUG = "1" ]] && echo -e "\n#$cur_time 预设的 JD_COOKIE 数量：`echo $JD_COOKIE | grep -o 'pt_key' | wc -l`"
-    [[ $DEBUG = "1" ]] && echo -e "\n#$cur_time 预设的 JD_COOKIE 环境变量数量：`echo $JD_COOKIE | sed 's/&/\n/g' | wc -l`"
-    [[ $DEBUG = "1" && "$(echo $JD_COOKIE | sed 's/&/\n/g' | wc -l)" = "1" && "$(echo $JD_COOKIE | grep -o 'pt_key' | wc -l)" -gt 1 ]] && echo -e "\n#$cur_time 检测到您将多个 COOKIES 填写到单个环境变量值，请注意将各 COOKIES 采用 & 分隔，否则将无法完整输出互助码及互助规则！"
-    echo -e "\n#$cur_time 从日志提取互助码，编号和配置文件中Cookie编号完全对应，如果为空就是所有日志中都没有。\n\n#$cur_time 即使某个MyXxx变量未赋值，也可以将其变量名填在ForOtherXxx中，jtask脚本会自动过滤空值。\n"
+    [[ $DEBUG = "1" ]] && echo -e "\n#【`date +%X`】 当前 code.sh 的线程数量：$ps_num"
+    [[ $DEBUG = "1" ]] && echo -e "\n#【`date +%X`】 预设的 JD_COOKIE 数量：`echo $JD_COOKIE | grep -o 'pt_key' | wc -l`"
+    [[ $DEBUG = "1" ]] && echo -e "\n#【`date +%X`】 预设的 JD_COOKIE 环境变量数量：`echo $JD_COOKIE | sed 's/&/\n/g' | wc -l`"
+    [[ $DEBUG = "1" && "$(echo $JD_COOKIE | sed 's/&/\n/g' | wc -l)" = "1" && "$(echo $JD_COOKIE | grep -o 'pt_key' | wc -l)" -gt 1 ]] && echo -e "\n#【`date +%X`】 检测到您将多个 COOKIES 填写到单个环境变量值，请注意将各 COOKIES 采用 & 分隔，否则将无法完整输出互助码及互助规则！"
+    echo -e "\n#【`date +%X`】 从日志提取互助码，编号和配置文件中Cookie编号完全对应，如果为空就是所有日志中都没有。\n\n#【`date +%X`】 即使某个MyXxx变量未赋值，也可以将其变量名填在ForOtherXxx中，jtask脚本会自动过滤空值。\n"
     if [[ $DiyHelpType = "1" ]]; then
-        echo -e "#$cur_time 您已启用指定活动采用指定互助模板功能！"
+        echo -e "#【`date +%X`】 您已启用指定活动采用指定互助模板功能！"
     else
-        echo -n "#$cur_time 您选择的互助码模板为："
+        echo -n "#【`date +%X`】 您选择的互助码模板为："
         case $HelpType in
         0)
             echo "所有账号助力码全部一致。"
@@ -385,15 +385,15 @@ export_all_codes() {
             ;;
         esac
     fi
-    [[ $BreakHelpType = "1" ]] && echo -e "\n#$cur_time 您已启用屏蔽模式，账号 $BreakHelpNum 将不被助力！"
+    [[ $BreakHelpType = "1" ]] && echo -e "\n#【`date +%X`】 您已启用屏蔽模式，账号 $BreakHelpNum 将不被助力！"
     if [ "$ps_num" -gt $proc_num ]; then
-        echo -e "\n#$cur_time 检测到 code.sh 的线程过多 ，请稍后再试！"
+        echo -e "\n#【`date +%X`】 检测到 code.sh 的线程过多 ，请稍后再试！"
         exit
     elif [ -z $repo ]; then
-        echo -e "\n#$cur_time 未检测到兼容的活动脚本日志，无法读取互助码，退出！"
+        echo -e "\n#【`date +%X`】 未检测到兼容的活动脚本日志，无法读取互助码，退出！"
         exit
     else
-        echo -e "\n#$cur_time 默认调用 $repo 的脚本日志，格式化导出互助码，生成互助规则！"
+        echo -e "\n#【`date +%X`】 默认调用 $repo 的脚本日志，格式化导出互助码，生成互助规则！"
         dump_user_info
         for ((i = 0; i < ${#name_js[*]}; i++)); do
         echo -e "\n## ${name_chinese[i]}："
@@ -426,7 +426,7 @@ if [ ! -f $ShareCode_log ] || [ -z "$(cat $ShareCode_log | grep "^$config_name_m
    echo -e "\n## $chinese_name\n${config_name_my}1=''\n" >> $ShareCode_log
 fi
 for ((i=1; i<=100; i++)); do
-    local new_code="$(cat $log_path | grep "^$config_name_my$i=.\+'$" | sed "s/\S\+'\([^']*\)'$/\1/")"
+    local new_code="$(cat $latest_log_path | grep "^$config_name_my$i=.\+'$" | sed "s/\S\+'\([^']*\)'$/\1/")"
     local old_code="$(cat $ShareCode_log | grep "^$config_name_my$i=.\+'$" | sed "s/\S\+'\([^']*\)'$/\1/")"
     if [[ $i -le $user_sum ]]; then
         if [ -z "$(grep "^$config_name_my$i" $ShareCode_log)" ]; then
@@ -464,7 +464,7 @@ if [ -z "$(cat $ShareCode_log | grep "^$config_name_for_other\d")" ]; then
    echo -e "${config_name_for_other}1=\"\"" >> $ShareCode_log
 fi
 for ((j=1; j<=100; j++)); do
-    local new_rule="$(cat $log_path | grep "^$config_name_for_other$j=.\+\"$" | sed "s/\S\+\"\([^\"]*\)\"$/\1/")"
+    local new_rule="$(cat $latest_log_path | grep "^$config_name_for_other$j=.\+\"$" | sed "s/\S\+\"\([^\"]*\)\"$/\1/")"
     local old_rule="$(cat $ShareCode_log | grep "^$config_name_for_other$j=.\+\"$" | sed "s/\S\+\"\([^\"]*\)\"$/\1/")"
     if [[ $j -le $user_sum ]]; then
         if [ -z "$(grep "^$config_name_for_other$j" $ShareCode_log)" ]; then
@@ -529,44 +529,44 @@ fi
 update_help(){
 case $UpdateType in
     1)
-        if [ "$ps_num" -le $proc_num ] && [ -f $log_path ]; then
+        if [ "$ps_num" -le $proc_num ] && [ -f $latest_log_path ]; then
             backup_del
-            echo -e "\n#$cur_time 开始更新配置文件的互助码和互助规则"
+            echo -e "\n#【`date +%X`】 开始更新配置文件的互助码和互助规则"
             for ((i = 0; i < ${#name_config[*]}; i++)); do
                 help_codes "${name_config[i]}" "${name_chinese[i]}"
                 [[ "${name_config[i]}" != "TokenJxnc" ]] && help_rules "${name_config[i]}" "${name_chinese[i]}"
             done
-            echo -e "\n#$cur_time 配置文件的互助码和互助规则已完成更新"
-        elif [ ! -f $log_path ]; then
-            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！"
+            echo -e "\n#【`date +%X`】 配置文件的互助码和互助规则已完成更新"
+        elif [ ! -f $latest_log_path ]; then
+            echo -e "\n#【`date +%X`】 日志文件不存在，请检查后重试！"
         fi
         ;;
     2)
-        if [ "$ps_num" -le $proc_num ] && [ -f $log_path ]; then
+        if [ "$ps_num" -le $proc_num ] && [ -f $latest_log_path ]; then
             backup_del
-            echo -e "\n#$cur_time 开始更新配置文件的互助码，不更新互助规则"
+            echo -e "\n#【`date +%X`】 开始更新配置文件的互助码，不更新互助规则"
             for ((i = 0; i < ${#name_config[*]}; i++)); do
                 help_codes "${name_config[i]}" "${name_chinese[i]}"
             done
-            echo -e "\n#$cur_time 配置文件的互助码已完成更新"
-        elif [ ! -f $log_path ]; then
-            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！"
+            echo -e "\n#【`date +%X`】 配置文件的互助码已完成更新"
+        elif [ ! -f $latest_log_path ]; then
+            echo -e "\n#【`date +%X`】 日志文件不存在，请检查后重试！"
         fi
         ;;
     3)
-        if [ "$ps_num" -le $proc_num ] && [ -f $log_path ]; then
+        if [ "$ps_num" -le $proc_num ] && [ -f $latest_log_path ]; then
             backup_del
-            echo -e "\n#$cur_time 开始更新配置文件的互助规则，不更新互助码"
+            echo -e "\n#【`date +%X`】 开始更新配置文件的互助规则，不更新互助码"
             for ((i = 0; i < ${#name_config[*]}; i++)); do
                 [[ "${name_config[i]}" != "TokenJxnc" ]] && help_rules "${name_config[i]}" "${name_chinese[i]}"
             done
-            echo -e "\n#$cur_time 配置文件的互助规则已完成更新"
-        elif [ ! -f $log_path ]; then
-            echo -e "\n#$cur_time 日志文件不存在，请检查后重试！"
+            echo -e "\n#【`date +%X`】 配置文件的互助规则已完成更新"
+        elif [ ! -f $latest_log_path ]; then
+            echo -e "\n#【`date +%X`】 日志文件不存在，请检查后重试！"
         fi
         ;;
     *)
-        echo -e "\n#$cur_time 您已设置不更新配置文件的互助码和互助规则，跳过更新！"
+        echo -e "\n#【`date +%X`】 您已设置不更新配置文件的互助码和互助规则，跳过更新！"
         ;;
 esac
 }
@@ -587,7 +587,7 @@ local diff_time
 [[ ! -d $dir_log/.bak_ShareCode ]] && mkdir -p $dir_log/.bak_ShareCode
 if [[ $BACKUP = "1" ]]; then
     for ((i = 0; i < ${#name_config[*]}; i++)); do
-        [[ -f $dir_log/.ShareCode/${name_config[i]}.log ]] && cp $dir_log/.ShareCode/${name_config[i]}.log $dir_log/.bak_ShareCode/${name_config[i]}_$log_time.log
+        [[ -f $dir_log/.ShareCode/${name_config[i]}.log ]] && cp $dir_log/.ShareCode/${name_config[i]}.log $dir_log/.bak_ShareCode/${name_config[i]}_`date "+%Y-%m-%d-%H-%M-%S"`.log
     done
 fi
 if [[ $CLEANBAK = "1" ]]; then
@@ -674,11 +674,8 @@ install_dependencies_all(){
 
 ## 执行并写入日志
 [[ $FixDependType = "1" ]] && [[ "$ps_num" -le $proc_num ]] && install_dependencies_all >/dev/null 2>&1 &
-today="$(date +%Y年%m月%d日)"
-cur_time="【$(date +%X)】"
-[[ -z $log_time ]] && log_time=$(date "+%Y-%m-%d-%H-%M-%S")
-[[ -z $log_path ]] && log_path="$dir_code/$log_time.log"
-make_dir "$dir_code"
+latest_log=$(ls -r $dir_code | head -1)
+latest_log_path="$dir_code/$latest_log"
 ps_num="$(ps | grep code.sh | grep -v grep | wc -l)"
 #[[ ! -z "$(ps -ef|grep -w 'code.sh'|grep -v grep)" ]] && ps -ef|grep -w 'code.sh'|grep -v grep|awk '{print $1}'|xargs kill -9
 export_all_codes | perl -pe "{s|京东种豆|种豆|; s|crazyJoy任务|疯狂的JOY|}"
