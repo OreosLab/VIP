@@ -10,7 +10,7 @@ while ((i<=0)); do
         i=0
         echo $NOWTIME" 扫描结束！NINJA 掉线了不用担心马上重启！"
         cd /ql
-        ps -ef|grep ninja|grep -v grep|awk '{print $1}'|xargs kill -9 && rm -rf /ql/ninja && rm -rf /ql/ninja
+        ps -ef|grep ninja|grep -v grep|awk '{print $2}'|xargs kill -9 && rm -rf /ql/ninja && rm -rf /ql/ninja
         git clone https://github.com/MoonBegonia/ninja.git /ql/ninja  ## 拉取仓库
         cd /ql/ninja/backend
         pnpm install  ## 安装局部依赖
