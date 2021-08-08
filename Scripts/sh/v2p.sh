@@ -99,7 +99,7 @@ EFSS_PATH=$V2P_PATH/elecv2p/efss
 docker_install
 warn "小白基本回车即可，更多学习内容尽在 https://github.com/elecV2/elecV2P"
 
-inp "是否为 arm 架构系统：\n1) x86/x64等[默认]\n2）arm64\n3）arm32"
+inp "是否为 arm 架构系统：\n1) x86_64[默认]\n2）arm64\n3）arm32"
 opt
 read architecture
 architecture=${image:-'1'}
