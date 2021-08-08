@@ -62,7 +62,7 @@
                 "type":"runjs",
                 "target":"https://raw.githubusercontent.com/ddgksf2013/Cuttlefish/master/Script/OlympicRanking.js"
             },
-            "running":true
+            "running":false
         }
     ]
 }
