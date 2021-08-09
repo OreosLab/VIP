@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 # python >=3.8
 
-import requests,time,re,json,random,pytz
+import requests,time,re,json,random
 
 shanghai = pytz.timezone('Asia/Shanghai')
 shanghai_time = datetime.now(tz=shanghai)
