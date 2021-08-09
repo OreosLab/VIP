@@ -5,6 +5,16 @@
     "date":"2021-07-27 17:22:00",
     "list":[
         {
+            "name":"安装依赖",
+            "type":"schedule",
+            "time":"0",
+            "job":{
+                "type":"exec",
+                "target":"pip install requests beautifulsoup4"
+            },
+            "running":false
+        },
+        {
             "name":"中青看点看看赚&浏览赚(需配合专用重写获取cookie)",
             "type":"cron",
             "time":"30 6 * * *",
@@ -35,22 +45,12 @@
             "running":true
         },
         {
-            "name":"整点红包雨",
+            "name":"EUserv 续期",
             "type":"cron",
-            "time":"0 0 0-23/1 * * *",
+            "time":"0 10 */7 * *",
             "job":{
                 "type":"runjs",
-                "target":"long_super_redrain.js"
-            },
-            "running":true
-        },
-        {
-            "name":"半点红包雨",
-            "type":"cron",
-            "time":"0 30 16-23/1 * * *",
-            "job":{
-                "type":"runjs",
-                "target":"long_half_redrain.js"
+                "target":"https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/js/EUserv_extend.js"
             },
             "running":true
         }
