@@ -209,7 +209,7 @@ elif [ "${code}" = 'n' ]; then
     echo "已为您跳过操作 code.sh"
 else
     if [[ ${code} =~ 'a' ]]; then
-        dl_code_shell
+        get_valid_code && dl_code_shell
     fi
     if [[ ${code} =~ 'b' ]]; then
         set_default_code
