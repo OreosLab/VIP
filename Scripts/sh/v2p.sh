@@ -88,7 +88,7 @@ else
     mkdir -p $v2p_path
     V2P_PATH=$v2p_path
 fi
-JSFile_PATH=$V2P_PATH/elecv2p/JSFile
+JSFILE_PATH=$V2P_PATH/elecv2p/JSFile
 LISTS_PATH=$V2P_PATH/elecv2p/Lists
 STORE_PATH=$V2P_PATH/elecv2p/Store
 SHELL_PATH=$V2P_PATH/elecv2p/Shell
