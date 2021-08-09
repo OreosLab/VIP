@@ -68,7 +68,7 @@ def login(username, password) -> (str, requests.session):
     f = session.post(url, headers=headers, data=login_data)
     f.raise_for_status()
 
-    if f.text.find('Hello') == -1:
+    if f.text.find('Hello') == -1 and f.text.find('Confirm or change your customer data here') == -1:
         return '-1', session
     return sess_id, session
 
