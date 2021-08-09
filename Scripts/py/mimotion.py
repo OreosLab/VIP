@@ -3,7 +3,7 @@
 
 from datetime import datetime  
 import pytz
-import requests,time,re,json,random
+import requests,time,re,json,random,os
 
 shanghai = pytz.timezone('Asia/Shanghai')
 shanghai_time = datetime.now(tz=shanghai)
