@@ -101,7 +101,7 @@ OWN_PATH=$JD_PATH/v4/own
 SCRIPT_PATH=$JD_PATH/v4/scripts
 DIY_PATH=$JD_PATH/v4/diy
 
-inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd:v4_bot[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3) jiulan/jd:v4\n4) jiulan/jd:v4_arm64"
+inp "选择你想拉取的 V4 镜像：\n1) annyooo/jd:v4_bot[默认]\n2) jiulan/jd:test（备份 nevinee/jd:v4）\n3) jiulan/jd:v4\n4) jiulan/jd:v4_arm64\n5) annyooo/jd:v4_bot_arm64"
 opt
 read image
 image=${image:-'1'}
@@ -111,9 +111,11 @@ if [ "$image" = "2" ]; then
 elif [ "$image" = "3" ]; then
     DOCKER_IMG_NAME="jiulan/jd"
     TAG="v4"
-elif [ "$image" = "3" ]; then
+elif [ "$image" = "4" ]; then
     DOCKER_IMG_NAME="jiulan/jd"
     TAG="v4_arm64"
+elif [ "$image" = "5" ]; then
+    TAG="v4_bot_arm64"
 fi
 
 inp "是否将 scripts 目录映射到外部：\n1) 映射[默认]\n2) 不映射"
@@ -320,7 +322,7 @@ docker ps
 
 if [ "$pannel" != "2" ]; then
     log "5.开始安装面板"
-    if [ "$image" = "1" ]; then
+    if [ "$image" = "1" -o "$image" = "5" ]; then
         url="https://raw.githubusercontents.com/Annyoo2021/jd_v4_bot/main/v4mb.sh"
     else
         url="https://raw.githubusercontents.com/jiulan/jd_v4/main/v4mb.sh"
