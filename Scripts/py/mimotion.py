@@ -230,7 +230,7 @@ if __name__ ==  "__main__":
     if len(user_list) == len(passwd_list):
         if user == '':
           print("啥也没有，不执行，快去填写账号密码")
-        else ：
+        else:
           push = ''
           for line in range(0,len(user_list)):
               if len(setp_array) == 2:
