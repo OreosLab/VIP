@@ -1,10 +1,20 @@
 # -*- coding: utf8 -*-
-import os
-import re
-import json
-import time
-import requests
+import os,re,json,time,requests
 from bs4 import BeautifulSoup
+'''
+Author: cokemine
+Modifier: o0oo0ooo0 & Oreo
+Date: Tue Aug 10 08:24:30 UTC 2021
+建议cron: 0 10 */7 * *  python3 EUserv_extend.py
+------------
+环境变量说明
+EUserv_ID: 账号    用户名，邮箱也可，多账号用空格分隔，ql 环境变量填写需用回车隔开
+EUserv_PW: 密码       密码，同上且与账号一一对应
+推送变量看下方注释
+------------
+依赖模块说明
+pip install requests beautifulsoup4 / pip3 install requests beautifulsoup4
+'''
 
 # 强烈建议部署在非大陆区域，例如HK、SG等
 # 常量命名使用全部大写的方式，可以使用下划线。
