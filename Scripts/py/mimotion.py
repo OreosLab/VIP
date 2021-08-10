@@ -5,7 +5,6 @@
 Author: Squaregentleman
 Modifier: Oreo
 Date: Tue Aug 10 08:24:30 UTC 2021
-建议cron: 0 30 19 * * *  python3 mimotion.py
 ------------
 环境变量说明
 MI_USER: 账号      仅支持手机号，多账号用 # 分隔
