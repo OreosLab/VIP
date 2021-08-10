@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210807-003
+## Build 20210810-001
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -15,6 +15,7 @@ repo3='he1pu_JDHelp'                               #预设的 he1pu 仓库
 repo4='shufflewzc_faker2'                          #预设的 shufflewzc 仓库
 repo5='Wenmoux_scripts_wen_chinnkarahoi'           #预设的 Wenmoux 仓库，用于读取口袋书店互助码。需提前拉取温某人的仓库或口袋书店脚本并完整运行。
 repo6='Aaron-lv_sync_jd_scripts'                   #预设的 Aaron-lv 仓库
+repo7='smiek2221_scripts'                          #预设的 smiek2221 仓库
 repo=$repo6                                        #默认调用 Aaron-lv 仓库脚本日志
 
 ## 调试模式开关，默认是0，表示关闭；设置为1，表示开启
@@ -425,7 +426,7 @@ local i j k
 if [ ! -f $ShareCode_log ] || [ -z "$(cat $ShareCode_log | grep "^$config_name_my\d")" ]; then
    echo -e "\n## $chinese_name\n${config_name_my}1=''\n" >> $ShareCode_log
 fi
-for ((i=1; i<=100; i++)); do
+for ((i=1; i<=200; i++)); do
     local new_code="$(cat $latest_log_path | grep "^$config_name_my$i=.\+'$" | sed "s/\S\+'\([^']*\)'$/\1/")"
     local old_code="$(cat $ShareCode_log | grep "^$config_name_my$i=.\+'$" | sed "s/\S\+'\([^']*\)'$/\1/")"
     if [[ $i -le $user_sum ]]; then
@@ -463,7 +464,7 @@ local i j k
 if [ -z "$(cat $ShareCode_log | grep "^$config_name_for_other\d")" ]; then
    echo -e "${config_name_for_other}1=\"\"" >> $ShareCode_log
 fi
-for ((j=1; j<=100; j++)); do
+for ((j=1; j<=200; j++)); do
     local new_rule="$(cat $latest_log_path | grep "^$config_name_for_other$j=.\+\"$" | sed "s/\S\+\"\([^\"]*\)\"$/\1/")"
     local old_rule="$(cat $ShareCode_log | grep "^$config_name_for_other$j=.\+\"$" | sed "s/\S\+\"\([^\"]*\)\"$/\1/")"
     if [[ $j -le $user_sum ]]; then
@@ -582,9 +583,9 @@ local array=($(echo $envs | sed 's/&/ /g'))
 }
 
 backup_del(){
+[[ ! -d $dir_log/.bak_ShareCode ]] && mkdir -p $dir_log/.bak_ShareCode
 local bak_ShareCode_full_path_list=$(find $dir_log/.bak_ShareCode/ -name "*.log")
 local diff_time
-[[ ! -d $dir_log/.bak_ShareCode ]] && mkdir -p $dir_log/.bak_ShareCode
 if [[ $BACKUP = "1" ]]; then
     for ((i = 0; i < ${#name_config[*]}; i++)); do
         [[ -f $dir_log/.ShareCode/${name_config[i]}.log ]] && cp $dir_log/.ShareCode/${name_config[i]}.log $dir_log/.bak_ShareCode/${name_config[i]}_`date "+%Y-%m-%d-%H-%M-%S"`.log

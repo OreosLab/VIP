@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Build 20210805-001
+# Build 20210810-001
 
 name_js=(
   jd_fruit
@@ -54,8 +54,8 @@ env_name=(
   JDSGMH_SHARECODES                   ## 11、闪购盲盒互助码
   JDCFD_SHARECODES                    ## 12、京喜财富岛互助码
   JDHEALTH_SHARECODES                 ## 13、东东健康社区互助码
-  CITY_SHARECODES                     ## 14、城城领现金互助码
-  JD818_SHARECODES                    ## 15、京东手机狂欢城互助码
+  JD818_SHARECODES                    ## 14、京东手机狂欢城互助码
+  CITY_SHARECODES                     ## 15、城城领现金互助码
   MONEYTREE_SHARECODES                ## 16、摇钱树
   JXNCTOKENS                          ## 17、京喜Token(京喜财富岛提现用)
 )
@@ -73,8 +73,8 @@ var_name=(
   ForOtherSgmh                        ## 11、闪购盲盒互助规则
   ForOtherCfd                         ## 12、京喜财富岛互助规则
   ForOtherHealth                      ## 13、东东健康社区互助规则
-  ForOtherCarni                       ## 14、城城领现金互助规则
-  ForOtherCity                        ## 15、京东手机狂欢城互助规则
+  ForOtherCarni                       ## 14、京东手机狂欢城互助规则
+  ForOtherCity                        ## 15、城城领现金互助规则
   ForOtherMoneyTree                   ## 16、摇钱树
   TokenJxnc                           ## 17、京喜Token(京喜财富岛提现用)
 )
@@ -116,6 +116,7 @@ combine_sub() {
         local tmp2=${!tmp1}
         [[ ${tmp2} ]] && sum=$i || break
     done
+    [[ ! $sum ]] && sum=$user_sum
     for ((j = 1; j <= $sum; j++)); do
         a=$temp_user_sum
         b=$sum
