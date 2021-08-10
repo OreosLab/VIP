@@ -8,8 +8,8 @@ from bs4 import BeautifulSoup
 
 # 强烈建议部署在非大陆区域，例如HK、SG等
 # 常量命名使用全部大写的方式，可以使用下划线。
-USERNAME = os.environ.get('USERNAME')  # 用户名，邮箱也可
-PASSWORD = os.environ.get('PASSWORD')  # 密码
+EUserv_ID = os.environ.get('EUserv_ID')  # 用户名，邮箱也可
+EUserv_PW = os.environ.get('EUserv_PW')  # 密码
 
 # Server酱 http://sc.ftqq.com/?c=code
 SCKEY = os.environ.get('SCKEY')  # Server酱的key，无需推送可不填 示例: SCU646xxxxxxxxdacd6a5dc3f6
@@ -209,11 +209,11 @@ def wecomchan():
 
 
 def main_handler(event, context):
-    if not USERNAME or not PASSWORD:
+    if not EUserv_ID or not EUserv_PW:
         print_("你没有添加任何账户")
         exit(1)
-    user_list = USERNAME.strip().split()
-    passwd_list = PASSWORD.strip().split()
+    user_list = EUserv_ID.strip().split()
+    passwd_list = EUserv_PW.strip().split()
     if len(user_list) != len(passwd_list):
         print_("The number of usernames and passwords do not match!")
         exit(1)
