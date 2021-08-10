@@ -10,7 +10,7 @@ Date: Tue Aug 10 08:24:30 UTC 2021
 环境变量说明
 MI_USER: 账号      仅支持手机号，多账号用 # 分隔
 MI_PWD: 密码       多账号用 # 分隔，且与账号一一对应
-STEP: 步数         0 则为 18000-25000 之间随机，自定义示例: 18763 或 19000-24000
+STEP: 步数         空或不填则为 18000-25000 之间随机，自定义示例: 18763 或 19000-24000
 PMODE: 推送模式 || PKEY: 具体推送格式填写（不带 [ ]，请用具体的值代替)
 wx                [Server 酱: skey]
 nwx               [新 Server 酱: skey]
@@ -318,19 +318,23 @@ if __name__ ==  "__main__":
 
     user = os.environ.get('MI_USER')
     passwd = os.environ.get('MI_PWD')
-    step = os.environ.get('STEP').replace('[', '').replace(']', '')
+    step = os.environ.get('STEP')
 
     user_list = user.split('#')
     passwd_list = passwd.split('#')
-    step_array = step.split('-')
-
+    if step is None:
+        step = ''
+        step_array = ''
+    else:
+        step_array = step.split('-')
+        
     if len(user_list) == len(passwd_list):
         push = ''
         for line in range(0,len(user_list)):
             if len(step_array) == 2:
                 step = str(random.randint(int(step_array[0]),int(step_array[1])))
-                print (f"已设置为随机步数（{step_array[0]}-{step_array[1]}）")
-            elif str(step) == '0':
+                print(f"已设置为随机步数（{step_array[0]}-{step_array[1]}）")
+            elif str(step) == '':
                 step = ''
             push += main(user_list[line], passwd_list[line], step) + '\n'
         if Pm == 'wx':
