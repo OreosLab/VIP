@@ -184,12 +184,12 @@ dl_code_shell(){
 }
 # code.sh 预设仓库及默认调用仓库设置
 set_default_code(){
-    echo -e "## 将\"repo=\$repo1\"改成\"repo=\$repo2\"或其他，以默认调用其他仓库脚本日志\nrepo1='panghu999_jd_scripts' #预设的 panghu999 仓库\nrepo2='JDHelloWorld_jd_scripts' #预设的 JDHelloWorld 仓库\nrepo3='he1pu_JDHelp' #预设的 he1pu 仓库\nrepo4='shufflewzc_faker2' #预设的 shufflewzc 仓库\nrepo6='Aaron-lv_sync_jd_scripts' #预设的 Aaron-lv 仓库\nrepo7='yuannian1112_jd_scripts' #预设的 yuannian1112 仓库\nrepo=\$repo1 #默认调用 panghu999 仓库脚本日志"
+    echo -e "## 将\"repo=\$repo1\"改成\"repo=\$repo2\"或其他，以默认调用其他仓库脚本日志\nrepo1='panghu999_jd_scripts' #预设的 panghu999 仓库\nrepo2='JDHelloWorld_jd_scripts' #预设的 JDHelloWorld 仓库\nrepo3='he1pu_JDHelp' #预设的 he1pu 仓库\nrepo4='shufflewzc_faker2' #预设的 shufflewzc 仓库\nrepo6='Aaron-lv_sync_jd_scripts' #预设的 Aaron-lv 仓库\nrepoA='yuannian1112_jd_scripts' #预设的 yuannian1112 仓库\nrepo=\$repo1 #默认调用 panghu999 仓库脚本日志"
     read -p "输入您想调用的仓库编号(默认为 4):" repoNum
     repoNum=${repoNum:-'4'}
     sed -i "s/repo=\$repo6/repo=\$repo${repoNum}/g" $code_shell_path
-    if [ "${repoNum}" = 7 ]; then
-        sed -i "/^repo6=/a\repo7='yuannian1112_jd_scripts'" $code_shell_path
+    if [ "${repoNum}" = 'A' ]; then
+        sed -i "/^repo7=/a\repoA='yuannian1112_jd_scripts'" $code_shell_path
     fi
 }
 # 将 task code.sh 添加到定时任务
