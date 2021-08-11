@@ -102,7 +102,7 @@ warn "小白基本回车即可，更多学习内容尽在 https://github.com/ele
 inp "是否为 arm 架构系统：\n1) x86_64[默认]\n2）arm64\n3）arm32"
 opt
 read architecture
-architecture=${image:-'1'}
+architecture=${architecture:-'1'}
 if [ "$architecture" = "2" ]; then
     TAG="arm64"
 elif [ "$architecture" = "3" ]; then
