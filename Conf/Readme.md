@@ -376,10 +376,10 @@ export dlbtz="true"
 ```
 ## 14、零食街自动兑换变量
 ### 自行取消注释和注释
-##export ljsdh="jdAward1" ##兑换5豆
-##export ljsdh="jdAward2" ##兑换10豆
-export ljsdh="jdAward3" ##兑换100豆
-##export ljsdh="jdAward4" ##兑换牛奶
+##export lsjdh="jdAward1" ##兑换5豆
+##export lsjdh="jdAward2" ##兑换10豆
+export lsjdh="jdAward3" ##兑换100豆
+##export lsjdh="jdAward4" ##兑换牛奶
 ```
 
 
