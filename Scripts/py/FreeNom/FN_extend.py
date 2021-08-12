@@ -3,7 +3,7 @@
 Author: shuai93
 Modifier: Oreo
 Date: Wed Aug 11 10:15:41 UTC 2021
-建议cron: 25 7 */10 * *  python3 FN_extend.py
+Cron: 25 7 */10 * *  FN_extend.py
 ------------
 环境变量说明                     示例
 FN_ID: Freenom 用户名           1234567890@gmail.com
