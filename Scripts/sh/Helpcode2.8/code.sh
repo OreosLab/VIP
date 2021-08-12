@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210810-001
+## Build 20210811-001
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -77,7 +77,7 @@ BreakHelpNum="4 9-14 15~18 19_21"  ## 屏蔽账号序号或序号区间
 UpdateType="1"
 
 ## 定义是否自动安装或修复缺失的依赖，默认为1，表示自动修复；留空或其他数值表示不修复。
-FixDependType=""
+FixDependType="1"
 ## 定义监控修复的依赖名称
 package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv typescript fs require tslib"
 
