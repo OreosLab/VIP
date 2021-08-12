@@ -53,12 +53,13 @@ class FreeNom:
         return r.status_code == 200
 
     def renew(self):
-        global result
+        global msg
+        msg = ''
         # login
         ok = self._login()
         if not ok:
-            result = 'login failed'
-            print(result)
+            msg = 'login failed'
+            print(msg)
             return
 
         # check domain status
@@ -67,15 +68,15 @@ class FreeNom:
 
         # login status check
         if not re.search(login_status_ptn, r.text):
-            result = 'get login status failed'
-            print(result)
+            msg = 'get login status failed'
+            print(msg)
             return
 
         # page token
         match = re.search(token_ptn, r.text)
         if not match:
-            result = 'get page token failed'
-            print(result)
+            msg = 'get page token failed'
+            print(msg)
             return
         token = match.group(1)
 
@@ -98,18 +99,21 @@ class FreeNom:
                 })
                 result = f'{domain} 续期成功' if r.text.find('Order Confirmation') != -1 else f'{domain} 续期失败'
                 print(result)
+                msg += result + '\n'
             result = f'{domain} 还有 {days} 天续期'
             print(result)
+            msg += result + '\n'
 
 cur_path = os.path.abspath(os.path.dirname(__file__))
+service = 1
 if os.path.exists(cur_path + "/notify.py"):
     try:
         from notify import send
     except:
         print("加载通知服务失败~")
 else:
-    result = ''
+    service = 0
 instance = FreeNom(username, password)
 instance.renew()
-if result != '':        
-    send('Freenom 续期', result)
+if service == 1:        
+    send('Freenom 续期', msg)
