@@ -7,7 +7,7 @@ $exec('wget https://raw.githubusercontent.com/whyour/qinglong/master/sample/noti
     error ? console.error(error) : console.log(data)
   }
 })
-//通知填写参考 https://raw.githubusercontent.com/whyour/qinglong/master/sample/config.sample.sh
+// 通知填写参考 https://raw.githubusercontent.com/whyour/qinglong/master/sample/config.sample.sh
 console.log("⏳ 开始执行 FNplus.py")
 $exec('python3 https://raw.githubusercontent.com/Oreomeow/freenom-py/main/FNplus.py', {
   cwd: './script/Shell',
