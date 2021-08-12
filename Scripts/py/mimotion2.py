@@ -4,7 +4,7 @@
 Author: Unknown
 Modifier: Oreo
 Date: Tue Aug 10 22:32:56 CST 2021
-建议cron: 30 19 * * *  python3 mimotion2.py
+Cron: 30 19 * * *  mimotion2.py
 ------------
 环境变量说明
 MI_USER: 账号      仅支持单手机号
