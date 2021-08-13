@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 <<'COMMENT'
-Method: team_task 11 1 "smiek2221_scripts_gua_xmGame.js activityId activityUrl"
-Cron: 16 * * * *  sh_xmGame.sh
+Method 1: team_task 11 1 "smiek2221_scripts_gua_xmGame.js activityId activityUrl"
+Cron: 16 * * * *  sh_team_task.sh
 COMMENT
 
 ## 组队任务
