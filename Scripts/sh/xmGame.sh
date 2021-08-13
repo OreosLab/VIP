@@ -58,3 +58,5 @@ team_task(){
 #        echo $JD_COOKIE
     done
 }
+
+team_task 11 1 "smiek2221_scripts_gua_xmGame.js"  ##小米-星空大冒险
