@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-log() {
+log(){
     echo -e "\e[32m\n$1 \e[0m\n"
 }
 
-inp() {
+inp(){
     echo -e "\e[33m\n$1 \e[0m\n"
 }
 
@@ -18,6 +18,7 @@ warn(){
 
 warn "大道至简"
 inp "选择你想部署的 docker 项目：\n1) qinglong 2) V4 3) elecV2P 4) HHL 5) JS_TOOL 6) helloword(sakura)"
+opt
 read option
 case $option in
     1) project="ql"
