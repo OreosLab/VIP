@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 <<'COMMENT'
-Method 1: team_task 11 1 "smiek2221_scripts_gua_xmGame.js"
-Cron: 16 * * * *  sh_team_task.sh
+Cron: 16 6 * * *  sh_team.sh
 COMMENT
 
 ## 组队任务
@@ -60,4 +59,16 @@ team_task(){
 }
 
 gua_xmGame=`find . -type f -name "*gua_xmGame.js"|head -1`
-team_task 11 1 ${gua_xmGame}  ##小米-星空大冒险
+jd_sddd=`find . -type f -name "*jd_sddd.js"|head -1`
+
+case $@ in
+    jd_sddd)
+        team_task 21 1 ${jd_sddd}  ##送豆得豆
+        ;;
+    gua_xmGame)
+        team_task 11 1 ${gua_xmGame}  ##小米-星空大冒险
+        ;;
+    *)
+        team_task 21 1 {jd_sddd.js}  ##送豆得豆
+        team_task 11 1 ${gua_xmGame}  ##小米-星空大冒险
+esac
