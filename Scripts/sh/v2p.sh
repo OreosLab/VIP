@@ -224,23 +224,21 @@ check_port() {
     echo "正在检测端口:$1"
     netstat -tlpn | grep "\b$1\b"
 }
-if [ "$port" != "2" ]; then
-    while check_port $V2P_PORT; do    
-        echo -n -e "\e[31m端口:$V2P_PORT 被占用，请重新输入 webUI 端口：\e[0m"
-        read V2P_PORT
-    done
-    echo -e "\e[34m恭喜，端口:$V2P_PORT 可用\e[0m"
-    while check_port $HTTP_PORT; do    
-        echo -n -e "\e[31m端口:$HTTP_PORT 被占用，请重新输入代理端口：\e[0m"
-        read HTTP_PORT
-    done
-    echo -e "\e[34m恭喜，端口:$HTTP_PORT 可用\e[0m"
-    while check_port $REQUEST_PORT; do    
-        echo -n -e "\e[31m端口:$REQUEST_PORT 被占用，请重新输入代理请求端口：\e[0m"
-        read REQUEST_PORT
-    done
-    echo -e "\e[34m恭喜，端口:$REQUEST_PORT 可用\e[0m"
-fi
+while check_port $V2P_PORT; do    
+    echo -n -e "\e[31m端口:$V2P_PORT 被占用，请重新输入 webUI 端口：\e[0m"
+    read V2P_PORT
+done
+echo -e "\e[34m恭喜，端口:$V2P_PORT 可用\e[0m"
+while check_port $HTTP_PORT; do    
+    echo -n -e "\e[31m端口:$HTTP_PORT 被占用，请重新输入代理端口：\e[0m"
+    read HTTP_PORT
+done
+echo -e "\e[34m恭喜，端口:$HTTP_PORT 可用\e[0m"
+while check_port $REQUEST_PORT; do    
+    echo -n -e "\e[31m端口:$REQUEST_PORT 被占用，请重新输入代理请求端口：\e[0m"
+    read REQUEST_PORT
+done
+echo -e "\e[34m恭喜，端口:$REQUEST_PORT 可用\e[0m"
 
 
 log "3.开始创建容器并执行"
