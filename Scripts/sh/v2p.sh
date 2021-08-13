@@ -174,7 +174,7 @@ if [ "$net" = "1" ]; then
     NETWORK="host"
     CHANGE_NETWORK="--net $NETWORK"
 else
-    CHANGE_NETWORK="--net $NETWORK"
+    CHANGE_NETWORK=""
 fi
 
 inp "是否修改端口[默认 8100|8101|8102]：\n1) 修改\n2) 不修改[默认]"
