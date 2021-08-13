@@ -14,7 +14,6 @@ opt(){
 
 warn() {
         echo -e "\e[31m$1 \e[0m\n"
-        }
 }
 
 warn "大道至简"
