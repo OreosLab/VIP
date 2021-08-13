@@ -17,7 +17,7 @@ warn(){
 }
 
 warn "大道至简"
-inp "选择你想部署的 docker 项目：\n1) qinglong 2) V4 3) elecV2P 4) HHL 5) JS_TOOL 6) helloword(sakura)"
+inp "选择你想部署的 docker 项目：\n1) qinglong\n2) V4\n3) elecV2P\n4) HHL\n5) JS_TOOL\n6) helloword(sakura)"
 opt
 read option
 case $option in
@@ -30,6 +30,7 @@ case $option in
     4) project="hhl"
     ;;
     *) echo -e "\e[31m还没写好或不存在\e[0m\n"
+    ;;
 esac
 
 wget -q https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/${project}.sh -O ${project}.sh
