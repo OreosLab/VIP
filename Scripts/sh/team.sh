@@ -59,7 +59,7 @@ team_task(){
 }
 
 gua_xmGame=`find . -type f -name "*gua_xmGame.js"|head -1`
-jd_sddd=`find . -type f -name "*jd_sddd.js"|head -1`
+jd_sddd=`find . -type f -name "*jd_sddd.js" -name "*sendBeans.js"|head -1`
 
 case $@ in
     jd_sddd)
