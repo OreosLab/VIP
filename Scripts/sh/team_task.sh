@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 <<'COMMENT'
-Method 1: team_task 11 1 "smiek2221_scripts_gua_xmGame.js activityId activityUrl"
+Method 1: team_task 11 1 "smiek2221_scripts_gua_xmGame.js"
 Cron: 16 * * * *  sh_team_task.sh
 COMMENT
 
@@ -59,4 +59,5 @@ team_task(){
     done
 }
 
-team_task 11 1 "smiek2221_scripts_gua_xmGame.js"  ##小米-星空大冒险
+gua_xmGame=`find . -name "*gua_xmGame.js"|head -1`
+team_task 11 1 "${gua_xmGame}"  ##小米-星空大冒险
