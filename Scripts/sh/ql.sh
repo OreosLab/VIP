@@ -154,9 +154,9 @@ opt
 read net
 if [ "$net" = "1" ]; then
     NETWORK="host"
-    CHANGE_NETWORK="--network $NETWORK"
+    CHANGE_NETWORK="--net $NETWORK"
 else
-    CHANGE_NETWORK="--network $NETWORK"
+    CHANGE_NETWORK=""
 fi
 
 inp "是否在启动容器时自动启动挂机程序：\n1) 开启[默认]\n2) 关闭"
