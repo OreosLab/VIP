@@ -159,9 +159,9 @@ opt
 read net
 if [ "$net" = "1" ]; then
     NETWORK="host"
-    CHANGE_NETWORK="--network $NETWORK"
+    CHANGE_NETWORK="--net $NETWORK"
 else
-    CHANGE_NETWORK="--network $NETWORK"
+    CHANGE_NETWORK=""
 fi
 
 # 配置已经创建完成，开始执行
