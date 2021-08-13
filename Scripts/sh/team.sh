@@ -63,13 +63,13 @@ jd_sddd=`find . -type f -name "*jd_sddd.js"|head -1`
 
 case $@ in
     jd_sddd)
-        team_task 21 1 ${jd_sddd}     ##送豆得豆
+        team_task 21 1 ${jd_sddd}       ## 送豆得豆
         ;;
     gua_xmGame)
-        team_task 11 1 ${gua_xmGame}  ##小米-星空大冒险
+        team_task 11 1 ${gua_xmGame}    ## 小米-星空大冒险
         ;;
     *)
-        team_task 21 1 ${jd_sddd}     ##送豆得豆
-        team_task 11 1 ${gua_xmGame}  ##小米-星空大冒险
+        team_task 21 1 ${jd_sddd}       ## 送豆得豆
+        team_task 11 1 ${gua_xmGame}    ## 小米-星空大冒险
         ;;
 esac
