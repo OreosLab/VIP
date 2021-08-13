@@ -59,5 +59,5 @@ team_task(){
     done
 }
 
-gua_xmGame=`find . -name "*gua_xmGame.js"|head -1`
+gua_xmGame=`find . -type f -name "*gua_xmGame.js"|head -1`
 team_task 11 1 "${gua_xmGame}"  ##小米-星空大冒险
