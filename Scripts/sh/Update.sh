@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 <<'COMMENT'
-建议cron: 0 6,18 * * *  bash Update.sh
+Cron: 0 6,18 * * *  sh_Update.sh
 COMMENT
 
 dir_config=/ql/config
@@ -15,15 +15,22 @@ code_raw_path=$dir_raw/code.sh
 code_config_path=$dir_config/code.sh
 task_before_raw_path=$dir_raw/task_before.sh
 task_before_config_path=$dir_config/task_before.sh
-CollectedRepo=4
-OtherRepo=14
-repoNum=4
+
+TG_BOT_TOKEN=""
+TG_USER_ID=""
+CollectedRepo="4"
+OtherRepo=""
+repoNum="4"
+
 HelpType="HelpType=\"0\""
 BreakHelpType="BreakHelpType=\"1\""
 BreakHelpNum="BreakHelpNum=\"11-1000\""
 
+
 curl -sL https://git.io/config.sh > $config_raw_path
 mv -b $config_raw_path $dir_config
+sed -i "s/TG_BOT_TOKEN=\"\"/TG_BOT_TOKEN=\"$TG_BOT_TOKEN\"/g" $config_config_path
+sed -i "s/TG_USER_ID=\"\"/TG_USER_ID=\"$TG_USER_ID\"/g" $config_config_path
 
 curl -sL https://git.io/extra.sh > $extra_raw_path
 mv -b $extra_raw_path $dir_config
