@@ -12,8 +12,8 @@ opt(){
     echo -n -e "\e[36m输入您的选择->\e[0m"
 }
 
-warn() {
-        echo -e "\e[31m$1 \e[0m\n"
+warn(){
+    echo -e "\e[31m$1 \e[0m\n"
 }
 
 warn "大道至简"
