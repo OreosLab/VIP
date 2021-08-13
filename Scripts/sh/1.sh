@@ -32,5 +32,5 @@ case $option in
     *) echo -e "\e[31m还没写好或不存在\e[0m\n"
 esac
 
-wget -q https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/${project}.sh -${project}.sh
+wget -q https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/${project}.sh -O ${project}.sh
 bash ${project}.sh
