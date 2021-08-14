@@ -52,14 +52,14 @@ curl -sL https://git.io/task_before.sh > $task_before_raw_path
 c=1000000
 for r in {1..3}; do
 	p=`expr $c - $r`
-	sed -ri "s/\"position\"\:${p}\:/regular${r}/" $db
+	sed -ri "s/\"position\"\:${p}\:/regular${r}/" $file_db
 done
 for line in {4..100}; do
-	sed -ri "${line}s/(\"position\"\:)[^,]*/\"position\"\:${RANDOM}/" $db
+	sed -ri "${line}s/(\"position\"\:)[^,]*/\"position\"\:${RANDOM}/" $file_db
 done
 for r in {1..3}; do
 	p=`expr $c - $r`
-	sed -ri "s/regular${r}/\"position\"\:${p}/" $db
+	sed -ri "s/regular${r}/\"position\"\:${p}/" $file_db
 done
 
 ql update
