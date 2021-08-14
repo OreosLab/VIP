@@ -4,6 +4,7 @@
 Cron: 0 6,18 * * *  sh_Update.sh
 COMMENT
 
+file_db=/ql/config/env.db
 dir_config=/ql/config
 dir_scripts=/ql/scripts
 dir_raw=/ql/raw
@@ -47,3 +48,18 @@ sed -i "/^BreakHelpNum=/c${BreakHelpNum}" $code_config_path
 
 curl -sL https://git.io/task_before.sh > $task_before_raw_path
 # mv -b $task_before_raw_path $dir_config
+
+c=1000000
+for r in {1..3}; do
+	p=`expr $c - $r`
+	sed -ri "s/\"position\"\:${p}\:/regular${r}/" $db
+done
+for line in {4..100}; do
+	sed -ri "${line}s/(\"position\"\:)[^,]*/\"position\"\:${RANDOM}/" $db
+done
+for r in {1..3}; do
+	p=`expr $c - $r`
+	sed -ri "s/regular${r}/\"position\"\:${p}/" $db
+done
+
+ql update
