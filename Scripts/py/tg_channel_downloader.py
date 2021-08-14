@@ -25,7 +25,7 @@ filter_list = ['你好，欢迎加入 Quantumu', '\n']
 whitelist = []
 donwload_all_chat = False # 监控所有你加入的频道，收到的新消息如果包含媒体都会下载，默认关闭
 filter_file_name = ['sh'] # 指定文件后缀，可以填jpg、avi、mkv、rar等。
-pip install telethon cryptg pillow aiohttp hachoir # 所需的依赖模块
+# pip install telethon cryptg pillow aiohttp hachoir # 所需的依赖模块
 #***********************************************************************************#
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
