@@ -522,28 +522,43 @@ export DDQ_NOTIFY_CONTROL="" ##不填或false为通知，true为不通知
 ```
 
 ```
-## 9、奥运夺金牌开卡
+## 9、组队瓜分京豆活动变量
+export jd_zdjr_activityId=""
+export jd_zdjr_activityUrl=""
+```
+
+```
+## 10、奥运夺金牌开卡
 export guaolympicopencard="true"
-## 10、奥运夺金挑战赛
+## 11、7.31-8.10 全民奥运 激情奔跑
 export guaolympicopencard2="true"
-## 11、大牌联合 冰爽一夏
-export guaopencard4="true"
-export guaopencard_addSku4="true"
-## 12、冰爽夏日 钜惠送好礼
-export guaopencard5="true"
-export guaopencard_addSku5="true"
-## 13、七夕告白季-开卡
-export guaopencard6="true"
-export guaopencard_addSku6="true"
-## 14-n、预备
-export guaopencard7="true"
-export guaopencard_addSku7="true"
-export guaopencard8="true"
-export guaopencard_addSku8="true"
-export guaopencard9="true"
-export guaopencard_addSku9="true"
-export guaopencard10="true"
-export guaopencard_addSku10="true"
+## 12、8.4-8.12 大牌联合 冰爽一夏
+export guaopencard4="true" ##开卡
+export guaopencard_addSku4="true" ##加购物车
+## 13、8.5-8.12 冰爽夏日 钜惠送好礼
+export guaopencard5="true" ##开卡
+export guaopencard_addSku5="true" ##加购物车
+## 14、七夕告白季
+export guaopencard6="true" ##开卡
+export guaopencard_addSku6="true" ##加购物车
+## 15、8.8-8.14 七夕会员福利社
+export guaopencard7="true" ##开卡
+export guaopencard_addSku7="true" ##加购物车
+## 16、8.10-8.15 头号玩家 一起热8
+export guaopencard8="true" ##开卡
+export guaopencard_addSku8="true" ##加购物车
+## 17、8.11-8.15 星动七夕 纵享丝滑
+export guaopencard9="true" ##开卡
+export guaopencard_addSku9="true" ##加购物车
+## 18、8.11-8.18 大牌联合 约惠一夏
+export guaopencard10="true" ##开卡
+export guaopencard_addSku10="true" ##加购物车
+## 19-38、预备
+j=30
+for (( i = 11; i <= j; i++ )); do
+    export guaopencard$i="true"
+    export guaopencard_addSku$i="true"
+done
 ```
 
 

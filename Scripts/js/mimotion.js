@@ -14,6 +14,7 @@ $exec('python3 https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/py/mi
   env: {
     MI_USER: $store.get('MI_USER', 'string'),
     MI_PWD: $store.get('MI_PWD', 'string'),
+    STEP: $store.get('STEP','string'),
     PMODE: $store.get('PMODE', 'string'),
     PKEY: $store.get('PKEY', 'string')
   },
