@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Build 20210815-001
+# Build 20210815-002
+
+p1=$1
 
 name_js=(
   jd_fruit
@@ -99,8 +101,9 @@ TempBlock_JD_COOKIE(){
     temp_user_sum=${#array[*]}
 }
 
+## 随机账号运行活动
 Random_JD_COOKIE(){
-    source $file_env
+    [[ -z $JD_COOKIE ]] && source $file_env
     local envs=$(eval echo "\$JD_COOKIE")
     local array=($(echo $envs | sed 's/&/ /g'))
     local user_sum=${#array[*]}
@@ -117,6 +120,71 @@ Random_JD_COOKIE(){
             jdCookie=$(echo $combined_all | sed 's/^&//g')
             [[ ! -z $jdCookie ]] && export JD_COOKIE="$jdCookie"
         fi
+    fi
+}
+
+## 组队任务
+combine_team(){
+    p=$1
+    q=$2
+    export jd_zdjr_activityId=$3
+    export jd_zdjr_activityUrl=$4
+}
+
+team_task(){
+    [[ -z $JD_COOKIE ]] && source $file_env
+    local envs=$(eval echo "\$JD_COOKIE")
+    local array=($(echo $envs | sed 's/&/ /g'))
+    local user_sum=${#array[*]}
+    local i j k x y p q
+    local scr=$scr_name
+    local teamer_array=($teamer_num)
+    local team_array=($team_num)
+    if [[ -f /ql/scripts/$scr ]]; then
+        for ((i=0; i<${#teamer_array[*]}; i++)); do
+            combine_team ${teamer_array[i]} ${team_array[i]} ${activityId[i]} ${activityUrl[i]}
+            [[ $q -ge $(($user_sum/p)) ]] && q=$(($user_sum/p))
+            for ((m = 0; m < $user_sum; m++)); do
+                j=$((m + 1))
+                x=$((m/q))
+                y=$(((p - 1)*m + 1))
+                COOKIES_HEAD="${array[x]}"
+                COOKIES=""
+                if [[ $j -le $q ]]; then
+                    for ((n = 1; n < $p; n++)); do
+                        COOKIES="$COOKIES&${array[y]}"
+                        let y++
+                    done
+                elif [[ $j -eq $((q + 1)) ]]; then
+                    for ((n = 1; n < $((p-1)); n++)); do
+                        COOKIES_HEAD="${array[x]}&${array[0]}"
+                        COOKIES="$COOKIES&${array[y]}"
+                        let y++
+                    done
+                elif [[ $j -gt $((q + 1)) ]]; then
+                    [[ $((y+1)) -le $user_sum ]] && y=$(((p - 1)*m)) || break
+                    for ((n = $m; n < $((m + p -1)); n++)); do
+                        COOKIES="$COOKIES&${array[y]}"
+                        let y++
+                        [[ $y = $x ]] && y=$((y+1))
+                        [[ $((y+1)) -gt $user_sum ]] && break
+                    done
+                fi
+                result=$(echo -e "$COOKIES_HEAD$COOKIES")
+                if [[ $result ]]; then
+                    export JD_COOKIE=$result
+                    if [[ ${#activityId[*]} -gt 0 ]]; then
+                        for ((k=0; k<=${#activityId[*]}; k++)); do
+                            node /ql/scripts/$scr
+                        done
+                    else
+                        node /ql/scripts/$scr
+                    fi
+                fi
+#               echo $JD_COOKIE
+            done
+        done
+        exit
     fi
 }
 
@@ -163,11 +231,34 @@ combine_all() {
     done
 }
 
-for ((i = 0; i < ${#env_name[*]}; i++)); do
-    export ${env_name[i]}=""
-done
+## 正常依次运行时，组合互助码格式化为全局变量
+combine_only() {
+    local scr=$p1                                                     ## 活动脚本完整文件名
+    for ((i = 0; i < ${#env_name[*]}; i++)); do
+        case $scr in
+            *${name_js[i]}.js | *${name_js[i]}.ts)
+	            if [[ -f $dir_log/.ShareCode/${name_config[i]}.log ]]; then
+                    . $dir_log/.ShareCode/${name_config[i]}.log
+                    result=$(combine_sub ${var_name[i]})
+                    if [[ $result ]]; then
+                        export ${env_name[i]}=$result
+                    fi
+                fi
+                ;;
+           *)
+                export ${env_name[i]}=""
+                ;;
+        esac
+    done
+}
 
 TempBlock_JD_COOKIE && Random_JD_COOKIE
+
+if [ $scr_name ]; then
+    team_task
+elif [ $p1 ]; then
+    combine_only
+fi
 
 #if [[ $(ls $dir_code) ]]; then
 #    latest_log=$(ls -r $dir_code | head -1)
@@ -175,19 +266,3 @@ TempBlock_JD_COOKIE && Random_JD_COOKIE
 #    combine_all
 #fi
 
-for ((i = 0; i < ${#env_name[*]}; i++)); do
-    case $1 in
-        *${name_js[i]}.js | *${name_js[i]}.ts)
-	    if [[ -f $dir_log/.ShareCode/${name_config[i]}.log ]]; then
-                . $dir_log/.ShareCode/${name_config[i]}.log
-                result=$(combine_sub ${var_name[i]})
-                if [[ $result ]]; then
-                    export ${env_name[i]}=$result
-                fi
-            fi
-            ;;
-        *)
-            export ${env_name[i]}=""
-            ;;
-    esac
-done

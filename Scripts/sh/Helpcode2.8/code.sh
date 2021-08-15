@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210811-001
+## Build 20210816-001
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -400,10 +400,6 @@ export_all_codes() {
             echo -e "\n## ${name_chinese[i]}："
             export_codes_sub "${name_js[i]}" "${name_config[i]}" "${name_chinese[i]}"
         done
-        for ((i = 0; i < ${#name_js_only[*]}; i++)); do
-            echo -e "\n## ${name_chinese_only[i]}："
-            export_codes_sub_only "${name_js_only[i]}" "${name_config_only[i]}" "${name_chinese_only[i]}"
-        done
     fi
 }
 
@@ -674,11 +670,11 @@ install_dependencies_all(){
 
 
 ## 执行并写入日志
+ps -ef|grep "code.sh"|grep -Ev "grep|$$"|awk '{print $1}'|xargs kill -9 >/dev/null  2>&1
 [[ $FixDependType = "1" ]] && [[ "$ps_num" -le $proc_num ]] && install_dependencies_all >/dev/null 2>&1 &
 latest_log=$(ls -r $dir_code | head -1)
 latest_log_path="$dir_code/$latest_log"
 ps_num="$(ps | grep code.sh | grep -v grep | wc -l)"
-#[[ ! -z "$(ps -ef|grep -w 'code.sh'|grep -v grep)" ]] && ps -ef|grep -w 'code.sh'|grep -v grep|awk '{print $1}'|xargs kill -9
 export_all_codes | perl -pe "{s|京东种豆|种豆|; s|crazyJoy任务|疯狂的JOY|}"
 sleep 5
 update_help
