@@ -52,6 +52,7 @@ Onekey(){
 INSTALL_JS_TOOL(){
     docker_install
     inp "是否直接安装：\n1) 直接安装[默认]\n2) 手动选择"
+    opt
     read type
     if [ "$type" = "2" ]; then
         wget -q https://gitee.com/highdimen/js_tool/raw/A1/resource/install_scripts/docker_install_jd.sh -O docker_install_jd.sh && chmod +x docker_install_jd.sh && bash docker_install_jd.sh
