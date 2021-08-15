@@ -46,7 +46,7 @@ docker_install() {
 }
 
 Onekey(){
-    wget -q https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/${project}.sh -O ${project}.sh && bash ${project}.sh
+    rm ${project}.sh && wget -q https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/${project}.sh -O ${project}.sh && bash ${project}.sh
 }
 
 INSTALL_JS_TOOL(){
