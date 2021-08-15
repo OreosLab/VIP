@@ -4,8 +4,12 @@
 Cron: 16 6 * * *  sh_team.sh
 COMMENT
 
-scr1=`find . -type f -name "*gua_xmGame.js"|head -1`
-scr2=`find . -type f -name "*jd_sddd.js"|find . -type f -name "*sendBeans.js"|head -1`
+dir_config=/ql/config
+dir_script=/ql/scripts
+
+team=`( find ${dir_config} -type f -name "*team.sh" && find ${dir_script} -type f -name "*team.sh" )|head -1`
+scr1=`find ${dir_script} -type f -name "*gua_xmGame.js"|head -1`
+scr2=`find ${dir_script} -type f -name "*jd_sddd.js" -o -name "*sendBeans.js"|head -1`
 scr3="Tsukasa007_my_script_master_jd_opencard_teamBean5_enc.js"
 
 ## 组队任务
@@ -85,7 +89,7 @@ case $@ in
         ;;                                                                                                                           ##8.15组队瓜分京豆
     *)
         for ((i = 0; i < ${#task_name[*]}; i++)); do
-            bash /ql/scripts/team.sh ${task_name[i]}
+            bash ${team} ${task_name[i]}
         done
         ;;
 esac
