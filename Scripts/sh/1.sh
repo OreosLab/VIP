@@ -50,6 +50,7 @@ Onekey(){
 }
 
 INSTALL_JS_TOOL(){
+    echo -e "\n"
     docker_install
     inp "是否直接安装：\n1) 直接安装[默认]\n2) 手动选择"
     opt
