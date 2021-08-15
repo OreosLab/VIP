@@ -57,10 +57,10 @@ team_task(){
                 export JD_COOKIE=$result
                 case $scr in
                     *.js)
-                        node /ql/scripts/$scr
+                        node $scr
                         ;;
                     *.sh)
-                        bash /ql/scripts/$scr
+                        bash $scr
                         ;;
                 esac
             fi
