@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210811-001
+## Mod: Build20210815-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -127,8 +127,8 @@ export GOBOT_QQ=""
 ##     *jd_jdzz* | *jd_joy*)                  # 京喜赚赚和宠汪汪的活动脚本关键词
 ##         TempBlockCookie="3 7_8 9-10 12~13" # Cookie3 、Cookie7至8、Cookie9至10、Cookie12至13 不玩京东赚赚和宠汪汪
 ##         ;;
-##     *)                                     # 其他活动
-##         TempBlockCookie=""                 # 默认为空值，表示其他帐号参加全部活动。填写帐号序号表示临时指定 Cookie 只能参加其他活动
+##     *)                                     # 必选项。其他活动
+##         TempBlockCookie=""                 # 必选项。默认为空值，表示其他帐号参加全部活动。填写帐号序号表示指定的 Cookie 只能参加之前 case 选项的活动
 ##         ;;
 ## esac
 case $1 in
@@ -143,6 +143,43 @@ case $1 in
         ;;
     *)
         TempBlockCookie=""
+        ;;
+esac
+
+## 11. 随机Cookie
+## Cookie 按随机顺序参加活动。取消 # 注释后，填 1 表示开启功能。
+# RandomMode=""
+## 从原 Cookie 中随机提取指定数量的 Cookie 参加活动，当 RandomMode="1" 时生效。取消 # 注释后，赋值后生效。
+### 赋值要求："空值"、"非数字"、"小于2或大于 Cookie 总数的数值"，均自动调整为全部 Cookie 按随机顺序参加活动；
+###           "大于或等于2，且小于或等于 Cookie 总数的数值"，抽取指定数值的 Cookie 按随机顺序参数活动。
+# ran_num=""
+## 如果想指定活动进行随机模式，可以参考下面 case 这个命令的例子来控制
+## case $1 in
+##     *jd_fruit*)                            # 东东农场活动脚本关键词
+##         RandomMode="1"                     # 东东农场开启随机模式
+##         ran_num=""                         # 东东农场全部 Cookie 按随机顺序参加活动
+##         ;;
+##     *jd_dreamFactory* | *jd_jdfactory*)    # 京喜工厂和东东工厂的活动脚本关键词
+##         RandomMode="1"                     # 京喜工厂和东东工厂开启随机模式
+##         ran_num="5"                        # 京喜工厂和东东工厂抽取指定 5 个 Cookie 按随机顺序参数活动。
+##         ;;
+##    *)                                      # 必选项。其他活动
+##         RandomMode=""                      # 必选项。默认为空值，表示其他帐号均不开启随机模式。
+##         ran_num=""                         # 必选项。默认为空值。若 RandomMode="1" 且此处赋值，表示其他活动均抽取指定数值的 Cookie 按随机顺序参数活动。
+##        ;;
+## esac
+case $1 in
+    *jd_fruit*)
+        RandomMode="1"
+        ran_num="5"
+        ;;
+    *jd_dreamFactory* | *jd_jdfactory*)
+        RandomMode=""
+        ran_num=""
+        ;;
+    *)
+        RandomMode=""
+        ran_num=""
         ;;
 esac
 
@@ -410,7 +447,7 @@ export JOY_HOST=""
 export JDJR_validator_Count="25"
 ## 6、财富大陆热气球接客次数
 ### 新增热气球接客 默认每次运行执行10次
-export gua_wealth_island_serviceNum="10"
+export gua_wealth_island_serviceNum="500"
 ## 7、燃动夏季-新增屏蔽账号
 ### export summer_movement_outuserID="2,5,7" ##屏蔽第几个账号的例子
 export summer_movement_outuserID=""
@@ -482,7 +519,7 @@ export earn30Pins="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*pt_pin=\([^;]\+\);\S*
 ### 环境变量angryBeanMode可选值priority或speed或smart，默认smart模式。
 ### 默认推送通知，如要屏蔽通知需将环境变量enableAngryBeanNotify的值设为false。
 export angryBeanPins="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\([^;]\+\);\S*/\1/g; s/ /@/g;")"
-export angryBeanMode="smart"
+export angryBeanMode="priority"
 export enableAngryBeanNotify="true"
 
 # star261 环境变量
