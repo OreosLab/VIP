@@ -58,6 +58,7 @@ INSTALL_JS_TOOL(){
         wget -q https://gitee.com/highdimen/js_tool/raw/A1/resource/install_scripts/docker_install_jd.sh -O docker_install_jd.sh && chmod +x docker_install_jd.sh && bash docker_install_jd.sh
     else
         wget -q https://gitee.com/highdimen/js_tool/raw/A1/resource/install_scripts/Qunhui_docker_install_jd.sh -O docker_install_jd.sh && chmod +x docker_install_jd.sh && bash docker_install_jd.sh
+    fi
 }
 
 log "大道至简"
