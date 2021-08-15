@@ -116,7 +116,6 @@ Random_JD_COOKIE(){
             done
             jdCookie=$(echo $combined_all | sed 's/^&//g')
             [[ ! -z $jdCookie ]] && export JD_COOKIE="$jdCookie"
-            echo $JD_COOKIE
         fi
     fi
 }
