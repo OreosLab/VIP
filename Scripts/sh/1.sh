@@ -46,7 +46,7 @@ docker_install() {
 }
 
 Onekey(){
-    wget -q https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/${project}.sh -O ${project}.sh && bash ${project}.sh
+    wget -q https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/$1.sh -O $1.sh && bash $1.sh
 }
 
 INSTALL_JS_TOOL(){
@@ -67,17 +67,13 @@ inp "选择你想部署的 docker 项目：\n1) qinglong\n2) V4\n3) elecV2P\n4) 
 opt
 read option
 case $option in
-    1)  project="ql"
-        Onekey
+    1)  Onekey "ql"
     ;;
-    2)  project="v4"
-        Onekey
+    2)  Onekey "v4"
     ;;
-    3)  project="v2p"
-        Onekey
+    3)  Onekey "v2p"
     ;;
-    4)  project="hhl"
-        Onekey
+    4)  Onekey "hhl"
     ;;
     5)  INSTALL_JS_TOOL
     ;;  
