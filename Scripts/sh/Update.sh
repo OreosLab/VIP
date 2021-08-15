@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 <<'COMMENT'
-Cron: 0 6,18 * * *  sh_Update.sh
+Cron: 32 6,18 * * *  sh_Update.sh
 COMMENT
 
 file_db=/ql/db/env.db
