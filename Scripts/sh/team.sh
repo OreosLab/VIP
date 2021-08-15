@@ -25,7 +25,7 @@ team_task(){
     local user_sum=${#array[*]}
     local a b i j t sum
     [[ $q -ge $(($user_sum/p)) ]] && q=$(($user_sum/p))
-    if [[ -f /ql/scripts/$scr ]]; then
+    if [[ -f $scr ]]; then
         for ((m = 0; m < $user_sum; m++)); do
             j=$((m + 1))
             x=$((m/q))
