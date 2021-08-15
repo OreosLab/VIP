@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210804-003
+## Mod: Build20210815-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -127,8 +127,8 @@ export GOBOT_QQ=""
 ##     *jd_jdzz* | *jd_joy*)                  # 京喜赚赚和宠汪汪的活动脚本关键词
 ##         TempBlockCookie="3 7_8 9-10 12~13" # Cookie3 、Cookie7至8、Cookie9至10、Cookie12至13 不玩京东赚赚和宠汪汪
 ##         ;;
-##     *)                                     # 其他活动
-##         TempBlockCookie=""                 # 默认为空值，表示其他帐号参加全部活动。填写帐号序号表示临时指定 Cookie 只能参加其他活动
+##     *)                                     # 必选项。其他活动
+##         TempBlockCookie=""                 # 必选项。默认为空值，表示其他帐号参加全部活动。填写帐号序号表示指定的 Cookie 只能参加之前 case 选项的活动
 ##         ;;
 ## esac
 case $1 in
@@ -143,6 +143,43 @@ case $1 in
         ;;
     *)
         TempBlockCookie=""
+        ;;
+esac
+
+## 11. 随机Cookie
+## Cookie 按随机顺序参加活动。取消 # 注释后，填 1 表示开启功能。
+# RandomMode=""
+## 从原 Cookie 中随机提取指定数量的 Cookie 参加活动，当 RandomMode="1" 时生效。取消 # 注释后，赋值后生效。
+### 赋值要求："空值"、"非数字"、"小于2或大于 Cookie 总数的数值"，均自动调整为全部 Cookie 按随机顺序参加活动；
+###           "大于或等于2，且小于或等于 Cookie 总数的数值"，抽取指定数值的 Cookie 按随机顺序参数活动。
+# ran_num=""
+## 如果想指定活动进行随机模式，可以参考下面 case 这个命令的例子来控制
+## case $1 in
+##     *jd_fruit*)                            # 东东农场活动脚本关键词
+##         RandomMode="1"                     # 东东农场开启随机模式
+##         ran_num=""                         # 东东农场全部 Cookie 按随机顺序参加活动
+##         ;;
+##     *jd_dreamFactory* | *jd_jdfactory*)    # 京喜工厂和东东工厂的活动脚本关键词
+##         RandomMode="1"                     # 京喜工厂和东东工厂开启随机模式
+##         ran_num="5"                        # 京喜工厂和东东工厂抽取指定 5 个 Cookie 按随机顺序参数活动。
+##         ;;
+##    *)                                      # 必选项。其他活动
+##         RandomMode=""                      # 必选项。默认为空值，表示其他帐号均不开启随机模式。
+##         ran_num=""                         # 必选项。默认为空值。若 RandomMode="1" 且此处赋值，表示其他活动均抽取指定数值的 Cookie 按随机顺序参数活动。
+##        ;;
+## esac
+case $1 in
+    *jd_fruit*)
+        RandomMode="1"
+        ran_num="5"
+        ;;
+    *jd_dreamFactory* | *jd_jdfactory*)
+        RandomMode=""
+        ran_num=""
+        ;;
+    *)
+        RandomMode=""
+        ran_num=""
         ;;
 esac
 
@@ -260,18 +297,6 @@ export JD_TRY_MIN_PRICE=""
 ### 试用商品最多提供数量（过滤垃圾商品）
 export JD_TRY_MAX_SUPPLY_COUNT=""
 
-# 阿道夫部分环境变量
-## 1、阿道夫脚本加购开关，填true加购
-export ADOLF_ADDSKU="true"
-## 2、阿道夫脚本入会开关，填true入会
-export ADOLF_MARTIN="true"
-
-# zoopanda 部分环境变量
-## 1、zoopanda 与粽不同入会
-export ZOO_OPENCAD="true"
-## 2、zoopanda 与粽不同加购
-export ZOO_ADD2CART="true"
-
 # 龙猪猪环境变量
 ## 京豆雨通知，填写true为不关闭推送，false为关闭推送
 export RAIN_NOTIFY_CONTROL="false"
@@ -338,19 +363,22 @@ export cashinviteCode3=""
 export dlbtz="true"
 ## 14、零食街自动兑换变量
 ### 自行取消注释和注释
-##export ljsdh="jdAward1" ##兑换5豆
-##export ljsdh="jdAward2" ##兑换10豆
-export ljsdh="jdAward3" ##兑换100豆
-##export ljsdh="jdAward4" ##兑换牛奶
+##export lsjdh="jdAward1" ##兑换5豆
+##export lsjdh="jdAward2" ##兑换10豆
+export lsjdh="jdAward3" ##兑换100豆
+##export lsjdh="jdAward4" ##兑换牛奶
 
 # curtinlv 环境变量
 ## 1、赚京豆
 ### 助力账号，填写pt_pin或用户名的值，如 zlzh = ['aaaa','xxxx','yyyy'] ，支持ENV
-export zlzh="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\([^;]\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
+### export zlzh="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\([^;]\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
+export zlzh="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\([^;]\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;")"
 ## 2、全民抢京豆
-export qjd_zlzh="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\([^;]\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
+### export qjd_zlzh="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\([^;]\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
+export qjd_zlzh="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\([^;]\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;")"
 ## 3、签到领现金助力
-export cash_zlzh="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\([^;]\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
+### export cash_zlzh="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\([^;]\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;" | awk 'BEGIN{for(i=0;i<10;i++)hex[i]=i;hex["A"]=hex["a"]=10;hex["B"]=hex["b"]=11;hex["C"]=hex["c"]=12;hex["D"]=hex["d"]=13;hex["E"]=hex["e"]=14;hex["F"]=hex["f"]=15;}{gsub(/\+/," ");i=$0;while(match(i,/%../)){;if(RSTART>1);printf"%s",substr(i,1,RSTART-1);printf"%c",hex[substr(i,RSTART+1,1)]*16+hex[substr(i,RSTART+2,1)];i=substr(i,RSTART+RLENGTH);}print i;}')"  ## 支持中文用户名
+export cash_zlzh="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\([^;]\+\);\S*/\'\1\',/g; s/^/[/; s/$\|,$/]/;")"
 ## 4、京喜工厂开团助力 for Python
 ### 支持指定账号开团，跑1次脚本默认开3次团，如未指定账号默认给账号一开团。
 ### 变量ENV 指定开团账号。可填用户名 或 pt_pin 的值。示例：export jxgc_kaituan="用户1&用户2"
@@ -419,20 +447,47 @@ export JOY_HOST=""
 export JDJR_validator_Count="25"
 ## 6、财富大陆热气球接客次数
 ### 新增热气球接客 默认每次运行执行10次
-export gua_wealth_island_serviceNum="10"
+export gua_wealth_island_serviceNum="500"
 ## 7、燃动夏季-新增屏蔽账号
 ### export summer_movement_outuserID="2,5,7" ##屏蔽第几个账号的例子
 export summer_movement_outuserID=""
 ## 8、修复点点券
 ### 新增显示有多少个非法请求 可以开通知 
 export DDQ_NOTIFY_CONTROL="" ##不填或false为通知，true为不通知
-## 9、奥运夺金牌开卡
+## 9、组队瓜分京豆活动变量
+export jd_zdjr_activityId=""
+export jd_zdjr_activityUrl=""
+## 10、奥运夺金牌开卡
 export guaolympicopencard="true"
-## 10、奥运夺金挑战赛
+## 11、7.31-8.10 全民奥运 激情奔跑
 export guaolympicopencard2="true"
-## 11、大牌联合 冰爽一夏
-export guaopencard_addSku4="true"
-export guaopencard4="true"
+## 12、8.4-8.12 大牌联合 冰爽一夏
+export guaopencard4="true" ##开卡
+export guaopencard_addSku4="true" ##加购物车
+## 13、8.5-8.12 冰爽夏日 钜惠送好礼
+export guaopencard5="true" ##开卡
+export guaopencard_addSku5="true" ##加购物车
+## 14、七夕告白季
+export guaopencard6="true" ##开卡
+export guaopencard_addSku6="true" ##加购物车
+## 15、8.8-8.14 七夕会员福利社
+export guaopencard7="true" ##开卡
+export guaopencard_addSku7="true" ##加购物车
+## 16、8.10-8.15 头号玩家 一起热8
+export guaopencard8="true" ##开卡
+export guaopencard_addSku8="true" ##加购物车
+## 17、8.11-8.15 星动七夕 纵享丝滑
+export guaopencard9="true" ##开卡
+export guaopencard_addSku9="true" ##加购物车
+## 18、8.11-8.18 大牌联合 约惠一夏
+export guaopencard10="true" ##开卡
+export guaopencard_addSku10="true" ##加购物车
+## 19-38、预备
+j=30
+for (( i = 11; i <= j; i++ )); do
+    export guaopencard$i="true"
+    export guaopencard_addSku$i="true"
+done
 
 # cdle 环境变量
 ## 1、全民运动会守卫红包
@@ -464,7 +519,7 @@ export earn30Pins="$(echo $JD_COOKIE | sed "s/&/\n/g; s/\S*pt_pin=\([^;]\+\);\S*
 ### 环境变量angryBeanMode可选值priority或speed或smart，默认smart模式。
 ### 默认推送通知，如要屏蔽通知需将环境变量enableAngryBeanNotify的值设为false。
 export angryBeanPins="$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*pt_pin=\([^;]\+\);\S*/\1/g; s/ /@/g;")"
-export angryBeanMode="smart"
+export angryBeanMode="priority"
 export enableAngryBeanNotify="true"
 
 # star261 环境变量
@@ -513,22 +568,28 @@ export NOTIFY_SKIP_LIST=""
 export CleanUsers=""
 
 # Tsukasa007 环境变量
-## 1、定格夺冠
+## 1、7.28-8.6 定格夺冠
 ### 第一个账号助力Tsukasa007，其他依次助力CK1第一个CK失效应该全都会助力Tsukasa007，亲注意一下（其他脚本逻辑都差不多）
 ### 一天只能领400豆1个ck20豆，不设置变量默认只会运行到ck21，填写11就是跑到11个ck就停止，填写21就是跑到21个ck就停止，如果没豆那就改变量，ck多每天改一次收益最大化
 export JD_OPENCARE_CHAMPIONSHIP=""
-## 2、夏日呵护 母音甄选
+## 2、7.28-8.9 夏日呵护 母音甄选	
 ### 一天只能领100豆1个ck10豆，不设置变量默认只会运行到ck11，填写11就是跑到11个ck就停止，填写22就是跑到22个ck就停止，一天最多助力10个ck，推荐11的倍数填写！！如果11没豆那就22如此类推，每天改一次收益最大化
 export JD_SUMMER_MOM_OPENCARD=""
-## 3、奥运夺金挑战赛
+## 3、7.29-8.9 奥运夺金挑战赛
 ### 一天只能领200豆1个ck20豆，不设置变量默认只会运行到ck11，填写11就是跑到11个ck就停止，填写22就是跑到22个ck就停止，一天最多助力10个ck，推荐11的倍数填写！！每天改一次收益最大化
 export JD_OLYMPIC_WIN_GOLD=""
-## 4、全民奔跑 激扬奥运
+## 4、7.26-8.8 全民奔跑 激扬奥运
 ### env OLYMPIC_START_DRAW = true 就是开启ck1抽奖 (!!!抽奖时间可能很长，慢慢抽吧!!!)
 export OLYMPIC_START_DRAW="true"
-## 5、全奶爸盛典 爸气全开
+## 5、8.2-8.12 奶爸盛典 爸气全开
 ### 填写11就是跑到11个ck就停止，填写21就是跑到21个ck就停止，一天最多助力20个ck 推荐10的倍数 +1 填写！！
 export JD_OPENCARD_DADDY=""
-## 6、大牌联合 冰爽一夏
-### 填写11就是跑到11个ck就停止，填写21就是跑到21个ck就停止，一天最多助力20个ck 推荐10的倍数 +1 填写！！
-export JD_OPENCARD_COOL_SUMMER=""
+## 6、8.4-8.12 大牌联合 冰爽一夏
+### 这个活动经过Tsukasa007的测试，邀请了38个ck，有18次20豆，所以有点随机不好判断一天有多少豆，默认21停，觉得自己牛逼，就改成 999 跑完算了！！
+export JD_OPENCARD_COOL_SUMMER="999"
+## 7、7.24-8.15 嗨皮一下 食力全开
+### 填写11就是跑到11个ck就停止，填写22就是跑到22个ck就停止，一天最多助力10个ck，推荐11的倍数填写！！如果11没豆那就22如此类推，每天改一次收益最大化
+export JD_OPENCARD_EAT_OPEN_OPENCARD=""
+## 8、8.5-8.12 大牌联合 冰爽一夏 钜惠送好礼
+### 填写11就是跑到11个ck就停止，填写21就是跑到21个ck就停止，一天最多助力20个ck，推荐10的倍数 +1 填写！！
+export JD_OPENCARD_COOL_SUMMER2=""

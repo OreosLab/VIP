@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Build 20210810-003
+# Build 20210815-001
 
 name_js=(
   jd_fruit
@@ -99,6 +99,28 @@ TempBlock_JD_COOKIE(){
     temp_user_sum=${#array[*]}
 }
 
+Random_JD_COOKIE(){
+    source $file_env
+    local envs=$(eval echo "\$JD_COOKIE")
+    local array=($(echo $envs | sed 's/&/ /g'))
+    local user_sum=${#array[*]}
+    local combined_all
+    if [[ $RandomMode = "1" ]]; then
+        [[ ! $ran_num ]] && ran_num=$user_sum
+        if [ $(echo $ran_num|grep '[0-9]') ]; then
+            [[ $ran_num -gt $user_sum || $ran_num -lt 2 ]] && ran_num=$user_sum
+            ran_sub="$(seq $user_sum | sort -R | head -$ran_num)"
+            for i in $ran_sub; do
+                tmp="${array[i]}"
+                combined_all="$combined_all&$tmp"
+            done
+            jdCookie=$(echo $combined_all | sed 's/^&//g')
+            [[ ! -z $jdCookie ]] && export JD_COOKIE="$jdCookie"
+            echo $JD_COOKIE
+        fi
+    fi
+}
+
 ## 组合互助码格式化为全局变量的函数
 combine_sub() {
     source $file_env
@@ -110,7 +132,7 @@ combine_sub() {
     local envs=$(eval echo "\$JD_COOKIE")
     local array=($(echo $envs | sed 's/&/ /g'))
     local user_sum=${#array[*]}
-    local a b i j t sum
+    local a b i j t sum combined_all
     for ((i=1; i <= $user_sum; i++)); do
         local tmp1=$what_combine$i
         local tmp2=${!tmp1}
@@ -146,7 +168,7 @@ for ((i = 0; i < ${#env_name[*]}; i++)); do
     export ${env_name[i]}=""
 done
 
-TempBlock_JD_COOKIE
+TempBlock_JD_COOKIE && Random_JD_COOKIE
 
 #if [[ $(ls $dir_code) ]]; then
 #    latest_log=$(ls -r $dir_code | head -1)
