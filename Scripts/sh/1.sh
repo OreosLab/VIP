@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+clear
+
+echo "
+┏━┓┏┓╻┏━╸   ╻┏ ┏━╸╻ ╻   ┏━┓╻ ╻┏━╸╻  ╻     ┏━╸┏━┓┏━┓   ╺┳┓┏━┓┏━╸╻┏ ┏━╸┏━┓
+┃ ┃┃┗┫┣╸ ╺━╸┣┻┓┣╸ ┗┳┛   ┗━┓┣━┫┣╸ ┃  ┃     ┣╸ ┃ ┃┣┳┛    ┃┃┃ ┃┃  ┣┻┓┣╸ ┣┳┛
+┗━┛╹ ╹┗━╸   ╹ ╹┗━╸ ╹    ┗━┛╹ ╹┗━╸┗━╸┗━╸   ╹  ┗━┛╹┗╸   ╺┻┛┗━┛┗━╸╹ ╹┗━╸╹┗╸
+"
+
 log(){
     echo -e "\e[32m\n$1 \e[0m\n"
 }
@@ -16,22 +24,60 @@ warn(){
     echo -e "\e[31m$1 \e[0m\n"
 }
 
-warn "大道至简"
-inp "选择你想部署的 docker 项目：\n1) qinglong\n2) V4\n3) elecV2P\n4) HHL\n5) JS_TOOL\n6) helloword(sakura)"
+docker_install() {
+    echo "检测 Docker......"
+    if [ -x "$(command -v docker)" ]; then
+        echo "检测到 Docker 已安装!"
+    else
+        if [ -r /etc/os-release ]; then
+            lsb_dist="$(. /etc/os-release && echo "$ID")"
+        fi
+        if [ $lsb_dist == "openwrt" ]; then
+            echo "openwrt 环境请自行安装 docker"
+            exit 1
+        else
+            echo "安装 docker 环境..."
+            curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+            echo "安装 docker 环境...安装完成!"
+            systemctl enable docker
+            systemctl start docker
+        fi
+    fi
+}
+
+Onekey(){
+    wget -q https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/${project}.sh -O ${project}.sh && bash ${project}.sh
+}
+
+INSTALL_JS_TOOL(){
+    docker_install
+    inp "是否直接安装：\n1) 直接安装[默认]\n2) 手动选择"
+    read type
+    if [ "$type" = "2" ]; then
+        wget -q https://gitee.com/highdimen/js_tool/raw/A1/resource/install_scripts/docker_install_jd.sh -O docker_install_jd.sh && chmod +x docker_install_jd.sh && bash docker_install_jd.sh
+    else
+        wget -q https://gitee.com/highdimen/js_tool/raw/A1/resource/install_scripts/Qunhui_docker_install_jd.sh -O docker_install_jd.sh && chmod +x docker_install_jd.sh && bash docker_install_jd.sh
+}
+
+log "大道至简"
+inp "选择你想部署的 docker 项目：\n1) qinglong\n2) V4\n3) elecV2P\n4) HHL\n5) JS_TOOL"
 opt
 read option
 case $option in
-    1) project="ql"
+    1)  project="ql"
+        Onekey
     ;;
-    2) project="v4"
+    2)  project="v4"
+        Onekey
     ;;
-    3) project="v2p"
+    3)  project="v2p"
+        Onekey
     ;;
-    4) project="hhl"
+    4)  project="hhl"
+        Onekey
     ;;
-    *) echo -e "\e[31m还没写好或不存在\e[0m\n"
+    5)  INSTALL_JS_TOOL
+    ;;  
+    *)  warn "该项目不存在"
     ;;
 esac
-
-wget -q https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/sh/${project}.sh -O ${project}.sh
-bash ${project}.sh
