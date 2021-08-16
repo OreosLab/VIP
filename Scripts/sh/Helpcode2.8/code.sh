@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210817-001
+## Build 20210817-002
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -568,13 +568,17 @@ case $UpdateType in
 esac
 }
 
+check_jd_cookie(){
+[[ "$(curl -s --noproxy "*" "https://bean.m.jd.com/bean/signIndex.action" -H "cookie: $1")" ]] && echo "COOKIE 有效" || echo "COOKIE 已失效"
+}
+
 dump_user_info(){
 echo -e "\n## 账号用户名及 COOKIES 整理如下："
 local envs=$(eval echo "\$JD_COOKIE")
 local array=($(echo $envs | sed 's/&/ /g'))
     for ((m = 0; m < ${#pt_pin[*]}; m++)); do
         j=$((m + 1))
-        echo -e "## 用户名 $j：${pt_pin[m]}\nCookie$j=\"${array[m]}\""
+        echo -e "## 用户名 $j：${pt_pin[m]} (`check_jd_cookie ${array[m]}`)\nCookie$j=\"${array[m]}\""
     done
 }
 
@@ -684,5 +688,3 @@ update_help
 
 ## 修改curtinlv入会领豆配置文件的参数
 [[ -f /ql/repo/curtinlv_JD-Script/OpenCard/OpenCardConfig.ini ]] && sed -i "4c JD_COOKIE = '$(echo $JD_COOKIE | sed "s/&/ /g; s/\S*\(pt_key=\S\+;\)\S*\(pt_pin=\S\+;\)\S*/\1\2/g;" | perl -pe "s| |&|g")'" /ql/repo/curtinlv_JD-Script/OpenCard/OpenCardConfig.ini
-
-exit
