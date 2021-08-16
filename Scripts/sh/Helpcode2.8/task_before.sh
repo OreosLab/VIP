@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Build 20210815-002
+# Build 20210817-001
 
 p1=$1
 
@@ -173,13 +173,7 @@ team_task(){
                 result=$(echo -e "$COOKIES_HEAD$COOKIES")
                 if [[ $result ]]; then
                     export JD_COOKIE=$result
-                    if [[ ${#activityId[*]} -gt 0 ]]; then
-                        for ((k=0; k<=${#activityId[*]}; k++)); do
-                            node /ql/scripts/$scr
-                        done
-                    else
-                        node /ql/scripts/$scr
-                    fi
+                    node /ql/scripts/$scr
                 fi
 #               echo $JD_COOKIE
             done

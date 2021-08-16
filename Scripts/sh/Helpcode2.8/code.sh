@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210816-001
+## Build 20210817-001
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -668,9 +668,12 @@ install_dependencies_all(){
     done
 }
 
+kill_proc(){
+ps -ef|grep "$1"|grep -Ev "$2"|awk '{print $1}'|xargs kill -9
+}
 
 ## 执行并写入日志
-ps -ef|grep "code.sh"|grep -Ev "grep|$$"|awk '{print $1}'|xargs kill -9 >/dev/null  2>&1
+kill_proc "code.sh" "grep|$$" >/dev/null 2>&1
 [[ $FixDependType = "1" ]] && [[ "$ps_num" -le $proc_num ]] && install_dependencies_all >/dev/null 2>&1 &
 latest_log=$(ls -r $dir_code | head -1)
 latest_log_path="$dir_code/$latest_log"
