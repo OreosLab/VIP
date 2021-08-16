@@ -52,7 +52,7 @@ ql repo https://github.com/smiek2221/scripts.git "jd_|gua_" "" "^MovementFaker|^
 ```
 - `cdle`
 ```
-ql repo https://github.com/cdle/jd_study.git "jd_" "disposable|expired|jdc"
+ql repo https://github.com/cdle/xdd.git "jd_" "disposable|expired|jdc"
 ```
 - `ZCY01`
 ```
