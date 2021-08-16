@@ -279,7 +279,7 @@ else
 fi
 
 if [ $? -ne 0 ] ; then
-    cancelrun "** 错误：容器创建失败，多数由于 docker 空间不足引起，请检查！"
+    cancelrun "** 错误：容器创建失败，请翻译以上英文报错，Google/百度尝试解决问题！"
 fi
 
 if [ $INSTALL_WATCH = true ]; then
