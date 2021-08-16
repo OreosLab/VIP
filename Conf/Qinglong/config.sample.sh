@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210815-001
+## Mod: Build20210815-002
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -170,8 +170,8 @@ esac
 ## esac
 case $1 in
     *jd_fruit*)
-        RandomMode="1"
-        ran_num="5"
+        RandomMode=""
+        ran_num=""
         ;;
     *jd_dreamFactory* | *jd_jdfactory*)
         RandomMode=""
@@ -181,6 +181,39 @@ case $1 in
         RandomMode=""
         ran_num=""
         ;;
+esac
+
+## 12. 组队环境变量
+### 环境变量填写要求较高，建议群组内确认填写结果
+scr_name="$1"                                 ## 不可删除
+case $1 in
+    *jd_sendBean* | *jd_sddd*)                ## 送豆得豆活动脚本关键词
+        teamer_num="11"                       ## 单个队伍中的总账号数为 11 个
+        team_num="1"                          ## 每个账号发起组队的最大队伍数为 1 个
+        ;;
+    *xmGame*)                                 ## 小米-星空大冒险活动脚本关键词
+        teamer_num="11"                       ## 单个队伍中的总账号数为 11 个
+        team_num="1"                          ## 每个账号发起组队的最大队伍数为 1 个
+        ;;
+    *jd_zdjr*)                                ## 组队瓜分京豆活动脚本关键词
+        teamer_num="5 5 5 5"                  ## 对应各个活动中单个队伍中的总账号数分别为 5 5 5 5 个
+        team_num="2 3 3 5"                    ## 对应各个活动中每个账号发起组队的最大队伍数为 2 3 3 5 个
+        activityId=(                          ## 活动 activityId；需手动抓包。按数组分行填写至括号内
+          54f071f4eb794092a872392696be7d8d
+          0582063f78434ed599becfc8f812c2ee
+          bbda11ba7a9644148d65c8b0b78f0bd2
+          92c03af2ce744f6f94de181ccee15e4f
+        )
+        activityUrl=(                         ## 活动 activityUrl；需手动抓包。按数组分行填写至括号内
+          https://cjhydz-isv.isvjcloud.com
+          https://lzkjdz-isv.isvjcloud.com
+          https://lzkjdz-isv.isvjcloud.com
+          https://cjhydz-isv.isvjcloud.com
+        )
+        ;;
+    *)                                        ## 不可删除
+        scr_name=""                           ## 不可删除
+        ;;                                    ## 不可删除
 esac
 
 ## 其他需要的变量，脚本中需要的变量使用 export 变量名= 声明即可
@@ -572,7 +605,7 @@ export CleanUsers=""
 ### 第一个账号助力Tsukasa007，其他依次助力CK1第一个CK失效应该全都会助力Tsukasa007，亲注意一下（其他脚本逻辑都差不多）
 ### 一天只能领400豆1个ck20豆，不设置变量默认只会运行到ck21，填写11就是跑到11个ck就停止，填写21就是跑到21个ck就停止，如果没豆那就改变量，ck多每天改一次收益最大化
 export JD_OPENCARE_CHAMPIONSHIP=""
-## 2、7.28-8.9 夏日呵护 母音甄选 
+## 2、7.28-8.9 夏日呵护 母音甄选	
 ### 一天只能领100豆1个ck10豆，不设置变量默认只会运行到ck11，填写11就是跑到11个ck就停止，填写22就是跑到22个ck就停止，一天最多助力10个ck，推荐11的倍数填写！！如果11没豆那就22如此类推，每天改一次收益最大化
 export JD_SUMMER_MOM_OPENCARD=""
 ## 3、7.29-8.9 奥运夺金挑战赛
