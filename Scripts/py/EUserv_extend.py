@@ -6,7 +6,7 @@ Author: cokemine
 Modifier: o0oo0ooo0 & Oreo
 Date: Tue Aug 10 08:24:30 UTC 2021
 cron: 0 10 */7 * *
-new Env('EUserv 续期邮件版');
+new Env('EUserv 续期');
 ------------
 环境变量说明
 EUserv_ID: 账号    用户名，邮箱也可，多账号用空格分隔，ql 环境变量填写需用回车隔开
