@@ -7,7 +7,7 @@ COMMENT
 dir_config=/ql/config
 dir_script=/ql/scripts
 
-team=`( find ${dir_config} -type f -name "*team.sh" && find ${dir_script} -type f -name "*team.sh" )|head -1`
+team=`( find ${dir_config} -type f -name "*team.sh" || find ${dir_script} -type f -name "*team.sh" )|head -1`
 scr1=`find ${dir_script} -type f -name "*gua_xmGame.js"|head -1`
 scr2=`find ${dir_script} -type f -name "*jd_sddd.js" -o -name "*sendBeans.js"|head -1`
 scr3="${dir_script}/Tsukasa007_my_script_master_jd_opencard_teamBean5_enc.js"
