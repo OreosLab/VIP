@@ -19,19 +19,11 @@ tg                [TG: tg_bot_token@user_id]
 qwx               [企业微信: touser-corpid-corpsecret-agentid 其中 touser 可填 @all，agenid 不填默认为 1000002]
 pp                [PushPlus: push_plus_token]
 off               [关闭推送]
-------------
-依赖模块说明
-pip install pytz / pip3 install pytz
 '''
 
-from datetime import datetime  
-import pytz
 import requests,time,re,json,random,os
 
-
-shanghai = pytz.timezone('Asia/Shanghai')
-shanghai_time = datetime.now(tz=shanghai)
-now = shanghai_time.strftime("%Y-%m-%d %H:%M:%S")
+now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 headers = {
         'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 9; MI 6 MIUI/20.6.18)'
         }
