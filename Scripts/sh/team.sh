@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 <<'COMMENT'
-Cron: 16 6 * * *  sh_team.sh
+cron: 16 6 * * *
+new Env('组队任务');
 COMMENT
 
 dir_config=/ql/config

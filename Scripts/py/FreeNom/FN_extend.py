@@ -3,7 +3,8 @@
 Author: shuai93
 Modifier: Oreo
 Date: Wed Aug 11 10:15:41 UTC 2021
-Cron: 25 7 */10 * *  FN_extend.py
+cron: 25 7 */10 * *
+new Env('EUserv 续期消息版');
 ------------
 环境变量说明                     示例
 FN_ID: Freenom 用户名           1234567890@gmail.com

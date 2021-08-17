@@ -5,7 +5,8 @@ from bs4 import BeautifulSoup
 Author: cokemine
 Modifier: o0oo0ooo0 & Oreo
 Date: Tue Aug 10 08:24:30 UTC 2021
-Cron: 0 10 */7 * *  py_EUserv_extend.py
+cron: 0 10 */7 * *
+new Env('EUserv 续期邮件版');
 ------------
 环境变量说明
 EUserv_ID: 账号    用户名，邮箱也可，多账号用空格分隔，ql 环境变量填写需用回车隔开
