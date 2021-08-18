@@ -227,7 +227,7 @@ check_port() {
     echo "正在检测端口:$1"
     netstat -tlpn | grep "\b$1\b"
 }
-if [ "$port" != "2" ]; then
+if [ "$NETWORK" = "bridge" ]; then
     while check_port $V2P_PORT; do    
         echo -n -e "\e[31m端口:$V2P_PORT 被占用，请重新输入 webUI 端口：\e[0m"
         read V2P_PORT
