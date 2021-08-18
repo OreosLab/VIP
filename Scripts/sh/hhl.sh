@@ -18,7 +18,6 @@ JD_PATH=""
 SHELL_FOLDER=$(pwd)
 CONTAINER_NAME=""
 TAG="latest"
-NETWORK="bridge"
 
 HAS_IMAGE=false
 EXT_ALL=true
@@ -154,15 +153,6 @@ if [ "$watchtower" = "1" ]; then
     INSTALL_WATCH=true
 fi
 
-inp "请选择容器的网络类型：\n1) host\n2) bridge[默认]"
-opt
-read net
-if [ "$net" = "1" ]; then
-    NETWORK="host"
-    CHANGE_NETWORK="--net $NETWORK"
-else
-    CHANGE_NETWORK=""
-fi
 
 # 配置已经创建完成，开始执行
 if [ $EXT_ALL = true ]; then
@@ -199,7 +189,6 @@ run_v(){
         -v $HHL_PATH:/scripts \
         --name $CONTAINER_NAME \
         --restart always \
-        $CHANGE_NETWORK \
         $DOCKER_IMG_NAME:$TAG
 }
 run_nov(){
@@ -207,7 +196,6 @@ run_nov(){
         -t \
         --name $CONTAINER_NAME \
         --restart always \
-        $CHANGE_NETWORK \
         $DOCKER_IMG_NAME:$TAG
 }
 if [ $EXT_ALL = true ]; then

@@ -172,22 +172,25 @@ opt
 read net
 if [ "$net" = "1" ]; then
     NETWORK="host"
-    CHANGE_NETWORK="--net $NETWORK"
-else
-    CHANGE_NETWORK=""
+    MAPPING_V2P_PORT=""
+    MAPPING_HTTP_PORT=""
+    MAPPING_REQUEST_PORT=""
 fi
 
-inp "是否修改端口[默认 8100|8101|8102]：\n1) 修改\n2) 不修改[默认]"
-opt
-read change_port
-if [ "$change_port" = "1" ]; then
-    echo -n -e "\e[36m输入您想修改的 webUI 端口->\e[0m"
-    read V2P_PORT
-    echo -n -e "\e[36m输入您想修改的代理端口->\e[0m"
-    read HTTP_PORT
-    echo -n -e "\e[36m输入您想修改的代理请求查看端口->\e[0m"
-    read REQUEST_PORT
+if [ "$NETWORK" = "bridge" ]; then
+    inp "是否修改映射端口[默认 8100|8101|8102]：\n1) 修改\n2) 不修改[默认]"
+    opt
+    read change_port
+    if [ "$change_port" = "1" ]; then
+        echo -n -e "\e[36m输入您想修改的 webUI 端口->\e[0m"
+        read V2P_PORT
+        echo -n -e "\e[36m输入您想修改的代理端口->\e[0m"
+        read HTTP_PORT
+        echo -n -e "\e[36m输入您想修改的代理请求查看端口->\e[0m"
+        read REQUEST_PORT
+    fi
 fi
+
 
 # 配置已经创建完成，开始执行
 if [ $EXT_ALL = true ]; then
@@ -224,21 +227,26 @@ check_port() {
     echo "正在检测端口:$1"
     netstat -tlpn | grep "\b$1\b"
 }
-while check_port $V2P_PORT; do    
-    echo -n -e "\e[31m端口:$V2P_PORT 被占用，请重新输入 webUI 端口：\e[0m"
-    read V2P_PORT
-done
-echo -e "\e[34m恭喜，端口:$V2P_PORT 可用\e[0m"
-while check_port $HTTP_PORT; do    
-    echo -n -e "\e[31m端口:$HTTP_PORT 被占用，请重新输入代理端口：\e[0m"
-    read HTTP_PORT
-done
-echo -e "\e[34m恭喜，端口:$HTTP_PORT 可用\e[0m"
-while check_port $REQUEST_PORT; do    
-    echo -n -e "\e[31m端口:$REQUEST_PORT 被占用，请重新输入代理请求端口：\e[0m"
-    read REQUEST_PORT
-done
-echo -e "\e[34m恭喜，端口:$REQUEST_PORT 可用\e[0m"
+if [ "$port" != "2" ]; then
+    while check_port $V2P_PORT; do    
+        echo -n -e "\e[31m端口:$V2P_PORT 被占用，请重新输入 webUI 端口：\e[0m"
+        read V2P_PORT
+    done
+    echo -e "\e[34m恭喜，端口:$V2P_PORT 可用\e[0m"
+    MAPPING_V2P_PORT="-p $V2P_PORT:80"
+    while check_port $HTTP_PORT; do    
+        echo -n -e "\e[31m端口:$HTTP_PORT 被占用，请重新输入代理端口：\e[0m"
+        read HTTP_PORT
+    done
+    echo -e "\e[34m恭喜，端口:$HTTP_PORT 可用\e[0m"
+    MAPPING_HTTP_PORT="-p $HTTP_PORT:8001"
+    while check_port $REQUEST_PORT; do    
+        echo -n -e "\e[31m端口:$REQUEST_PORT 被占用，请重新输入代理请求端口：\e[0m"
+        read REQUEST_PORT
+    done
+    echo -e "\e[34m恭喜，端口:$REQUEST_PORT 可用\e[0m"
+    MAPPING_REQUEST_PORT="-p $REQUEST_PORT:8002"
+fi
 
 
 log "3.开始创建容器并执行"
@@ -246,9 +254,9 @@ run_v(){
     docker run -dit \
         -t \
         -e TZ=Asia/Shanghai \
-        -p $V2P_PORT:80 \
-        -p $HTTP_PORT:8001 \
-        -p $REQUEST_PORT:8002 \
+        $MAPPING_V2P_PORT \
+        $MAPPING_HTTP_PORT \
+        $MAPPING_REQUEST_PORT \
         -v $JSFILE_PATH:/usr/local/app/script/JSFile \
         -v $LISTS_PATH:/usr/local/app/script/Lists \
         -v $STORE_PATH:/usr/local/app/script/Store \
@@ -257,19 +265,19 @@ run_v(){
         -v $EFSS_PATH:/usr/local/app/efss \
         --name $CONTAINER_NAME \
         --restart always \
-        $CHANGE_NETWORK \
+        --network $NETWORK \
         $DOCKER_IMG_NAME:$TAG
 }
 run_nov(){
     docker run -dit \
         -t \
         -e TZ=Asia/Shanghai \
-        -p $V2P_PORT:80 \
-        -p $HTTP_PORT:8001 \
-        -p $REQUEST_PORT:8002 \
+        $MAPPING_V2P_PORT \
+        $MAPPING_HTTP_PORT \
+        $MAPPING_REQUEST_PORT \
         --name $CONTAINER_NAME \
         --restart always \
-        $CHANGE_NETWORK \
+        --network $NETWORK \
         $DOCKER_IMG_NAME:$TAG
 }
 if [ $EXT_ALL = true ]; then

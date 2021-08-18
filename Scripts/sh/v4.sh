@@ -178,9 +178,7 @@ opt
 read net
 if [ "$net" = "1" ]; then
     NETWORK="host"
-    CHANGE_NETWORK="--net $NETWORK"
-else
-    CHANGE_NETWORK=""
+    MAPPING_JD_PORT=""
 fi
 
 inp "是否在启动容器时自动启动挂机程序：\n1) 开启[默认]\n2) 关闭"
@@ -214,14 +212,15 @@ modify_v4_port(){
         read JD_PORT
     fi
 }
-inp "根据设备是否映射端口：\n1) 映射[默认]\n2) 不映射"
-opt
-read port
-if [ "$port" = "2" ]; then
-    MAPPING_JD_PORT=""
-else
-    CHANGE_NETWORK=""
-    modify_v4_port
+if [ "$NETWORK" = "bridge" ]; then
+    inp "是否映射端口：\n1) 映射[默认]\n2) 不映射"
+    opt
+    read port
+    if [ "$port" = "2" ]; then
+        MAPPING_JD_PORT=""
+    else
+        modify_v4_port
+    fi
 fi
 
 
@@ -288,7 +287,7 @@ docker run -dit \
     --name $CONTAINER_NAME \
     --hostname v4 \
     --restart always \
-    $CHANGE_NETWORK \
+    --network $NETWORK \
     $ENABLE_HANGUP_ENV \
     $ENABLE_BOT_ENV \
     $ENABLE_WEB_PANEL_ENV \

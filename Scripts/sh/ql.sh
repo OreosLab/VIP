@@ -154,9 +154,8 @@ opt
 read net
 if [ "$net" = "1" ]; then
     NETWORK="host"
-    CHANGE_NETWORK="--net $NETWORK"
-else
-    CHANGE_NETWORK=""
+    MAPPING_JD_PORT=""
+    MAPPING_NINJA_PORT=""
 fi
 
 inp "是否在启动容器时自动启动挂机程序：\n1) 开启[默认]\n2) 关闭"
@@ -171,6 +170,14 @@ opt
 read pannel
 if [ "$pannel" = "2" ]; then
     ENABLE_WEB_PANNEL_ENV=""
+fi
+
+inp "是否安装 Ninja：\n1) 安装[默认]\n2) 不安装"
+opt
+read Ninja
+if [ "$Ninja" = "2" ]; then
+    INSTALL_NINJA=false
+    MAPPING_NINJA_PORT=""
 fi
 
 # 端口问题
@@ -192,21 +199,12 @@ modify_Ninja_port(){
         read NINJA_PORT
     fi
 }
-inp "根据设备是否映射端口：\n1) 映射[默认]\n2) 不映射"
-opt
-read port
-if [ "$port" = "2" ]; then
-    MAPPING_JD_PORT=""
-    MAPPING_NINJA_PORT=""
-else
-    CHANGE_NETWORK=""
-    MAPPING_JD_PORT="-p $JD_PORT:5700"
-    inp "是否安装 Ninja，若已存在则强制重装：\n1) 安装[默认]\n2) 不安装"
+if [ "$NETWORK" = "bridge" ]; then
+    inp "是否映射端口：\n1) 映射[默认]\n2) 不映射"
     opt
-    read Ninja
-    if [ "$Ninja" = "2" ]; then
-        INSTALL_NINJA=false
-        modify_ql_port
+    read port
+    if [ "$port" = "2" ]; then
+        MAPPING_JD_PORT=""
         MAPPING_NINJA_PORT=""
     else
         modify_ql_port
@@ -279,7 +277,7 @@ docker run -dit \
     --name $CONTAINER_NAME \
     --hostname qinglong \
     --restart always \
-    $CHANGE_NETWORK \
+    --network $NETWORK \
     $ENABLE_HANGUP_ENV \
     $ENABLE_WEB_PANEL_ENV \
     $DOCKER_IMG_NAME:$TAG
