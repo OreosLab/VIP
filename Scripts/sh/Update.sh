@@ -32,54 +32,54 @@ BreakHelpType="BreakHelpType=\"1\""
 BreakHelpNum="BreakHelpNum=\"11-1000\""
 
 update_config() {
-curl -sL https://git.io/config.sh > $config_raw_path
-mv -b $config_raw_path $dir_config
-sed -ri "s/GithubProxyUrl=\"https\:\/\/ghproxy.com\/\"/GithubProxyUrl=\"${GithubProxyUrl}\"/g" $config_config_path
-sed -i "s/TG_BOT_TOKEN=\"\"/TG_BOT_TOKEN=\"${TG_BOT_TOKEN}\"/g" $config_config_path
-sed -i "s/TG_USER_ID=\"\"/TG_USER_ID=\"${TG_USER_ID}\"/g" $config_config_path
-sed -i "s/openCardBean=\"30\"/openCardBean=\"${openCardBean}\"/g" $config_config_path
+    curl -sL https://git.io/config.sh > $config_raw_path
+    mv -b $config_raw_path $dir_config
+    sed -ri "s/GithubProxyUrl=\"https\:\/\/ghproxy.com\/\"/GithubProxyUrl=\"${GithubProxyUrl}\"/g" $config_config_path
+    sed -i "s/TG_BOT_TOKEN=\"\"/TG_BOT_TOKEN=\"${TG_BOT_TOKEN}\"/g" $config_config_path
+    sed -i "s/TG_USER_ID=\"\"/TG_USER_ID=\"${TG_USER_ID}\"/g" $config_config_path
+    sed -i "s/openCardBean=\"30\"/openCardBean=\"${openCardBean}\"/g" $config_config_path
 }
 
 update_extra() {
-curl -sL https://git.io/extra.sh > $extra_raw_path
-mv -b $extra_raw_path $dir_config
-sed -i "s/CollectedRepo=(4)/CollectedRepo=(${CollectedRepo})/g" $extra_config_path
-sed -i "s/OtherRepo=()/OtherRepo=(${OtherRepo})/g" $extra_config_path
+    curl -sL https://git.io/extra.sh > $extra_raw_path
+    mv -b $extra_raw_path $dir_config
+    sed -i "s/CollectedRepo=(4)/CollectedRepo=(${CollectedRepo})/g" $extra_config_path
+    sed -i "s/OtherRepo=()/OtherRepo=(${OtherRepo})/g" $extra_config_path
 }
 
 update_code() {
-curl -sL https://git.io/code.sh > $code_raw_path
-mv -b $code_raw_path $dir_config
-sed -i "s/repo=\$repo4/repo=\$repo${repoNum}/g" $code_config_path
-sed -i "/^HelpType=/c${HelpType}" $code_config_path
-sed -i "/^BreakHelpType=/c${BreakHelpType}" $code_config_path
-sed -i "/^BreakHelpNum=/c${BreakHelpNum}" $code_config_path
+    curl -sL https://git.io/code.sh > $code_raw_path
+    mv -b $code_raw_path $dir_config
+    sed -i "s/repo=\$repo4/repo=\$repo${repoNum}/g" $code_config_path
+    sed -i "/^HelpType=/c${HelpType}" $code_config_path
+    sed -i "/^BreakHelpType=/c${BreakHelpType}" $code_config_path
+    sed -i "/^BreakHelpNum=/c${BreakHelpNum}" $code_config_path
 }
 
 update_task_before() {
-curl -sL https://git.io/task_before.sh > $task_before_raw_path
-mv -b $task_before_raw_path $dir_config
+    curl -sL https://git.io/task_before.sh > $task_before_raw_path
+    mv -b $task_before_raw_path $dir_config
 }
 
 random_cookie() {
-  c=1000000
-  for r in {1..3}; do
-      p=`expr $c - $r`
-      sed -ri "s/\"position\"\:${p}/regular${r}/" $file_db
-  done
-  for line in {1..100}; do
-      sed -ri "${line}s/(\"position\"\:)[^,]*/\"position\"\:${RANDOM}/" $file_db
-  done
-  for r in {1..3}; do
-      p=`expr $c - $r`
-      sed -ri "s/regular${r}/\"position\"\:${p}/" $file_db
-  done
-  ql check
+    c=1000000
+    for r in {1..3}; do
+        p=`expr $c - $r`
+        sed -ri "s/\"position\"\:${p}/regular${r}/" $file_db
+    done
+    for line in {1..100}; do
+        sed -ri "${line}s/(\"position\"\:)[^,]*/\"position\"\:${RANDOM}/" $file_db
+    done
+    for r in {1..3}; do
+        p=`expr $c - $r`
+        sed -ri "s/regular${r}/\"position\"\:${p}/" $file_db
+    done
+    ql check
 }
 
 update_sendNotify() {
-cp -rf /ql/config/sendNotify.js /ql/scripts/sendNotify.js
-cp -rf /ql/config/sendNotify.js /ql/ninja/backend/sendNotify.js
+    cp -rf /ql/config/sendNotify.js /ql/scripts/sendNotify.js
+    cp -rf /ql/config/sendNotify.js /ql/ninja/backend/sendNotify.js
 }
 
 
@@ -94,7 +94,7 @@ if [ $(date "+%H") -eq 18 ]; then
 fi
 
 case $@ in
-  ck)
-    random_cookie
-    ;;
+    ck)
+      random_cookie
+      ;;
 esac
