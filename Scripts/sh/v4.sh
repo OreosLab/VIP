@@ -46,7 +46,7 @@ inp() {
     echo -e "\e[33m\n$1 \e[0m\n"
 }
 
-opt(){
+opt() {
     echo -n -e "\e[36m输入您的选择->\e[0m"
 }
 
@@ -203,7 +203,7 @@ if [ "$pannel" = "2" ]; then
 fi
 
 # 端口问题
-modify_v4_port(){
+modify_v4_port() {
     inp "是否修改 V4 端口[默认 5678]：\n1) 修改\n2) 不修改[默认]"
     opt
     read change_port

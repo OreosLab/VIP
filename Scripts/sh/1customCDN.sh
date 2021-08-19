@@ -45,7 +45,7 @@ check_url() {
 
 
 # 获取有效 config.sh 链接
-get_valid_config(){
+get_valid_config() {
     config_list=(https://raw.githubusercontents.com/Oreomeow/VIP/main/Conf/Qinglong/config.sample.sh https://raw.sevencdn.com/Oreomeow/VIP/main/Conf/Qinglong/config.sample.sh https://ghproxy.com/https://raw.githubusercontent.com/Oreomeow/VIP/main/Conf/Qinglong/config.sample.sh)
     for url in ${config_list[@]}; do
         check_url $url
@@ -57,7 +57,7 @@ get_valid_config(){
     done
 }
 # 下载 config.sh
-dl_config_shell(){
+dl_config_shell() {
     if [ ! -a "$config_shell_path" ]; then
         touch $config_shell_path
     fi
@@ -78,7 +78,7 @@ fi
 
 
 # 获取有效 extra.sh 链接
-get_valid_extra(){
+get_valid_extra() {
     extra_list=(https://raw.githubusercontents.com/Oreomeow/VIP/main/Tasks/qlrepo/extra.sh https://raw.sevencdn.com/Oreomeow/VIP/main/Tasks/qlrepo/extra.sh https://ghproxy.com/https://raw.githubusercontent.com/Oreomeow/VIP/main/Tasks/qlrepo/extra.sh)
     for url in ${extra_list[@]}; do
         check_url $url
@@ -90,7 +90,7 @@ get_valid_extra(){
     done
 }
 # 下载 extra.sh
-dl_extra_shell(){
+dl_extra_shell() {
     if [ ! -a "$extra_shell_path" ]; then
         touch $extra_shell_path
     fi
@@ -106,7 +106,7 @@ dl_extra_shell(){
     chmod 755 $extra_shell_path
 }
 # extra.sh 设置区设置
-set_default_extra(){   
+set_default_extra() {   
     echo -e "一、集成仓库（Collected Repositories)\n2-JDHelloWorld\n3-he1pu\n4-shufflewzc\n6-Aaron-lv\n7-yuannian1112"
     read -p "输入您想拉取集成仓库编号(回车默认为 4)，拉取多个请用空格隔开:" CollectedRepo
     echo -e "二、其他仓库（Other Repositories）\n1-passerby-b\n2-curtinlv\n3-smiek2221\n4-cdle\n5-ZCY01\n6-whyour/hundun\n7-moposmall\n8-Ariszy (Zhiyi-N)\n9-photonmang\n10-jiulan\n12-star261\n13-Wenmoux\n14-Tsukasa007"
@@ -119,7 +119,7 @@ set_default_extra(){
     sed -i "s/Ninja=\"up\"/Ninja=\"${Ninja}\"/" $extra_shell_path
 }
 # 将 ql extra 添加到定时任务
-add_ql_extra(){
+add_ql_extra() {
     if [ "$(grep -c "ql\ extra" /ql/config/crontab.list)" != 0 ]; then
         echo "您的任务列表中已存在 task:ql extra"
     else
@@ -130,7 +130,7 @@ add_ql_extra(){
     fi
 }
 # 运行一次 ql extra
-run_ql_extra(){
+run_ql_extra() {
     ql extra
     sleep 5
 }
@@ -155,7 +155,7 @@ fi
 
 
 # 获取有效 code.sh 链接
-get_valid_code(){
+get_valid_code() {
     code_list=(https://raw.githubusercontents.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/code.sh https://raw.sevencdn.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/code.sh https://ghproxy.com/https://raw.githubusercontents.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/code.sh)
     for url in ${code_list[@]}; do
         check_url $url
@@ -167,7 +167,7 @@ get_valid_code(){
     done
 }
 # 下载 code.sh
-dl_code_shell(){
+dl_code_shell() {
     if [ ! -a "$code_shell_path" ]; then
         touch $code_shell_path
     fi
@@ -183,7 +183,7 @@ dl_code_shell(){
     chmod 755 $code_shell_path
 }
 # code.sh 预设仓库及默认调用仓库设置
-set_default_code(){
+set_default_code() {
     echo -e "## 将\"repo=\$repo1\"改成\"repo=\$repo2\"或其他，以默认调用其他仓库脚本日志\nrepo1='panghu999_jd_scripts' #预设的 panghu999 仓库\nrepo2='JDHelloWorld_jd_scripts' #预设的 JDHelloWorld 仓库\nrepo3='he1pu_JDHelp' #预设的 he1pu 仓库\nrepo4='shufflewzc_faker2' #预设的 shufflewzc 仓库\nrepo6='Aaron-lv_sync_jd_scripts' #预设的 Aaron-lv 仓库\nrepoA='yuannian1112_jd_scripts' #预设的 yuannian1112 仓库\nrepo=\$repo1 #默认调用 panghu999 仓库脚本日志"
     read -p "输入您想调用的仓库编号(默认为 4):" repoNum
     repoNum=${repoNum:-'4'}
@@ -193,7 +193,7 @@ set_default_code(){
     fi
 }
 # 将 task code.sh 添加到定时任务
-add_task_code(){
+add_task_code() {
     if [ "$(grep -c "code.sh" /ql/config/crontab.list)" != 0 ]; then
         echo "您的任务列表中已存在 task:task code.sh"
     else
@@ -221,7 +221,7 @@ fi
 
 
 # 获取有效 task_before.sh 链接
-get_valid_task_before(){
+get_valid_task_before() {
     task_before_list=(https://raw.githubusercontents.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/task_before.sh https://raw.sevencdn.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/task_before.sh https://ghproxy.com/https://raw.githubusercontents.com/Oreomeow/VIP/main/Scripts/sh/Helpcode2.8/task_before.sh)
     for url in ${task_before_list[@]}; do
         check_url $url
@@ -233,7 +233,7 @@ get_valid_task_before(){
     done
 }
 # 下载 task_before.sh
-dl_task_before_shell(){
+dl_task_before_shell() {
     if [ ! -a "$task_before_shell_path" ]; then
         touch $task_before_shell_path
     fi
@@ -254,7 +254,7 @@ fi
 
 
 # 添加定时任务 ql bot
-add_ql_bot(){
+add_ql_bot() {
     if [ "$(grep -c "ql\ bot" /ql/config/crontab.list)" != 0 ]; then
         echo "您的任务列表中已存在 task:ql bot"
     else
@@ -265,7 +265,7 @@ add_ql_bot(){
     fi
 }
 # 运行一次并简单设置 bot.json
-set_bot_json(){
+set_bot_json() {
     ql bot
     echo -e "------ 机器累了，休息 10s ------"
     sleep 10
@@ -281,7 +281,7 @@ set_bot_json(){
     sed -i "s/ASDFAWEFADSFAWEFDSFASFD/${api_hash}/" $bot_json
 }
 # 再运行一次 ql bot
-run_ql_bot(){
+run_ql_bot() {
     ql bot
     echo -e "------ 机器累了，休息 10s ------"
     sleep 10
@@ -300,7 +300,7 @@ fi
 
 
 # 添加定时任务 自动更新模板
-add_curl_sample(){
+add_curl_sample() {
     if [ "$(grep -c "config.sample.sh" /ql/config/crontab.list)" != 0 ]; then
         echo "您的任务列表中已存在 task:自动更新模板"
     else
@@ -310,7 +310,7 @@ add_curl_sample(){
         curl -s -H 'Accept: application/json' -H "Authorization: Bearer $token" -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept-Language: zh-CN,zh;q=0.9' --data-binary '{"name":"自动更新模板","command":"curl -L https://raw.githubusercontents.com/Oreomeow/VIP/main/Conf/Qinglong/config.sample.sh -o /ql/sample/config.sample.sh && cp -rf /ql/sample/config.sample.sh /ql/config","schedule":"45 6,18 * * *"}' --compressed 'http://127.0.0.1:5700/api/crons?t=1627380635389'
     fi
 }
-run_curl_sample(){
+run_curl_sample() {
     curl -sL $valid_url -o /ql/sample/config.sample.sh && cp -rf /ql/sample/config.sample.sh /ql/config
 }
 if [ "${all}" = 1 ]; then

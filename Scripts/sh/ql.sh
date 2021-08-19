@@ -43,7 +43,7 @@ inp() {
     echo -e "\e[33m\n$1 \e[0m\n"
 }
 
-opt(){
+opt() {
     echo -n -e "\e[36m输入您的选择->\e[0m"
 }
 
@@ -181,7 +181,7 @@ if [ "$Ninja" = "2" ]; then
 fi
 
 # 端口问题
-modify_ql_port(){
+modify_ql_port() {
     inp "是否修改青龙端口[默认 5700]：\n1) 修改\n2) 不修改[默认]"
     opt
     read change_ql_port
@@ -190,7 +190,7 @@ modify_ql_port(){
         read JD_PORT
     fi
 }
-modify_Ninja_port(){
+modify_Ninja_port() {
     inp "是否修改 Ninja 端口[默认 5701]：\n1) 修改\n2) 不修改[默认]"
     opt
     read change_Ninja_port
@@ -239,7 +239,7 @@ if [ $HAS_IMAGE = true ] && [ $PULL_IMAGE = true ]; then
 fi
 
 # 端口存在检测
-check_port(){
+check_port() {
     echo "正在检测端口:$1"
     netstat -tlpn | grep "\b$1\b"
 }

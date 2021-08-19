@@ -14,7 +14,7 @@ scr2=`find ${dir_script} -type f -name "*jd_sddd.js" -o -name "*sendBeans.js"|he
 scr3="${dir_script}/Tsukasa007_my_script_master_jd_opencard_teamBean5_enc.js"
 
 ## 组队任务
-team_task(){
+team_task() {
     local p=$1                       ## 组队总账号数
     local q=$2                       ## 每个账号发起组队的最大队伍数量
     local scr=$3                     ## 活动脚本完整文件名

@@ -40,7 +40,7 @@ inp() {
     echo -e "\e[33m\n$1 \e[0m\n"
 }
 
-opt(){
+opt() {
     echo -n -e "\e[36m输入您的选择->\e[0m"
 }
 
@@ -77,7 +77,7 @@ docker_install() {
 }
 
 # 配置文件保存目录
-set_savedir(){
+set_savedir() {
 echo -n -e "\e[33m\n一、请输入配置文件保存的绝对路径（示例：/root)，回车默认为当前目录:\e[0m"
 read v2p_path
 if [ -z "$v2p_path" ]; then
@@ -250,7 +250,7 @@ fi
 
 
 log "3.开始创建容器并执行"
-run_v(){
+run_v() {
     docker run -dit \
         -t \
         -e TZ=Asia/Shanghai \
@@ -268,7 +268,7 @@ run_v(){
         --network $NETWORK \
         $DOCKER_IMG_NAME:$TAG
 }
-run_nov(){
+run_nov() {
     docker run -dit \
         -t \
         -e TZ=Asia/Shanghai \
