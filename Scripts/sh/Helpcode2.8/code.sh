@@ -6,6 +6,12 @@
 dir_shell=/ql/shell
 . $dir_shell/share.sh
 
+dir_env_db=/$dir_db/env.db
+
+##是否删除失效cookie
+#默认是1，表示开启，0表示关闭
+DEL_COOKIE="0"
+
 ## 预设的仓库及默认调用仓库设置
 ## 将"repo=$repo1"改成repo=$repo2"或其他，以默认调用其他仓库脚本日志
 ## 也可自行搜索本脚本内的"name_js=("和"name_js_only",将"repo"改成"repo2"或其他，用以自由组合调用仓库的脚本日志
@@ -572,13 +578,27 @@ check_jd_cookie(){
 [[ "$(curl -s --noproxy "*" "https://bean.m.jd.com/bean/signIndex.action" -H "cookie: $1")" ]] && echo "COOKIE 有效" || echo "COOKIE 已失效"
 }
 
+delete_old_cookie(){
+local ifold=$(curl -s --noproxy "*" "https://bean.m.jd.com/bean/signIndex.action" -H "cookie: $1")
+if [ ! "$ifold" ]; then
+  sed -i "s/$1/d" $dir_env_db
+  echo "COOKIE失效，将被删除"
+else
+  echo "COOKIE有效"
+fi
+}
+
 dump_user_info(){
 echo -e "\n## 账号用户名及 COOKIES 整理如下："
 local envs=$(eval echo "\$JD_COOKIE")
 local array=($(echo $envs | sed 's/&/ /g'))
     for ((m = 0; m < ${#pt_pin[*]}; m++)); do
         j=$((m + 1))
-        echo -e "## 用户名 $j：${pt_pin[m]} (`check_jd_cookie ${array[m]}`)\nCookie$j=\"${array[m]}\""
+        if [[ $DEL_COOKIE = "1" ]]; then
+          echo -e "## 用户名 $j：${pt_pin[m]} (`delete_old_cookie ${array[m]}`)\nCookie$j=\"${array[m]}\""
+        else
+          echo -e "## 用户名 $j：${pt_pin[m]} (`check_jd_cookie ${array[m]}`)\nCookie$j=\"${array[m]}\""
+        fi
     done
 }
 
