@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Build 20210817-002
+## Build 20210821-001
 
 ## 导入通用变量与函数
 dir_shell=/ql/shell
@@ -8,8 +8,7 @@ dir_shell=/ql/shell
 
 dir_env_db=/$dir_db/env.db
 
-##是否删除失效cookie
-#默认是1，表示开启，0表示关闭
+## 删除失效Cookie开关，默认是0，表示关闭；设置为1，表示开启
 DEL_COOKIE="0"
 
 ## 预设的仓库及默认调用仓库设置
@@ -582,9 +581,9 @@ delete_old_cookie(){
 local ifold=$(curl -s --noproxy "*" "https://bean.m.jd.com/bean/signIndex.action" -H "cookie: $1")
 if [ ! "$ifold" ]; then
   sed -i "s/$1/d" $dir_env_db
-  echo "COOKIE失效，将被删除"
+  echo "COOKIE 失效，将被删除"
 else
-  echo "COOKIE有效"
+  echo "COOKIE 有效"
 fi
 }
 
