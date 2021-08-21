@@ -99,16 +99,6 @@ EFSS_PATH=$V2P_PATH/elecv2p/efss
 docker_install
 warn "小白基本回车即可，更多学习内容尽在 https://github.com/elecV2/elecV2P"
 
-inp "是否为 arm 架构系统：\n1) x86_64[默认]\n2）arm64\n3）arm32"
-opt
-read architecture
-architecture=${architecture:-'1'}
-if [ "$architecture" = "2" ]; then
-    TAG="arm64"
-elif [ "$architecture" = "3" ]; then
-    TAG="arm32"
-fi
-
 inp "是否将目录映射到外部：\n1) 映射[默认]\n2) 不映射"
 opt
 read ext_all
@@ -266,7 +256,7 @@ run_v() {
         --name $CONTAINER_NAME \
         --restart always \
         --network $NETWORK \
-        $DOCKER_IMG_NAME:$TAG
+        $DOCKER_IMG_NAME
 }
 run_nov() {
     docker run -dit \
@@ -278,7 +268,7 @@ run_nov() {
         --name $CONTAINER_NAME \
         --restart always \
         --network $NETWORK \
-        $DOCKER_IMG_NAME:$TAG
+        $DOCKER_IMG_NAME
 }
 if [ $EXT_ALL = true ]; then
     run_v
