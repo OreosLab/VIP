@@ -29,20 +29,23 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-u', '--username', type=str)
 parser.add_argument('-p', '--password', type=str)
 args = parser.parse_args()
-
 username = args.username
 password = args.password
 
+def qlnotify(desp):
+    cur_path = os.path.abspath(os.path.dirname(__file__))
+    if os.path.exists(cur_path + "/notify.py"):
+        try:
+            from notify import send
+        except:
+            print("加载通知服务失败~")
+        else:
+            send('Freenom 续期', desp)
+
 class FreeNom:
     def __init__(self, username: str, password: str):
-        if "FN_ID" in os.environ:
-            self._u = os.environ.get('FN_ID')
-        else:
-            self._u = username
-        if "FN_PW" in os.environ:
-            self._p = os.environ.get('FN_PW')
-        else:
-            self._p = password
+        self._u = username
+        self._p = password
         self._s = requests.Session()
         self._s.headers.update({
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/79.0.3945.130 Safari/537.36'
@@ -108,16 +111,25 @@ class FreeNom:
             print(result)
             msg += result + '\n'
 
-cur_path = os.path.abspath(os.path.dirname(__file__))
-service = 1
-if os.path.exists(cur_path + "/notify.py"):
-    try:
-        from notify import send
-    except:
-        print("加载通知服务失败~")
-else:
-    service = 0
-instance = FreeNom(username, password)
-instance.renew()
-if service == 1:        
-    send('Freenom 续期', msg)
+if "FN_ID" in os.environ:
+    username = os.environ.get('FN_ID')
+if "FN_PW" in os.environ:
+    password = os.environ.get('FN_PW')
+
+if not username or not password:
+    msg = '你没有添加任何账户'
+    print(msg)
+    exit(1)
+    
+user_list = username.strip().split()
+passwd_list = password.strip().split()
+
+if len(user_list) != len(passwd_list):
+    msg = '账户与密码不匹配'
+    print(msg)
+    exit(1)
+    
+for i in range(len(user_list)):
+    instance = FreeNom(user_list[i], passwd_list[i])  
+    instance.renew()
+    qlnotify(msg)
