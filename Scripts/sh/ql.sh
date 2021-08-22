@@ -208,7 +208,9 @@ if [ "$NETWORK" = "bridge" ]; then
         MAPPING_NINJA_PORT=""
     else
         modify_ql_port
-        modify_Ninja_port
+        if [ "$INSTALL_NINJA" = true ]; then
+            modify_Ninja_port
+        fi
     fi
 fi
 
