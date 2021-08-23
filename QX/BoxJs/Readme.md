@@ -1,5 +1,11 @@
 ### 全网各大佬boxjs地址查询对照 2021.6.116 & 6.27 by Leon
 
+`少林寺`
+
+https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.boxjs.json
+
+----------
+
 `JDHelloWorld`
 
 https://raw.githubusercontent.com/JDHelloWorld/jd_scripts/main/boxjs.json
@@ -12,13 +18,13 @@ https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/box/yangtingxi
 
 ----------
 
-`龙猪猪`
+`longzhuzhu`
 
 https://raw.githubusercontent.com/longzhuzhu/nianyu/main/qx/longzhuzhu.boxjs.json
 
 ----------
 
-`dompling二丫`
+`dompling`（`二丫`）
 
 https://raw.githubusercontent.com/dompling/Script/master/dompling.boxjs.json
 
@@ -47,17 +53,20 @@ https://raw.githubusercontent.com/xl2101200/-/main/tom.box.json
 https://raw.githubusercontent.com/chinnkarahoi/jd_scripts/master/lxk0301.boxjs.json
 
 ----------
+
 `toulanboy`
 
 https://raw.githubusercontent.com/toulanboy/scripts/master/toulanboy.boxjs.json
 
 ----------
+
 `sunert` 
 
 https://raw.githubusercontent.com/GoodHolidays/Scripts/master/Task/sunert.boxjs.json
 
 ----------
-`zzpiglet`
+
+`zZPiglet`
 
 https://raw.githubusercontent.com/zZPiglet/Task/master/zZPiglet.boxjs.json
 
@@ -69,7 +78,7 @@ https://raw.githubusercontent.com/chavyleung/scripts/master/box/chavy.boxjs.json
 
 ----------
 
-`peng-pm`
+`Peng-YM`
 
 https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/box.js.json
 
@@ -80,6 +89,7 @@ https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/box.js.json
 https://raw.githubusercontent.com/NobyDa/Script/master/NobyDa_BoxJs.json
 
 ----------
+
 `whyour`
 
 https://raw.githubusercontent.com/whyour/hundun/master/quanx/whyour.boxjs.json
@@ -91,36 +101,43 @@ https://raw.githubusercontent.com/whyour/hundun/master/quanx/whyour.boxjs.json
 https://raw.githubusercontent.com/photonmang/quantumultX/master/photonmang.boxjs.json
 
 ----------
-`Ariszy` 原`Zhiyi-n`
+
+`Ariszy`（`执意`）
 
 https://raw.githubusercontent.com/Ariszy/Private-Script/master/Ariszy.boxjs.json
 
 ----------
-`姐姐`
+
+`Cenbomin`（`姐姐`）
 
 https://raw.githubusercontent.com/CenBoMin/GithubSync/main/cenbomin.box.json
 
 ----------
+
 `dd`
 
 https://raw.githubusercontent.com/DD-D1/2020scripts/master/box/dd.signboxjs.js
 
 ----------
+
 `feizao`
 
 https://raw.githubusercontent.com/age174/-/main/feizao.box.json
 
 ----------
+
 `ziye`
 
 https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/ziye.boxjs.json
 
 ----------
+
 `evilbutcher`
 
 https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/evilbutcher.boxjs.json
 
 ----------
+
 `ztxtop`
 
 https://raw.githubusercontent.com/ztxtop/x/main/ztxtop.boxjs.json
