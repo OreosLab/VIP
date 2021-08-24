@@ -25,11 +25,12 @@ openCardBean="10"
 
 CollectedRepo="4"
 OtherRepo=""
-repoNum="4"
+Ninja="down"
 
 HelpType="HelpType=\"0\""
 BreakHelpType="BreakHelpType=\"1\""
-BreakHelpNum="BreakHelpNum=\"11-1000\""
+BreakHelpNum="BreakHelpNum=\"31-1000\""
+
 
 update_config() {
     curl -sL https://git.io/config.sh > $config_raw_path
@@ -45,6 +46,7 @@ update_extra() {
     mv -b $extra_raw_path $dir_config
     sed -i "s/CollectedRepo=(4)/CollectedRepo=(${CollectedRepo})/g" $extra_config_path
     sed -i "s/OtherRepo=()/OtherRepo=(${OtherRepo})/g" $extra_config_path
+    sed -i "s/Ninja=\"up\"/Ninja=\"${Ninja}\"/" $extra_config_path
 }
 
 update_code() {
@@ -77,17 +79,20 @@ random_cookie() {
     ql check
 }
 
-update_sendNotify() {
+update_ninja() {
     cp -rf /ql/config/sendNotify.js /ql/scripts/sendNotify.js
     cp -rf /ql/config/sendNotify.js /ql/ninja/backend/sendNotify.js
+    wget -q https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/html/index.html -O /ql/config/index.html
+    cp -rf /ql/config/index.html /ql/ninja/backend/static/index.html
+    cd /ql/ninja/backend && pm2 start
 }
 
 
 update_config
 update_extra
 update_code
-update_task_before
-update_sendNotify
+# update_task_before
+update_ninja
 
 if [ $(date "+%H") -eq 18 ]; then
     random_cookie
