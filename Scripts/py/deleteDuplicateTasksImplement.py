@@ -1,9 +1,9 @@
+# -*- coding:utf-8 -*-
 '''
 cron: 20 0-23/2 * * *
 new Env('清理重复任务');
 '''
 
-# -*- coding:utf-8 -*-
 import json
 import os,sys
 import requests
