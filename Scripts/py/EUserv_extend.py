@@ -249,6 +249,9 @@ def main_handler(event, context):
         check(sessid, s)
         time.sleep(5)
 
+    if TG_API_HOST == "":
+         TG_API_HOST = 'api.telegram.org'
+
     # 五个通知渠道至少选取一个
     SCKEY and server_chan()
     COOL_PUSH_MODE and COOL_PUSH_SKEY and coolpush()
