@@ -199,7 +199,7 @@ def push_plus():
 # Telegram Bot Push https://core.telegram.org/bots/api#authorizing-your-bot
 def telegram():
     if TG_API_HOST == "":
-        TG_API_HOST = "api.telegram.org"
+        TG_API_HOST = 'api.telegram.org'
     data = (
         ('chat_id', TG_USER_ID),
         ('text', 'EUserv续费日志\n\n' + desp)
