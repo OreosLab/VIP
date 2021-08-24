@@ -1,21 +1,5 @@
-/**
- * 扫码获取京东 cookie elecV2P 自用版
- * 原作者们: https://github.com/LXK9301, https://github.com/FanchangWang, https://github.com/dompling
- * 兼容修改: https://t.me/elecV2
- * 
- * 该脚本仅适用于 elecV2P (https://github.com/elecV2/elecV2P)，限局域网内自用。
- * 更新时间: 2021-06-26
- * 脚本地址: https://raw.githubusercontent.com/elecV2/elecV2P-dei/master/examples/JSTEST/getJDCookie.elecV2P.js
- * 首次运行时可能会自动安装一些 npm 模块，需要稍微等待一下
- * 
- * 该脚本主要用于测试 elecV2P 以下功能，请勿用于任何商业用途
- * - $evui 函数相关功能
- * - 脚本前后端数据交互
- * - node_modules 自动安装
- */
-
-// @grant require
-// @grant nodejs
+// @grant require;
+// @grant nodejs;
 const $ = new Env('扫码获取京东cookie');
 let s_token, cookies, guid, lsid, lstoken, okl_token, token
 let evuid = 'jdcookie'
@@ -54,7 +38,7 @@ function ckJDPush(cookies, key) {
       let msg = '成功保存账号 ' + sn + ' 的 cookie 到 ' + key
       console.log(msg)
       return msg
-    } 
+    }
     return '无法识别的 cookie'
   }
   if (key !== 'CookiesJD') {
@@ -218,7 +202,7 @@ function checkLogin() {
         'Connection': 'Keep-Alive',
         'Content-Type': 'application/x-www-form-urlencoded; Charset=UTF-8',
         'Accept': 'application/json, text/plain, */*',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36',
+        'User-Agent': 'jdapp;android;10.0.5;11;0393465333165363-5333430323261366;network/wifi;model/M2102K1C;osVer/30;appBuild/88681;partner/lc001;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 11; M2102K1C Build/RKQ1.201112.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045534 Mobile Safari/537.36',
       }
     }
     $.post(options, (err, resp, data) => {
@@ -313,7 +297,7 @@ function taskUrl() {
       'Accept': 'application/json, text/plain, */*',
       'Accept-Language': 'zh-cn',
       'Referer': `https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=${Date.now()}&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport`,
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36',
+      'User-Agent': 'jdapp;android;10.0.5;11;0393465333165363-5333430323261366;network/wifi;model/M2102K1C;osVer/30;appBuild/88681;partner/lc001;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 11; M2102K1C Build/RKQ1.201112.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045534 Mobile Safari/537.36',
       'Host': 'plogin.m.jd.com'
     }
   }
@@ -329,7 +313,7 @@ function taskPostUrl() {
       'Accept': 'application/json, text/plain, */*',
       'Accept-Language': 'zh-cn',
       'Referer': `https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=${Date.now()}&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport`,
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36',
+      'User-Agent': 'jdapp;android;10.0.5;11;0393465333165363-5333430323261366;network/wifi;model/M2102K1C;osVer/30;appBuild/88681;partner/lc001;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 11; M2102K1C Build/RKQ1.201112.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045534 Mobile Safari/537.36',
       'Host': 'plogin.m.jd.com'
     }
   }
