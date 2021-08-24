@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210815-002
+## Mod: Build20210824-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -69,7 +69,7 @@ export TG_PROXY_AUTH=""
 ## 教程：https://www.hostloc.com/thread-805441-1-1.html
 ## 如反向代理地址 http://aaa.bbb.ccc 则填写 aaa.bbb.ccc
 ## 如需使用，请赋值代理地址链接，并自行解除下一行的注释
-export TG_API_HOST=""
+## export TG_API_HOST=""
 
 ## 4. 钉钉 
 ## 官方文档：https://developers.dingtalk.com/document/app/custom-robot-access
