@@ -37,6 +37,8 @@ PUSH_PLUS_TOKEN = os.environ.get('PUSH_PLUS_TOKEN')
 TG_BOT_TOKEN = os.environ.get('TG_BOT_TOKEN')  # 通过 @BotFather 申请获得，示例：1077xxx4424:AAFjv0FcqxxxxxxgEMGfi22B4yh15R5uw
 TG_USER_ID = os.environ.get('TG_USER_ID')  # 用户、群组或频道 ID，示例：129xxx206
 TG_API_HOST = os.environ.get('TG_API_HOST', 'api.telegram.org')  # 自建 API 反代地址，供网络环境无法访问时使用，网络正常则保持默认
+if TG_API_HOST == "":
+     TG_API_HOST = 'api.telegram.org'
 
 # wecomchan https://github.com/easychen/wecomchan
 WECOMCHAN_DOMAIN = os.environ.get('WECOMCHAN_DOMAIN')  # http(s)://example.com/
@@ -248,9 +250,6 @@ def main_handler(event, context):
         time.sleep(15)
         check(sessid, s)
         time.sleep(5)
-
-    if TG_API_HOST == "":
-         TG_API_HOST = 'api.telegram.org'
 
     # 五个通知渠道至少选取一个
     SCKEY and server_chan()
