@@ -249,7 +249,7 @@ def main_handler(event, context):
         check(sessid, s)
         time.sleep(5)
     
-    # 防止 config.sh TG_API_HOST == "" 的情况
+    # 防止 config.sh export TG_API_HOST="" 的情况
     global TG_API_HOST
     if TG_API_HOST == "":
         TG_API_HOST = 'api.telegram.org'
