@@ -13,7 +13,7 @@ MI_PWD: 密码
 STEP: 步数         空或不填则为 18000-25000 之间随机，自定义示例: 18763 或 19000-24000         
 MI_API: api 接口
 '''
-import os,requests,random
+import os, requests, random
 
 
 phone = os.environ.get('MI_USER')

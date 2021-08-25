@@ -8,7 +8,7 @@ env
 HOST_GROUP_ID: 用户、频道、群组 ID
 HOST_BOT_TOKEN: 机器人 TOKEN
 '''
-import os,requests,time
+import os, requests, time
 from urllib import parse
 
 

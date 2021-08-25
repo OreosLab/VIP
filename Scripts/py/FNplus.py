@@ -2,7 +2,7 @@
 cron: 25 7 */10 * *
 new Env('Freenom 续期消息版');
 '''
-import os,re,requests,argparse
+import os, re, requests, argparse
 
 # 登录地址
 LOGIN_URL = 'https://my.freenom.com/dologin.php'

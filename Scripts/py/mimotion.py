@@ -21,7 +21,7 @@ pp                [PushPlus: push_plus_token]
 off               [关闭推送]
 '''
 
-import requests,time,re,json,random,os
+import requests, time, re, json, random, os
 
 now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 headers = {

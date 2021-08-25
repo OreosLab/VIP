@@ -1,5 +1,5 @@
 # -*- coding: utf8 -*-
-import os,re,json,time,requests
+import os, re, json, time, requests
 from bs4 import BeautifulSoup
 '''
 Author: cokemine

@@ -2,7 +2,7 @@
 '''
 pip3 install telethon pysocks httpx / py -3 -m pip install telethon pysocks httpx
 '''
-import os,time,json
+import os, time, json
 from telethon import TelegramClient, events, sync
 
 api_id_list = json.loads(os.environ['api_id_list']) #输入api_id，一个账号一项
