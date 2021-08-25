@@ -63,6 +63,16 @@
                 "target":"https://raw.githubusercontent.com/ddgksf2013/Cuttlefish/master/Script/OlympicRanking.js"
             },
             "running":false
+        },
+        {
+            "name":"Epic 周免",
+            "type":"cron",
+            "time":"10 11 */3 * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/epic.js"
+            },
+            "running":false
         }
     ]
 }
