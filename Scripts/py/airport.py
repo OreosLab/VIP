@@ -6,7 +6,7 @@ cron: 20 10 * * *
 new Env('机场签到');
 ------------
 环境变量说明
-airport_url: 签到机场网址，多个网址用英文逗号分割，一般以 / 结尾 
+airport_url: 签到机场网址，多个网址用英文逗号分割，不要 user 之类的
 airport_user: 签到机场登陆邮箱，与网站对应，多个用户用英文逗号分割
 airport_pwd: 签到机场登陆密码，与网站对应，多个密码用英文逗号分割
 通知变量参考 https://raw.githubusercontent.com/whyour/qinglong/master/sample/notify.py
