@@ -9,7 +9,7 @@ $exec('wget https://raw.githubusercontent.com/whyour/qinglong/master/sample/noti
 })
 // 通知填写参考 https://raw.githubusercontent.com/whyour/qinglong/master/sample/notify.py
 console.log("⏳ 开始执行机场签到任务")
-$exec('python3 https://raw.githubusercontent.com/Oreomeow/freenom-py/main/FNplus.py', {
+$exec('python3 https://raw.githubusercontent.com/Oreomeow/freenom-py/main/airport.py', {
   cwd: './script/Shell',
   timeout: 0,
   env: {
