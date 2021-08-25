@@ -1,6 +1,6 @@
 ## Version: v2.8.0
 ## Date: 2021-06-20
-## Mod: Build20210815-002
+## Mod: Build20210825-001
 ## Update Content: 可持续发展纲要\n1. session管理破坏性修改\n2. 配置管理可编辑config下文件\n3. 自定义脚本改为查看脚本\n4. 移除互助相关
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -515,14 +515,15 @@ export guaopencard_addSku9="true" ##加购物车
 ## 18、8.11-8.18 大牌联合 约惠一夏
 export guaopencard10="true" ##开卡
 export guaopencard_addSku10="true" ##加购物车
-## 17开卡任务
-export guaopencardRun17="true" ##开卡任务
 ## 19-38、预备
 j=30
 for (( i = 11; i <= j; i++ )); do
     export guaopencard$i="true"
+    export guaopencardRun$i="true"
     export guaopencard_addSku$i="true"
 done
+## 39、秋新资联合开卡
+export guaopencardRun17="true" ##开卡任务
 
 # cdle 环境变量
 ## 1、全民运动会守卫红包
