@@ -11,7 +11,7 @@ airport_user: 签到机场登陆邮箱，与网站对应，多个用户用英文
 airport_pwd: 签到机场登陆密码，与网站对应，多个密码用英文逗号分割
 通知变量参考 https://raw.githubusercontent.com/whyour/qinglong/master/sample/notify.py
 '''
-import requestsi,re,os
+import requests,re,os
 
 requests.packages.urllib3.disable_warnings()
 
