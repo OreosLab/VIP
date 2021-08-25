@@ -2,7 +2,7 @@
 '''
 cron: 0
 new ENV('hostloc新帖推送机');
-cmd: nohup python3 -u /ql/scripts/hostloc2tg_api.py >> hostloc.txt 2>&1 &
+cmd: nohup python3 -u /ql/scripts/hostloc2tg_api.py >> /ql/log/hostloc.txt 2>&1 &
 ------------
 env 
 HOST_GROUP_ID: 用户、频道、群组 ID
