@@ -73,6 +73,16 @@
                 "target":"https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/js/FNplus.js"
             },
             "running":true
+        },
+        {
+            "name":"机场签到",
+            "type":"cron",
+            "time":"20 10 * * *",
+            "job":{
+                "type":"runjs",
+                "target":"https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/js/airport.js"
+            },
+            "running":true
         }
     ]
 }
