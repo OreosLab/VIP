@@ -72,7 +72,7 @@
                 "type":"runjs",
                 "target":"https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/epic.js"
             },
-            "running":false
+            "running":true
         }
     ]
 }
