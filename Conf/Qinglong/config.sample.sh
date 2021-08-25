@@ -515,6 +515,8 @@ export guaopencard_addSku9="true" ##加购物车
 ## 18、8.11-8.18 大牌联合 约惠一夏
 export guaopencard10="true" ##开卡
 export guaopencard_addSku10="true" ##加购物车
+## 17开卡任务
+export guaopencardRun17="true" ##开卡任务
 ## 19-38、预备
 j=30
 for (( i = 11; i <= j; i++ )); do
