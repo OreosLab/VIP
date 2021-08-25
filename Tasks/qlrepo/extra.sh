@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Mod: Build20210825V1
+## Mod: Build20210825V2
 ## 添加你需要重启自动执行的任意命令，比如 ql repo
 ## 安装node依赖使用 pnpm install -g xxx xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
 ## 安装python依赖使用 pip3 install xxx（Build 20210728-002 及以上版本的 code.sh，可忽略）
@@ -26,7 +26,7 @@ OtherRepo=() ##示例：OtherRepo=(1 3)
 dependencies="no" ##yes为安装，no为不安装
 package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv typescript fs require tslib"
 ## 3. Ninja 是否需要启动和更新设置
-Ninja="up" ##up为运行，down为不运行
+Ninja="on" ##up为更新，on为启动，down为不运行
 
 
 #------ 编号区 ------#
@@ -131,8 +131,37 @@ update_Ninja_normal(){
     cp sendNotify.js /ql/scripts/sendNotify.js
 }
 
+check_Ninja_normal(){
+    NOWTIME=$(date +%Y-%m-%d-%H-%M-%S)
+    i=0
+    while ((i<=0)); do
+        echo "扫描 Ninja 是否在线"
+        ps -fe|grep ninja|grep -v grep
+        if [ $? -ne 0 ]; then
+            i=0
+            echo $NOWTIME" 扫描结束！Ninja 掉线了不用担心马上重启！"
+            cd /ql
+            ps -ef|grep ninja|grep -v grep|awk '{print $1}'|xargs kill -9
+            cd /ql/ninja/backend
+            pnpm install
+            pm2 start
+            ps -fe|grep Daemon |grep -v grep 
+            if [ $? -ne 1 ]; then
+                i=1
+                echo $NOWTIME" Ninja 重启完成！"
+                curl "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMessage?chat_id=$TG_USER_ID&text=Ninja 已重启完成"
+            fi
+        else
+            i=1
+            echo $NOWTIME" 扫描结束！Ninja 还在！"
+        fi
+    done
+}
+
 if [ "$Ninja" = "up" ]; then
     update_Ninja_normal &
+elif [ "$Ninja" = "on" ]; then
+    check_Ninja_normal
 fi
 
 

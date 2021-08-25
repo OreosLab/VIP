@@ -25,7 +25,7 @@ while ((i<=0)); do
         fi
     else
         i=1
-        echo $NOWTIME" 扫描结束！NINJA还在！"
+        echo $NOWTIME" 扫描结束！NINJA 还在！"
     fi
 done
 
