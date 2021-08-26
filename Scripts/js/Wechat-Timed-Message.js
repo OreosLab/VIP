@@ -1,5 +1,5 @@
 console.log("⏳ 开始发送微信消息")
-$exec('python3 Wechat-Timed-Message.py', {
+$exec('python3 https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/py/Wechat-Timed-Message.py', {
   cwd: './script/Shell',
   timeout: 0,
   env: {
