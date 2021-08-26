@@ -17,6 +17,8 @@ message = os.getenv('MSG')
 content = os.getenv('CONTENT')
 qywx_am = os.getenv('QYWX_AM')
 image = os.getenv('IMAGE')
+access_token = ""
+errorNotify = ""
 
 
 if not title:
