@@ -12,8 +12,8 @@ DD_BOT_TOKEN: a1bxxxxxxxxxxxx                            钉钉机器人推送�
 TG_BOT_TOKEN: 123456:ABC-DEF1234xxx-xxx123ew11           TGBot 推送，填写自己向 @BotFather(https://t.me/BotFather) 申请的 Bot Token
 TG_USER_ID: 11xxxxxx03                                   TGBot 推送，填写 @getuseridbot(https://t.me/getuseridbot) 私聊获取到的纯数字 ID
 PUSH_PLUS_TOKEN: xxxxxxxxxxxxxxxx                        PUSHPLUS 推送，填写申请的 pushplus(https://pushplus.hxtrip.com/) TOKEN
-CORPID: xxxxxx                                           企业微信ID，填写注册的企业微信 ID
-AGENTID: 100001                                          企业微信应用ID，填写申请应用的ID
+CORPID: xxxxxx                                           企业微信 ID，填写注册的企业微信 ID
+AGENTID: 100001                                          企业微信应用 ID，填写申请应用的 ID
 CORPSECRET: xxxxxxxxxxxxxxx                              企业微信对应的 SECRET
 DISPLAY_CONTEXT: 1                                       任务执行时是否显示详细信息，1 显示 0 关闭，默认值 1
 COMMENT
