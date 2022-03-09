@@ -1,0 +1,98 @@
+{
+    "name": "羊毛",
+    "author": "Leon",
+    "desc": "该订阅适用于 elecV2P，与其他软件并不兼容。相关说明参考：https://github.com/elecV2/elecV2P-dei/tree/master/docs/06-task.md",
+    "date": "2021-08-14 21:45:00",
+    "list": [
+        {
+            "name": "安装依赖",
+            "type": "schedule",
+            "time": "0",
+            "job": {
+                "type": "exec",
+                "target": "wget -q https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/py/requirements.txt -O requirements.txt && pip3 install -r requirements.txt"
+            },
+            "running": false
+        },
+        {
+            "name": "中青看点看看赚&浏览赚(需配合专用重写获取cookie)",
+            "type": "cron",
+            "time": "30 6 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/ztxtop/x/main/youth_banner.js"
+            },
+            "running": true
+        },
+        {
+            "name": "中青看点签到&开转盘宝箱&阅读时长",
+            "type": "cron",
+            "time": "10 */1 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/GoodHolidays/Scripts/master/Task/youth.js"
+            },
+            "running": true
+        },
+        {
+            "name": "中青自动阅读V2P",
+            "type": "cron",
+            "time": "10 */2 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/KodoShinichi/elecV2P/main/Taks-elecV2P/youthread_elecV2.js"
+            },
+            "running": true
+        },
+        {
+            "name": "EUserv 续期",
+            "type": "cron",
+            "time": "0 10 */7 * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/js/EUserv_extend.js"
+            },
+            "running": true
+        },
+        {
+            "name": "小米运动改步",
+            "type": "cron",
+            "time": "25 20 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/js/mimotion.js"
+            },
+            "running": true
+        },
+        {
+            "name": "Freenom 续期",
+            "type": "cron",
+            "time": "25 7 */10 * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/js/FNplus.js"
+            },
+            "running": true
+        },
+        {
+            "name": "机场签到",
+            "type": "cron",
+            "time": "20 10 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/js/airport.js"
+            },
+            "running": true
+        },
+        {
+            "name": "电视家",
+            "type": "cron",
+            "time": "0 6-23 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/dsj.js"
+            },
+            "running": true
+        }
+    ]
+}

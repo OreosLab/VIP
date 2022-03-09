@@ -1,0 +1,71 @@
+[ 信物 : code.sh ]
+Build 20220116-001-test
+
+1、拷贝到 /ql/config/
+
+必读一：
+名称：格式化更新互助码
+命令：task /ql/config/code.sh
+定时规则：10 0 * * *
+
+必读二：
+互助码和互助规则文件路径调整至/ql/log/.ShareCode；备份路径调整至/ql/log/.bak_ShareCode/。
+这两个文件夹会自动创建。可以通过面板-任务日志查看。
+
+必读三：
+取消自动下载 ql.js、sendNotify.js、JD_DailyBonus.js功能，交由 extra2.sh 实现
+
+必读四：
+取消 node 依赖的安装和修复功能，交由 extra2.sh 实现
+
+[ 信物 : task_before.sh ]
+Build 20220115-001-test
+
+1、拷贝到 /ql/config/
+
+[ 信物 : jdCookie.js ]
+Mod 20211216-001
+
+基于风之凌殇二次魔改jdCookie，负责互助码到互助变量的整理，并将互助码提交给活动脚本
+
+1、拷贝到 /ql/config/
+
+[ 信物 : extra2.sh ]
+Build 20220201-001-test
+
+必读一：
+自动静默 (无日志，无通知)下载 ql.js、sendNotify.js、JD_DailyBonus.js、JS_USER_AGENTS.js、USER_AGENTS.js，通过config_sample.sh的js_deps_replace_envs变量，实现自动补全到脚本所在文件夹。
+
+必读二：
+支持 node 依赖的安装和修复，通过 config.sh 设置开启功能及定义依赖名称
+
+说明：
+1、放在/ql/scripts/文件夹
+2、命令：task extra2.sh
+
+[ 信物 : ckck2.sh ]
+Build 20220205-001-test
+
+1、检测 JD_COOKIE 有效性，支持失效账号自动禁用及有效账号自动启用；
+2、支持调用 wskey 转换脚本实现失效账号转换和恢复。如未检测到 wskey 转换脚本，则自行下载 Zy143L 的 wskey 转换脚本并执行转换；
+3、支持JD_WSCK(wskey)录入情况检测；
+4、WxPusher 一对一通知相关功能
+4.1、支持WxPusher UID录入情况检测(用于一对一通知)；
+4.2、支持自动整理并导出 ccwav sendNotify.js 适用的一对一通知CK_WxPusherUid.json文件，环境变量中备注中的WxPusher UID，与ccwav的CK_WxPusherUID.json中信息双向同步。当面板环境变量的备注中缺少时间戳时，支持自动补全；
+4.3、支持JD_COOKIE与同pin的JD_WSCK备注信息双向同步；
+5、支持预测账号剩余有效期；
+6、支持一对一推送失效账号信息；
+7、以上部分功能的开关或模式变量及其他功能，详见 config_sample.sh 第13项环境变量。
+
+说明：
+1、放在/ql/scripts/文件夹
+2、命令：task ckck2.sh
+3、其他：无聊用Shell写的 CK状态检查工具，支持消息推送通知。😱
+
+[ 信物 : config_sample.sh ]
+Build 20220203-002-test
+
+1、与/ql/config/config.sh对比，添加适合自己的参数变量；
+
+必读一：
+extra2.sh 会自动下载 ql.js、sendNotify.js、JD_DailyBonus.js、JS_USER_AGENTS.js、USER_AGENTS.js，通过 config_sample.sh 的js_deps_replace_envs 变量，实现自动补全到脚本所在文件夹。

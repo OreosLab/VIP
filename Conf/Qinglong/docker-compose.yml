@@ -1,0 +1,25 @@
+version: '3'
+services:
+    qinglong:
+        image: whyour/qinglong:latest
+        container_name: qinglong
+        hostname: qinglong
+        restart: unless-stopped
+        tty: true
+        ports:
+            - '5700:5700'
+            - '5701:5701'
+        volumes:
+            - ./config:/ql/config
+            - ./db:/ql/db
+            - ./log:/ql/log
+            - ./repo:/ql/repo
+            - ./raw:/ql/raw
+            - ./scripts:/ql/scripts
+            - ./jbot:/ql/jbot
+            - ./ninja:/ql/ninja
+        environment:
+            - ENABLE_HANGUP=true
+            - ENABLE_TG_BOT=true
+            - ENABLE_WEB_PANEL=true
+            - TZ=CST-8

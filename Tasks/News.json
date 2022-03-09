@@ -1,0 +1,78 @@
+{
+    "name": "News",
+    "author": "Leon",
+    "desc": "Monitor messages",
+    "date": "2021-05-26 23:50:00",
+    "list": [
+        {
+            "name": "GitHub监控",
+            "type": "cron",
+            "time": "30 9,21 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/github.js"
+            },
+            "running": true
+        },
+        {
+            "name": "公众号监控",
+            "type": "cron",
+            "time": "0,15,30,45 0-23 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/Oreomeow/VIP/main/Scripts/js/News/wechatsubs.js"
+            },
+            "running": false
+        },
+        {
+            "name": "NASA每日一图",
+            "type": "cron",
+            "time": "0 16 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/nasa/nasapic.js"
+            },
+            "running": true
+        },
+        {
+            "name": "iDaily",
+            "type": "cron",
+            "time": "30 19 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/idaily/idaily.js"
+            },
+            "running": true
+        },
+        {
+            "name": "豆瓣电影日历每日通知",
+            "type": "cron",
+            "time": "0 12 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/zZPiglet/Task/master/MovieCalendar/MovieCalendar.js"
+            },
+            "running": true
+        },
+        {
+            "name": "东京奥运会🏅金牌榜",
+            "type": "cron",
+            "time": "0 */6 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/ddgksf2013/Cuttlefish/master/Script/OlympicRanking.js"
+            },
+            "running": false
+        },
+        {
+            "name": "Epic 周免",
+            "type": "cron",
+            "time": "10 11 */3 * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/epic.js"
+            },
+            "running": true
+        }
+    ]
+}

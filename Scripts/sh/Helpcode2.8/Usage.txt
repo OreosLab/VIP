@@ -1,0 +1,83 @@
+使用方法：
+
+操作概括：
+1、把 code.sh、task_before.sh、jdCookie.js 复制到青龙容器的 /ql/config/ 路径。将 code.sh 设定定时任务。
+名称：格式化更新互助码
+命令：task /ql/config/code.sh
+定时规则：10 */3 * * *
+注：①表示每3个小时的整点10分时运行。
+        ②自动静默安装或修复常用依赖功能可能带来脚本运行时间长，主机性能消耗较大的副作用，如果不需要该功能，请自行修改 code.sh 内容：FixDependType="1" 改成 FixDependType=""
+2、如果需要使用临时禁止某些 COOKIE 参加所有活动或某些活动功能，以及全部随机或部分随机 COOKIE 参加活动的功能。还需要将 config_sample.sh 相应的环境变量设置模板复制到你的 /ql/config/config.sh 中，并根据要求填写；
+3、如果需要使用组队利益最大化模板，需要将 team.sh 复制到青龙容器的 /ql/config/ 路径。用法详见 team.sh 说明。
+
+〇、前言
+code.sh 是基于青龙 2.2.0 的 code.sh 修改而来，仅支持 2.8.0 及以上版本的青龙，不支持 2.2.0及以下版本的青龙。主要功能包括：①批量格式化导出互助码和互助规则；②支持自定义互助规则模板；③支持指定活动采用指定互助模板；④支持临时屏蔽某账号被助力(这些账号仍可助力其他账号)；⑤支持自动静默安装或静默修复常用的 node 依赖包(支持自定义所需要安装的依赖包)；⑥支持 COOKIES 批量格式化导出；
+task_before.sh 是本人基于青龙原版修改而来，支持包括东东农场、京喜工厂、摇钱树、京喜Token等16个活动的互助码、互助规则的格式化导出和提交。此外，配合置顶 config.sh 文件，可以实现临时禁止某些 COOKIE 参加所有活动或某些活动功能，以及全部随机或部分随机 COOKIE 参加活动的功能。
+
+主要原理：
+a) code.sh 工作主要分两个阶段：
+1、第一阶段：从各个活动脚本日志中搜索互助码，跟 COOKIES 的 pt_pin (用户名)校验后整理输出。根据你选择的互助规则模板，生成对应的互助规则。最新整理的互助码和互助规则输出到 code.sh 的日志，日志路径在 /ql/log/code/；
+2、第二阶段：读取 code.sh 的日志和 /ql/log/.ShareCode/ 路径下的各个活动的互助码和互助规则日志文件。逐条校对互助码和互助规则内容，如果不一致，则自动改写更新日志文件。当 code.sh 日志中互助码为 undefined 或 {} 时，跳过更新改写互助码和互助规则日志文件内容。
+
+b) 有些情况下活动脚本输出的互助码不全，例如：你有 10 个账号，目前活动脚本只跑了一半，日志只输出了 5 个，那么 code.sh 整理的也就只有 5 个有互助码，5 个空值。那么互助码和互助规则日志文件的对应内容也会相应更新。
+
+一、关于 code.sh 读取的活动脚本日志所属的作者仓库定义
+1、需要读取活动脚本日志才能格式化整理各个活动的互助码及互助规则。对应的仓库拉取命令详见置顶"截至XXXX年XX月XX日XX:XX还在维护的仓库"
+## 预设的仓库及默认调用仓库设置
+## 将"repo=$repo4"改成repo=$repo2"或其他，以默认调用其他仓库脚本日志
+## 也可自行搜索本脚本内的"name_js=("和"name_js_only",将"repo"改成"repo2"或其他，用以自由组合调用仓库的脚本日志
+repo1='panghu999_jd_scripts'                       #预设的 panghu999 仓库
+repo2='JDHelloWorld_jd_scripts'                    #预设的 JDHelloWorld 仓库
+repo3='he1pu_JDHelp'                               #预设的 he1pu 仓库
+repo4='shufflewzc_faker2'                          #预设的 shufflewzc 仓库
+repo5='Wenmoux_scripts_wen_chinnkarahoi'           #预设的 Wenmoux 仓库，用于读取口袋书店互助码。需提前拉取温某人的仓库或口袋书店脚本并完整运行。
+repo6='Aaron-lv_sync_jd_scripts'                   #预设的 Aaron-lv 仓库
+repo7='smiek2221_scripts'                          #预设的 smiek2221 仓库
+repo=$repo4                                        #默认调用 shufflewzc_faker2 仓库脚本日志
+
+2、导出京喜农场 Token 的方法
+重要提示：由于 Aaron-lv 等大佬的新版财富岛脚本内直接把 token 传递给提现接口实现提现，脚本代码已经不支持导出 TokenJxnc 变量，因此不用刻意追求导出)：
+操作步骤：运行一次 code.sh，再根据日志提示的优先仓库，运行一次京喜财富岛活动脚本。再运行一次 code.sh 。
+注：b) 步骤 code.sh 定时任务会配合京喜财富岛活动自动处理。有两点需要格外注意：①大多数京喜财富岛的定时任务间隔比较长，活动自身的运行时间也很长。所以自动处理，可能需要等到凌晨前后才会把 token 收集齐。②由于青龙 config.sh 默认的定时任务超时时间为 1h ，如果帐号比较多，1h 不够京喜财富岛跑完，那么就会导致 token 始终收集不齐。我个人把超时时间设置成了 3h。即：CommandTimeoutTime="3h"
+c）问题：
+1) 互助码和互助规则的日志中 Token 是空值？
+答：必须先运行 code.sh ，将"京喜财富岛的脚本格式化输出京喜token"功能解锁，再完整运行一次优先仓库的京喜财富岛活动脚本后，最后再运行 code.sh 。否则 Token 可能会无法写入或写入不完整。
+2) 互助码和互助规则的日志中  Token 写入正常，但是京喜财富岛提现还是读取不到 Token ？
+答：①确保 task_before.sh 是最新版，具体可以比对你的文件和置顶模板的第三行 Build 号。
+    ②京喜财富岛的任务不能设置 conc JD_COOKIE 并发多线程，否则会导致 Token 读取异常。
+
+二、其他自定义的参数配置详见脚本内容注释。如：
+1、自定义互助规则模板定义；
+2、定义指定活动采用指定的互助模板；
+3、自定义是否修改或更新 task_before.sh 文件中的互助码和互助规则；
+4、自动备份 task_before.sh 和删除指定天数以前的备份文件；
+5、自定义屏蔽指定账户被助力，但不影响这些帐号助力其他帐号。
+6、支持自定义指定某账号不参加某活动(配套置顶 config_sample.sh 和 task_before.sh 模板使用)；
+7、支持自定义指定随机数量的账号参加某活动(配套置顶 config_sample.sh 和 task_before.sh 模板使用)；
+
+三、由于 code.sh 会对互助码和互助规则的日志文件进行更新改写，为了避免误操作导致 code.sh 启动多次，造成日志文件改写异常。因此，code.sh 启动时会自动检测线程数量是否适合继续运行脚本。
+如果反复提醒检测到 code.sh 的运行线程过多，建议稍后重试。
+如果非要强行运行，方法如下：
+① 修改config.sh如果日志输出线程数是 9
+② 再在 code.sh 搜索
+proc_num="7" 改成 proc_num="9"
+然后 code.sh 就可以运行了，但不建议这么做，因为这是一个防呆设计。
+
+四、code.sh 安装依赖包后的检测方法：
+① 进入青龙控制台
+docker exec -it qinglong bash
+注：qinglong 为容器名称
+② 执行检查依赖的可靠性代码，将下文代码部分整体复制粘贴到控制台并回车：
+package_name="canvas png-js date-fns axios crypto-js ts-md5 tslib @types/node dotenv got md5 requests typescript fs require tslib jsdom download js-base64 tough-cookie tunnel ws qrcode-terminal"
+
+for i in $package_name; do
+    case $i in
+        canvas)
+            cd /ql/scripts
+            npm ls $i
+            ;;
+        *)
+            npm ls $i -g
+            ;;
+    esac
+done

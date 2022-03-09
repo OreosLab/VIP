@@ -1,0 +1,67 @@
+{
+    "name": "elecV2P 定时任务订阅",
+    "desc": "elecV2P 定时任务测试订阅。相关说明参考: https://ghproxy.com/https://github.com/elecV2/elecV2P-dei/tree/master/docs/06-task.md",
+    "date": "2021-06-19 20:32:08",
+    "author": "https://t.me/elecV2",
+    "resource": "https://ghproxy.com/https://raw.githubusercontent.com/elecV2/elecV2P/master/efss/tasksub.json",
+    "list": [
+        {
+            "name": "清空日志",
+            "type": "cron",
+            "time": "30 58 23 * * *",
+            "job": {
+                "type": "runjs",
+                "target": "https://ghproxy.com/https://raw.githubusercontent.com/elecV2/elecV2P/master/script/JSFile/deletelog.js"
+            }
+        },
+        {
+            "name": "软更新升级",
+            "type": "cron",
+            "time": "30 58 21 * * *",
+            "running": true,
+            "job": {
+                "type": "runjs",
+                "target": "https://ghproxy.com/https://raw.githubusercontent.com/elecV2/elecV2P/master/script/JSFile/softupdate.js"
+            }
+        },
+        {
+            "name": "Python安装(Docker下)",
+            "type": "schedule",
+            "time": "0",
+            "running": false,
+            "job": {
+                "type": "runjs",
+                "target": "https://ghproxy.com/https://raw.githubusercontent.com/elecV2/elecV2P/master/script/JSFile/python-install.js"
+            }
+        },
+        {
+            "name": "重启 elecV2P",
+            "type": "schedule",
+            "time": "0",
+            "running": false,
+            "job": {
+                "type": "exec",
+                "target": "pm2 restart elecV2P"
+            }
+        },
+        {
+            "name": "任务添加并执行",
+            "type": "schedule",
+            "time": "10",
+            "job": {
+                "type": "exec",
+                "target": "node -v"
+            }
+        },
+        {
+            "name": "Shell 指令远程任务",
+            "type": "schedule",
+            "time": "0",
+            "running": false,
+            "job": {
+                "type": "exec",
+                "target": "python3 https://ghproxy.com/https://raw.githubusercontent.com/elecV2/elecV2P/master/script/Shell/elecV2P-exam.py"
+            }
+        }
+    ]
+}

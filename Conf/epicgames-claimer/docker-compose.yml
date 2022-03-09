@@ -1,0 +1,40 @@
+version: '3'
+services:
+    epic-a:
+        image: luminoleon/epicgames-claimer:latest
+        container_name: epic-a
+        restart: unless-stopped
+        environment:
+            - TZ=Asia/Shanghai
+            - RUN_AT=02:30
+            - ONCE=false
+            - AUTO_UPDATE=false
+            - EMAIL=邮箱
+            - PASSWORD=密码
+            - VERIFICATION_CODE=双重验证码
+            - PUSH_SERVERCHAN_SENDKEY=SCKEY
+            - PUSH_BARK_URL=URL
+            - PUSH_BARK_DEVICE_KEY=BARK_KEY
+            - PUSH_TELEGRAM_BOT_TOKEN=TG_BOT_TOKEN
+            - PUSH_TELEGRAM_CHAT_ID=TG_USER_ID
+        volumes:
+            - $PWD/A:/User_Data
+    # epic-b:
+        # image: luminoleon/epicgames-claimer:latest
+        # container_name: epic-b
+        # restart: unless-stopped
+        # environment:
+        #     - TZ=Asia/Shanghai
+        #     - RUN_AT=02:30
+        #     - ONCE=false
+        #     - AUTO_UPDATE=false
+        #     - EMAIL=邮箱
+        #     - PASSWORD=密码
+        #     - VERIFICATION_CODE=双重验证码
+        #     - PUSH_SERVERCHAN_SENDKEY=SCKEY
+        #     - PUSH_BARK_URL=URL
+        #     - PUSH_BARK_DEVICE_KEY=BARK_KEY
+        #     - PUSH_TELEGRAM_BOT_TOKEN=TG_BOT_TOKEN
+        #     - PUSH_TELEGRAM_CHAT_ID=TG_USER_ID
+        # volumes:
+        #     - $PWD/B:/User_Data
