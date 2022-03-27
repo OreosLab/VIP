@@ -89,13 +89,6 @@ else
     mkdir -p "$ql_path"
     QL_PATH=$ql_path
 fi
-CONFIG_PATH=$QL_PATH/config
-DB_PATH=$QL_PATH/db
-REPO_PATH=$QL_PATH/repo
-RAW_PATH=$QL_PATH/raw
-SCRIPT_PATH=$QL_PATH/scripts
-LOG_PATH=$QL_PATH/log
-JBOT_PATH=$QL_PATH/jbot
 
 # 检测镜像是否存在
 if [ -n "$(docker images -q $DOCKER_IMG_NAME:$TAG 2>/dev/null)" ]; then
@@ -230,13 +223,7 @@ log "3.开始创建容器并执行"
 # shellcheck disable=SC2086
 docker run -dit \
     -t \
-    -v "$CONFIG_PATH":/ql/config \
-    -v "$DB_PATH":/ql/db \
-    -v "$LOG_PATH":/ql/log \
-    -v "$REPO_PATH":/ql/repo \
-    -v "$RAW_PATH":/ql/raw \
-    -v "$SCRIPT_PATH":/ql/scripts \
-    -v "$JBOT_PATH":/ql/jbot \
+    -v "$QL_PATH":/ql/data \
     $MAPPING_QL_PORT \
     --name "$CONTAINER_NAME" \
     --hostname qinglong \
