@@ -181,11 +181,11 @@ if [ "$NETWORK" = "bridge" ]; then
 fi
 
 # 配置已经创建完成，开始执行
-log "1.开始创建配置文件目录"
-PATH_LIST=("$CONFIG_PATH" "$DB_PATH" "$REPO_PATH" "$RAW_PATH" "$SCRIPT_PATH" "$LOG_PATH" "$JBOT_PATH")
-for i in "${PATH_LIST[@]}"; do
-    mkdir -p "$i"
-done
+# log "1.开始创建配置文件目录"
+# PATH_LIST=("$CONFIG_PATH" "$DB_PATH" "$REPO_PATH" "$RAW_PATH" "$SCRIPT_PATH" "$LOG_PATH" "$JBOT_PATH")
+# for i in "${PATH_LIST[@]}"; do
+#    mkdir -p "$i"
+# done
 
 if [ $HAS_CONTAINER = true ] && [ $DEL_CONTAINER = true ]; then
     log "2.1.删除先前的容器"
