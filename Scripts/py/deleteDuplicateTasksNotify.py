@@ -53,16 +53,11 @@ if "QQ_SKEY" in os.environ and os.environ["QQ_SKEY"] and "QQ_MODE" in os.environ
     QQ_SKEY = os.environ["QQ_SKEY"]
     QQ_MODE = os.environ["QQ_MODE"]
 # 获取pushplus+ PUSH_PLUS_TOKEN
-if "PUSH_PLUS_TOKEN" in os.environ:
-    if len(os.environ["PUSH_PLUS_TOKEN"]) > 1:
-        PUSH_PLUS_TOKEN = os.environ["PUSH_PLUS_TOKEN"]
-        # print("已获取并使用Env环境 PUSH_PLUS_TOKEN")
+if "PUSH_PLUS_TOKEN" in os.environ and len(os.environ["PUSH_PLUS_TOKEN"]) > 1:
+    PUSH_PLUS_TOKEN = os.environ["PUSH_PLUS_TOKEN"]
 # 获取企业微信应用推送 QYWX_AM
-if "QYWX_AM" in os.environ:
-    if len(os.environ["QYWX_AM"]) > 1:
-        QYWX_AM = os.environ["QYWX_AM"]
-        # print("已获取并使用Env环境 QYWX_AM")
-
+if "QYWX_AM" in os.environ and len(os.environ["QYWX_AM"]) > 1:
+    QYWX_AM = os.environ["QYWX_AM"]
 if BARK:
     notify_mode.append('bark')
     # print("BARK 推送打开")
@@ -90,7 +85,7 @@ if QYWX_AM:
 def message(str_msg):
     global message_info
     print(str_msg)
-    message_info = "{}\n{}".format(message_info, str_msg)
+    message_info = f"{message_info}\n{str_msg}"
     sys.stdout.flush()
 
 
@@ -150,7 +145,7 @@ def telegram_bot(title, content):
         payload = {'chat_id': str(TG_USER_ID), 'text': f'{title}\n\n{content}', 'disable_web_page_preview': 'true'}
         proxies = None
         if TG_PROXY_IP and TG_PROXY_PORT:
-            proxyStr = "http://{}:{}".format(TG_PROXY_IP, TG_PROXY_PORT)
+            proxyStr = f"http://{TG_PROXY_IP}:{TG_PROXY_PORT}"
             proxies = {"http": proxyStr, "https": proxyStr}
         try:
             response = requests.post(url=url, headers=headers, params=payload, proxies=proxies).json()
@@ -167,7 +162,7 @@ def telegram_bot(title, content):
 def dingding_bot(title, content):
     timestamp = str(round(time.time() * 1000))  # 时间戳
     secret_enc = DD_BOT_SECRET.encode('utf-8')
-    string_to_sign = '{}\n{}'.format(timestamp, DD_BOT_SECRET)
+    string_to_sign = f'{timestamp}\n{DD_BOT_SECRET}'
     string_to_sign_enc = string_to_sign.encode('utf-8')
     hmac_code = hmac.new(secret_enc, string_to_sign_enc, digestmod=hashlib.sha256).digest()
     sign = urllib.parse.quote_plus(base64.b64encode(hmac_code))  # 签名
@@ -274,7 +269,8 @@ class WeCom:
         return data["access_token"]
 
     def send_text(self, message, touser="@all"):
-        send_url = 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=' + self.get_access_token()
+        send_url = f'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={self.get_access_token()}'
+
         send_values = {
             "touser": touser,
             "msgtype": "text",
@@ -290,7 +286,8 @@ class WeCom:
         return respone["errmsg"]
 
     def send_mpnews(self, title, message, media_id, touser="@all"):
-        send_url = 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=' + self.get_access_token()
+        send_url = f'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={self.get_access_token()}'
+
         send_values = {
             "touser": touser,
             "msgtype": "mpnews",

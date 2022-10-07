@@ -41,8 +41,7 @@ queue = asyncio.Queue()
 # 文件夹/文件名称处理
 def validate_title(title):
     r_str = r"[\/\\\:\*\?\"\<\>\|\n]"  # '/ \ : * ? " < > |'
-    new_title = re.sub(r_str, "_", title)  # 替换为下划线
-    return new_title
+    return re.sub(r_str, "_", title)
 
 
 # 获取相册标题
@@ -52,10 +51,9 @@ async def get_group_caption(message):
     async for msg in client.iter_messages(
         entity=entity, reverse=True, offset_id=message.id - 9, limit=10
     ):
-        if msg.grouped_id == message.grouped_id:
-            if msg.text != "":
-                group_caption = msg.text
-                return group_caption
+        if msg.grouped_id == message.grouped_id and msg.text != "":
+            group_caption = msg.text
+            return group_caption
     return group_caption
 
 
@@ -140,15 +138,15 @@ async def worker(name):
 @events.register(events.NewMessage(pattern="/start", from_users=admin_id))
 async def handler(update):
     text = update.message.text.split(" ")
-    msg = (
-        "参数错误，请按照参考格式输入:\n\n"
-        "1.普通群组\n"
-        "<i>/start https://t.me/fkdhlg 0 </i>\n\n"
-        "2.私密群组(频道) 链接为随便复制一条群组消息链接\n"
-        "<i>/start https://t.me/12000000/1 0 </i>\n\n"
-        "Tips:如果不输入offset_id，默认从第一条开始下载"
-    )
-    if len(text) == 1:
+    if len(text) == 1 or len(text) not in [2, 3]:
+        msg = (
+            "参数错误，请按照参考格式输入:\n\n"
+            "1.普通群组\n"
+            "<i>/start https://t.me/fkdhlg 0 </i>\n\n"
+            "2.私密群组(频道) 链接为随便复制一条群组消息链接\n"
+            "<i>/start https://t.me/12000000/1 0 </i>\n\n"
+            "Tips:如果不输入offset_id，默认从第一条开始下载"
+        )
         await bot.send_message(admin_id, msg, parse_mode="HTML")
         return
     elif len(text) == 2:
@@ -168,7 +166,7 @@ async def handler(update):
                 "chat输入错误，请输入频道或群组的链接\n\n" f"错误类型：{e.__class__}" f"异常消息：{e}"
             )
             return
-    elif len(text) == 3:
+    else:
         chat_id = text[1]
         offset_id = int(text[2])
         try:
@@ -185,9 +183,6 @@ async def handler(update):
                 "chat输入错误，请输入频道或群组的链接\n\n" f"错误类型：{type(e).__class__}" f"异常消息：{e}"
             )
             return
-    else:
-        await bot.send_message(admin_id, msg, parse_mode="HTML")
-        return
     if chat_title:
         print(f"{get_local_time()} - 开始下载：{chat_title}({entity.id}) - {offset_id}")
         last_msg_id = 0
@@ -266,10 +261,13 @@ async def all_chat_download(update):
             try:
                 if type(message.media) == MessageMediaWebPage:
                     return
-                if message.media.document.mime_type == "image/webp":
-                    file_name = f"{message.media.document.id}.webp"
-                if message.media.document.mime_type == "application/x-tgsticker":
+                if (
+                    message.media.document.mime_type
+                    == "application/x-tgsticker"
+                ):
                     file_name = f"{message.media.document.id}.tgs"
+                elif message.media.document.mime_type == "image/webp":
+                    file_name = f"{message.media.document.id}.webp"
                 for i in message.document.attributes:
                     try:
                         file_name = i.file_name

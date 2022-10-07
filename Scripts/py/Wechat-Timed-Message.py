@@ -49,9 +49,8 @@ def exwechat_get_ShortTimeMedia(img_url):
 
 
 def exwechat_send(title, digest, content):
-    url = (
-        "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=" + access_token
-    )
+    url = f"https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={access_token}"
+
     data = {
         "touser": touser,
         "agentid": agentid,
@@ -96,7 +95,7 @@ if sckey:
         if result["data"]["errno"] == 0:
             print("Server酱推送成功!")
         else:
-            errorNotify += "Server酱推送错误: " + result + "\n"
+            errorNotify += f"Server酱推送错误: {result}" + "\n"
     except Exception as e:
         print(e)
         errorNotify += "Server酱推送错误!\n"
@@ -116,21 +115,14 @@ if pptoken:
         title = urllib.parse.quote_plus(title.replace("\n", "<br>"))
         message = urllib.parse.quote_plus(message.replace("\n", "<br>"))
         res = requests.get(
-            host
-            + "send?token="
-            + pptoken
-            + "&title="
-            + title
-            + "&content="
-            + message
-            + "&template=html&topic="
-            + pptopic
+            f"{host}send?token={pptoken}&title={title}&content={message}&template=html&topic={pptopic}"
         )
+
         result = res.json()
         if result["code"] == 200:
             print("成功通过PushPlus将结果通知给相关用户!")
         else:
-            errorNotify += "PushPlus推送错误: " + result + "\n"
+            errorNotify += f"PushPlus推送错误: {result}" + "\n"
     except Exception as e:
         print(e)
         errorNotify += "PushPlus推送错误!\n"
@@ -141,11 +133,11 @@ title = os.getenv("TITLE")
 message = os.getenv("MSG")
 
 qywx_am_ay = re.split(",", qywx_am)
-corpid = qywx_am_ay[0]
 corpsecret = qywx_am_ay[1]
 touser = qywx_am_ay[2]
 agentid = qywx_am_ay[3]
 
+corpid = qywx_am_ay[0]
 if corpid:
     info = ""
     if corpsecret:
@@ -158,7 +150,7 @@ if corpid:
                 if result["errcode"] == 0:
                     print("成功通过企业微信将结果通知给用户!")
                 else:
-                    errorNotify += "企业微信推送错误: " + res.text + "\n"
+                    errorNotify += f"企业微信推送错误: {res.text}" + "\n"
             except Exception as e:
                 print(e)
                 errorNotify += "企业微信推送错误!\n"

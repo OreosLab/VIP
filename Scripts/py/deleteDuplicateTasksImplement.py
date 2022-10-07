@@ -19,7 +19,7 @@ def loadSend():
     global send
     cur_path = os.path.abspath(os.path.dirname(__file__))
     sys.path.append(cur_path)
-    if os.path.exists(cur_path + "/deleteDuplicateTasksNotify.py"):
+    if os.path.exists(f"{cur_path}/deleteDuplicateTasksNotify.py"):
         try:
             from deleteDuplicateTasksNotify import send
         except Exception:
@@ -38,19 +38,14 @@ def getTaskList():
     url = "http://%s:5700/api/crons?searchValue=&t=%d" % (ip, t)
     response = requests.get(url=url, headers=headers)
     responseContent = json.loads(response.content.decode("utf-8"))
-    if responseContent["code"] == 200:
-        taskList = responseContent["data"]
-        return taskList
-    else:
-        # 没有获取到taskList，返回空
-        return []
+    return responseContent["data"] if responseContent["code"] == 200 else []
 
 
 def getDuplicate(taskList):
     wholeNames = {}
     duplicateID = []
     for task in taskList:
-        if task["name"] in wholeNames.keys():
+        if task["name"] in wholeNames:
             duplicateID.append(task["_id"])
         else:
             wholeNames[task["name"]] = 1
@@ -59,12 +54,10 @@ def getDuplicate(taskList):
 
 def getData(duplicateID):
     rawData = "["
-    count = 0
-    for id in duplicateID:
+    for count, id in enumerate(duplicateID):
         rawData += '"%s"' % id
         if count < len(duplicateID) - 1:
             rawData += ", "
-        count += 1
     rawData += "]"
     return rawData
 
@@ -77,7 +70,7 @@ def deleteDuplicateTasks(duplicateID):
     response = requests.delete(url=url, headers=headers, data=data)
     msg = json.loads(response.content.decode("utf-8"))
     if msg["code"] != 200:
-        print("出错！，错误信息为：%s" % msg)
+        print(f"出错！，错误信息为：{msg}")
     else:
         print("成功删除重复任务")
 
@@ -100,7 +93,7 @@ if __name__ == "__main__":
     # 直接从 /ql/config/auth.json中读取当前token
     token = loadToken()
     # send("成功获取token!","")
-    headers["Authorization"] = "Bearer %s" % token
+    headers["Authorization"] = f"Bearer {token}"
     taskList = getTaskList()
     # 如果仍旧是空的，则报警
     if len(taskList) == 0:

@@ -126,9 +126,8 @@ def login_retry(*args, **kwargs):
                     sess_id, session = func(username, password)
                     if sess_id != "-1":
                         return sess_id, session
-                    else:
-                        if number == max_retry:
-                            return sess_id, session
+                    if number == max_retry:
+                        return sess_id, session
             else:
                 return ret, ret_session
 
@@ -154,8 +153,7 @@ def captcha_solver(captcha_image_url: str, session: requests.session) -> dict:
         "data": str(encoded_string)[2:-1],
     }
     r = requests.post(url=url, json=data)
-    j = json.loads(r.text)
-    return j
+    return json.loads(r.text)
 
 
 def handle_captcha_solved_result(solved: dict) -> str:
@@ -175,26 +173,25 @@ def handle_captcha_solved_result(solved: dict) -> str:
             log("[Captcha Solver] You are using your own apikey.")
             text = solved_text
         operators = ["X", "x", "+", "-"]
-        if any(x in text for x in operators):
-            for operator in operators:
-                operator_pos = text.find(operator)
-                if operator == "x" or operator == "X":
-                    operator = "*"
-                if operator_pos != -1:
-                    left_part = text[:operator_pos]
-                    right_part = text[operator_pos + 1:]
-                    if left_part.isdigit() and right_part.isdigit():
-                        return eval(
-                            "{left} {operator} {right}".format(
-                                left=left_part, operator=operator, right=right_part
-                            )
-                        )
-                    else:
-                        # Because these symbols("X", "x", "+", "-") do not appear at the same time,
-                        # it just contains an arithmetic symbol.
-                        return text
-        else:
+        if all(x not in text for x in operators):
             return text
+        for operator in operators:
+            operator_pos = text.find(operator)
+            if operator in ["x", "X"]:
+                operator = "*"
+            if operator_pos != -1:
+                left_part = text[:operator_pos]
+                right_part = text[operator_pos + 1:]
+                return (
+                    eval(
+                        "{left} {operator} {right}".format(
+                            left=left_part, operator=operator, right=right_part
+                        )
+                    )
+                    if left_part.isdigit() and right_part.isdigit()
+                    else text
+                )
+
     else:
         print(solved)
         raise KeyError("Failed to find parsed results.")
@@ -208,15 +205,13 @@ def get_captcha_solver_usage() -> dict:
         "apikey": APIKEY,
     }
     r = requests.get(url=url, params=params)
-    j = json.loads(r.text)
-    return j
+    return json.loads(r.text)
 
 
 @login_retry(max_retry=LOGIN_MAX_RETRY_COUNT)
 def login(username: str, password: str) -> (str, requests.session):
     headers = {"user-agent": user_agent, "origin": "https://www.euserv.com"}
     url = "https://support.euserv.com/index.iphp"
-    captcha_image_url = "https://support.euserv.com/securimage_show.php"
     session = requests.Session()
 
     sess = session.get(url, headers=headers)
@@ -237,58 +232,56 @@ def login(username: str, password: str) -> (str, requests.session):
     f.raise_for_status()
 
     if (
-        f.text.find("Hello") == -1
-        and f.text.find("Confirm or change your customer data here") == -1
+        f.text.find("Hello") != -1
+        or f.text.find("Confirm or change your customer data here") != -1
     ):
-        if (
+        return sess_id, session
+    if (
             f.text.find(
                 "To finish the login process please solve the following captcha."
             )
             == -1
         ):
-            return "-1", session
-        else:
-            log("[Captcha Solver] 进行验证码识别...")
-            solved_result = captcha_solver(captcha_image_url, session)
-            captcha_code = handle_captcha_solved_result(solved_result)
-            log("[Captcha Solver] 识别的验证码是: {}".format(captcha_code))
+        return "-1", session
+    log("[Captcha Solver] 进行验证码识别...")
+    captcha_image_url = "https://support.euserv.com/securimage_show.php"
+    solved_result = captcha_solver(captcha_image_url, session)
+    captcha_code = handle_captcha_solved_result(solved_result)
+    log(f"[Captcha Solver] 识别的验证码是: {captcha_code}")
 
-            if CHECK_CAPTCHA_SOLVER_USAGE:
-                usage = get_captcha_solver_usage()
-                log(
-                    "[Captcha Solver] current date {0} api usage count: {1}".format(
-                        usage[0]["date"], usage[0]["count"]
-                    )
-                )
-
-            f2 = session.post(
-                url,
-                headers=headers,
-                data={
-                    "subaction": "login",
-                    "sess_id": sess_id,
-                    "captcha_code": captcha_code,
-                },
+    if CHECK_CAPTCHA_SOLVER_USAGE:
+        usage = get_captcha_solver_usage()
+        log(
+            "[Captcha Solver] current date {0} api usage count: {1}".format(
+                usage[0]["date"], usage[0]["count"]
             )
-            if (
-                f2.text.find(
-                    "To finish the login process please solve the following captcha."
-                )
-                == -1
-            ):
-                log("[Captcha Solver] 验证通过")
-                return sess_id, session
-            else:
-                log("[Captcha Solver] 验证失败")
-                return "-1", session
+        )
 
-    else:
+    f2 = session.post(
+        url,
+        headers=headers,
+        data={
+            "subaction": "login",
+            "sess_id": sess_id,
+            "captcha_code": captcha_code,
+        },
+    )
+    if (
+        f2.text.find(
+            "To finish the login process please solve the following captcha."
+        )
+        == -1
+    ):
+        log("[Captcha Solver] 验证通过")
         return sess_id, session
+    else:
+        log("[Captcha Solver] 验证失败")
+        return "-1", session
 
 
 def get_servers(sess_id: str, session: requests.session) -> {}:
     d = {}
-    url = "https://support.euserv.com/index.iphp?sess_id=" + sess_id
+    url = f"https://support.euserv.com/index.iphp?sess_id={sess_id}"
     headers = {"user-agent": user_agent, "origin": "https://www.euserv.com"}
     f = session.get(url=url, headers=headers)
     f.raise_for_status()
@@ -297,16 +290,15 @@ def get_servers(sess_id: str, session: requests.session) -> {}:
         "#kc2_order_customer_orders_tab_content_1 .kc2_order_table.kc2_content_table tr"
     ):
         server_id = tr.select(".td-z1-sp1-kc")
-        if not len(server_id) == 1:
+        if len(server_id) != 1:
             continue
         flag = (
-            True
-            if tr.select(".td-z1-sp2-kc .kc2_order_action_container")[0]
+            tr.select(".td-z1-sp2-kc .kc2_order_action_container")[0]
             .get_text()
             .find("Contract extension possible from")
             == -1
-            else False
         )
+
         d[server_id[0].get_text()] = flag
     return d
 
@@ -337,7 +329,7 @@ def renew(
     }
     f = session.post(url, headers=headers, data=data)
     f.raise_for_status()
-    if not json.loads(f.text)["rs"] == "success":
+    if json.loads(f.text)["rs"] != "success":
         return False
     token = json.loads(f.text)["token"]["value"]
     data = {
@@ -358,7 +350,7 @@ def check(sess_id: str, session: requests.session):
     for key, val in d.items():
         if val:
             flag = False
-            log("[EUserv] ServerID: %s Renew Failed!" % key)
+            log(f"[EUserv] ServerID: {key} Renew Failed!")
 
     if flag:
         log("[EUserv] ALL Work Done! Enjoy~")
@@ -368,7 +360,7 @@ def check(sess_id: str, session: requests.session):
 def coolpush():
     c = "EUserv续费日志\n\n" + desp
     data = json.dumps({"c": c})
-    url = "https://push.xuthus.cc/" + COOL_PUSH_MODE + "/" + COOL_PUSH_SKEY
+    url = f"https://push.xuthus.cc/{COOL_PUSH_MODE}/{COOL_PUSH_SKEY}"
     response = requests.post(url, data=data)
     if response.status_code != 200:
         print("酷推 推送失败")
@@ -397,7 +389,7 @@ def server_chan():
         ("text", "EUserv续费日志"),
         ("desp", desp)
     )
-    response = requests.post("https://sc.ftqq.com/" + SCKEY + ".send", data=data)
+    response = requests.post(f"https://sc.ftqq.com/{SCKEY}.send", data=data)
     if response.status_code != 200:
         print("Server酱 推送失败")
     else:
@@ -410,7 +402,10 @@ def telegram():
         ("chat_id", TG_USER_ID),
         ("text", "EUserv续费日志\n\n" + desp)
     )
-    response = requests.post("https://" + TG_API_HOST + "/bot" + TG_BOT_TOKEN + "/sendMessage", data=data)
+    response = requests.post(
+        f"https://{TG_API_HOST}/bot{TG_BOT_TOKEN}/sendMessage", data=data
+    )
+
     if response.status_code != 200:
         print("Telegram Bot 推送失败")
     else:
@@ -419,8 +414,16 @@ def telegram():
 
 # wecomchan https://github.com/easychen/wecomchan
 def wecomchan():
-    response = requests.get(WECOMCHAN_DOMAIN + "wecomchan?sendkey=" + WECOMCHAN_SEND_KEY + "&msg_type=text" + "&to_user=" +
-                            WECOMCHAN_TO_USER + "&msg=" + "EUserv续费日志\n\n" + desp)
+    response = requests.get(
+        (
+            (
+                f"{WECOMCHAN_DOMAIN}wecomchan?sendkey={WECOMCHAN_SEND_KEY}&msg_type=text&to_user={WECOMCHAN_TO_USER}&msg="
+                + "EUserv续费日志\n\n"
+            )
+            + desp
+        )
+    )
+
     if response.status_code != 200:
         print("wecomchan 推送失败")
     else:
@@ -462,10 +465,10 @@ def email():
         )
         print("eMail 推送成功")
     except requests.exceptions.RequestException as e:
-        print(str(e))
+        print(e)
         print("eMail 推送失败")
     except SMTPDataError as e1:
-        print(str(e1))
+        print(e1)
         print("eMail 推送失败")
 
 
@@ -486,15 +489,15 @@ def main_handler(event, context):
             log("[EUserv] 第 %d 个账号登陆失败，请检查登录信息" % (i + 1))
             continue
         SERVERS = get_servers(sessid, s)
-        log("[EUserv] 检测到第 {} 个账号有 {} 台 VPS，正在尝试续期".format(i + 1, len(SERVERS)))
+        log(f"[EUserv] 检测到第 {i + 1} 个账号有 {len(SERVERS)} 台 VPS，正在尝试续期")
         for k, v in SERVERS.items():
             if v:
                 if not renew(sessid, s, passwd_list[i], k):
-                    log("[EUserv] ServerID: %s Renew Error!" % k)
+                    log(f"[EUserv] ServerID: {k} Renew Error!")
                 else:
-                    log("[EUserv] ServerID: %s has been successfully renewed!" % k)
+                    log(f"[EUserv] ServerID: {k} has been successfully renewed!")
             else:
-                log("[EUserv] ServerID: %s does not need to be renewed" % k)
+                log(f"[EUserv] ServerID: {k} does not need to be renewed")
         time.sleep(15)
         check(sessid, s)
         time.sleep(5)

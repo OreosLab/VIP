@@ -41,7 +41,7 @@ password = args.password
 
 def qlnotify(desp):
     cur_path = os.path.abspath(os.path.dirname(__file__))
-    if os.path.exists(cur_path + "/notify.py"):
+    if os.path.exists(f"{cur_path}/notify.py"):
         try:
             from notify import send
         except Exception:
@@ -97,7 +97,7 @@ class FreeNom:
             msg = "get page token failed"
             print(msg)
             return
-        token = match.group(1)
+        token = match[1]
 
         # domains
         domains = re.findall(domain_info_ptn, r.text)

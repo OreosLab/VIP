@@ -45,10 +45,7 @@ while count:
         from telethon.sessions import StringSession
         break
     except Exception:
-        if count == 2:
-            pip = 'pip3'
-        else:
-            pip = 'pip'
+        pip = 'pip3' if count == 2 else 'pip'
         print(f'检测到没有 telethon 库，开始换源进行安装，将使用 {pip} 命令')
         os.system(f'{pip} install telethon -i https://pypi.tuna.tsinghua.edu.cn/simple')
         count -= 1
@@ -59,10 +56,7 @@ while count:
         import requests
         break
     except Exception:
-        if count == 2:
-            pip = 'pip3'
-        else:
-            pip = 'pip'
+        pip = 'pip3' if count == 2 else 'pip'
         print(f'检测到没有 requests 库，开始换源进行安装，将使用 {pip} 命令')
         os.system(f'{pip} install requests -i https://pypi.tuna.tsinghua.edu.cn/simple')
         count -= 1
@@ -137,8 +131,7 @@ def accountBean(docker_file_path):
     for line in f:
         bean_account_line = re.findall(r'获得 [0-9]{2} 京豆', line, re.DOTALL)
         if bean_account_line != []:
-            bean_account = int(re.findall(r"\d{2,}", bean_account_line[0])[0])
-            return bean_account
+            return int(re.findall(r"\d{2,}", bean_account_line[0])[0])
         if line.find("'code': '1'") != -1:
             return 20
 

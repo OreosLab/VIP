@@ -20,12 +20,9 @@ def post_tg(url, count):
         r = requests.get(url)
         if '"ok":true,' in r.text:
             print("发送成功！")
-            pass
         else:
             count = count + 1
-            if count > 5:
-                pass
-            else:
+            if count <= 5:
                 time.sleep(3)
                 print("发送失败，正在重试")
                 post_tg(url, count)
@@ -85,38 +82,31 @@ while True:
         with requests.get("https://hostloc.cherbim.ml/", stream=True, timeout=5) as r:
             print(time.strftime("%m-%d %H:%M:%S", time.localtime()))
             for i in r.json()["new_data"][0][15:]:
-                if i["主题ID"] in hostloc_list or i["主题"] in hostloc_title:
-                    pass
-                else:
+                if (
+                    i["主题ID"] not in hostloc_list
+                    and i["主题"] not in hostloc_title
+                ):
                     hostloc_list = hostloc_list[1::]
                     hostloc_list.append(i["主题ID"])
                     hostloc_title = hostloc_title[1::]
                     hostloc_title.append(i["主题"])
                     a = "https://www.hostloc.com/thread-{0}-1-1.html".format(i["主题ID"])
                     time_1 = time.strftime("%Y-%m-%d  %H:%M:%S", time.localtime())
-                    if "论坛bug，此贴内容无法查看~" not in i["主题内容"][0:100]:
-                        a = a
-                    else:
-                        a = f"<s>{a}</s>"
+                    a = a if "论坛bug，此贴内容无法查看~" not in i["主题内容"][:100] else f"<s>{a}</s>"
                     text = (
-                        "主        题："
-                        + "<b>{}</b>".format(
-                            i["主题"]
-                            .replace("&", "%26")
-                            .replace("<", "%26lt%3b")
-                            .replace(">", "%26gt%3b")
-                            .replace("#", " ")
-                        )
+                        f'主        题：<b>{i["主题"].replace("&", "%26").replace("<", "%26lt%3b").replace(">", "%26gt%3b").replace("#", " ")}</b>'
                         + "\n"
                         + "发  布  者："
-                        + """<a href="{0}">{1}</a>""".format(i["发布者链接"], i["发布者"])
+                        + """<a href="{0}">{1}</a>""".format(
+                            i["发布者链接"], i["发布者"]
+                        )
                         + "\n"
                         + "时        间："
                         + time_1
                         + "\n"
                         + "内容预览："
                         + """<b>{0}</b>""".format(
-                            i["主题内容"][0:100]
+                            i["主题内容"][:100]
                             .replace("&", "%26")
                             .replace("<", "%26lt%3b")
                             .replace(">", "%26gt%3b")
@@ -126,16 +116,13 @@ while True:
                         + "直达链接： "
                         + a
                     )
+
                     print(text)
                     # 修改为你自己的bot api token和chat_id(可以是用户也可以是频道）
                     chat_id = os.environ.get("HOST_GROUP_ID")
                     bot_api_token = os.environ.get("HOST_BOT_TOKEN")
-                    tg_url = (
-                        f"https://api.telegram.org/bot{bot_api_token}/sendMessage?parse_mode=HTML&chat_id="
-                        + chat_id
-                        + "&text="
-                        + text
-                    )
+                    tg_url = f"https://api.telegram.org/bot{bot_api_token}/sendMessage?parse_mode=HTML&chat_id={chat_id}&text={text}"
+
                     b = 0
                     post_tg(tg_url, b)
             time.sleep(2)
