@@ -20,7 +20,7 @@ requests.packages.urllib3.disable_warnings()
 
 def qlnotify(desp):
     cur_path = os.path.abspath(os.path.dirname(__file__))
-    if os.path.exists(cur_path + "/notify.py"):
+    if os.path.exists(f"{cur_path}/notify.py"):
         try:
             from notify import send
         except Exception:
@@ -44,7 +44,7 @@ class SspanelQd(object):
         msgall = ""
         for i in range(len(self.base_url)):
             email = self.email[i].split("@")
-            email = email[0] + "%40" + email[1]
+            email = f"{email[0]}%40{email[1]}"
             password = self.password[i]
 
             session = requests.session()
@@ -70,30 +70,32 @@ class SspanelQd(object):
                 print(msg)
                 continue
 
-            login_url = self.base_url[i] + "/auth/login"
+            login_url = f"{self.base_url[i]}/auth/login"
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
             }
 
-            post_data = "email=" + email + "&passwd=" + password + "&code="
+            post_data = f"email={email}&passwd={password}&code="
             post_data = post_data.encode()
             response = session.post(login_url, post_data, headers=headers, verify=False)
 
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
-                "Referer": self.base_url[i] + "/user",
+                "Referer": f"{self.base_url[i]}/user",
             }
 
+
             response = session.post(
-                self.base_url[i] + "/user/checkin", headers=headers, verify=False
+                f"{self.base_url[i]}/user/checkin", headers=headers, verify=False
             )
+
             msg = (response.json()).get("msg")
 
             msgall = msgall + self.base_url[i] + "\n\n" + msg + "\n\n"
             print(msg)
 
-            info_url = self.base_url[i] + "/user"
+            info_url = f"{self.base_url[i]}/user"
             response = session.get(info_url, verify=False)
 
         return msgall

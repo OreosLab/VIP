@@ -4,6 +4,7 @@ cron: 20 10 */7 * *
 new Env('禁用重复任务');
 """
 
+
 import json
 import logging
 import os
@@ -17,17 +18,13 @@ logger = logging.getLogger(name=None)  # 创建一个日志对象
 logging.Formatter("%(message)s")  # 日志内容格式化
 logger.setLevel(logging.INFO)  # 设置日志等级
 logger.addHandler(logging.StreamHandler())  # 添加控制台日志
-# logger.addHandler(logging.FileHandler(filename="text.log", mode="w"))  # 添加文件日志
-
-
-ipport = os.getenv("IPPORT")
-if not ipport:
+if ipport := os.getenv("IPPORT"):
+    ipport = ipport.lstrip("http://").rstrip("/")
+else:
     logger.info(
         "如果报错请在环境变量中添加你的真实 IP:端口\n名称：IPPORT\t值：127.0.0.1:5700\n或在 config.sh 中添加 export IPPORT='127.0.0.1:5700'"
     )
     ipport = "localhost:5700"
-else:
-    ipport = ipport.lstrip("http://").rstrip("/")
 sub_str = os.getenv("RES_SUB", "Aaron-lv_sync")
 sub_list = sub_str.split("&")
 res_only = os.getenv("RES_ONLY", True)
@@ -43,7 +40,7 @@ def load_send() -> None:
     send = None
     cur_path = os.path.abspath(os.path.dirname(__file__))
     sys.path.append(cur_path)
-    if os.path.exists(cur_path + "/notify.py"):
+    if os.path.exists(f"{cur_path}/notify.py"):
         try:
             from notify import send
         except Exception:
@@ -52,14 +49,11 @@ def load_send() -> None:
 
 
 def get_tasklist() -> list:
-    tasklist = []
     t = round(time.time() * 1000)
     url = f"http://{ipport}/api/crons?searchValue=&t={t}"
     response = requests.get(url=url, headers=headers)
     datas = json.loads(response.content.decode("utf-8"))
-    if datas.get("code") == 200:
-        tasklist = datas.get("data")
-    return tasklist
+    return datas.get("data") if datas.get("code") == 200 else []
 
 
 def filter_res_sub(tasklist: list) -> tuple:
@@ -95,7 +89,7 @@ def get_duplicate_list(tasklist: list) -> tuple:
         cmds.append(task.get("command"))
 
     name_list = []
-    for i, name in enumerate(names):
+    for name in names:
         if name not in name_list:
             name_list.append(name)
 
@@ -122,7 +116,7 @@ def get_duplicate_list(tasklist: list) -> tuple:
 def reserve_task_only(
     tem_ids: list, tem_tasks: list, dup_ids: list, res_list: list
 ) -> list:
-    if len(tem_ids) == 0:
+    if not tem_ids:
         return tem_ids
 
     logger.info("\n=== 最终筛选开始 ===")

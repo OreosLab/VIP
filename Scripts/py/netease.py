@@ -88,7 +88,7 @@ def get_args():
 
 
 def get_envs():
-    infos = {
+    return {
         "phone": os.getenv("NETEASE_USER"),
         "password": os.getenv("NETEASE_PWD"),
         "sc_key": os.getenv("PUSH_KEY"),
@@ -103,14 +103,12 @@ def get_envs():
         "qmsg_key": os.getenv("QMSG_KEY"),
         "ding_token": os.getenv("DD_BOT_TOKEN"),
     }
-    return infos
 
 
 # Calculate the MD5 value of text
 # 计算字符串的32位小写MD5值
 def calc_md5(text):
-    md5_text = hashlib.md5(text.encode(encoding="utf-8")).hexdigest()
-    return md5_text
+    return hashlib.md5(text.encode(encoding="utf-8")).hexdigest()
 
 
 # AES Encrypt
@@ -185,7 +183,7 @@ class Push:
         headers = {"Content-type": "application/x-www-form-urlencoded"}
         content = {"title": "网易云打卡", "desp": self.text}
         ret = requests.post(url, headers=headers, data=content)
-        print("ServerChan: " + ret.text)
+        print(f"ServerChan: {ret.text}")
 
     # Telegram Bot Push
     def telegram_push(self):
@@ -198,7 +196,7 @@ class Push:
             "text": self.text,
         }
         ret = requests.post(url, data=data)
-        print("Telegram: " + ret.text)
+        print(f"Telegram: {ret.text}")
 
     # Bark Push
     def bark_push(self):
@@ -209,7 +207,7 @@ class Push:
         headers = {"Content-Type": "application/json;charset=utf-8"}
         url = "https://api.day.app/{0}/?isArchive={1}".format(arg[0], arg[1])
         ret = requests.post(url, json=data, headers=headers)
-        print("Bark: " + ret.text)
+        print(f"Bark: {ret.text}")
 
     # PushPlus Push
     def push_plus_push(self):
@@ -220,7 +218,7 @@ class Push:
             arg[0], "网易云打卡", self.text, "html"
         )
         ret = requests.get(url)
-        print("pushplus: " + ret.text)
+        print(f"pushplus: {ret.text}")
 
     # Wecom Push
     def wecom_id_push(self):
@@ -252,7 +250,7 @@ class Push:
         if ret["errcode"] != 0:
             print("微信推送配置错误")
         else:
-            print("Wecom: " + ret)
+            print(f"Wecom: {ret}")
 
     # Qmsg Push
     def qmsg_push(self):
@@ -261,7 +259,7 @@ class Push:
         arg = self.info["qmsg_key"]
         url = "https://qmsg.zendee.cn/send/{0}?msg={1}".format(arg[0], self.text)
         ret = requests.post(url)
-        print("Qmsg: " + ret.text)
+        print(f"Qmsg: {ret.text}")
 
     # Ding Talk Push
     def ding_talk_push(self):
@@ -274,7 +272,7 @@ class Push:
             {"msgtype": "text", "text": {"content": "【CMLU】\n\n" + self.text}}
         )
         ret = requests.post(url, headers=header, data=data)
-        print("Ding: " + ret.text)
+        print(f"Ding: {ret.text}")
 
 
 # 加密类，实现网易云音乐前端加密流程
@@ -398,8 +396,9 @@ class CloudMusic:
     # 获取用户的收藏歌单
     def get_subscribe_playlists(self):
         private_url = (
-            "https://music.163.com/weapi/user/playlist?csrf_token=" + self.csrf
+            f"https://music.163.com/weapi/user/playlist?csrf_token={self.csrf}"
         )
+
         res = self.session.post(
             url=private_url,
             data=self.enc.encrypt(
@@ -417,18 +416,15 @@ class CloudMusic:
         ret = json.loads(res.text)
         subscribed_lists = []
         if ret["code"] == 200:
-            for li in ret["playlist"]:
-                if li["subscribed"]:
-                    subscribed_lists.append(li["id"])
+            subscribed_lists.extend(li["id"] for li in ret["playlist"] if li["subscribed"])
         else:
             print("个人订阅歌单获取失败 " + str(ret["code"]) + "：" + ret["message"])
         return subscribed_lists
 
     # 获取某一歌单内的所有音乐ID
     def get_list_musics(self, mlist):
-        detail_url = (
-            "https://music.163.com/weapi/v6/playlist/detail?csrf_token=" + self.csrf
-        )
+        detail_url = f"https://music.163.com/weapi/v6/playlist/detail?csrf_token={self.csrf}"
+
         musics = []
         for m in mlist:
             res = self.session.post(

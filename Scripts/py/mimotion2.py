@@ -14,6 +14,7 @@ STEP: 步数         空或不填则为 18000-25000 之间随机，自定义示�
 MI_API: api 接口
 """
 
+
 import os
 import random
 
@@ -32,7 +33,7 @@ else:
 if len(step_array) == 2:
     step = str(random.randint(int(step_array[0]), int(step_array[1])))
     print(f"已设置为随机步数（{step_array[0]}-{step_array[1]}）")
-elif str(step) == "":
+elif not str(step):
     step = int(random.uniform(18000, 25000))
 
 

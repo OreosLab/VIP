@@ -36,13 +36,12 @@ headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 9; MI 6 MIUI/20.6.18)"
 # 获取登录 code
 def get_code(location):
     code_pattern = re.compile("(?<=access=).*?(?=&)")
-    code = code_pattern.findall(location)[0]
-    return code
+    return code_pattern.findall(location)[0]
 
 
 # 登录
 def login(_user, password):
-    url1 = "https://api-user.huami.com/registrations/+86" + _user + "/tokens"
+    url1 = f"https://api-user.huami.com/registrations/+86{_user}/tokens"
     _headers = {
         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
         "User-Agent": "MiFit/4.6.0 (iPhone; iOS 14.0.1; Scale/2.00)",
@@ -89,11 +88,11 @@ def main(_user, _passwd, _step):
     _user = str(_user)
     password = str(_passwd)
     _step = str(_step)
-    if _user == "" or password == "":
+    if not _user or not password:
         print("用户名或密码不能为空！")
         return "user and passwd not empty！"
 
-    if _step == "":
+    if not _step:
         print("已设置为随机步数（18000-25000）")
         _step = str(random.randint(18000, 25000))
     login_token, userid = login(_user, password)
@@ -111,7 +110,7 @@ def main(_user, _passwd, _step):
 
     find_date = re.compile(r".*?date%22%3A%22(.*?)%22%2C%22data.*?")
     find_step = re.compile(r".*?ttl%5C%22%3A(.*?)%2C%5C%22dis.*?")
-    data_json = re.sub(find_date.findall(data_json)[0], today, str(data_json))
+    data_json = re.sub(find_date.findall(data_json)[0], today, data_json)
     data_json = re.sub(find_step.findall(data_json)[0], _step, str(data_json))
 
     url = f"https://api-mifit-cn.huami.com/v1/data/band_data.json?&t={t}"
@@ -130,18 +129,16 @@ def main(_user, _passwd, _step):
 def get_time():
     url = "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp"
     response = requests.get(url, headers=headers).json()
-    t = response["data"]["t"]
-    return t
+    return response["data"]["t"]
 
 
 # 获取app_token
 def get_app_token(login_token):
     url = f"https://account-cn.huami.com/v1/client/app_tokens?app_name=com.xiaomi.hm.health&dn=api-user.huami.com%2Capi-mifit.huami.com%2Capp-analytics.huami.com&login_token={login_token}"
     response = requests.get(url, headers=headers).json()
-    app_token = response["token_info"]["app_token"]
     # print("app_token获取成功！")
     # print(app_token)
-    return app_token
+    return response["token_info"]["app_token"]
 
 
 # 推送 server 酱
@@ -227,7 +224,7 @@ def wxpush(msg, usr, corpid, corpsecret, agentid=1000002):
 
     # 获取 access_token，每次的 access_token 都不一样，所以需要运行一次请求一次
     def get_access_token(_base_url, _corpid, _corpsecret):
-        urls = _base_url + "corpid=" + _corpid + "&corpsecret=" + _corpsecret
+        urls = f"{_base_url}corpid={_corpid}&corpsecret={_corpsecret}"
         resp = requests.get(urls).json()
         access_token = resp["access_token"]
         return access_token
@@ -271,7 +268,7 @@ def wxpush(msg, usr, corpid, corpsecret, agentid=1000002):
 if __name__ == "__main__":
     # Push Mode
     Pm = os.environ.get("PMODE")
-    if Pm == "wx" or Pm == "nwx":
+    if Pm in ["wx", "nwx"]:
         _sckey = os.environ.get("PKEY")
         if _sckey == "":
             print("未提供 sckey，不进行推送！")
@@ -309,11 +306,11 @@ if __name__ == "__main__":
 
     if len(user_list) == len(passwd_list):
         push = ""
-        for line in range(0, len(user_list)):
+        for line in range(len(user_list)):
             if len(step_array) == 2:
                 step = str(random.randint(int(step_array[0]), int(step_array[1])))
                 print(f"已设置为随机步数（{step_array[0]}-{step_array[1]}）")
-            elif str(step) == "":
+            elif not str(step):
                 step = ""
             push += main(user_list[line], passwd_list[line], step) + "\n"
         if Pm == "wx":
@@ -329,7 +326,5 @@ if __name__ == "__main__":
                 wxpush(push, sl[0], sl[1], sl[2])
         elif Pm == "pp":
             push_pushplus(token, push)
-        elif Pm == "off":
-            pass
     else:
         print("用户名和密码数量不对")

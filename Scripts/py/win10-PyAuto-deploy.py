@@ -123,7 +123,7 @@ def run_M_N():
     os.chdir(node_p)
     # print(node_d)
     # print(os.path.dirname(node_p))
-    command = "%s app.js -p %s -f %s" % (node_d, userport, ip)
+    command = f"{node_d} app.js -p {userport} -f {ip}"
 
     subprocess.Popen(command, shell=False, creationflags=CREATE_NO_WINDOW)
     print("成功启动 NODE 代理，命令行：", command)
@@ -136,12 +136,7 @@ def procressexist(processname="cloudmusic.exe"):  # 检测进程是否健在(默
     time.sleep(sleep)
     pl = psutil.pids()
     try:
-        for pid in pl:
-            if psutil.Process(pid).name() == processname:
-                return True
-                break
-        else:
-            return False
+        return any(psutil.Process(pid).name() == processname for pid in pl)
     except:
         return False
 
@@ -166,5 +161,4 @@ run_M_N()
 
 while procressexist() and procressexist("node.exe"):
     print("网易云音乐进程和 NODE 进程健在！")
-    pass
 killprocess()

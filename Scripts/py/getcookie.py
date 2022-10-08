@@ -25,20 +25,18 @@ jd_cookie = ""
 
 def getSToken():
     time_stamp = int(time.time() * 1000)
-    get_url = (
-        "https://plogin.m.jd.com/cgi-bin/mm/new_login_entrance?lang=chs&appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=%s&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport"
-        % time_stamp
-    )
+    get_url = f"https://plogin.m.jd.com/cgi-bin/mm/new_login_entrance?lang=chs&appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state={time_stamp}&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport"
+
     get_header = {
         "Connection": "Keep-Alive",
         "Content-Type": "application/x-www-form-urlencoded",
         "Accept": "application/json, text/plain, */*",
         "Accept-Language": "zh-cn",
-        "Referer": "https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=%s&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport"
-        % time_stamp,
+        "Referer": f"https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state={time_stamp}&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport",
         "User-Agent": "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5 UCBrowser/13.4.2.1122",
         "Host": "plogin.m.jd.com",
     }
+
     resp = requests.get(url=get_url, headers=get_header)
     parseGetRespCookie(resp.headers, resp.json())
 
@@ -56,27 +54,25 @@ def parseGetRespCookie(headers, get_resp):
 
 def getOKLToken():
     post_time_stamp = int(time.time() * 1000)
-    post_url = (
-        "https://plogin.m.jd.com/cgi-bin/m/tmauthreflogurl?s_token=%s&v=%s&remember=true"
-        % (s_token, post_time_stamp)
-    )
+    post_url = f"https://plogin.m.jd.com/cgi-bin/m/tmauthreflogurl?s_token={s_token}&v={post_time_stamp}&remember=true"
+
     post_data = {
         "lang": "chs",
         "appid": 300,
-        "returnurl": "https://wqlogin2.jd.com/passport/LoginRedirect?state=%s&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action"
-        % post_time_stamp,
+        "returnurl": f"https://wqlogin2.jd.com/passport/LoginRedirect?state={post_time_stamp}&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action",
         "source": "wq_passport",
     }
+
     post_header = {
         "Connection": "Keep-Alive",
         "Content-Type": "application/x-www-form-urlencoded; Charset=UTF-8",
         "Accept": "application/json, text/plain, */*",
         "Cookie": cookies,
-        "Referer": "https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wqlogin2.jd.com/passport/LoginRedirect?state=%s&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport"
-        % post_time_stamp,
+        "Referer": f"https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wqlogin2.jd.com/passport/LoginRedirect?state={post_time_stamp}&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport",
         "User-Agent": "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5 UCBrowser/13.4.2.1122",
         "Host": "plogin.m.jd.com",
     }
+
     try:
         global okl_token
         resp = requests.post(
@@ -146,37 +142,34 @@ async def my_cookie(event):
             )
             convdata = await conv.wait_event(press_event(SENDER))
             res = bytes.decode(convdata.data)
-            if res == "cancel":
-                login = False
-                await jdbot.delete_messages(chat_id, cookiemsg)
-                msg = await conv.send_message("对话已取消")
-                conv.cancel()
-            else:
+            if res != "cancel":
                 raise exceptions.TimeoutError()
+            login = False
+            await jdbot.delete_messages(chat_id, cookiemsg)
+            msg = await conv.send_message("对话已取消")
+            conv.cancel()
     except exceptions.TimeoutError:
         expired_time = time.time() + 60 * 2
         while login:
             check_time_stamp = int(time.time() * 1000)
-            check_url = (
-                "https://plogin.m.jd.com/cgi-bin/m/tmauthchecktoken?&token=%s&ou_state=0&okl_token=%s"
-                % (token, okl_token)
-            )
+            check_url = f"https://plogin.m.jd.com/cgi-bin/m/tmauthchecktoken?&token={token}&ou_state=0&okl_token={okl_token}"
+
             check_data = {
                 "lang": "chs",
                 "appid": 300,
-                "returnurl": "https://wqlogin2.jd.com/passport/LoginRedirect?state=%s&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action"
-                % check_time_stamp,
+                "returnurl": f"https://wqlogin2.jd.com/passport/LoginRedirect?state={check_time_stamp}&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action",
                 "source": "wq_passport",
             }
+
             check_header = {
-                "Referer": "https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wqlogin2.jd.com/passport/LoginRedirect?state=%s&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport"
-                % check_time_stamp,
+                "Referer": f"https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wqlogin2.jd.com/passport/LoginRedirect?state={check_time_stamp}&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport",
                 "Cookie": cookies,
                 "Connection": "Keep-Alive",
                 "Content-Type": "application/x-www-form-urlencoded; Charset=UTF-8",
                 "Accept": "application/json, text/plain, */*",
                 "User-Agent": "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5 UCBrowser/13.4.2.1122",
             }
+
             resp = requests.post(
                 url=check_url, headers=check_header, data=check_data, timeout=30
             )
